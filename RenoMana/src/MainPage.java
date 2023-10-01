@@ -15,18 +15,35 @@
  */
 
 import javafx.application.Application;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.TabPane;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
+import javafx.scene.control.Button;
+import javafx.scene.shape.Circle;
 
 public class MainPage extends Application {
 
     @Override
     public void start(Stage stage) {
-        // The set-ups of pane and scene.
+        // The set-ups of pane and scene. Additionally, creating an account profile with an event when clicked.
         TabPane tabPane = new TabPane();
-        Scene scene = new Scene(tabPane, 1000, 500);
+        VBox mainLayout = new VBox();
+        Scene scene = new Scene(mainLayout, 2000, 600);
+
+        Label accountName = new Label("[ACCOUNT NAME]");
+        Circle profileCircle = new Circle(30);
+        profileCircle.setOnMouseClicked(event -> openProfileWindow());
+
+        // Add the circle to the top right corner of the main window
+        HBox topBar = new HBox(20, accountName, profileCircle);
+        topBar.setAlignment(Pos.CENTER_RIGHT);
+        HBox.setHgrow(accountName, javafx.scene.layout.Priority.ALWAYS); // Makes the account name push other elements to the right
+        mainLayout.getChildren().addAll(topBar, tabPane);
 
         // Adding the tabs and making them uncloseable, plus some additional
         // customization like paddings.
@@ -50,6 +67,27 @@ public class MainPage extends Application {
         stage.setScene(scene);
         stage.setTitle("[COMPANY HOMEPAGE]");
         stage.show();
+    }
+
+    /**
+     * This method creates a new window (Stage) that represents the user's profile. Inside this window,
+     * we plan to display the person's information(future implementation) and a back button are displayed.
+     * Clicking the back button will close the profile window and return the user to the main application.
+     */
+    private void openProfileWindow() {
+        // Profile window creation and set up.
+        Stage profileStage = new Stage();
+        HBox profileLayout = new HBox(20);
+        Scene profileScene = new Scene(profileLayout, 300, 200);
+
+        // Button with an event where, upon click, will take the user back to the MainPage.
+        Button backButton = new Button("Back");
+        backButton.setOnAction(event -> profileStage.close());
+
+        profileLayout.getChildren().addAll(backButton);
+        profileStage.setScene(profileScene);
+        profileStage.setTitle("Profile");
+        profileStage.show();
     }
 
     public static void main(String[] args) {
