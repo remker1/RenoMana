@@ -14,14 +14,22 @@
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import javafx.scene.control.TabPane;
+import javafx.scene.Scene;
 
 public class MainPage extends Application {
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
     @Override
     public void start(Stage primaryStage) {
+        TabPane tabPane = new TabPane();
+
+        Scene scene = new Scene(tabPane, 400, 300);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("[COMPANY HOMEPAGE]");
+        primaryStage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 }
