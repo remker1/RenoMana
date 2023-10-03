@@ -8,35 +8,63 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class Login extends Application {
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
 
-        Label helloLabel = new Label("Welcome!");
+        // Hello label message
+        Label helloLabel = new Label("Hello!");
         helloLabel.setFont(new Font(36));
-        HBox helloCentre = new HBox();
+        HBox helloCentre = new HBox(); // HBox to centre the greeting label
         helloCentre.setAlignment(Pos.CENTER);
         helloCentre.getChildren().add(helloLabel);
 
+        // Username label that prompts text field
         Label userLabel = new Label("Username: ");
         TextField userField = new TextField();
         userField.setPromptText("Enter your username");
 
+        // Password label that prompts password field
         Label passLabel = new Label("Password: ");
         PasswordField passField = new PasswordField();
         passField.setPromptText("Enter your password");
 
+        // Check box to keep user logged into device
         CheckBox keepLogIn = new CheckBox("Keep me logged in!");
 
+        // Log in button
         Button logInButton = new Button("Log In");
         logInButton.setFont(new Font(18));
-        HBox logInCentre = new HBox();
+        HBox logInCentre = new HBox(); // HBox to centre button
         logInCentre.setAlignment(Pos.CENTER);
         logInCentre.getChildren().add(logInButton);
 
+        // Set action for the login button
+        logInButton.setOnAction(event -> {
+            // Close the login stage
+            stage.close();
+            // Launch the main page
+            try {
+                new MainPage().start(new Stage());
+            } catch (Exception e) {
+                System.out.println("Something went wrong when going into main page.");
+            }
+        });
+
+        // Registration button for new users
         Button newButton = new Button("New?");
+
+        // Set action for the registration button
+        newButton.setOnAction(event -> {
+            // Close the login stage
+            stage.close();
+            // Launch the registration page
+            try {
+                new Registration().start(new Stage());
+            } catch (Exception e) {
+                System.out.println("Something went wrong when going into registration page.");
+            }
+        });
 
         VBox root = new VBox(10);
         root.setPadding(new Insets(20));
