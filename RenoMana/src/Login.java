@@ -1,53 +1,78 @@
 import javafx.application.Application;
-import javafx.scene.Group;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-
-import java.io.IOException;
 
 public class Login extends Application {
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
 
-        // Drawing the circle for face
-        Circle face = new Circle(125, 125, 100);
-        face.setFill(Color.GOLD);
-        face.setStroke(Color.BLACK);
+        // Hello label message
+        Label helloLabel = new Label("Hello!");
+        helloLabel.setFont(new Font(36));
+        HBox helloCentre = new HBox(); // HBox to centre the greeting label
+        helloCentre.setAlignment(Pos.CENTER);
+        helloCentre.getChildren().add(helloLabel);
 
-        // Drawing the rightEye rectangle
-        Rectangle rightEye = new Rectangle(86,75,10,50);
-        rightEye.setFill(Color.BLACK);
-        rightEye.setStroke(Color.BLACK);
+        // Username label that prompts text field
+        Label userLabel = new Label("Username: ");
+        TextField userField = new TextField();
+        userField.setPromptText("Enter your username");
 
-        // Drawing the leftEye rectangle
-        Rectangle leftEye = new Rectangle(162, 75, 10,50);
-        leftEye.setFill(Color.BLACK);
-        leftEye.setStroke(Color.BLACK);
+        // Password label that prompts password field
+        Label passLabel = new Label("Password: ");
+        PasswordField passField = new PasswordField();
+        passField.setPromptText("Enter your password");
 
-        // Drawing the mouth rectangle
-        Rectangle mouth = new Rectangle(86, 175, 86,10);
-        mouth.setFill(Color.BLACK);
-        mouth.setStroke(Color.BLACK);
+        // Check box to keep user logged into device
+        CheckBox keepLogIn = new CheckBox("Keep me logged in!");
 
-        // Words showing the face type
-        Text caption = new Text(80, 250, "Robo Face");
-        caption.setFill(Color.BLUE);
-        caption.setFont(Font.font( 15));
+        // Log in button
+        Button logInButton = new Button("Log In");
+        logInButton.setFont(new Font(18));
+        HBox logInCentre = new HBox(); // HBox to centre button
+        logInCentre.setAlignment(Pos.CENTER);
+        logInCentre.getChildren().add(logInButton);
 
-        // group everything in a group
-        Group root = new Group(face, rightEye, leftEye, mouth, caption);
-        // draw everything on scene, create the window, color background wheat color.
-        Scene scene = new Scene(root, 250, 275, Color.WHEAT);
+        // Set action for the login button
+        logInButton.setOnAction(event -> {
+            // Close the login stage
+            stage.close();
+            // Launch the main page
+            try {
+                new MainPage().start(new Stage());
+            } catch (Exception e) {
+                System.out.println("Something went wrong when going into main page.");
+            }
+        });
 
-        // creat window
+        // Registration button for new users
+        Button newButton = new Button("New?");
+
+        // Set action for the registration button
+        newButton.setOnAction(event -> {
+            // Close the login stage
+            stage.close();
+            // Launch the registration page
+            try {
+                new Registration().start(new Stage());
+            } catch (Exception e) {
+                System.out.println("Something went wrong when going into registration page.");
+            }
+        });
+
+        VBox root = new VBox(10);
+        root.setPadding(new Insets(20));
+        root.getChildren().addAll(helloCentre, userLabel, userField, passLabel, passField, keepLogIn, logInCentre, newButton);
+
+        Scene scene = new Scene(root, 500, 800);
+        stage.setTitle("Log In");
         stage.setScene(scene);
-        stage.setTitle("Face Design");
         stage.show();
     }
 
