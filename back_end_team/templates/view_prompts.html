@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View User Prompts</title>
+</head>
+<body>
+    <h1>View User Prompts</h1>
+    <ul>
+        {% for prompt in prompts %}
+            <li>Gender: {{ prompt[1] }}, Name: {{ prompt[2] }}</li>
+        {% endfor %}
+    </ul>
+    <a href="/">Go back to the main page</a>
+</body>
+</html>
