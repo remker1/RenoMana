@@ -1,0 +1,16 @@
+import sqlite3
+
+conn = sqlite3.connect('database.sqlite')
+cursor = conn.cursor()
+
+# Create a table to store user prompts
+cursor.execute('''
+    CREATE TABLE [IF NOT EXISTS] user_prompts (
+        column_1 id INTEGER PRIMARY KEY,
+        column_2 gender TEXT,
+        column_3 name TEXT
+    )
+''')
+
+conn.commit()
+conn.close()
