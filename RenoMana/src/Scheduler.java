@@ -1,10 +1,8 @@
 import javafx.application.Application;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -16,7 +14,7 @@ public class Scheduler extends Application {
     public void start(Stage stage) {
         Scene scene = new Scene(new Group());
         stage.setTitle("Scheduler");
-        stage.setWidth(360);
+        stage.setWidth(780);
         stage.setHeight(500);
 
         final Label label = new Label("Projects Schedule");
@@ -26,6 +24,7 @@ public class Scheduler extends Application {
 
         TableColumn projName = new TableColumn("Name");
         TableColumn projTimeline = new TableColumn("Timeline");
+        projTimeline.setPrefWidth(500);
         TableColumn projDetails = new TableColumn("Details");
         TableColumn projMembers = new TableColumn("Members");
 
