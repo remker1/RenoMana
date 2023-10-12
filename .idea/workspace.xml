@@ -5,18 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9cb99a68-cf02-4d76-9efc-92f890eb8464" name="Changes" comment="updates">
+      <change afterPath="$PROJECT_DIR$/RenoMana/src/BasicPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/RenoMana.iml" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/RenoMana.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/MainPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RenoMana/src/Registration.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/Registration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/Login.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab6.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Registration.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/Registration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/RenoMana.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/RenoMana.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <favorite-branches>
@@ -61,14 +77,14 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "Leo-JavaGUI",
-    "last_opened_file_path": "L:/JavaFX/openjfx-20.0.2_windows-x64_bin-sdk/javafx-sdk-20.0.2/lib",
+    "last_opened_file_path": "C:/Users/ruizv/Desktop/javafx-sdk-21/lib",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "SDKs",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.48965517",
+    "project.structure.side.proportion": "0.14641148",
     "settings.editor.selected.configurable": "org.jetbrains.plugins.gitlab.GitLabSettingsConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
@@ -79,7 +95,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="Login" />
       <module name="RenoMana" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;L:\JavaFX\openjfx-20.0.2_windows-x64_bin-sdk\javafx-sdk-20.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\ruizv\Desktop\javafx-sdk-21\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -134,6 +150,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Testing changes to Sub-branch" />

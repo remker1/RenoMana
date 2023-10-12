@@ -26,7 +26,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.Button;
 import javafx.scene.shape.Circle;
 
-public class MainPage extends Application {
+public class MainPage extends BasicPage {
 
     @Override
     public void start(Stage stage) {

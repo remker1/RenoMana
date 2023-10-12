@@ -7,7 +7,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 
-public class Registration extends Application {
+public class Registration extends BasicPage {
 
     final double scene_width = 800;
     final double scene_height = 500;
