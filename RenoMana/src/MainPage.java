@@ -14,6 +14,7 @@
  * @since 2023-08-01
  */
 
+import inventoryMana.Inventory;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -58,7 +59,7 @@ public class MainPage extends Application {
         // customization like paddings.
         Tab tab1 = new Tab("Dashboard", new MainPageTab1());
         Tab tab2 = new Tab("Schedule", new MainPageTab2());
-        Tab tab3 = new Tab("Inventory", new MainPageTab3());
+        Tab tab3 = new Tab("Inventory", new Inventory());
         Tab tab4 = new Tab("Employees", new MainPageTab4());
 
         tabPane.getTabs().addAll(tab1, tab2, tab3, tab4);

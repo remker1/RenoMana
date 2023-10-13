@@ -4,20 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9cb99a68-cf02-4d76-9efc-92f890eb8464" name="Changes" comment="updates">
-      <change afterPath="$PROJECT_DIR$/RenoMana/src/mainPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/RenoP.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/RenoP.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" />
+    <list default="true" id="9cb99a68-cf02-4d76-9efc-92f890eb8464" name="Changes" comment="Added some colors in MainPage and Login classes.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/RenoMana.iml" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/RenoMana.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/MainPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/MainPageTab3.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/MainPageTab3.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/Login.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Registration.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/Registration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/RenoMana.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/RenoMana.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +20,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="JewelBranch" />
   </component>
   <component name="Git.Settings">
     <favorite-branches>
@@ -155,6 +147,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Registration" />
+        <item itemvalue="Application.Registration" />
+        <item itemvalue="Application.Registration" />
+        <item itemvalue="Application.Registration" />
+        <item itemvalue="Application.Registration" />
       </list>
     </recent_temporary>
   </component>
@@ -180,6 +176,7 @@
       <workItem from="1697149427555" duration="712000" />
       <workItem from="1697156367080" duration="515000" />
       <workItem from="1697157694569" duration="68000" />
+      <workItem from="1697232507585" duration="846000" />
     </task>
     <task id="LOCAL-00001" summary="Testing changes to Sub-branch">
       <option name="closed" value="true" />
@@ -197,7 +194,23 @@
       <option name="project" value="LOCAL" />
       <updated>1696393704151</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added some colors in MainPage and Login classes.">
+      <option name="closed" value="true" />
+      <created>1697158292069</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1697158292069</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added some colors in MainPage and Login classes.">
+      <option name="closed" value="true" />
+      <created>1697158314119</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1697158314119</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,6 +230,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Testing changes to Sub-branch" />
     <MESSAGE value="updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="updates" />
+    <MESSAGE value="Added some colors in MainPage and Login classes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added some colors in MainPage and Login classes." />
   </component>
 </project>
