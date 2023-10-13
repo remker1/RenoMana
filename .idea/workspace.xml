@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9cb99a68-cf02-4d76-9efc-92f890eb8464" name="Changes" comment="Added some colors in MainPage and Login classes.">
+    <list default="true" id="9cb99a68-cf02-4d76-9efc-92f890eb8464" name="Changes" comment="Added initial structure for Inventory management system with Inventory and InventoryItem classes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/Login.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/inventoryMana/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/inventoryMana/Inventory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,10 +110,8 @@
       <recent name="$PROJECT_DIR$/RenoMana" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ManaLogin">
+  <component name="RunManager" selected="Application.MainPage">
     <configuration name="MainPage" type="Application" factoryName="Application">
-      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="MainPage" />
       <module name="RenoMana" />
       <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Downloads/javafx-sdk-21/lib --add-modules javafx.controls,javafx.fxml" />
@@ -177,6 +175,7 @@
       <workItem from="1697156367080" duration="515000" />
       <workItem from="1697157694569" duration="68000" />
       <workItem from="1697232507585" duration="846000" />
+      <workItem from="1697235729908" duration="2492000" />
     </task>
     <task id="LOCAL-00001" summary="Testing changes to Sub-branch">
       <option name="closed" value="true" />
@@ -210,7 +209,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697158314119</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added initial structure for Inventory management system with Inventory and InventoryItem classes">
+      <option name="closed" value="true" />
+      <created>1697236406991</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1697236406991</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,6 +238,7 @@
     <MESSAGE value="Testing changes to Sub-branch" />
     <MESSAGE value="updates" />
     <MESSAGE value="Added some colors in MainPage and Login classes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added some colors in MainPage and Login classes." />
+    <MESSAGE value="Added initial structure for Inventory management system with Inventory and InventoryItem classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added initial structure for Inventory management system with Inventory and InventoryItem classes" />
   </component>
 </project>
