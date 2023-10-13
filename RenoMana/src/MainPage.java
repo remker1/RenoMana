@@ -16,16 +16,15 @@
 
 import javafx.application.Application;
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import javafx.scene.control.TabPane;
-import javafx.scene.Scene;
-import javafx.scene.control.Tab;
-import javafx.scene.control.Button;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 
+
+// color red : #4B1517 | #7C1715 | #9E1C29 | #AB2838 | #B84656
 public class MainPage extends Application {
 
     @Override
@@ -33,32 +32,41 @@ public class MainPage extends Application {
         // The set-ups of pane and scene. Additionally, creating an account profile with an event when clicked.
         TabPane tabPane = new TabPane();
         VBox mainLayout = new VBox();
+        mainLayout.setStyle("-fx-background-color: lightGray");
         Scene scene = new Scene(mainLayout, 2000, 600);
 
-        Label accountName = new Label("[ACCOUNT NAME]");
+        Separator redDivider = new Separator();
+        redDivider.setStyle("-fx-background-color: #7C1715; -fx-padding: 5 0 5 0;");
+
+        // The account profile entrance
+        Label accountName = new Label("Hello, User!");
+        accountName.setStyle("-fx-text-fill: white; -fx-font-weight: bold");
+
         Circle profileCircle = new Circle(30);
+        profileCircle.setStyle("-fx-background-color: #9E1C29; -fx-stroke: #7C1715; -fx-border-radius: 2;");
         profileCircle.setOnMouseClicked(event -> openProfileWindow());
 
         // Add the circle to the top right corner of the main window
         HBox topBar = new HBox(20, accountName, profileCircle);
         topBar.setAlignment(Pos.CENTER_RIGHT);
+        topBar.setStyle("-fx-background-color: lightGray");
+
         HBox.setHgrow(accountName, javafx.scene.layout.Priority.ALWAYS); // Makes the account name push other elements to the right
-        mainLayout.getChildren().addAll(topBar, tabPane);
+        mainLayout.getChildren().addAll(topBar, redDivider, tabPane);
 
         // Adding the tabs and making them uncloseable, plus some additional
         // customization like paddings.
-        Tab tab1 = new Tab("Tab 1", new MainPageTab1());
-        Tab tab2 = new Tab("Tab 2", new MainPageTab2());
-        Tab tab3 = new Tab("Tab 3", new MainPageTab3());
-        Tab tab4 = new Tab("Tab 4", new MainPageTab4());
-        Tab tab5 = new Tab("Tab 5", new MainPageTab5());
-        Tab tab6 = new Tab("Tab 6", new MainPageTab6());
+        Tab tab1 = new Tab("Dashboard", new MainPageTab1());
+        Tab tab2 = new Tab("Schedule", new MainPageTab2());
+        Tab tab3 = new Tab("Inventory", new MainPageTab3());
+        Tab tab4 = new Tab("Employees", new MainPageTab4());
 
-        tabPane.getTabs().addAll(tab1, tab2, tab3, tab4, tab5, tab6);
-
+        tabPane.getTabs().addAll(tab1, tab2, tab3, tab4);
         for (Tab tab : tabPane.getTabs()) {
             tab.setClosable(false);
+            tab.setStyle("-fx-background-color: lightGray; -fx-border-radius: 5px 5px 0 0;");
         }
+
         // The TabPane's tabMinWidthProperty is bound to the TabPane's width divided by the number of tabs. This makes
         // sure that the width of the tabs will change as the window is resized, keeping the space between all tabs the
         // same.
