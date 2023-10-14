@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9cb99a68-cf02-4d76-9efc-92f890eb8464" name="Changes" comment="Added table state view with column names, add, delete, modify, import, and export buttons. These buttons do not do anything yet.">
+    <list default="true" id="9cb99a68-cf02-4d76-9efc-92f890eb8464" name="Changes" comment="Implemented the add a new item method to the table with invalid input error handling. Tested the method by typing wrong data types.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RenoMana/src/inventoryMana/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/inventoryMana/Inventory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab3.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,7 +178,8 @@
       <workItem from="1697235729908" duration="2783000" />
       <workItem from="1697238591611" duration="14000" />
       <workItem from="1697238756406" duration="31000" />
-      <workItem from="1697240056752" duration="1525000" />
+      <workItem from="1697240056752" duration="1697000" />
+      <workItem from="1697242227838" duration="696000" />
     </task>
     <task id="LOCAL-00001" summary="Testing changes to Sub-branch">
       <option name="closed" value="true" />
@@ -230,7 +229,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697238399029</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Implemented the add a new item method to the table with invalid input error handling. Tested the method by typing wrong data types.">
+      <option name="closed" value="true" />
+      <created>1697241723202</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1697241723202</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,6 +260,7 @@
     <MESSAGE value="Added some colors in MainPage and Login classes." />
     <MESSAGE value="Added initial structure for Inventory management system with Inventory and InventoryItem classes" />
     <MESSAGE value="Added table state view with column names, add, delete, modify, import, and export buttons. These buttons do not do anything yet." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added table state view with column names, add, delete, modify, import, and export buttons. These buttons do not do anything yet." />
+    <MESSAGE value="Implemented the add a new item method to the table with invalid input error handling. Tested the method by typing wrong data types." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented the add a new item method to the table with invalid input error handling. Tested the method by typing wrong data types." />
   </component>
 </project>

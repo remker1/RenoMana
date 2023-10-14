@@ -32,7 +32,7 @@ public class Inventory extends VBox {
 
 
          TableColumn<InventoryItem, Integer> estCol = new TableColumn<>("Estimation for Project");
-         estCol.setCellValueFactory(cellData -> cellData.getValue().quantityProperty().asObject());
+         estCol.setCellValueFactory(cellData -> cellData.getValue().estimationProperty().asObject());
          estCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.3)); // 30% width
 
 
@@ -75,6 +75,22 @@ public class Inventory extends VBox {
     }
 
     private void deleteInventoryItem() {
+         // When item is selected ...
+        InventoryItem selectedItem = inventoryTable.getSelectionModel().getSelectedItem();
+
+        // Check if that item row is valid or does exists, if not, throw an alert
+        if (selectedItem == null) {
+            Alert noSelectedAlert = new Alert(Alert.AlertType.WARNING);
+            noSelectedAlert.setTitle("Error!");
+            noSelectedAlert.setHeaderText("No tool is selected!");
+            noSelectedAlert.setContentText("Please select a tool from the table to delete.");
+            noSelectedAlert.showAndWait();
+            return;
+        }
+
+        // Else, remove the item from the table
+        data.remove(selectedItem);
+        inventoryTable.refresh();
     }
 
     private void addInventoryItem() {
@@ -117,11 +133,11 @@ public class Inventory extends VBox {
                 throw new NumberFormatException();
             }
         } catch (NumberFormatException e) {
-            Alert invalidNum = new Alert(Alert.AlertType.ERROR);
-            invalidNum.setTitle("Error!");
-            invalidNum.setHeaderText("Invalid Input!");
-            invalidNum.setContentText("Please enter a valid positive integer for quantity and estimation.");
-            invalidNum.showAndWait();
+            Alert invalidNumAlert = new Alert(Alert.AlertType.ERROR);
+            invalidNumAlert.setTitle("Error!");
+            invalidNumAlert.setHeaderText("Invalid Input!");
+            invalidNumAlert.setContentText("Please enter a valid positive integer for quantity and estimation.");
+            invalidNumAlert.showAndWait();
             return;
         }
 
