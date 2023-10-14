@@ -9,6 +9,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.geometry.Insets;
+import javafx.stage.FileChooser;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class Inventory extends VBox {
 
     private TableView<InventoryItem> inventoryTable;
@@ -69,6 +76,56 @@ public class Inventory extends VBox {
     }
 
     private void importInventoryFile() {
+        // Create a new FileChooser object to let the user select a file
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open an Inventory File");
+
+        // Defining the types of files the user can select in the FileChooser
+        // Only CSV file is supported right now
+        FileChooser.ExtensionFilter csvFilter =
+                new FileChooser.ExtensionFilter("CSV Files", "*.csv");
+        fileChooser.getExtensionFilters().addAll(csvFilter);
+
+        // gathering the file selected by user to extract data from and add to our table
+        File file = fileChooser.showOpenDialog(null);
+        if (file != null) {
+            try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+                String line;
+
+                // Read each line of the file until there are no more lines left
+                while ((line = br.readLine()) != null) {
+                    String[] values = line.split(",");
+
+                    // Check if the line has at least 3 values (for toolName, quantity, and estimation) and create an
+                    // InventoryItem Object from it to add in our table
+                    // If not, error alert will be displayed
+                    if (values.length >= 3) {
+                        String toolName = values[0];
+                        int quantity = Integer.parseInt(values[1].trim());
+                        int estimation = Integer.parseInt(values[2].trim());
+
+                        InventoryItem newItem = new InventoryItem(
+                                new SimpleStringProperty(toolName),
+                                new SimpleIntegerProperty(quantity),
+                                new SimpleIntegerProperty(estimation)
+                        );
+
+                        this.data.add(newItem);
+                    }
+                }
+
+                inventoryTable.refresh();
+
+            } catch (IOException | NumberFormatException e) {
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setTitle("Error!");
+                errorAlert.setHeaderText("File Reading Error");
+                errorAlert.setContentText("There was an error reading the file. Please ensure it's a valid CSV file and " +
+                        "try again.");
+                errorAlert.showAndWait();
+            }
+        }
+
     }
 
     private void modifyInventoryItem() {
