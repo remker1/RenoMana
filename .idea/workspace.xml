@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9cb99a68-cf02-4d76-9efc-92f890eb8464" name="Changes" comment="Implemented the modify an item method from the table with error handling for cases when there is no tool existing in the table. Tested the method by clicking on an empty table and modify an existing information.">
+    <list default="true" id="9cb99a68-cf02-4d76-9efc-92f890eb8464" name="Changes" comment="Implemented the import a csv file method from user directory. Only supports csv files (for now) and is yet to be tested.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RenoMana/src/inventoryMana/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/inventoryMana/Inventory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RenoMana/inventoryMana/Inventory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/inventoryMana/Inventory.class" afterDir="false" />
@@ -85,26 +85,26 @@
     <option name="showMembers" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Leo-JavaGUI",
-    "last_opened_file_path": "L:/JavaFX/openjfx-20.0.2_windows-x64_bin-sdk/javafx-sdk-20.0.2/lib",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.48965517",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Leo-JavaGUI&quot;,
+    &quot;last_opened_file_path&quot;: &quot;L:/JavaFX/openjfx-20.0.2_windows-x64_bin-sdk/javafx-sdk-20.0.2/lib&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.48965517&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/RenoMana/src" />
@@ -183,6 +183,9 @@
       <workItem from="1697242227838" duration="1675000" />
       <workItem from="1697297934610" duration="22000" />
       <workItem from="1697297966588" duration="1993000" />
+      <workItem from="1697302585639" duration="124000" />
+      <workItem from="1697310775333" duration="945000" />
+      <workItem from="1697311735379" duration="445000" />
     </task>
     <task id="LOCAL-00001" summary="Testing changes to Sub-branch">
       <option name="closed" value="true" />
@@ -256,7 +259,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697298164192</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Implemented the import a csv file method from user directory. Only supports csv files (for now) and is yet to be tested.">
+      <option name="closed" value="true" />
+      <created>1697302661862</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1697302661862</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,6 +293,7 @@
     <MESSAGE value="Implemented the add a new item method to the table with invalid input error handling. Tested the method by typing wrong data types." />
     <MESSAGE value="Implemented the delete an item method from the table with error handling for cases when there is no tool existing in the table. Tested the method by clicking on an empty table." />
     <MESSAGE value="Implemented the modify an item method from the table with error handling for cases when there is no tool existing in the table. Tested the method by clicking on an empty table and modify an existing information." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented the modify an item method from the table with error handling for cases when there is no tool existing in the table. Tested the method by clicking on an empty table and modify an existing information." />
+    <MESSAGE value="Implemented the import a csv file method from user directory. Only supports csv files (for now) and is yet to be tested." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented the import a csv file method from user directory. Only supports csv files (for now) and is yet to be tested." />
   </component>
 </project>

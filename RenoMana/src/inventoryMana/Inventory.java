@@ -11,10 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.geometry.Insets;
 import javafx.stage.FileChooser;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class Inventory extends VBox {
 
@@ -73,8 +70,36 @@ public class Inventory extends VBox {
      }
 
     private void exportInventoryFile() {
-    }
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Inventory as CSV");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
 
+        // If a file is selected, write the TableView data to the file as CSV
+        File file = fileChooser.showSaveDialog(null);
+        if (file != null) {
+            // Write the header and data in the file
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+                bw.write("Tool Name,Total Quantity,Estimation for Project\n");
+
+                for (InventoryItem item : data) {
+                    bw.write(item.getToolName() + "," + item.getQuantity() + "," + item.getEstimation() + "\n");
+                }
+
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Success!");
+                successAlert.setHeaderText("Export Successful");
+                successAlert.setContentText("The inventory data has been successfully exported to " + file.getName());
+                successAlert.showAndWait();
+
+            } catch (IOException e) {
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setTitle("Error!");
+                errorAlert.setHeaderText("File Writing Error");
+                errorAlert.setContentText("There was an error writing to the file. Please try again.");
+                errorAlert.showAndWait();
+            }
+        }
+    }
     private void importInventoryFile() {
         // Create a new FileChooser object to let the user select a file
         FileChooser fileChooser = new FileChooser();
