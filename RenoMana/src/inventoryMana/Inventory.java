@@ -51,7 +51,7 @@ public class Inventory extends VBox {
          modifyItem.setOnAction(actionEvent -> {modifyInventoryItem();});
 
          Button importFile = new Button("Import");
-         modifyItem.setOnAction(actionEvent -> {importInventoryFile();});
+         importFile.setOnAction(actionEvent -> {importInventoryFile();});
 
          Button exportFile = new Button("Export");
          exportFile.setOnAction(actionEvent -> {exportInventoryFile();});
@@ -72,6 +72,71 @@ public class Inventory extends VBox {
     }
 
     private void modifyInventoryItem() {
+        // When item is selected ...
+        InventoryItem selectedItem = inventoryTable.getSelectionModel().getSelectedItem();
+
+        // Check if that item row is valid or does exists, if not, throw an alert
+        if (selectedItem == null) {
+            Alert noSelectedAlert = new Alert(Alert.AlertType.WARNING);
+            noSelectedAlert.setTitle("Error!");
+            noSelectedAlert.setHeaderText("No tool is selected!");
+            noSelectedAlert.setContentText("Please select a tool from the table to modify.");
+            noSelectedAlert.showAndWait();
+            return;
+        }
+
+        // Else, get new user values
+        TextInputDialog toolInput = new TextInputDialog();
+        toolInput.setTitle("Modify Tool");
+        toolInput.setHeaderText("Enter New Tool Name");
+        String newToolName = toolInput.showAndWait().orElse("");
+
+        // Error Handling: If tool name is already in the table (excluding the currently selected item)
+        for (InventoryItem item : this.data) {
+            if (item.getToolName().equals(newToolName) && item != selectedItem){
+                Alert duplicateAlert = new Alert(Alert.AlertType.ERROR);
+                duplicateAlert.setTitle("Error!");
+                duplicateAlert.setHeaderText("Tool already exists!");
+                duplicateAlert.setContentText("Please choose a different tool name.");
+                duplicateAlert.showAndWait();
+                return;
+            }
+        }
+
+        int newQuantity = 0;
+        int newEstimation = 0;
+
+        try {
+            TextInputDialog quantityInput = new TextInputDialog("0");
+            quantityInput.setHeaderText("Enter New Quality");
+            newQuantity = Integer.parseInt(quantityInput.showAndWait().orElse("Invalid Input!"));
+
+            if (newQuantity < 0) {
+                throw new NumberFormatException();
+            }
+
+            TextInputDialog estimateInput = new TextInputDialog("0");
+            estimateInput.setHeaderText("Enter New Estimate");
+            newEstimation = Integer.parseInt(estimateInput.showAndWait().orElse("Invalid Input!"));
+
+            if (newEstimation < 0) {
+                throw new NumberFormatException();
+            }
+        } catch (NumberFormatException e) {
+            Alert invalidNumAlert = new Alert(Alert.AlertType.ERROR);
+            invalidNumAlert.setTitle("Error!");
+            invalidNumAlert.setHeaderText("Invalid Input!");
+            invalidNumAlert.setContentText("Please enter a valid positive integer for quantity and estimation.");
+            invalidNumAlert.showAndWait();
+            return;
+        }
+
+        // Update the InventoryItem
+        selectedItem.toolNameProperty().set(newToolName);
+        selectedItem.quantityProperty().set(newQuantity);
+        selectedItem.estimationProperty().set(newEstimation);
+        inventoryTable.refresh();
+
     }
 
     private void deleteInventoryItem() {
