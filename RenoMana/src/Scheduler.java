@@ -8,10 +8,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Scheduler extends Application {
 
     // to display schedule in a table format
-    private TableView table = new TableView();
+    private TableView<String> table = new TableView<>();
 
     public void start(Stage stage) {
         Scene scene = new Scene(new Group());
@@ -27,14 +30,32 @@ public class Scheduler extends Application {
         table.setEditable(true);
 
         // columns with appropriate headers
-        TableColumn projName = new TableColumn("Name");
-        TableColumn projTimeline = new TableColumn("Timeline");
+        TableColumn<String, String> projName = new TableColumn<>("Name");
+        TableColumn<String, String> projTimeline = new TableColumn<>("Timeline");
         projTimeline.setPrefWidth(500); // timeline will contain colour coded blocks for each project phase
-        TableColumn projDetails = new TableColumn("Details");
-        TableColumn projMembers = getTableColumn();
+        TableColumn<String, String> projDetails = new TableColumn<>("Details");
+        TableColumn<String, String> projMembers = new TableColumn<>("Members");
+
+        // dropdown view for project members column;
+        projMembers.setCellFactory(param -> new TableCell<>() {
+            final ComboBox<String> comboBox = new ComboBox<>(FXCollections.observableArrayList("Member A", "Member B", "Member C"));
+
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                // display dropdown menu if cell is not empty
+                if (!empty) {
+                    setGraphic(comboBox);
+                } else {
+                    setGraphic(null);
+                }
+            }
+        });
 
         // add all defined columns to TableView
-        table.getColumns().addAll(projName, projTimeline, projDetails, projMembers);
+        List<TableColumn<String, String>> columns = Arrays.asList(projName, projTimeline, projDetails, projMembers);
+        table.getColumns().addAll(columns);
+
 
         // VBox to organize each project vertically
         final VBox vbox = new VBox();
@@ -47,27 +68,6 @@ public class Scheduler extends Application {
 
         stage.setScene(scene);
         stage.show();
-    }
-
-    private static TableColumn getTableColumn() {
-        TableColumn projMembers = new TableColumn("Members");
-
-        // dropdown view for project members column
-        projMembers.setCellFactory(param -> new TableCell() {
-            final ComboBox<String> comboBox = new ComboBox<>(FXCollections.observableArrayList("Member A", "Member B", "Member C"));
-
-            @Override
-            protected void updateItem(Object item, boolean empty) {
-                super.updateItem(item, empty);
-                // display dropdown menu if cell is not empty
-                if (!empty) {
-                    setGraphic(comboBox);
-                } else {
-                    setGraphic(null);
-                }
-            }
-        });
-        return projMembers;
     }
 
     public static void main(String[] args) {
