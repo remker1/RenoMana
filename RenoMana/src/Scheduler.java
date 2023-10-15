@@ -1,4 +1,5 @@
 import javafx.application.Application;
+import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -27,6 +28,20 @@ public class Scheduler extends Application {
         projTimeline.setPrefWidth(500);
         TableColumn projDetails = new TableColumn("Details");
         TableColumn projMembers = new TableColumn("Members");
+
+        projMembers.setCellFactory(param -> new TableCell() {
+            final ComboBox<String> comboBox = new ComboBox<>(FXCollections.observableArrayList("Member A", "Member B", "Member C"));
+
+            @Override
+            protected void updateItem(Object item, boolean empty) {
+                super.updateItem(item, empty);
+                if (!empty) {
+                    setGraphic(comboBox);
+                } else {
+                    setGraphic(null);
+                }
+            }
+        });
 
         table.getColumns().addAll(projName, projTimeline, projDetails, projMembers);
 
