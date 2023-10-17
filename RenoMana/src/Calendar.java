@@ -3,6 +3,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -91,6 +92,8 @@ public class Calendar extends Application {
                 // button for each day
                 Button dayButton = new Button(String.valueOf(dayOfMonth));
                 dayButton.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+                GridPane.setHgrow(dayButton, Priority.ALWAYS);
+                GridPane.setVgrow(dayButton, Priority.ALWAYS);
 
                 // temporary function: display the date when button is clicked
                 LocalDate finalDateBeingSetup = dateBeingSetup;
