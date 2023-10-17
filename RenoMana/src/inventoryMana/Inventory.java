@@ -65,8 +65,8 @@ public class Inventory extends VBox {
          optButton.setPadding(new Insets(10, 0, 10, 0)); // top, right, bottom, left padding
 
 
-         this.getChildren().addAll(inventoryTable, optButton);
          VBox.setVgrow(inventoryTable, Priority.ALWAYS);
+         this.getChildren().addAll(inventoryTable, optButton);
      }
 
     private void exportInventoryFile() {
