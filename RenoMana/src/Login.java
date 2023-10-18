@@ -90,9 +90,10 @@ public class Login extends Application {
 
         // Set background colour.
         LinearGradient gradient = new LinearGradient(0, 0, 1, 1, true, CycleMethod.NO_CYCLE,
-                new Stop(0, Color.RED),
-                new Stop(1, Color.YELLOW));
+                new Stop(0, Color.web("#4B1517")),
+                new Stop(1, Color.web("#C49102")));
         root.setBackground(new Background(new BackgroundFill(gradient, CornerRadii.EMPTY, Insets.EMPTY)));
+
 
 
         Scene scene = new Scene(root, 500, 800);
