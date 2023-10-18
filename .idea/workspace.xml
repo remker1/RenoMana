@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9cb99a68-cf02-4d76-9efc-92f890eb8464" name="Changes" comment="Implemented the export a csv file method with data from the table. Only supports csv files (for now) and is yet to be tested for windows systems.">
+    <list default="true" id="9cb99a68-cf02-4d76-9efc-92f890eb8464" name="Changes" comment="Redesigned and recoloured MainPage and Login classes.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/Login.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RenoMana/src/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/MainPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/inventoryMana/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/inventoryMana/Inventory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/Login.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/inventoryMana/Inventory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/inventoryMana/Inventory.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +111,7 @@
       <recent name="$PROJECT_DIR$/RenoMana" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MainPage">
+  <component name="RunManager" selected="Application.ManaLogin">
     <configuration name="MainPage" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="MainPage" />
       <module name="RenoMana" />
@@ -193,7 +189,10 @@
       <workItem from="1697392918077" duration="57000" />
       <workItem from="1697460342034" duration="84000" />
       <workItem from="1697476356794" duration="5000" />
-      <workItem from="1697579794964" duration="1040000" />
+      <workItem from="1697579794964" duration="3139000" />
+      <workItem from="1697655656713" duration="384000" />
+      <workItem from="1697663268036" duration="35000" />
+      <workItem from="1697663308939" duration="46000" />
     </task>
     <task id="LOCAL-00001" summary="Testing changes to Sub-branch">
       <option name="closed" value="true" />
@@ -283,7 +282,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697312298987</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Redesigned and recoloured MainPage and Login classes.">
+      <option name="closed" value="true" />
+      <created>1697581103270</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1697581103270</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -311,6 +318,7 @@
     <MESSAGE value="Implemented the modify an item method from the table with error handling for cases when there is no tool existing in the table. Tested the method by clicking on an empty table and modify an existing information." />
     <MESSAGE value="Implemented the import a csv file method from user directory. Only supports csv files (for now) and is yet to be tested." />
     <MESSAGE value="Implemented the export a csv file method with data from the table. Only supports csv files (for now) and is yet to be tested for windows systems." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented the export a csv file method with data from the table. Only supports csv files (for now) and is yet to be tested for windows systems." />
+    <MESSAGE value="Redesigned and recoloured MainPage and Login classes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Redesigned and recoloured MainPage and Login classes." />
   </component>
 </project>

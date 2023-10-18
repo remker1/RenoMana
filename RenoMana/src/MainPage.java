@@ -29,6 +29,7 @@ import javafx.scene.paint.Stop;
 import javafx.geometry.Insets;
 
 public class MainPage extends Application {
+    HBox mainLayout = new HBox();
     private VBox sideBar;
     private VBox contentArea;
     private Label contentTitle = new Label();
@@ -36,11 +37,12 @@ public class MainPage extends Application {
             new Stop(0, Color.web("#4B1517")),
             new Stop(1, Color.web("#C49102")));
 
+    private boolean isDarkMode = false;
+
 
     @Override
     public void start(Stage stage) {
         VBox rootLayout = new VBox();
-        HBox mainLayout = new HBox();
         mainLayout.setStyle("-fx-background-color: lightGray");
         Scene scene = new Scene(rootLayout, 1920, 1080);
 
@@ -109,19 +111,65 @@ public class MainPage extends Application {
     private void openProfileWindow() {
         // Profile window creation and set up.
         Stage profileStage = new Stage();
-        HBox profileLayout = new HBox(20);
+        VBox profileLayout = new VBox(20);
         Scene profileScene = new Scene(profileLayout, 300, 200);
+
+        // Slider for light and dark mode
+        Slider modeSlider = new Slider();
+        modeSlider.setMin(0);
+        modeSlider.setMax(1);
+        modeSlider.setValue(0); // 0 for light mode, 1 for dark mode
+        modeSlider.setShowTickLabels(true);
+        modeSlider.setShowTickMarks(true);
+        modeSlider.setMajorTickUnit(1);
+        modeSlider.setMinorTickCount(0);
+        modeSlider.setSnapToTicks(true);
+        modeSlider.setBlockIncrement(1);
+
+        Label modeLabel = new Label("Light Mode");
+
+        if (isDarkMode) {
+            modeSlider.setValue(1);
+            modeLabel.setText("Dark Mode");
+        } else {
+            modeSlider.setValue(0);
+            modeLabel.setText("Light Mode");
+        }
+
+
+        modeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.intValue() == 1) {
+                modeLabel.setText("Dark Mode");
+                setDarkMode();
+            } else {
+                modeLabel.setText("Light Mode");
+                setLightMode();
+            }
+        });
 
         // Button with an event where, upon click, will take the user back to the MainPage.
         Button backButton = new Button("Back");
         backButton.setOnAction(event -> profileStage.close());
 
-
-
-        profileLayout.getChildren().addAll(backButton);
+        profileLayout.getChildren().addAll(modeLabel, modeSlider, backButton);
         profileStage.setScene(profileScene);
         profileStage.setTitle("Profile");
         profileStage.show();
+    }
+
+    private void setDarkMode() {
+        contentArea.setStyle("-fx-background-color: #1C1C1C; -fx-padding: 10px;");
+        contentTitle.setTextFill(Color.WHITE);
+        mainLayout.setStyle("-fx-background-color: #1C1C1C;");
+        isDarkMode = true;
+
+    }
+
+    private void setLightMode() {
+        contentArea.setStyle("-fx-background-color: lightGray; -fx-padding: 10px;");
+        contentTitle.setTextFill(Color.BLACK);
+        mainLayout.setStyle("-fx-background-color: lightGray;");
+        isDarkMode = false;
     }
 
     private void displayContent(Node content, String title) {
