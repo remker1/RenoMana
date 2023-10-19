@@ -45,6 +45,8 @@ public class Login extends BasicPage {
             String username = userField.getText();
             String password = passField.getText();
 
+            System.out.println(username + " + " + password);
+
             try {
                 // Perform the login and get cookies
                 COOKIES = login();

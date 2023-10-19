@@ -4,13 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9cb99a68-cf02-4d76-9efc-92f890eb8464" name="Changes" comment="updates">
-      <change afterPath="$PROJECT_DIR$/RenoMana/src/BasicPage.java" afterDir="false" />
+    <list default="true" id="9cb99a68-cf02-4d76-9efc-92f890eb8464" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/RenoP.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/RenoP.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/cmpt370-g29.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/cmpt370-g29.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaFxSubgroup/LoginPageDannPangan/LogInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/JavaFxSubgroup/LoginPageDannPangan/LogInController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaFxSubgroup/LoginPageDannPangan/LogInPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/JavaFxSubgroup/LoginPageDannPangan/LogInPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/RenoMana.iml" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/RenoMana.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/BasicPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/BasicPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RenoMana/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RenoMana/src/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/MainPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/MainPageTab1.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/MainPageTab1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/MainPageTab2.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/MainPageTab2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/MainPageTab3.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/MainPageTab3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/MainPageTab4.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/MainPageTab4.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/MainPageTab5.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/MainPageTab5.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/MainPageTab6.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/MainPageTab6.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RenoMana/src/Registration.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/Registration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/app/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/app/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/app/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/app/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/app/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/app/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/app/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/app/wsgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/nginx/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/nginx/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/nginx/conf.d/app.conf" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/nginx/conf.d/app.conf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/Login.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPage.class" afterDir="false" />
@@ -21,6 +45,13 @@
       <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab5.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab6.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Registration.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/Registration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/RenoMana.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/RenoMana.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cmpt370-g29/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cmpt370-g29/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cmpt370-g29/.idea/cmpt370-g29.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cmpt370-g29/.idea/cmpt370-g29.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cmpt370-g29/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cmpt370-g29/.idea/libraries/lib.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cmpt370-g29/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cmpt370-g29/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cmpt370-g29/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cmpt370-g29/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cmpt370-g29/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cmpt370-g29/.idea/vcs.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +64,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="origin/main" />
   </component>
   <component name="Git.Settings">
     <favorite-branches>
@@ -54,7 +88,18 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
+  <component name="GitLabMergeRequestFiltersHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPENED",
+    "assignee": {
+      "type": "org.jetbrains.plugins.gitlab.mergerequest.ui.filters.GitLabMergeRequestsFiltersValue.MergeRequestsMemberFilterValue.MergeRequestsAssigneeFilterValue",
+      "username": "vmr846",
+      "fullname": "Vince Ruiz (vmr846)"
+    }
+  }
+}]]></component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -82,7 +127,7 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "SDKs",
+    "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.14641148",
     "settings.editor.selected.configurable": "org.jetbrains.plugins.gitlab.GitLabSettingsConfigurable",
