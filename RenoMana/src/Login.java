@@ -8,9 +8,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
-public class Login extends BasicPage {
+public class Login extends Application {
     @Override
     public void start(Stage stage) {
 
@@ -41,20 +39,8 @@ public class Login extends BasicPage {
         logInCentre.setAlignment(Pos.CENTER);
         logInCentre.getChildren().add(logInButton);
 
+        // Set action for the login button
         logInButton.setOnAction(event -> {
-            String username = userField.getText();
-            String password = passField.getText();
-
-            System.out.println(username + " + " + password);
-
-            try {
-                // Perform the login and get cookies
-                COOKIES = login();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
             // Close the login stage
             stage.close();
             // Launch the main page
@@ -88,12 +74,6 @@ public class Login extends BasicPage {
         stage.setTitle("Log In");
         stage.setScene(scene);
         stage.show();
-    }
-
-    private static String login() throws IOException {
-
-
-        return "Hello";
     }
 
     public static void main(String[] args) {
