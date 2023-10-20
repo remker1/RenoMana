@@ -12,22 +12,52 @@ db.employees.insertMany([
         "first_name": "Bob",
         "last_name": "Smith",
         "cell_number": "123-456-7890",
-        "employee_type": "contractor"
+        "employee_type": "Contractor"
     },
     {
         "id": 2,
         "first_name": "Steven",
         "last_name": "Johnson",
         "cell_number": "987-654-3210",
-        "employee_type": "contractor"
+        "employee_type": "Contractor"
     },
     {
         "id": 3,
         "first_name": "Sam",
         "last_name": "Davis",
         "cell_number": "555-555-5555",
-        "employee_type": "contractor"
+        "employee_type": "Contractor"
     },
 ]);
 
 // Creation of the "inventory" collection
+db.inventory.insertMany([
+    {
+        "id": 101,
+        "name": "Wrench_1",
+        "serial_number": "ABC12345",
+        "manufacturer": "Craftsman",
+        "warranty": "2023/10/19"
+    },
+    {
+        "id": 102,
+        "name": "Wrench_2",
+        "serial_number": "XYZ98765",
+        "manufacturer": "Snap-on",
+        "warranty": "2023/11/19"
+    },
+    {
+        "id": 103,
+        "name": "Screwdriver_1",
+        "serial_number": "PQR56789",
+        "manufacturer": "Stanley",
+        "warranty": "2023/06/19"
+    },
+    {
+        "id": 103,
+        "name": "PipeBender_1",
+        "serial_number": "PQR56789",
+        "manufacturer": "IRWIN Tools",
+        "warranty": "2023/06/19"
+     },
+]);
