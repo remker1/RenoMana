@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9cb99a68-cf02-4d76-9efc-92f890eb8464" name="Changes" comment="Add inventory collection with initial data&#10;&#10;In this commit:&#10;- Created and initialized the &quot;inventory&quot; collection&#10;- Inserted sample inventory data with fields: ID, name, description, serial number, manufacturer, and warranty">
+    <list default="true" id="9cb99a68-cf02-4d76-9efc-92f890eb8464" name="Changes" comment="Add initial project data to the database&#10;&#10;In this commit:&#10;- Created and initialized the &quot;projects&quot; collection&#10;- Inserted sample project data with fields: ID, name, client, end date, and location">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back_end_team/db/init-db.js" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/db/init-db.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -302,7 +303,14 @@
       <option name="project" value="LOCAL" />
       <updated>1697771368987</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Add initial project data to the database&#10;&#10;In this commit:&#10;- Created and initialized the &quot;projects&quot; collection&#10;- Inserted sample project data with fields: ID, name, client, end date, and location">
+      <created>1697771900014</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1697771900014</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -333,6 +341,7 @@
     <MESSAGE value="Redesigned and recoloured MainPage and Login classes." />
     <MESSAGE value="Add initial employee data to the database&#10;&#10;In this commit:&#10;- Created and initialized the &quot;employees&quot; collection&#10;- Inserted sample employee data with fields: ID, first name, last name, cell number, and employee type" />
     <MESSAGE value="Add inventory collection with initial data&#10;&#10;In this commit:&#10;- Created and initialized the &quot;inventory&quot; collection&#10;- Inserted sample inventory data with fields: ID, name, description, serial number, manufacturer, and warranty" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add inventory collection with initial data&#10;&#10;In this commit:&#10;- Created and initialized the &quot;inventory&quot; collection&#10;- Inserted sample inventory data with fields: ID, name, description, serial number, manufacturer, and warranty" />
+    <MESSAGE value="Add initial project data to the database&#10;&#10;In this commit:&#10;- Created and initialized the &quot;projects&quot; collection&#10;- Inserted sample project data with fields: ID, name, client, end date, and location" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add initial project data to the database&#10;&#10;In this commit:&#10;- Created and initialized the &quot;projects&quot; collection&#10;- Inserted sample project data with fields: ID, name, client, end date, and location" />
   </component>
 </project>
