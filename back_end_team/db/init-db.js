@@ -5,6 +5,7 @@ db = db.getSiblingDB("mango_db");
 db.employees.drop();
 db.inventory.drop();
 db.projects.drop();
+db.user.drop();
 
 
 // Creation of the "employees" collection
@@ -97,5 +98,56 @@ db.projects.insertMany([
        "end_date": "2023-11-30",
        "location": "456 Business Avenue",
        "inventory_item(s)": [ObjectId("item_003"), ObjectId("item_004")]
-    }
+    },
 ]);
+
+db.users.insertOne({
+    "id": ObjectId(),
+    "username": "newUser",
+    "password": "hashedPassword",
+});
+
+// Create a registration process in your application to collect user data and save it to the database.
+// Implement password hashing for security.
+
+// Implement a login mechanism where users provide their username and password.
+
+// Pseudo-code for login and access control
+const username = "user_input_username"; // Replace with user input
+const password = "user_input_password"; // Replace with user input
+
+const user = db.users.findOne({ username });
+
+if (user) {
+    // Check if the provided password matches the stored hashed password
+    if (validatePassword(password, user.password))
+    {
+        // User is authenticated, retrieve their role and permissions
+        const role = user.role;
+
+        if (role == "manager") {
+            // Grant access to collections based on role
+            // Manager can access employees, inventory, and projects
+            // Contractor may have limited access
+        }
+        else
+        {
+            // Handle access for other roles (e.g., contractor)
+        }
+    }
+    else
+    {
+        // Incorrect password
+        // Handle login failure
+    }
+}
+else
+    {
+        // User not found
+        // Handle login failure
+    }
+
+function validatePassword(inputPassword, storedHashedPassword) {
+    // Implement password validation logic, e.g., using bcrypt
+    // Compare the input password with the stored hashed password
+}
