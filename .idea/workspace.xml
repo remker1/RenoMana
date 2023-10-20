@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9cb99a68-cf02-4d76-9efc-92f890eb8464" name="Changes" comment="Add initial employee data to the database&#10;&#10;In this commit:&#10;- Created and initialized the &quot;employees&quot; collection&#10;- Inserted sample employee data with fields: ID, first name, last name, cell number, and employee type">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="9cb99a68-cf02-4d76-9efc-92f890eb8464" name="Changes" comment="Add inventory collection with initial data&#10;&#10;In this commit:&#10;- Created and initialized the &quot;inventory&quot; collection&#10;- Inserted sample inventory data with fields: ID, name, description, serial number, manufacturer, and warranty">
       <change beforePath="$PROJECT_DIR$/back_end_team/db/init-db.js" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/db/init-db.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -296,7 +295,14 @@
       <option name="project" value="LOCAL" />
       <updated>1697770560162</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Add inventory collection with initial data&#10;&#10;In this commit:&#10;- Created and initialized the &quot;inventory&quot; collection&#10;- Inserted sample inventory data with fields: ID, name, description, serial number, manufacturer, and warranty">
+      <created>1697771368987</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1697771368987</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -326,6 +332,7 @@
     <MESSAGE value="Implemented the export a csv file method with data from the table. Only supports csv files (for now) and is yet to be tested for windows systems." />
     <MESSAGE value="Redesigned and recoloured MainPage and Login classes." />
     <MESSAGE value="Add initial employee data to the database&#10;&#10;In this commit:&#10;- Created and initialized the &quot;employees&quot; collection&#10;- Inserted sample employee data with fields: ID, first name, last name, cell number, and employee type" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add initial employee data to the database&#10;&#10;In this commit:&#10;- Created and initialized the &quot;employees&quot; collection&#10;- Inserted sample employee data with fields: ID, first name, last name, cell number, and employee type" />
+    <MESSAGE value="Add inventory collection with initial data&#10;&#10;In this commit:&#10;- Created and initialized the &quot;inventory&quot; collection&#10;- Inserted sample inventory data with fields: ID, name, description, serial number, manufacturer, and warranty" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add inventory collection with initial data&#10;&#10;In this commit:&#10;- Created and initialized the &quot;inventory&quot; collection&#10;- Inserted sample inventory data with fields: ID, name, description, serial number, manufacturer, and warranty" />
   </component>
 </project>

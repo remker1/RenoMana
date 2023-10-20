@@ -4,8 +4,10 @@ db = db.getSiblingDB("mango_db");
 // Reset existing collections
 db.employees.drop();
 db.inventory.drop();
+db.projects.drop();
 
 
+// Creation of the "employees" collection
 db.employees.insertMany([
     {
         "id": 1,
@@ -60,4 +62,29 @@ db.inventory.insertMany([
         "manufacturer": "IRWIN Tools",
         "warranty": "2023/06/19"
      },
+]);
+
+// Creation of "projects" collection
+db.projects.insertMany([
+    {
+        "id": 201,
+        "name": "Smith bathroom renovation",
+        "client": "Henry Smith",
+        "end_date": "2023-12-31",
+        "location": "123 Main Street"
+    },
+    {
+        "id": 202,
+        "name": "Office Expansion",
+        "client": "ABC Corporation",
+        "end_date": "2024-02-15",
+        "location": "456 Business Avenue"
+    },
+    {
+        "id": 203,
+        "name": "Garden Landscaping",
+        "client": "Green Thumb Gardeners",
+        "end_date": "2023-10-15",
+        "location": "789 Garden Road"
+    }
 ]);
