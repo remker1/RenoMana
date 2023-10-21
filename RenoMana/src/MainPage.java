@@ -54,8 +54,6 @@ public class MainPage extends Application {
     private boolean isDarkMode = false;
     private ProfileCircle profileCircleHandler;
 
-
-
     @Override
     public void start(Stage stage) {
         VBox rootLayout = new VBox();
@@ -118,21 +116,15 @@ public class MainPage extends Application {
         stage.show();
     }
 
-    /**
-     * This method opens the user's profile in a new window. The profile window contains options
-     * for switching between light and dark mode and a back button to return to the main application.
-     */
-    public void openProfileWindow() {
-        // Profile window creation and set up.
-        Stage profileStage = new Stage();
-        VBox profileLayout = new VBox(20);
-        Scene profileScene = new Scene(profileLayout, 300, 200);
+    public boolean isDarkMode() {
+        return isDarkMode;
+    }
 
-        // Slider for light and dark mode
+    public Slider createModeSlider() {
         Slider modeSlider = new Slider();
         modeSlider.setMin(0);
         modeSlider.setMax(1);
-        modeSlider.setValue(0); // 0 for light mode, 1 for dark mode
+        modeSlider.setValue(isDarkMode ? 1 : 0); // 0 for light mode, 1 for dark mode
         modeSlider.setShowTickLabels(true);
         modeSlider.setShowTickMarks(true);
         modeSlider.setMajorTickUnit(1);
@@ -140,35 +132,15 @@ public class MainPage extends Application {
         modeSlider.setSnapToTicks(true);
         modeSlider.setBlockIncrement(1);
 
-        Label modeLabel = new Label("Light Mode");
-
-        if (isDarkMode) {
-            modeSlider.setValue(1);
-            modeLabel.setText("Dark Mode");
-        } else {
-            modeSlider.setValue(0);
-            modeLabel.setText("Light Mode");
-        }
-
-
         modeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.intValue() == 1) {
-                modeLabel.setText("Dark Mode");
                 setDarkMode();
             } else {
-                modeLabel.setText("Light Mode");
                 setLightMode();
             }
         });
 
-        // Button with an event where, upon click, will take the user back to the MainPage.
-        Button backButton = new Button("Back");
-        backButton.setOnAction(event -> profileStage.close());
-
-        profileLayout.getChildren().addAll(modeLabel, modeSlider, backButton);
-        profileStage.setScene(profileScene);
-        profileStage.setTitle("Profile");
-        profileStage.show();
+        return modeSlider;
     }
 
     /**
@@ -179,6 +151,7 @@ public class MainPage extends Application {
         contentTitle.setTextFill(Color.WHITE);
         mainLayout.setStyle("-fx-background-color: #1C1C1C;");
         isDarkMode = true;
+        profileCircleHandler.updateProfileWindowColors();
 
     }
 
@@ -190,6 +163,8 @@ public class MainPage extends Application {
         contentTitle.setTextFill(Color.BLACK);
         mainLayout.setStyle("-fx-background-color: lightGray;");
         isDarkMode = false;
+        profileCircleHandler.updateProfileWindowColors();
+
     }
 
     /**
