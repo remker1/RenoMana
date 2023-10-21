@@ -1,19 +1,5 @@
-/**
- * MainPage Class
- *
- * <p>
- * The application has a user interface with several tab where each tab shows a different feature
- * or part of the application. By putting the content of each tab into its own class, the
- * application makes it easier to change and maintain. The content of each tab is made and
- * put into place in its own class. This method lets developers work on single features at a time,
- * which makes the codebase more organised and easier to use.
- * <p>
- *
- * @author Jewel Magcawas
- * @since 2023-08-01
- */
-
 import inventoryMana.Inventory;
+
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -28,15 +14,43 @@ import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.geometry.Insets;
 
+/**
+ * MainPage Class
+ *
+ * <p>
+ * This class represents the main page or home page of the application. It provides a user interface with multiple tabs,
+ * where each tab showcases a different feature of the application. By modularizing the content of each tab
+ * into its own class, the application becomes more maintainable and organized.
+ * </p>
+ *
+ * @author Jewel Magcawas
+ * @since 2023-08-01
+ */
 public class MainPage extends Application {
+    /**
+     * Main layout components
+     */
     HBox mainLayout = new HBox();
+    /**
+     * Sidebar for navigation
+     */
     private VBox sideBar;
     private VBox contentArea;
+    /**
+     * Title of the currently displayed content
+     */
     private Label contentTitle = new Label();
+
+    /**
+     * Gradient style for UI components
+     */
     private LinearGradient gradient = new LinearGradient(0, 0, 1, 1, true, CycleMethod.NO_CYCLE,
             new Stop(0, Color.web("#4B1517")),
             new Stop(1, Color.web("#C49102")));
 
+    /**
+     * Flag to track if dark mode is enabled
+     */
     private boolean isDarkMode = false;
 
 
@@ -46,15 +60,10 @@ public class MainPage extends Application {
         mainLayout.setStyle("-fx-background-color: lightGray");
         Scene scene = new Scene(rootLayout, 1920, 1080);
 
-        // ----- Top Bar Setup -----
+        // ----- Setting up the top bar of the application -----
         HBox topBar = new HBox(20);
         topBar.setBackground(new Background(new BackgroundFill(gradient, CornerRadii.EMPTY, Insets.EMPTY)));
         // Simple color background: topBar.setStyle("-fx-background-color: #4B1517; -fx-padding: 10px;");
-
-        // Toggle button for the sidebar
-        ToggleButton toggleSidebar = getToggleButton();
-        Region spacer = new Region();
-        HBox.setHgrow(spacer, Priority.ALWAYS);
 
         // The top bar will contain account profile and search tab
         Label accountName = new Label("Hello, User!");
@@ -63,6 +72,11 @@ public class MainPage extends Application {
         Circle profileCircle = new Circle(30);
         profileCircle.setStyle("-fx-background-color: #9E1C29; -fx-stroke: #7C1715; -fx-border-radius: 2;");
         profileCircle.setOnMouseClicked(event -> openProfileWindow());
+
+        // Toggle button for the sidebar
+        ToggleButton toggleSidebar = getToggleButton();
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
 
         topBar.getChildren().addAll(toggleSidebar, spacer, accountName, profileCircle);
         topBar.setAlignment(Pos.CENTER_RIGHT);
@@ -104,9 +118,8 @@ public class MainPage extends Application {
     }
 
     /**
-     * This method creates a new window (Stage) that represents the user's profile. Inside this window,
-     * we plan to display the person's information(future implementation) and a back button are displayed.
-     * Clicking the back button will close the profile window and return the user to the main application.
+     * This method opens the user's profile in a new window. The profile window contains options
+     * for switching between light and dark mode and a back button to return to the main application.
      */
     private void openProfileWindow() {
         // Profile window creation and set up.
@@ -157,6 +170,9 @@ public class MainPage extends Application {
         profileStage.show();
     }
 
+    /**
+     * This method switches the application's theme to dark mode.
+     */
     private void setDarkMode() {
         contentArea.setStyle("-fx-background-color: #1C1C1C; -fx-padding: 10px;");
         contentTitle.setTextFill(Color.WHITE);
@@ -165,6 +181,9 @@ public class MainPage extends Application {
 
     }
 
+    /**
+     * This method switches the application's theme to light mode.
+     */
     private void setLightMode() {
         contentArea.setStyle("-fx-background-color: lightGray; -fx-padding: 10px;");
         contentTitle.setTextFill(Color.BLACK);
@@ -172,6 +191,12 @@ public class MainPage extends Application {
         isDarkMode = false;
     }
 
+    /**
+     * This method displays the content of the selected tab in the content area.
+     *
+     * @param content The content to be displayed.
+     * @param title The title of the content.
+     */
     private void displayContent(Node content, String title) {
         contentArea.getChildren().clear();
         contentTitle.setText(title);
@@ -179,6 +204,13 @@ public class MainPage extends Application {
         contentArea.getChildren().addAll(contentTitle, content);
     }
 
+    /**
+     * This method creates a button for a tab and adds it to the sidebar.
+     *
+     * @param title The title of the button.
+     * @param content The content associated with the button.
+     * @param contentTitle The title of the content.
+     */
     private void createTabButton(String title, Node content, String contentTitle) {
         // shades of red : #4B1517 | #7C1715 | #9E1C29 | #AB2838 | #B84656
         Button button = new Button(title);
@@ -199,6 +231,11 @@ public class MainPage extends Application {
         sideBar.getChildren().add(button);
     }
 
+    /**
+     * This method creates and returns a toggle button for the sidebar.
+     *
+     * @return The toggle button.
+     */
     private ToggleButton getToggleButton() {
         ToggleButton toggleSidebar = new ToggleButton("Menu");
         toggleSidebar.setStyle("-fx-background-color: transparent; -fx-text-fill: white;");

@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="9cb99a68-cf02-4d76-9efc-92f890eb8464" name="Changes" comment="Redesigned and recoloured MainPage and Login classes.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/init-db.js" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/db/init-db.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/MainPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/inventoryMana/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/inventoryMana/Inventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/inventoryMana/InventoryItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/inventoryMana/InventoryItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPage.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +51,7 @@
     </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="JewelBranch" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -110,7 +113,7 @@
       <recent name="$PROJECT_DIR$/RenoMana" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ManaLogin">
+  <component name="RunManager" selected="Application.MainPage">
     <configuration name="MainPage" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="MainPage" />
       <module name="RenoMana" />
@@ -129,7 +132,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Registration" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Registration" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Registration" />
       <module name="RenoMana" />
       <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Downloads/javafx-sdk-21/lib --add-modules javafx.controls,javafx.fxml" />
@@ -144,7 +147,6 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Registration" />
         <item itemvalue="Application.Registration" />
         <item itemvalue="Application.Registration" />
         <item itemvalue="Application.Registration" />

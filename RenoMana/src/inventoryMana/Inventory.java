@@ -13,11 +13,30 @@ import javafx.stage.FileChooser;
 
 import java.io.*;
 
+/**
+ * Inventory Class
+ *
+ * <p>
+ * This class represents the inventory management section of the application. It provides a user interface
+ * with a table view to display and manage inventory items. Users can add, delete, modify inventory items,
+ * and import/export inventory data from/to CSV files.
+ * </p>
+ */
 public class Inventory extends VBox {
 
+    /**
+     * Table to display inventory items
+     */
     private TableView<InventoryItem> inventoryTable;
+    /**
+     * Data list to store inventory items
+     */
     private ObservableList<InventoryItem> data;
 
+    /**
+     * Constructor for the Inventory class.
+     * Initializes the table view, columns, and buttons for user interactions.
+     */
      public Inventory(){
          // Setting up the table
          inventoryTable = new TableView<>();
@@ -69,6 +88,9 @@ public class Inventory extends VBox {
          this.getChildren().addAll(inventoryTable, optButton);
      }
 
+    /**
+     * This method exports the inventory data to a CSV file chosen by the user.
+     */
     private void exportInventoryFile() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save Inventory as CSV");
@@ -100,6 +122,10 @@ public class Inventory extends VBox {
             }
         }
     }
+
+    /**
+     * This method imports inventory data from a CSV file chosen by the user.
+     */
     private void importInventoryFile() {
         // Create a new FileChooser object to let the user select a file
         FileChooser fileChooser = new FileChooser();
@@ -153,6 +179,9 @@ public class Inventory extends VBox {
 
     }
 
+    /**
+     * This method modifies the details of a selected inventory item based on user input.
+     */
     private void modifyInventoryItem() {
         // When item is selected ...
         InventoryItem selectedItem = inventoryTable.getSelectionModel().getSelectedItem();
@@ -221,6 +250,10 @@ public class Inventory extends VBox {
 
     }
 
+
+    /**
+     * This method deletes a selected inventory item from the table.
+     */
     private void deleteInventoryItem() {
          // When item is selected ...
         InventoryItem selectedItem = inventoryTable.getSelectionModel().getSelectedItem();
@@ -240,6 +273,10 @@ public class Inventory extends VBox {
         inventoryTable.refresh();
     }
 
+
+    /**
+     * This method adds a new inventory item to the table based on user input.
+     */
     private void addInventoryItem() {
          // Gather user input for tool, quantity, and estimation values
         TextInputDialog toolInput = new TextInputDialog();
