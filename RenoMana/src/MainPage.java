@@ -30,7 +30,7 @@ public class MainPage extends Application {
     /**
      * Main layout components
      */
-    HBox mainLayout = new HBox();
+    private HBox mainLayout = new HBox();
     /**
      * Sidebar for navigation
      */
@@ -52,6 +52,8 @@ public class MainPage extends Application {
      * Flag to track if dark mode is enabled
      */
     private boolean isDarkMode = false;
+    private ProfileCircle profileCircleHandler;
+
 
 
     @Override
@@ -69,9 +71,8 @@ public class MainPage extends Application {
         Label accountName = new Label("Hello, User!");
         accountName.setStyle("-fx-text-fill: white; -fx-font-weight: bold");
 
-        Circle profileCircle = new Circle(30);
-        profileCircle.setStyle("-fx-background-color: #9E1C29; -fx-stroke: #7C1715; -fx-border-radius: 2;");
-        profileCircle.setOnMouseClicked(event -> openProfileWindow());
+        profileCircleHandler = new ProfileCircle(this);
+        Circle profileCircle = profileCircleHandler.getProfileCircle();
 
         // Toggle button for the sidebar
         ToggleButton toggleSidebar = getToggleButton();
@@ -121,7 +122,7 @@ public class MainPage extends Application {
      * This method opens the user's profile in a new window. The profile window contains options
      * for switching between light and dark mode and a back button to return to the main application.
      */
-    private void openProfileWindow() {
+    public void openProfileWindow() {
         // Profile window creation and set up.
         Stage profileStage = new Stage();
         VBox profileLayout = new VBox(20);
@@ -173,7 +174,7 @@ public class MainPage extends Application {
     /**
      * This method switches the application's theme to dark mode.
      */
-    private void setDarkMode() {
+    public void setDarkMode() {
         contentArea.setStyle("-fx-background-color: #1C1C1C; -fx-padding: 10px;");
         contentTitle.setTextFill(Color.WHITE);
         mainLayout.setStyle("-fx-background-color: #1C1C1C;");
@@ -184,7 +185,7 @@ public class MainPage extends Application {
     /**
      * This method switches the application's theme to light mode.
      */
-    private void setLightMode() {
+    public void setLightMode() {
         contentArea.setStyle("-fx-background-color: lightGray; -fx-padding: 10px;");
         contentTitle.setTextFill(Color.BLACK);
         mainLayout.setStyle("-fx-background-color: lightGray;");
@@ -197,7 +198,7 @@ public class MainPage extends Application {
      * @param content The content to be displayed.
      * @param title The title of the content.
      */
-    private void displayContent(Node content, String title) {
+    public void displayContent(Node content, String title) {
         contentArea.getChildren().clear();
         contentTitle.setText(title);
         contentTitle.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-padding: 10px;");
@@ -211,7 +212,7 @@ public class MainPage extends Application {
      * @param content The content associated with the button.
      * @param contentTitle The title of the content.
      */
-    private void createTabButton(String title, Node content, String contentTitle) {
+    public void createTabButton(String title, Node content, String contentTitle) {
         // shades of red : #4B1517 | #7C1715 | #9E1C29 | #AB2838 | #B84656
         Button button = new Button(title);
         button.setPrefWidth(Double.MAX_VALUE);
@@ -236,7 +237,7 @@ public class MainPage extends Application {
      *
      * @return The toggle button.
      */
-    private ToggleButton getToggleButton() {
+    public ToggleButton getToggleButton() {
         ToggleButton toggleSidebar = new ToggleButton("Menu");
         toggleSidebar.setStyle("-fx-background-color: transparent; -fx-text-fill: white;");
         toggleSidebar.setOnAction(e -> {
