@@ -124,7 +124,14 @@ public class MainPage extends Application {
         Slider modeSlider = new Slider();
         modeSlider.setMin(0);
         modeSlider.setMax(1);
-        modeSlider.setValue(isDarkMode ? 1 : 0); // 0 for light mode, 1 for dark mode
+
+        // 0 for light mode, 1 for dark mode
+        if (isDarkMode) {
+            modeSlider.setValue(1);
+        } else {
+            modeSlider.setValue(0);
+        }
+
         modeSlider.setShowTickLabels(true);
         modeSlider.setShowTickMarks(true);
         modeSlider.setMajorTickUnit(1);
@@ -225,6 +232,30 @@ public class MainPage extends Application {
             }
         });
         return toggleSidebar;
+    }
+
+    public HBox getMainLayout() {
+        return mainLayout;
+    }
+
+    public VBox getSideBar() {
+        return sideBar;
+    }
+
+    public VBox getContentArea() {
+        return contentArea;
+    }
+
+    public Label getContentTitle() {
+        return contentTitle;
+    }
+
+    public LinearGradient getGradient() {
+        return gradient;
+    }
+
+    public ProfileCircle getProfileCircleHandler() {
+        return profileCircleHandler;
     }
 
     public static void main(String[] args) {
