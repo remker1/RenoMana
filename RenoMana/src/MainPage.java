@@ -14,6 +14,8 @@
  */
 
 import inventoryMana.Inventory;
+import timeMana.Scheduler;
+import timeMana.Calendar;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -44,7 +46,7 @@ public class MainPage extends Application {
     public void start(Stage stage) {
         VBox rootLayout = new VBox();
         mainLayout.setStyle("-fx-background-color: lightGray");
-        Scene scene = new Scene(rootLayout, 1920, 1080);
+        Scene scene = new Scene(rootLayout, 1280, 900);
 
         // ----- Top Bar Setup -----
         HBox topBar = new HBox(20);
@@ -83,7 +85,8 @@ public class MainPage extends Application {
 
         // Create buttons for each tab and add them to the sidebar
         createTabButton("Dashboard", new MainPageTab1(), "Dashboard");
-        createTabButton("Schedule", new MainPageTab2(), "Schedule");
+        createTabButton("Scheduler", new Scheduler(), "Scheduler");
+        createTabButton("Calendar", new Calendar(), "Calendar");
         createTabButton("Inventory", new Inventory(), "Inventory");
         createTabButton("Employees", new MainPageTab4(), "Employees");
 

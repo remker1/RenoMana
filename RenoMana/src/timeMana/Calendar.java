@@ -1,4 +1,5 @@
-import javafx.application.Application;
+package timeMana;
+
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
@@ -11,18 +12,16 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Calendar extends Application {
+public class Calendar extends VBox {
 
     // main layout
     private BorderPane root;
     LocalDate today = LocalDate.now();
 
 
-    @Override
-    public void start(Stage primaryStage) {
+    public Calendar() {
 
         root = new BorderPane();
-        Scene scene = new Scene(root, 900, 800);
 
         // dropdown list for selecting calendar view
         ComboBox<String> viewSelector = new ComboBox<>();
@@ -33,12 +32,9 @@ public class Calendar extends Application {
         // add dropdown list to the top of the main layout
         root.setTop(viewSelector);
 
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("Calendar App");
-        primaryStage.show();
-
         // set view to month when application starts
         switchView("Month");
+        this.getChildren().add(root);
     }
 
     /***
@@ -227,10 +223,5 @@ public class Calendar extends Application {
 
         // update the main layout to display the day view
         root.setCenter(dayVBox);
-    }
-
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }
