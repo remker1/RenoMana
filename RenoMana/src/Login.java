@@ -8,6 +8,14 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+import java.time.Duration;
+
 public class Login extends BasicPage {
     @Override
     public void start(Stage stage) {
@@ -41,13 +49,26 @@ public class Login extends BasicPage {
 
         // Set action for the login button
         logInButton.setOnAction(event -> {
-            // Close the login stage
-            stage.close();
-            // Launch the main page
+
+            int status;
             try {
-                new MainPage().start(new Stage());
-            } catch (Exception e) {
-                System.out.println("Something went wrong when going into main page.");
+                status = login(userField.getText(), passField.getText());
+                System.out.println("Cookies: " + COOKIES);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            if (status == 200) {
+                // Close the login stage
+                stage.close();
+                // Launch the main page
+                try {
+                    new MainPage().start(new Stage());
+                } catch (Exception e) {
+                    System.out.println("Something went wrong when going into main page.");
+                }
             }
         });
 
@@ -75,6 +96,61 @@ public class Login extends BasicPage {
         stage.setScene(scene);
         stage.show();
 
+
+    }
+
+    public static int login(String username, String password) throws IOException, InterruptedException {
+        String msg = "{" +
+                "\"username\":\"" + username + "\"," +
+                "\"password\":\"" + password + "\"" +
+                "}";
+
+        System.out.println(msg);
+
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://127.0.0.1:5000/login"))
+                .timeout(Duration.ofMinutes(2))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(msg, StandardCharsets.UTF_8))
+                .build();
+
+        System.out.println(request.toString());
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+        String responseBody = response.body();
+
+        // Find the index of the cookie key
+        int startIndex = responseBody.indexOf("\"cookie\"");
+
+        // Check if the key is found
+        if (startIndex != -1) {
+            // Move the index to the start of the value
+            startIndex = responseBody.indexOf(":", startIndex) + 1;
+
+            // Find the end of the value (up to the next comma or the end of the JSON object)
+            int endIndex = responseBody.indexOf(",", startIndex);
+            if (endIndex == -1) {
+                endIndex = responseBody.indexOf("}", startIndex);
+            }
+
+            // Extract the value
+            String value = responseBody.substring(startIndex, endIndex).trim();
+
+            System.out.println("Value for 'cookie': " + value);
+            if (value != "") {
+                COOKIES = value;
+            }
+            else {
+                COOKIES = null;
+            }
+            return response.statusCode();
+
+        } else {
+            System.out.println("'cookie' not found in the response");
+            COOKIES = null;
+            return response.statusCode();
+        }
 
     }
 

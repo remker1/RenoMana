@@ -37,6 +37,16 @@ public class Registration extends BasicPage {
         helloCentre.setAlignment(Pos.CENTER);
         helloCentre.getChildren().add(helloLabel);
 
+        // First Name label that prompts text field
+        Label fnameLabel = new Label("First Name: ");
+        TextField fnameField = new TextField();
+        fnameField.setPromptText("Enter your First Name: ");
+
+        // First Name label that prompts text field
+        Label lnameLabel = new Label("Last Name: ");
+        TextField lnameField = new TextField();
+        lnameField.setPromptText("Enter your Last Name");
+
         // Username label that prompts text field
         Label userLabel = new Label("Username: ");
         TextField userField = new TextField();
@@ -72,7 +82,7 @@ public class Registration extends BasicPage {
         // Set action for the register button
         registerButton.setOnAction(event -> {
             try {
-                register(userField.getText(), passField.getText(), emailField.getText(), cellField.getText());
+                register(fnameField.getText(), lnameField.getText(), userField.getText(), passField.getText(), emailField.getText(), cellField.getText());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             } catch (InterruptedException e) {
@@ -82,7 +92,7 @@ public class Registration extends BasicPage {
             stage.close();
             // Launch the main page
             try {
-                new MainPage().start(new Stage());
+                new Login().start(new Stage());
             } catch (Exception e) {
                 System.out.println("Something went wrong when going into main page.");
             }
@@ -105,7 +115,7 @@ public class Registration extends BasicPage {
 
         VBox root = new VBox(10);
         root.setPadding(new Insets(20));
-        root.getChildren().addAll(helloCentre, userLabel, userField, passLabel, passField, verifyPassLabel, verifyPassField, emailLabel, emailField, cellLabel, cellField, logInCentre, newButton);
+        root.getChildren().addAll(helloCentre, fnameLabel, fnameField, lnameLabel, lnameField, userLabel, userField, passLabel, passField, verifyPassLabel, verifyPassField, emailLabel, emailField, cellLabel, cellField, logInCentre, newButton);
 
         Scene scene = new Scene(root, 500, 800);
         stage.setTitle("Log In");
@@ -117,8 +127,16 @@ public class Registration extends BasicPage {
 
 
 
-    public static void register(String username, String password, String email, String cellNumber) throws IOException, InterruptedException {
-        String msg = "{\"username\":\"" + username + "\",\"password\":\"" + password + "\",\"email\":\"" + email + "\",\"cellNumber\":\"" + cellNumber + "\"}";
+    public static void register(String fname, String lname, String username, String password, String email, String cellNumber) throws IOException, InterruptedException {
+        String msg = "{" +
+                "\"username\":\"" + username + "\"," +
+                "\"password\":\"" + password + "\"," +
+                "\"email\":\"" + email + "\"," +
+                "\"cellNumber\":\"" + cellNumber + "\"," +
+                "\"fname\":\"" + fname + "\"," +
+                "\"lname\":\"" + lname + "\"" +
+                "}";
+
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("http://127.0.0.1:5000/register"))
@@ -126,10 +144,12 @@ public class Registration extends BasicPage {
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(msg, StandardCharsets.UTF_8))
                 .build();
+
         System.out.println(request.toString());
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         System.out.println(response.toString());
     }
+
 
     public static void main(String[] args) {
         launch(args);
