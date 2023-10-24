@@ -8,7 +8,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class Login extends Application {
+public class Login extends BasicPage {
     @Override
     public void start(Stage stage) {
 
@@ -74,6 +74,8 @@ public class Login extends Application {
         stage.setTitle("Log In");
         stage.setScene(scene);
         stage.show();
+
+
     }
 
     public static void main(String[] args) {

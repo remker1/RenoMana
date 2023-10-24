@@ -28,7 +28,7 @@ import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.geometry.Insets;
 
-public class MainPage extends Application {
+public class MainPage extends BasicPage {
     HBox mainLayout = new HBox();
     private VBox sideBar;
     private VBox contentArea;
