@@ -5,10 +5,10 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 
 public class Project {
-    private SimpleStringProperty name;
-    private SimpleStringProperty timeline;
-    private SimpleStringProperty details;
-    private SimpleListProperty<String> members;
+    private final SimpleStringProperty name;
+    private final SimpleStringProperty timeline;
+    private final SimpleStringProperty details;
+    private final SimpleListProperty<String> members;
 
     public Project(SimpleStringProperty name, SimpleStringProperty timeline, SimpleStringProperty details, SimpleListProperty<String> members) {
         this.name = name;

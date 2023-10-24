@@ -5,21 +5,18 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class Scheduler extends VBox {
 
-    private TableView<Project> table;
-    private ObservableList<Project> data;
+    private final TableView<Project> table;
+    private final ObservableList<Project> data;
 
     public Scheduler() {
         // Project Schedule label

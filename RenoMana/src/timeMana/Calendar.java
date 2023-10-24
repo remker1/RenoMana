@@ -1,12 +1,12 @@
 package timeMana;
 
-import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter;
 public class Calendar extends VBox {
 
     // main layout
-    private BorderPane root;
+    private final BorderPane root;
     LocalDate today = LocalDate.now();
 
 
