@@ -1,0 +1,29 @@
+version: '3.9'
+services:
+  # Python Flask server
+  flask:
+    build: ./app
+    container_name: flask_Server
+    command: python -u app.py
+    environment:
+      - FLASK_ENV=development
+    ports:
+      - "5000:5000"
+    volumes:
+      - .\app:/app
+    links:
+      - db
+
+  # MongoDB database 
+  db:
+    image: mongo:latest
+    hostname: mongodb
+    container_name: mongo_Database
+    environment:
+      MONGO_INITDB_DATABASE: mango_db
+      MONGO_INITDB_ROOT_USERNAME: root       # MongoDB Root Username
+      MONGO_INITDB_ROOT_PASSWORD: pass       # MongoDB Root Password
+    volumes:
+      - ./db/init-db.js:/docker-entrypoint-initdb.d/init-db.js:ro
+    ports:
+      - 27017:27017

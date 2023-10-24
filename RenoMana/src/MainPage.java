@@ -10,59 +10,96 @@
  * <p>
  *
  * @author Jewel Magcawas
- * @version 1.0
  * @since 2023-08-01
  */
 
+import inventoryMana.Inventory;
+import timeMana.Scheduler;
+import timeMana.Calendar;
 import javafx.application.Application;
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import javafx.scene.control.TabPane;
 import javafx.scene.Scene;
-import javafx.scene.control.Tab;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
+import javafx.scene.Node;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
+import javafx.geometry.Insets;
 
 public class MainPage extends Application {
+    HBox mainLayout = new HBox();
+    private VBox sideBar;
+    private VBox contentArea;
+    private Label contentTitle = new Label();
+    private LinearGradient gradient = new LinearGradient(0, 0, 1, 1, true, CycleMethod.NO_CYCLE,
+            new Stop(0, Color.web("#4B1517")),
+            new Stop(1, Color.web("#C49102")));
+
+    private boolean isDarkMode = false;
+
 
     @Override
     public void start(Stage stage) {
-        // The set-ups of pane and scene. Additionally, creating an account profile with an event when clicked.
-        TabPane tabPane = new TabPane();
-        VBox mainLayout = new VBox();
-        Scene scene = new Scene(mainLayout, 2000, 600);
+        VBox rootLayout = new VBox();
+        mainLayout.setStyle("-fx-background-color: lightGray");
+        Scene scene = new Scene(rootLayout, 1280, 900);
 
-        Label accountName = new Label("[ACCOUNT NAME]");
+        // ----- Top Bar Setup -----
+        HBox topBar = new HBox(20);
+        topBar.setBackground(new Background(new BackgroundFill(gradient, CornerRadii.EMPTY, Insets.EMPTY)));
+        // Simple color background: topBar.setStyle("-fx-background-color: #4B1517; -fx-padding: 10px;");
+
+        // Toggle button for the sidebar
+        ToggleButton toggleSidebar = getToggleButton();
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+
+        // The top bar will contain account profile and search tab
+        Label accountName = new Label("Hello, User!");
+        accountName.setStyle("-fx-text-fill: white; -fx-font-weight: bold");
+
         Circle profileCircle = new Circle(30);
+        profileCircle.setStyle("-fx-background-color: #9E1C29; -fx-stroke: #7C1715; -fx-border-radius: 2;");
         profileCircle.setOnMouseClicked(event -> openProfileWindow());
 
-        // Add the circle to the top right corner of the main window
-        HBox topBar = new HBox(20, accountName, profileCircle);
+        topBar.getChildren().addAll(toggleSidebar, spacer, accountName, profileCircle);
         topBar.setAlignment(Pos.CENTER_RIGHT);
-        HBox.setHgrow(accountName, javafx.scene.layout.Priority.ALWAYS); // Makes the account name push other elements to the right
-        mainLayout.getChildren().addAll(topBar, tabPane);
 
-        // Adding the tabs and making them uncloseable, plus some additional
-        // customization like paddings.
-        Tab tab1 = new Tab("Tab 1", new MainPageTab1());
-        Tab tab2 = new Tab("Tab 2", new MainPageTab2());
-        Tab tab3 = new Tab("Tab 3", new MainPageTab3());
-        Tab tab4 = new Tab("Tab 4", new MainPageTab4());
-        Tab tab5 = new Tab("Tab 5", new MainPageTab5());
-        Tab tab6 = new Tab("Tab 6", new MainPageTab6());
+        // ----- Sidebar setup -----
+        sideBar = new VBox(10);
+        sideBar.setPrefWidth(200);
+        gradient = new LinearGradient(0, 0, 1, 1, true, CycleMethod.NO_CYCLE,
+                new Stop(0, Color.web("#431114")),
+                new Stop(1, Color.web("#844600")));
+        sideBar.setBackground(new Background(new BackgroundFill(gradient, CornerRadii.EMPTY, Insets.EMPTY)));
+        // sideBar.setStyle("-fx-background-color: #4B1517; -fx-padding: 10px;");
+        sideBar.setVisible(false);
 
-        tabPane.getTabs().addAll(tab1, tab2, tab3, tab4, tab5, tab6);
+        // Content area setup
+        contentArea = new VBox(10);
+        contentArea.setStyle("-fx-background-color: lightGray; -fx-padding: 10px;");
 
-        for (Tab tab : tabPane.getTabs()) {
-            tab.setClosable(false);
-        }
-        // The TabPane's tabMinWidthProperty is bound to the TabPane's width divided by the number of tabs. This makes
-        // sure that the width of the tabs will change as the window is resized, keeping the space between all tabs the
-        // same.
-        tabPane.tabMinWidthProperty().bind(tabPane.widthProperty().divide(tabPane.getTabs().size()).subtract(10)); // subtracting 10 for padding
+        // Create buttons for each tab and add them to the sidebar
+        createTabButton("Dashboard", new MainPageTab1(), "Dashboard");
+        createTabButton("Scheduler", new Scheduler(), "Scheduler");
+        createTabButton("Calendar", new Calendar(), "Calendar");
+        createTabButton("Inventory", new Inventory(), "Inventory");
+        createTabButton("Employees", new MainPageTab4(), "Employees");
+
+        mainLayout.getChildren().addAll(sideBar, contentArea);
+        rootLayout.getChildren().addAll(topBar, mainLayout);
+
+        // Display Dashboard content by default
+        sideBar.setMaxWidth(0);
+        displayContent(new MainPageTab1(), "Dashboard");
+
+        // Ensure system expand vertically and horizontally to fill available space
+        VBox.setVgrow(mainLayout, Priority.ALWAYS);
+        HBox.setHgrow(contentArea, Priority.ALWAYS);
 
         stage.setScene(scene);
         stage.setTitle("[COMPANY HOMEPAGE]");
@@ -77,17 +114,107 @@ public class MainPage extends Application {
     private void openProfileWindow() {
         // Profile window creation and set up.
         Stage profileStage = new Stage();
-        HBox profileLayout = new HBox(20);
+        VBox profileLayout = new VBox(20);
         Scene profileScene = new Scene(profileLayout, 300, 200);
+
+        // Slider for light and dark mode
+        Slider modeSlider = new Slider();
+        modeSlider.setMin(0);
+        modeSlider.setMax(1);
+        modeSlider.setValue(0); // 0 for light mode, 1 for dark mode
+        modeSlider.setShowTickLabels(true);
+        modeSlider.setShowTickMarks(true);
+        modeSlider.setMajorTickUnit(1);
+        modeSlider.setMinorTickCount(0);
+        modeSlider.setSnapToTicks(true);
+        modeSlider.setBlockIncrement(1);
+
+        Label modeLabel = new Label("Light Mode");
+
+        if (isDarkMode) {
+            modeSlider.setValue(1);
+            modeLabel.setText("Dark Mode");
+        } else {
+            modeSlider.setValue(0);
+            modeLabel.setText("Light Mode");
+        }
+
+
+        modeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.intValue() == 1) {
+                modeLabel.setText("Dark Mode");
+                setDarkMode();
+            } else {
+                modeLabel.setText("Light Mode");
+                setLightMode();
+            }
+        });
 
         // Button with an event where, upon click, will take the user back to the MainPage.
         Button backButton = new Button("Back");
         backButton.setOnAction(event -> profileStage.close());
 
-        profileLayout.getChildren().addAll(backButton);
+        profileLayout.getChildren().addAll(modeLabel, modeSlider, backButton);
         profileStage.setScene(profileScene);
         profileStage.setTitle("Profile");
         profileStage.show();
+    }
+
+    private void setDarkMode() {
+        contentArea.setStyle("-fx-background-color: #1C1C1C; -fx-padding: 10px;");
+        contentTitle.setTextFill(Color.WHITE);
+        mainLayout.setStyle("-fx-background-color: #1C1C1C;");
+        isDarkMode = true;
+
+    }
+
+    private void setLightMode() {
+        contentArea.setStyle("-fx-background-color: lightGray; -fx-padding: 10px;");
+        contentTitle.setTextFill(Color.BLACK);
+        mainLayout.setStyle("-fx-background-color: lightGray;");
+        isDarkMode = false;
+    }
+
+    private void displayContent(Node content, String title) {
+        contentArea.getChildren().clear();
+        contentTitle.setText(title);
+        contentTitle.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-padding: 10px;");
+        contentArea.getChildren().addAll(contentTitle, content);
+    }
+
+    private void createTabButton(String title, Node content, String contentTitle) {
+        // shades of red : #4B1517 | #7C1715 | #9E1C29 | #AB2838 | #B84656
+        Button button = new Button(title);
+        button.setPrefWidth(Double.MAX_VALUE);
+
+        button.setStyle("-fx-background-color: transparent; -fx-text-fill: white;");
+
+        button.hoverProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                button.setStyle("-fx-background-color: #7C1715; -fx-text-fill: white;");
+            } else {
+                button.setStyle("-fx-background-color: transparent; -fx-text-fill: white;");
+            }
+        });
+
+        button.setOnAction(e -> displayContent(content, contentTitle));
+
+        sideBar.getChildren().add(button);
+    }
+
+    private ToggleButton getToggleButton() {
+        ToggleButton toggleSidebar = new ToggleButton("Menu");
+        toggleSidebar.setStyle("-fx-background-color: transparent; -fx-text-fill: white;");
+        toggleSidebar.setOnAction(e -> {
+            if (toggleSidebar.isSelected()) {
+                sideBar.setVisible(true);
+                sideBar.setMaxWidth(sideBar.getPrefWidth());
+            } else {
+                sideBar.setVisible(false);
+                sideBar.setMaxWidth(0);
+            }
+        });
+        return toggleSidebar;
     }
 
     public static void main(String[] args) {
