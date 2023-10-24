@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="Refined Login Class&#10;- Added comments&#10;- Log In button leads to main page&#10;- New? button leads to registration page">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java" afterDir="false" />
-    </list>
+    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="added comments to scheduler" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -168,7 +165,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696369473137</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added comments to scheduler">
+      <option name="closed" value="true" />
+      <created>1698111996372</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1698111996372</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -189,6 +194,7 @@
     <MESSAGE value="committing unversioned files" />
     <MESSAGE value="Finished setting up the log in page in accordance to agreed upon outline" />
     <MESSAGE value="Refined Login Class&#10;- Added comments&#10;- Log In button leads to main page&#10;- New? button leads to registration page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refined Login Class&#10;- Added comments&#10;- Log In button leads to main page&#10;- New? button leads to registration page" />
+    <MESSAGE value="added comments to scheduler" />
+    <option name="LAST_COMMIT_MESSAGE" value="added comments to scheduler" />
   </component>
 </project>
