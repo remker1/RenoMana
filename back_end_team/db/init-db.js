@@ -1,93 +1,33 @@
-const { MongoClient } = require('mongodb');
+// This file initializes the database with a collections for our necessary tables
+db = db.getSiblingDB("mango_db");
 
-// Connection URI
-const uri = 'mongodb://127.0.0.1:27017';
+// Reset existing collections
+db.employees.drop();
+db.inventory.drop();
 
-// Database Name
-const dbName = 'mango_db';
 
-// Create a new MongoClient
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+db.employees.insertMany([
+    {
+        "id": 1,
+        "first_name": "Bob",
+        "last_name": "Smith",
+        "cell_number": "123-456-7890",
+        "employee_type": "contractor"
+    },
+    {
+        "id": 2,
+        "first_name": "Steven",
+        "last_name": "Johnson",
+        "cell_number": "987-654-3210",
+        "employee_type": "contractor"
+    },
+    {
+        "id": 3,
+        "first_name": "Sam",
+        "last_name": "Davis",
+        "cell_number": "555-555-5555",
+        "employee_type": "contractor"
+    },
+]);
 
-async function initializeDatabase() {
-  try {
-    // Connect to the MongoDB server
-    await client.connect();
-
-    // Create a new database
-    const database = client.db(dbName);
-
-    // Create collections
-    await database.createCollection("auth", {
-        validator: {
-          $jsonSchema: {
-            bsonType: "object",
-            required: ["username", "pass"],
-            properties: {
-              username: {
-                bsonType: "string",
-                description: "must be a string and is required"
-              },
-              pass: {
-                bsonType: "string",
-                description: "must be a string and is required"
-              }
-            }
-          }
-        }
-      });
-
-    await database.createCollection("employees", {
-        validator: {
-          $jsonSchema: {
-            bsonType: "object",
-            required: ["id", "fname", "lname", "username", "cellnum", "email", "projects", "type"],
-            properties: {
-              id: {
-                bsonType: "int",
-                description: "must be an int and is required"
-              },
-              fname: {
-                bsonType: "string",
-                description: "must be a string and is required"
-              },
-              lname: {
-                bsonType: "string",
-                description: "must be a string and is required"
-              },
-              username: {
-                bsonType: "string",
-                description: "must be a string and is required"
-              },
-              cellnum: {
-                bsonType: "string",
-                description: "must be a string and is required"
-              },
-              email: {
-                bsonType: "string",
-                description: "must be a string and is required"
-              },
-              projects: {
-                bsonType: "string",
-                description: "must be a string and is required"
-              },
-              type: {
-                bsonType: "string",
-                description: "must be a string and is required"
-              },
-            }
-          }
-        }
-      });
-    await database.createCollection("inventory");
-    await database.createCollection('projects');
-
-    console.log('Database initialized successfully!');
-  } finally {
-    // Close the client
-    await client.close();
-  }
-}
-
-// Call the function to initialize the database
-initializeDatabase();
+// Creation of the "inventory" collection

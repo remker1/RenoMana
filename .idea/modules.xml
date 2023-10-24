@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/RenoMana/RenoMana.iml" filepath="$PROJECT_DIR$/RenoMana/RenoMana.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/RenoP.iml" filepath="$PROJECT_DIR$/.idea/RenoP.iml" />
     </modules>
   </component>
 </project>
