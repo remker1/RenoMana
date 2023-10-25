@@ -13,6 +13,7 @@
  * @since 2023-08-01
  */
 
+import dashboardMana.Dashboard;
 import inventoryMana.Inventory;
 import timeMana.Scheduler;
 import timeMana.Calendar;
@@ -30,7 +31,7 @@ import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.geometry.Insets;
 
-public class MainPage extends Application {
+public class MainPage extends BasicPage {
     HBox mainLayout = new HBox();
     private VBox sideBar;
     private VBox contentArea;
@@ -84,7 +85,7 @@ public class MainPage extends Application {
         contentArea.setStyle("-fx-background-color: lightGray; -fx-padding: 10px;");
 
         // Create buttons for each tab and add them to the sidebar
-        createTabButton("Dashboard", new MainPageTab1(), "Dashboard");
+        createTabButton("Dashboard", new Dashboard(), "Dashboard");
         createTabButton("Scheduler", new Scheduler(), "Scheduler");
         createTabButton("Calendar", new Calendar(), "Calendar");
         createTabButton("Inventory", new Inventory(), "Inventory");
@@ -102,7 +103,7 @@ public class MainPage extends Application {
         HBox.setHgrow(contentArea, Priority.ALWAYS);
 
         stage.setScene(scene);
-        stage.setTitle("[COMPANY HOMEPAGE]");
+        stage.setTitle("The Reno Group Management App");
         stage.show();
     }
 

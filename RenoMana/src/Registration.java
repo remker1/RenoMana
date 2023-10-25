@@ -1,127 +1,174 @@
-import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpRequest.BodyPublishers;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Paths;
+import java.time.Duration;
 
-public class Registration extends Application {
+
+public class Registration extends BasicPage {
 
     final double scene_width = 800;
     final double scene_height = 500;
 
+    private Label errorLabel = new Label();
+
     @Override
     public void start(Stage stage) {
 
-        // navigation menu for sections.
-        Menu navi = new Menu("Sections");
+        // Hello label message
+        Label helloLabel = new Label("Registration");
+        helloLabel.setFont(new Font(36));
+        HBox helloCentre = new HBox(); // HBox to centre the greeting label
+        helloCentre.setAlignment(Pos.CENTER);
+        helloCentre.getChildren().add(helloLabel);
 
-        // menu options for different sections
-        MenuItem prsnlInfo = new MenuItem("Personal Information");
-        MenuItem cmpInfo = new MenuItem("Company Information");
-        MenuItem cmpvalid = new MenuItem("Company Validation");
+        // First Name label that prompts text field
+        Label fnameLabel = new Label("First Name: ");
+        TextField fnameField = new TextField();
+        fnameField.setPromptText("Enter your First Name: ");
 
-        // add all items to Sections menu
-        navi.getItems().addAll(prsnlInfo,cmpInfo,cmpvalid);
+        // First Name label that prompts text field
+        Label lnameLabel = new Label("Last Name: ");
+        TextField lnameField = new TextField();
+        lnameField.setPromptText("Enter your Last Name");
 
-        // navigation menu for back to login Page
-        Menu backToLogin = new Menu("Login");
-        MenuItem bkToLog = new MenuItem("Login Page");
-        backToLogin.getItems().addAll(bkToLog);
+        // Username label that prompts text field
+        Label userLabel = new Label("Username: ");
+        TextField userField = new TextField();
+        userField.setPromptText("Enter your username");
 
-        // menu and opstions are created, they do not work yet
-        Menu theme = new Menu("Theme");
-        MenuItem dkmd = new MenuItem("Dark Mode");
-        MenuItem ltmd = new MenuItem("Light Mode");
-        theme.getItems().addAll(dkmd,ltmd);
+        // Password label that prompts password field
+        Label passLabel = new Label("Password: ");
+        PasswordField passField = new PasswordField();
+        passField.setPromptText("Enter your password");
 
-        // create a manu bar and add menu options to the navigation bar
-        MenuBar mb = new MenuBar();
-        mb.getMenus().addAll(navi,backToLogin,theme);
+        // Verify Password label that prompts password field
+        Label verifyPassLabel = new Label("Confirm your Password: ");
+        PasswordField verifyPassField = new PasswordField();
+        verifyPassField.setPromptText("Confirm your Password");
 
-        // inside of personal information section, this section includes all
-        // parts within Personal Info Section.
-        Label prsn_title = new Label("Personal Information:");
-        prsn_title.setFont(new Font(28));
+        // Email label that prompts text field
+        Label emailLabel = new Label("Email: ");
+        TextField emailField = new TextField();
+        emailField.setPromptText("Enter your Email");
 
-        // creating and modifying personal information section box
-        VBox prsnInfoSect = new VBox();
-        prsnInfoSect.setMinHeight(scene_height-mb.getHeight());
-        prsnInfoSect.setMaxHeight(scene_height);
-        prsnInfoSect.setPadding(new Insets(10));
-        prsnInfoSect.getChildren().addAll(prsn_title);
+        // Cell number label that prompts text field
+        Label cellLabel = new Label("Cell: ");
+        TextField cellField = new TextField();
+        cellField.setPromptText("Enter your Cellphone #");
 
-        // same progress as personal information section box.
-        Label cmpif_title = new Label("Company Information:");
-        cmpif_title.setFont(new Font(28));
+        // Log in button
+        Button registerButton = new Button("Complete Registration");
+        registerButton.setFont(new Font(18));
+        HBox logInCentre = new HBox(); // HBox to centre button
+        logInCentre.setAlignment(Pos.CENTER);
+        logInCentre.getChildren().add(registerButton);
 
-        VBox cmpInfoSect = new VBox();
-        cmpInfoSect.setMinHeight(scene_height-mb.getHeight());
-        cmpInfoSect.setMaxHeight(scene_height);
-        cmpInfoSect.setPadding(new Insets(10));
-        cmpInfoSect.getChildren().addAll(cmpif_title);
-
-        Label cmpva_title = new Label("Company Validation:");
-        cmpva_title.setFont(new Font(28));
-
-        VBox cmpValidSect = new VBox();
-        cmpValidSect.setMinHeight(scene_height-mb.getHeight());
-        cmpValidSect.setMaxHeight(scene_height);
-        cmpValidSect.setPadding(new Insets(10));
-        cmpValidSect.getChildren().addAll(cmpva_title);
-
-        VBox infoBox = new VBox();
-        infoBox.setPrefWidth(scene_width);
-        infoBox.getChildren().addAll(prsnInfoSect,cmpInfoSect,cmpValidSect);
-
-        // scroll panel for easier scrolling down and such.
-        ScrollPane sp = new ScrollPane();
-        sp.setContent(infoBox);
-        // hides horizontal scrollbar.
-        sp.setFitToWidth(true);
-
-        HBox infoPage = new HBox();
-        infoPage.getChildren().addAll(infoBox,sp);
-
-        bkToLog.setOnAction(actionEvent -> {
-            stage.close();
+        // Set action for the register button
+        registerButton.setOnAction(event -> {
             try {
-                new Login().start(new Stage());
-            } catch (Exception e) {
-                System.out.println("Couldn't go back to Login Screen.");
+                if (passwordValid(passField.getText(), verifyPassField.getText())) {
+                    register(fnameField.getText(), lnameField.getText(), userField.getText(), passField.getText(), emailField.getText(), cellField.getText());
+                    // Close the login stage
+                    stage.close();
+                    // Launch the main page
+                    try {
+                        new Login().start(new Stage());
+                    } catch (Exception e) {
+                        System.out.println("Something went wrong when going into main page.");
+                    }
+                }
+                else {
+                    if (!(passField.getText().length() >= 8))
+                        displayErrorMessage("Password must be 8 characters or longer!");
+                    else if (!passField.getText().equals(verifyPassField.getText()))
+                        displayErrorMessage("Passwords do not Match!");
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
         });
 
-        // following section helps jumping and navigating in different parts of
-        // the registration part.
-        prsnlInfo.setOnAction(actionEvent -> {
-            sp.setVvalue(0);
+        // Registration button for new users
+        Button newButton = new Button("Return to Login");
+
+        // Set action for the registration button
+        newButton.setOnAction(event -> {
+            // Close the login stage
+            stage.close();
+            // Launch the registration page
+            try {
+                new Login().start(new Stage());
+            } catch (Exception e) {
+                System.out.println("Something went wrong when going into registration page.");
+            }
         });
 
-        cmpInfo.setOnAction(actionEvent -> {
-            // still looking for other ways instead of hardcode
-            sp.setVvalue(0.46552161746232185);
-        });
-
-        cmpvalid.setOnAction(actionEvent -> {
-            // still looking for other ways instead of hardcode
-            sp.setVvalue(0.9310432349246438);
-        });
-
-        // root VBox, the whole page.
         VBox root = new VBox(10);
         root.setPadding(new Insets(20));
-        root.getChildren().addAll(mb,infoPage);
+        root.getChildren().addAll(helloCentre, fnameLabel, fnameField, lnameLabel, lnameField, userLabel, userField, passLabel, passField, verifyPassLabel, verifyPassField, emailLabel, emailField, cellLabel, cellField, logInCentre, newButton, errorLabel);
 
-        // create scene.
-        Scene scene = new Scene(root, scene_width, scene_height);
-        stage.setTitle("Registration");
+        Scene scene = new Scene(root, 500, 800);
+        stage.setTitle("Log In");
         stage.setScene(scene);
         stage.show();
 
+
     }
+
+    private boolean passwordValid(String password, String verifyPassword) {
+        return (password.equals(verifyPassword) && password.length() >= 8);
+    }
+
+
+    public static void register(String fname, String lname, String username, String password, String email, String cellNumber) throws IOException, InterruptedException {
+        String msg = "{" +
+                "\"username\":\"" + username + "\"," +
+                "\"password\":\"" + password + "\"," +
+                "\"email\":\"" + email + "\"," +
+                "\"cellNumber\":\"" + cellNumber + "\"," +
+                "\"fname\":\"" + fname + "\"," +
+                "\"lname\":\"" + lname + "\"" +
+                "}";
+
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://127.0.0.1:5000/register"))
+                .timeout(Duration.ofMinutes(2))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(msg, StandardCharsets.UTF_8))
+                .build();
+
+        System.out.println(request.toString());
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.toString());
+    }
+
+    private void displayErrorMessage(String message) {
+        errorLabel.setText(message);
+        errorLabel.setTextFill(Color.RED);
+    }
+
 
     public static void main(String[] args) {
         launch(args);
