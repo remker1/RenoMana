@@ -7,6 +7,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -26,6 +27,8 @@ public class Registration extends BasicPage {
 
     final double scene_width = 800;
     final double scene_height = 500;
+
+    private Label errorLabel = new Label();
 
     @Override
     public void start(Stage stage) {
@@ -82,19 +85,27 @@ public class Registration extends BasicPage {
         // Set action for the register button
         registerButton.setOnAction(event -> {
             try {
-                register(fnameField.getText(), lnameField.getText(), userField.getText(), passField.getText(), emailField.getText(), cellField.getText());
+                if (passwordValid(passField.getText(), verifyPassField.getText())) {
+                    register(fnameField.getText(), lnameField.getText(), userField.getText(), passField.getText(), emailField.getText(), cellField.getText());
+                    // Close the login stage
+                    stage.close();
+                    // Launch the main page
+                    try {
+                        new Login().start(new Stage());
+                    } catch (Exception e) {
+                        System.out.println("Something went wrong when going into main page.");
+                    }
+                }
+                else {
+                    if (!(passField.getText().length() >= 8))
+                        displayErrorMessage("Password must be 8 characters or longer!");
+                    else if (!passField.getText().equals(verifyPassField.getText()))
+                        displayErrorMessage("Passwords do not Match!");
+                }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
-            }
-            // Close the login stage
-            stage.close();
-            // Launch the main page
-            try {
-                new Login().start(new Stage());
-            } catch (Exception e) {
-                System.out.println("Something went wrong when going into main page.");
             }
         });
 
@@ -115,7 +126,7 @@ public class Registration extends BasicPage {
 
         VBox root = new VBox(10);
         root.setPadding(new Insets(20));
-        root.getChildren().addAll(helloCentre, fnameLabel, fnameField, lnameLabel, lnameField, userLabel, userField, passLabel, passField, verifyPassLabel, verifyPassField, emailLabel, emailField, cellLabel, cellField, logInCentre, newButton);
+        root.getChildren().addAll(helloCentre, fnameLabel, fnameField, lnameLabel, lnameField, userLabel, userField, passLabel, passField, verifyPassLabel, verifyPassField, emailLabel, emailField, cellLabel, cellField, logInCentre, newButton, errorLabel);
 
         Scene scene = new Scene(root, 500, 800);
         stage.setTitle("Log In");
@@ -125,6 +136,9 @@ public class Registration extends BasicPage {
 
     }
 
+    private boolean passwordValid(String password, String verifyPassword) {
+        return (password.equals(verifyPassword) && password.length() >= 8);
+    }
 
 
     public static void register(String fname, String lname, String username, String password, String email, String cellNumber) throws IOException, InterruptedException {
@@ -148,6 +162,11 @@ public class Registration extends BasicPage {
         System.out.println(request.toString());
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         System.out.println(response.toString());
+    }
+
+    private void displayErrorMessage(String message) {
+        errorLabel.setText(message);
+        errorLabel.setTextFill(Color.RED);
     }
 
 

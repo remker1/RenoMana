@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="Completed login and registration worklow.">
+    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="updates">
+      <change afterPath="$PROJECT_DIR$/RenoMana/src/dashboardMana/Dashboard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/app/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/app/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/MainPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/Registration.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/Registration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/Login.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Scheduler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Scheduler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Registration.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/Registration.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,10 +27,13 @@
       </list>
     </option>
   </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="vince_branch" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="DannPanganBranch" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -210,6 +217,7 @@
     <MESSAGE value="added comments to scheduler" />
     <MESSAGE value="Changes to registration, login, docker environment, and flask server" />
     <MESSAGE value="Completed login and registration worklow." />
-    <option name="LAST_COMMIT_MESSAGE" value="Completed login and registration worklow." />
+    <MESSAGE value="updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="updates" />
   </component>
 </project>

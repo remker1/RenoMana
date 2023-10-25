@@ -7,6 +7,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.net.URI;
@@ -17,6 +18,8 @@ import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 
 public class Login extends BasicPage {
+
+    private Label errorLabel = new Label();
     @Override
     public void start(Stage stage) {
 
@@ -70,6 +73,9 @@ public class Login extends BasicPage {
                     System.out.println("Something went wrong when going into main page.");
                 }
             }
+            else {
+                displayErrorMessage("Invalid username or password");
+            }
         });
 
         // Registration button for new users
@@ -89,7 +95,7 @@ public class Login extends BasicPage {
 
         VBox root = new VBox(10);
         root.setPadding(new Insets(20));
-        root.getChildren().addAll(helloCentre, userLabel, userField, passLabel, passField, keepLogIn, logInCentre, newButton);
+        root.getChildren().addAll(helloCentre, userLabel, userField, passLabel, passField, keepLogIn, logInCentre, newButton, errorLabel);
 
         Scene scene = new Scene(root, 500, 800);
         stage.setTitle("Log In");
@@ -152,6 +158,12 @@ public class Login extends BasicPage {
             return response.statusCode();
         }
 
+    }
+
+    // Add this method to display an error message
+    private void displayErrorMessage(String message) {
+        errorLabel.setText(message);
+        errorLabel.setTextFill(Color.RED);
     }
 
     public static void main(String[] args) {
