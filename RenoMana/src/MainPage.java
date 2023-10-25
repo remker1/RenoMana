@@ -15,6 +15,7 @@
 
 import dashboardMana.Dashboard;
 import inventoryMana.Inventory;
+import javafx.scene.image.Image;
 import timeMana.Scheduler;
 import timeMana.Calendar;
 import javafx.application.Application;
@@ -45,6 +46,7 @@ public class MainPage extends BasicPage {
 
     @Override
     public void start(Stage stage) {
+        stage.getIcons().add(new Image("./resources/icon.png"));
         VBox rootLayout = new VBox();
         mainLayout.setStyle("-fx-background-color: lightGray");
         Scene scene = new Scene(rootLayout, 1280, 900);

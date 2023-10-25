@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -32,6 +33,7 @@ public class Registration extends BasicPage {
 
     @Override
     public void start(Stage stage) {
+        stage.getIcons().add(new Image("./resources/icon.png"));
 
         // Hello label message
         Label helloLabel = new Label("Registration");
@@ -141,7 +143,7 @@ public class Registration extends BasicPage {
     }
 
 
-    public static void register(String fname, String lname, String username, String password, String email, String cellNumber) throws IOException, InterruptedException {
+    private static void register(String fname, String lname, String username, String password, String email, String cellNumber) throws IOException, InterruptedException {
         String msg = "{" +
                 "\"username\":\"" + username + "\"," +
                 "\"password\":\"" + password + "\"," +

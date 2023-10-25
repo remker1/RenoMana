@@ -1,8 +1,8 @@
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -22,9 +22,10 @@ public class Login extends BasicPage {
     private Label errorLabel = new Label();
     @Override
     public void start(Stage stage) {
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("./resources/icon.png")));
 
         // Hello label message
-        Label helloLabel = new Label("Hello!");
+        Label helloLabel = new Label("The Reno Group Admin App");
         helloLabel.setFont(new Font(36));
         HBox helloCentre = new HBox(); // HBox to centre the greeting label
         helloCentre.setAlignment(Pos.CENTER);
