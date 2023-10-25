@@ -18,9 +18,6 @@ import java.nio.file.StandardCopyOption;
 import java.util.Scanner;
 
 
-// TODO: [] Save uploaded image to database (saved in a file for now)
-//       [] support picture uploads other than jpg(?)
-
 /**
  * The ProfileCircle class represents a user's profile in the application.
  * It provides functionalities to view and edit the profile and settings.
@@ -68,7 +65,7 @@ public class ProfileCircle {
     /**
      * This method opens a window where the user can view and edit their profile and settings.
      */
-    private void openProfileWindow() {
+    public void openProfileWindow() {
         profileStage = new Stage();
         VBox root = new VBox(10);
         root.setAlignment(Pos.TOP_CENTER); // Align content to start from the top
@@ -127,8 +124,8 @@ public class ProfileCircle {
         root.getChildren().addAll(buttonBox, profileLayout);
 
         // Load saved profile picture and JSON data
-        loadSavedProfilePicture();
-        loadSavedJsonData();
+        loadSavedProfilePic();
+        loadSavedJson();
 
         Scene profileScene = new Scene(root, 400, 400);
         profileStage.setScene(profileScene);
@@ -137,14 +134,14 @@ public class ProfileCircle {
     }
 
     // Add a method to load the saved JSON data
-    private void loadSavedJsonData() {
+    private void loadSavedJson() {
         File savedJson = new File(JSON_DATA_PATH);
         if (savedJson.exists()) {
             try {
                 String content = new String(Files.readAllBytes(savedJson.toPath()));
-                String employeeNameValue = extractValueFromJson(content, "employeeName");
-                String companyAddressValue = extractValueFromJson(content, "companyAddress");
-                String companyEmailValue = extractValueFromJson(content, "companyEmail");
+                String employeeNameValue = extractFromJson(content, "employeeName");
+                String companyAddressValue = extractFromJson(content, "companyAddress");
+                String companyEmailValue = extractFromJson(content, "companyEmail");
 
                 employeeName.setText("Employee Full Name: " + employeeNameValue);
                 companyAddress.setText("Company Address: " + companyAddressValue);
@@ -156,7 +153,7 @@ public class ProfileCircle {
     }
 
     // Add a method to load the saved profile picture
-    private void loadSavedProfilePicture() {
+    private void loadSavedProfilePic() {
         File savedImage = new File(PROFILE_PICTURE_PATH);
         if (savedImage.exists()) {
             Image image = new Image(savedImage.toURI().toString());
@@ -173,7 +170,7 @@ public class ProfileCircle {
      * @param key The key whose value you want to find.
      * @return The value associated with the given key, or null if the key isn't found.
      */
-    private String extractValueFromJson(String json, String key) {
+    private String extractFromJson(String json, String key) {
         String searchPattern = "\"" + key + "\":";
         int startIndex = json.indexOf(searchPattern);
         if (startIndex == -1) return null;
@@ -211,9 +208,9 @@ public class ProfileCircle {
             try {
                 // Parse JSON and extract the values
                 String content = new Scanner(selectedFile).useDelimiter("\\Z").next();
-                String employeeNameValue = extractValueFromJson(content, "employeeName");
-                String companyAddressValue = extractValueFromJson(content, "companyAddress");
-                String companyEmailValue = extractValueFromJson(content, "companyEmail");
+                String employeeNameValue = extractFromJson(content, "employeeName");
+                String companyAddressValue = extractFromJson(content, "companyAddress");
+                String companyEmailValue = extractFromJson(content, "companyEmail");
 
                 if (employeeNameValue != null) {
                     employeeName.setText("Employee Full Name: " + employeeNameValue);
