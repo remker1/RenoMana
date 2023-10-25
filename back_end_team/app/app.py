@@ -3,57 +3,160 @@ import pymongo
 from pymongo import MongoClient
 
 app = Flask(__name__)
+client = MongoClient(host='localhost', port=27017, username='root', password='pass')
+db = client.renoGp
 
-# Gets the mongodb database instance
-def get_db():
-    client = MongoClient(host='mongodb',
-                        port=27017, 
-                        username='root', 
-                        password='pass',
-                        authSource="admin")
-    db = client["mango_db"]
-    return db
+################ Table Definitions ################
 
 
 # Displays the index.html webpage and allows user to input data to mango_tb database table
-@app.route('/', methods=['GET', 'POST'])
-def add_person():
-    db=""
+@app.route('/', methods=['GET'])
+def display():
     try:
-        db = get_db()
-        if request.method == 'POST':
-            
-            ID = request.form['id']
-            name = request.form['name']
-            role = request.form['role']
-
-            db.mango_tb.insert_one({'id': ID, 'name': name, 'role': role})
-            return redirect(url_for('add_person'))
-
-        all_people = db.mango_tb.find()
-        return render_template('index.html', people=all_people)
-    
+        return render_template('index.html')
     except:
         pass
-    finally:
-        if type(db)==MongoClient:
-            db.close()
 
-        
+
 # Displays the data from the database table mango_tb
 @app.route('/database')
 def get_stored_data():
-    db=""
     try:
-        db = get_db()
         _table = db.mango_tb.find()
         data = [{"id": person["id"], "name": person["name"], "role": person["role"]} for person in _table]
         return jsonify({"Data": data})
     except:
         pass
-    finally:
-        if type(db)==MongoClient:
-            db.close()
 
-if __name__=='__main__':
-    app.run(host="0.0.0.0", port=5000)
+
+# @app.route('/register', methods=['POST'])
+# def register():
+#     try:
+#         data = request.get_json()
+#         print("-------------------------")
+#         print("username: " + data['username'])
+#         print("password: " + data['password'])
+#         print("email: " + data['email'])
+#         print("cellNumber: " + data['cellNumber'])
+#
+#         # Assuming data is a dictionary containing the fields you want to add
+#         document = {
+#             'username': data['username'],
+#             'pass': data['password'],
+#         }
+#
+#         print(document)
+#
+#         # Insert the document into the collection
+#         result = db['auth'].insert_one(document)
+#
+#         response = {
+#             'status': 'success',
+#             'message': 'Document added successfully',
+#             'inserted_id': str(result.inserted_id)
+#         }
+#
+#
+#         return jsonify(response), 200
+#     except:
+#         response = {
+#             'status': 'failure',
+#             'message': 'Operation failed.'
+#         }
+#         print("something went wrong")
+#         return jsonify(response), 500
+
+@app.route('/register', methods=['POST'])
+def register():
+    try:
+        data = request.get_json()
+        print("-------------------------")
+        print("fname: " + data['fname'])
+        print("lname: " + data['lname'])
+        print("username: " + data['username'])
+        print("password: " + data['password'])
+        print("email: " + data['email'])
+        print("cellNumber: " + data['cellNumber'])
+
+        # Assuming data is a dictionary containing the fields you want to add
+        auth_document = {
+            'username': data['username'],
+            'password': data['password']
+        }
+
+        employee_document = {
+            'fname': data['fname'],
+            'lname': data['lname'],
+            'username': data['username'],
+            'email': data['email'],
+            'cellNumber': data['cellNumber'],
+            'projects': "",
+        }
+
+        # Insert the document into the collection
+        result1 = db['auth'].insert_one(auth_document)
+        result2 = db['employees'].insert_one(employee_document)
+
+
+
+        response = {
+            'status': 'success',
+            'message': 'Document added successfully',
+            'inserted_id1': str(result1.inserted_id),
+            'inserted_id2': str(result2.inserted_id)
+        }
+
+        return jsonify(response), 200
+    except Exception as e:
+        # Log the exception for debugging
+        print(f'Error in register route: {e}')
+        return jsonify({"status": "failure", "message": str(e)}), 500
+
+@app.route('/login', methods=['POST'])
+def login():
+    try:
+        data = request.get_json() #{username: ____, password:______}
+
+        input_user = data['username']
+        input_pass = data['password']
+
+        cookie = ""
+
+        user_exists = db['auth'].find_one({"username": input_user})
+
+        if user_exists:
+            if input_pass == user_exists["password"]:
+                cookie = user_exists["username"]
+                response = {
+                    'status': 'success',
+                    'message': 'Login Successful',
+                    'cookie': cookie
+                }
+                print(response)
+                return jsonify(response), 200
+            else:
+                response = {
+                    'status': 'failed',
+                    'message': 'Password doesn\'t match',
+                    'cookie': cookie
+                }
+                print(response)
+                return jsonify(response), 500
+        else:
+            response = {
+                'status': 'failed',
+                'message': 'Username doesn\'t exist',
+                'cookie': cookie
+            }
+            print(response)
+            return jsonify(response), 500
+
+    except Exception as e:
+        # Log the exception for debugging
+        print(f'Error in register route: {e}')
+        return jsonify({"status": "failure", "message": str(e)}), 500
+
+
+
+if __name__ == '__main__':
+    app.run(host="0.0.0.0", port=5000, debug=True)

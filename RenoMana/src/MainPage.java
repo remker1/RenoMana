@@ -1,5 +1,22 @@
-import inventoryMana.Inventory;
+/**
+ * MainPage Class
+ *
+ * <p>
+ * The application has a user interface with several tab where each tab shows a different feature
+ * or part of the application. By putting the content of each tab into its own class, the
+ * application makes it easier to change and maintain. The content of each tab is made and
+ * put into place in its own class. This method lets developers work on single features at a time,
+ * which makes the codebase more organised and easier to use.
+ * <p>
+ *
+ * @author Jewel Magcawas
+ * @since 2023-08-01
+ */
 
+import dashboardMana.Dashboard;
+import inventoryMana.Inventory;
+import timeMana.Scheduler;
+import timeMana.Calendar;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -14,68 +31,41 @@ import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.geometry.Insets;
 
-/**
- * MainPage Class
- *
- * <p>
- * This class represents the main page or home page of the application. It provides a user interface with multiple tabs,
- * where each tab showcases a different feature of the application. By modularizing the content of each tab
- * into its own class, the application becomes more maintainable and organized.
- * </p>
- *
- * @author Jewel Magcawas
- * @since 2023-08-01
- */
-public class MainPage extends Application {
-    /**
-     * Main layout components
-     */
-    private HBox mainLayout = new HBox();
-    /**
-     * Sidebar for navigation
-     */
+public class MainPage extends BasicPage {
+    HBox mainLayout = new HBox();
     private VBox sideBar;
     private VBox contentArea;
-    /**
-     * Title of the currently displayed content
-     */
     private Label contentTitle = new Label();
-
-    /**
-     * Gradient style for UI components
-     */
     private LinearGradient gradient = new LinearGradient(0, 0, 1, 1, true, CycleMethod.NO_CYCLE,
             new Stop(0, Color.web("#4B1517")),
             new Stop(1, Color.web("#C49102")));
 
-    /**
-     * Flag to track if dark mode is enabled
-     */
     private boolean isDarkMode = false;
-    private ProfileCircle profileCircleHandler;
+
 
     @Override
     public void start(Stage stage) {
         VBox rootLayout = new VBox();
         mainLayout.setStyle("-fx-background-color: lightGray");
-        Scene scene = new Scene(rootLayout, 1920, 1080);
+        Scene scene = new Scene(rootLayout, 1280, 900);
 
-        // ----- Setting up the top bar of the application -----
+        // ----- Top Bar Setup -----
         HBox topBar = new HBox(20);
         topBar.setBackground(new Background(new BackgroundFill(gradient, CornerRadii.EMPTY, Insets.EMPTY)));
         // Simple color background: topBar.setStyle("-fx-background-color: #4B1517; -fx-padding: 10px;");
-
-        // The top bar will contain account profile and search tab
-        Label accountName = new Label("Hello, User!");
-        accountName.setStyle("-fx-text-fill: white; -fx-font-weight: bold");
-
-        profileCircleHandler = new ProfileCircle(this);
-        Circle profileCircle = profileCircleHandler.getProfileCircle();
 
         // Toggle button for the sidebar
         ToggleButton toggleSidebar = getToggleButton();
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
+
+        // The top bar will contain account profile and search tab
+        Label accountName = new Label("Hello, User!");
+        accountName.setStyle("-fx-text-fill: white; -fx-font-weight: bold");
+
+        Circle profileCircle = new Circle(30);
+        profileCircle.setStyle("-fx-background-color: #9E1C29; -fx-stroke: #7C1715; -fx-border-radius: 2;");
+        profileCircle.setOnMouseClicked(event -> openProfileWindow());
 
         topBar.getChildren().addAll(toggleSidebar, spacer, accountName, profileCircle);
         topBar.setAlignment(Pos.CENTER_RIGHT);
@@ -95,8 +85,9 @@ public class MainPage extends Application {
         contentArea.setStyle("-fx-background-color: lightGray; -fx-padding: 10px;");
 
         // Create buttons for each tab and add them to the sidebar
-        createTabButton("Dashboard", new MainPageTab1(), "Dashboard");
-        createTabButton("Schedule", new MainPageTab2(), "Schedule");
+        createTabButton("Dashboard", new Dashboard(), "Dashboard");
+        createTabButton("Scheduler", new Scheduler(), "Scheduler");
+        createTabButton("Calendar", new Calendar(), "Calendar");
         createTabButton("Inventory", new Inventory(), "Inventory");
         createTabButton("Employees", new MainPageTab4(), "Employees");
 
@@ -112,26 +103,26 @@ public class MainPage extends Application {
         HBox.setHgrow(contentArea, Priority.ALWAYS);
 
         stage.setScene(scene);
-        stage.setTitle("[COMPANY HOMEPAGE]");
+        stage.setTitle("The Reno Group Management App");
         stage.show();
     }
 
-    public boolean isDarkMode() {
-        return isDarkMode;
-    }
+    /**
+     * This method creates a new window (Stage) that represents the user's profile. Inside this window,
+     * we plan to display the person's information(future implementation) and a back button are displayed.
+     * Clicking the back button will close the profile window and return the user to the main application.
+     */
+    private void openProfileWindow() {
+        // Profile window creation and set up.
+        Stage profileStage = new Stage();
+        VBox profileLayout = new VBox(20);
+        Scene profileScene = new Scene(profileLayout, 300, 200);
 
-    public Slider createModeSlider() {
+        // Slider for light and dark mode
         Slider modeSlider = new Slider();
         modeSlider.setMin(0);
         modeSlider.setMax(1);
-
-        // 0 for light mode, 1 for dark mode
-        if (isDarkMode) {
-            modeSlider.setValue(1);
-        } else {
-            modeSlider.setValue(0);
-        }
-
+        modeSlider.setValue(0); // 0 for light mode, 1 for dark mode
         modeSlider.setShowTickLabels(true);
         modeSlider.setShowTickMarks(true);
         modeSlider.setMajorTickUnit(1);
@@ -139,62 +130,60 @@ public class MainPage extends Application {
         modeSlider.setSnapToTicks(true);
         modeSlider.setBlockIncrement(1);
 
+        Label modeLabel = new Label("Light Mode");
+
+        if (isDarkMode) {
+            modeSlider.setValue(1);
+            modeLabel.setText("Dark Mode");
+        } else {
+            modeSlider.setValue(0);
+            modeLabel.setText("Light Mode");
+        }
+
+
         modeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.intValue() == 1) {
+                modeLabel.setText("Dark Mode");
                 setDarkMode();
             } else {
+                modeLabel.setText("Light Mode");
                 setLightMode();
             }
         });
 
-        return modeSlider;
+        // Button with an event where, upon click, will take the user back to the MainPage.
+        Button backButton = new Button("Back");
+        backButton.setOnAction(event -> profileStage.close());
+
+        profileLayout.getChildren().addAll(modeLabel, modeSlider, backButton);
+        profileStage.setScene(profileScene);
+        profileStage.setTitle("Profile");
+        profileStage.show();
     }
 
-    /**
-     * This method switches the application's theme to dark mode.
-     */
-    public void setDarkMode() {
+    private void setDarkMode() {
         contentArea.setStyle("-fx-background-color: #1C1C1C; -fx-padding: 10px;");
         contentTitle.setTextFill(Color.WHITE);
         mainLayout.setStyle("-fx-background-color: #1C1C1C;");
         isDarkMode = true;
-        profileCircleHandler.updateProfileWindowColors();
 
     }
 
-    /**
-     * This method switches the application's theme to light mode.
-     */
-    public void setLightMode() {
+    private void setLightMode() {
         contentArea.setStyle("-fx-background-color: lightGray; -fx-padding: 10px;");
         contentTitle.setTextFill(Color.BLACK);
         mainLayout.setStyle("-fx-background-color: lightGray;");
         isDarkMode = false;
-        profileCircleHandler.updateProfileWindowColors();
-
     }
 
-    /**
-     * This method displays the content of the selected tab in the content area.
-     *
-     * @param content The content to be displayed.
-     * @param title The title of the content.
-     */
-    public void displayContent(Node content, String title) {
+    private void displayContent(Node content, String title) {
         contentArea.getChildren().clear();
         contentTitle.setText(title);
         contentTitle.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-padding: 10px;");
         contentArea.getChildren().addAll(contentTitle, content);
     }
 
-    /**
-     * This method creates a button for a tab and adds it to the sidebar.
-     *
-     * @param title The title of the button.
-     * @param content The content associated with the button.
-     * @param contentTitle The title of the content.
-     */
-    public void createTabButton(String title, Node content, String contentTitle) {
+    private void createTabButton(String title, Node content, String contentTitle) {
         // shades of red : #4B1517 | #7C1715 | #9E1C29 | #AB2838 | #B84656
         Button button = new Button(title);
         button.setPrefWidth(Double.MAX_VALUE);
@@ -214,12 +203,7 @@ public class MainPage extends Application {
         sideBar.getChildren().add(button);
     }
 
-    /**
-     * This method creates and returns a toggle button for the sidebar.
-     *
-     * @return The toggle button.
-     */
-    public ToggleButton getToggleButton() {
+    private ToggleButton getToggleButton() {
         ToggleButton toggleSidebar = new ToggleButton("Menu");
         toggleSidebar.setStyle("-fx-background-color: transparent; -fx-text-fill: white;");
         toggleSidebar.setOnAction(e -> {
@@ -232,30 +216,6 @@ public class MainPage extends Application {
             }
         });
         return toggleSidebar;
-    }
-
-    public HBox getMainLayout() {
-        return mainLayout;
-    }
-
-    public VBox getSideBar() {
-        return sideBar;
-    }
-
-    public VBox getContentArea() {
-        return contentArea;
-    }
-
-    public Label getContentTitle() {
-        return contentTitle;
-    }
-
-    public LinearGradient getGradient() {
-        return gradient;
-    }
-
-    public ProfileCircle getProfileCircleHandler() {
-        return profileCircleHandler;
     }
 
     public static void main(String[] args) {

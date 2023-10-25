@@ -18,12 +18,12 @@ services:
   db:
     image: mongo:latest
     hostname: mongodb
-    container_name: mongo_Database
+    container_name: mongo_database
     environment:
       MONGO_INITDB_DATABASE: mango_db
       MONGO_INITDB_ROOT_USERNAME: root       # MongoDB Root Username
       MONGO_INITDB_ROOT_PASSWORD: pass       # MongoDB Root Password
     volumes:
-      - ./db/init-db.js:/docker-entrypoint-initdb.d/init-db.js:ro
+      - ./db:/docker-entrypoint-initdb.d
     ports:
       - 27017:27017
