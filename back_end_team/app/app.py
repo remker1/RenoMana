@@ -3,7 +3,7 @@ import pymongo
 from pymongo import MongoClient
 
 app = Flask(__name__)
-client = MongoClient(host='localhost', port=27017, username='root', password='pass')
+client = MongoClient(host='db', port=27017, username='root', password='pass')
 db = client.renoGp
 
 ################ Table Definitions ################
@@ -68,6 +68,7 @@ def get_stored_data():
 
 @app.route('/register', methods=['POST'])
 def register():
+    print("Register qwerty")
     try:
         data = request.get_json()
         print("-------------------------")
