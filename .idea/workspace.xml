@@ -5,10 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="- Created Dashboard VBox&#10;- Initialized Dashboard VBox in MainPage&#10;- Added &quot;passwords do not match&quot; and &quot;password must be 8 characters or longer&quot; error messages in Registration&#10;- Added &quot;invalid username/password&quot; error message in Login">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RenoMana/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/Login.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RenoMana/src/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/MainPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RenoMana/src/Registration.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/Registration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/app/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/app/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/Login.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Registration.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/Registration.class" afterDir="false" />
@@ -79,13 +83,13 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;Z:/2023/FallTerm/CMPT381/Labs/demo&quot;,
+    &quot;last_opened_file_path&quot;: &quot;L:/Desktop/Year 3/CMPT-370/CMPT-370-Project/javafx-sdk-21.0.1/lib&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
@@ -98,7 +102,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="Login" />
       <module name="RenoMana" />
-      <option name="VM_PARAMETERS" value="--module-path $PROJECT_DIR$/../javafx-sdk-21-mac/lib --add-modules javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;L:\Desktop\Year 3\CMPT-370\CMPT-370-Project\javafx-sdk-21.0.1\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -108,7 +112,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="MainPage" />
       <module name="RenoMana" />
-      <option name="VM_PARAMETERS" value="--module-path $PROJECT_DIR$/../javafx-sdk-21-mac/lib --add-modules javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;L:\Desktop\Year 3\CMPT-370\CMPT-370-Project\javafx-sdk-21.0.1\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -151,6 +155,8 @@
       <workItem from="1696442201683" duration="172000" />
       <workItem from="1696451729390" duration="164000" />
       <workItem from="1696457143116" duration="1065000" />
+      <workItem from="1698344104201" duration="2014000" />
+      <workItem from="1698357044538" duration="3864000" />
     </task>
     <task id="LOCAL-00001" summary="Finished setting up the log in page in accordance to agreed upon outline">
       <option name="closed" value="true" />
