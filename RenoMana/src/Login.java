@@ -22,7 +22,7 @@ public class Login extends BasicPage {
     private Label errorLabel = new Label();
     @Override
     public void start(Stage stage) {
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("./resources/icon.png")));
+//        stage.getIcons().add(new Image(getClass().getResourceAsStream("./resources/icon.png")));
 
         // Hello label message
         Label helloLabel = new Label("The Reno Group Admin App");
