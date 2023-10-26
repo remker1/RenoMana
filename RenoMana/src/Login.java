@@ -1,12 +1,10 @@
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.*;
-import javafx.scene.paint.CycleMethod;
-import javafx.scene.paint.LinearGradient;
-import javafx.scene.paint.Stop;
+import javafx.scene.image.Image;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
@@ -22,43 +20,33 @@ import java.time.Duration;
 public class Login extends BasicPage {
 
     private Label errorLabel = new Label();
-    private LinearGradient gradient = new LinearGradient(0, 0, 1, 1, true, CycleMethod.NO_CYCLE,
-            new Stop(0, Color.web("#4B1517")),
-            new Stop(1, Color.web("#C49102")));
     @Override
     public void start(Stage stage) {
+//        stage.getIcons().add(new Image(getClass().getResourceAsStream("./resources/icon.png")));
 
         // Hello label message
-        Label helloLabel = new Label("Hello!");
+        Label helloLabel = new Label("The Reno Group Admin App");
         helloLabel.setFont(new Font(36));
         HBox helloCentre = new HBox(); // HBox to centre the greeting label
         helloCentre.setAlignment(Pos.CENTER);
         helloCentre.getChildren().add(helloLabel);
-        helloLabel.setStyle("-fx-text-fill: white; -fx-font-weight: bold");
-
 
         // Username label that prompts text field
         Label userLabel = new Label("Username: ");
         TextField userField = new TextField();
         userField.setPromptText("Enter your username");
-        userLabel.setStyle("-fx-text-fill: white;");
-
-
 
         // Password label that prompts password field
         Label passLabel = new Label("Password: ");
         PasswordField passField = new PasswordField();
         passField.setPromptText("Enter your password");
-        passLabel.setStyle("-fx-text-fill: white;");
 
         // Check box to keep user logged into device
         CheckBox keepLogIn = new CheckBox("Keep me logged in!");
-        keepLogIn.setStyle("-fx-text-fill: white;");
 
         // Log in button
         Button logInButton = new Button("Log In");
         logInButton.setFont(new Font(18));
-        logInButton.setStyle("-fx-text-fill: white; -fx-background-color: #a29f9f");
         HBox logInCentre = new HBox(); // HBox to centre button
         logInCentre.setAlignment(Pos.CENTER);
         logInCentre.getChildren().add(logInButton);
@@ -93,8 +81,6 @@ public class Login extends BasicPage {
 
         // Registration button for new users
         Button newButton = new Button("New?");
-        newButton.setStyle("-fx-text-fill: white; -fx-background-color: #a29f9f");
-
 
         // Set action for the registration button
         newButton.setOnAction(event -> {
@@ -111,8 +97,6 @@ public class Login extends BasicPage {
         VBox root = new VBox(10);
         root.setPadding(new Insets(20));
         root.getChildren().addAll(helloCentre, userLabel, userField, passLabel, passField, keepLogIn, logInCentre, newButton, errorLabel);
-        root.setBackground(new Background(new BackgroundFill(gradient, CornerRadii.EMPTY, Insets.EMPTY)));
-
 
         Scene scene = new Scene(root, 500, 800);
         stage.setTitle("Log In");
