@@ -173,6 +173,7 @@ def submit_request():
             startDate = request.form.get("startDate")
             endDate = request.form.get("endDate")
             projectDesc = request.form.get("projectDesc")
+            projectInq = request.form.get("projectInq")
 
             user_document = {
                 'customerName': customerName,
@@ -183,8 +184,13 @@ def submit_request():
                 'endDate': endDate,
                 'projectDesc': projectDesc
             }
+
+            inq_document = {
+                'projectInq': projectInq
+            }
             # Insert the user data into the MongoDB collection
             result100 = db['user'].insert_one(user_document)
+            result200 = db['inq'].insert_one(inq_document)
 
             response_1000 = {
                 'status': 'success',
