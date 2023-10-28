@@ -18,6 +18,8 @@ def display():
         pass
 
 
+
+
 # Displays the data from the database table mango_tb
 @app.route('/database')
 def get_stored_data():
@@ -159,6 +161,10 @@ def login():
 
 collection = db.user_data  # MongoDB collection to store user data
 
+
+
+
+
 def request_project():
     if request.method == 'POST':
         # Extract user inputs from the HTML form
@@ -185,6 +191,9 @@ def request_project():
             return "Data submitted successfully!"
         except Exception as e:
             return f"An error occurred: {str(e)}"
+
+
+
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000, debug=True)
