@@ -9,11 +9,11 @@ db = client.renoGp
 ################ Table Definitions ################
 
 
-# Displays the index.html webpage and allows user to input data to mango_tb database table
+# Displays the RenoGrpRequestPage.html webpage and allows user to input data to mango_tb database table
 @app.route('/', methods=['GET'])
 def display():
     try:
-        return render_template('index.html')
+        return render_template('RenoGrpRequestPage.html')
     except:
         pass
 
@@ -157,7 +157,34 @@ def login():
         print(f'Error in register route: {e}')
         return jsonify({"status": "failure", "message": str(e)}), 500
 
+collection = db.user_data  # MongoDB collection to store user data
 
+def request_project():
+    if request.method == 'POST':
+        # Extract user inputs from the HTML form
+        customerName = request.form['customerName']
+        customerEmail = request.form['customerEmail']
+        customerCell = request.form['customerCell']
+        company = request.form['company']
+        startDate = request.form['startDate']
+        endDate = request.form['endDate']
+        projectDesc = request.form['projectDesc']
+
+        user_data = {
+            'customerName': customerName,
+            'customerEmail': customerEmail,
+            'customerCell': customerCell,
+            'company': company,
+            'startDate': startDate,
+            'endDate': endDate,
+            'projectDesc': projectDesc
+        }
+
+        try:
+            result = collection.insert_one(user_data)
+            return "Data submitted successfully!"
+        except Exception as e:
+            return f"An error occurred: {str(e)}"
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000, debug=True)
