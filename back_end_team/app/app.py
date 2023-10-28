@@ -159,40 +159,48 @@ def login():
         print(f'Error in register route: {e}')
         return jsonify({"status": "failure", "message": str(e)}), 500
 
-collection = db.user_data  # MongoDB collection to store user data
 
+@app.route('/submitRequest', methods=['GET', 'POST'])
+def submit_request():
+    try:
+        if request.method == 'POST':
+            # Extract user inputs from the HTML form
+            # data_1000 = request.get_json()
+            customerName = request.form.get("customerName")
+            customerEmail = request.form.get("customerEmail")
+            customerCell = request.form.get("customerCell")
+            company = request.form.get("company")
+            startDate = request.form.get("startDate")
+            endDate = request.form.get("endDate")
+            projectDesc = request.form.get("projectDesc")
 
+            user_document = {
+                'customerName': customerName,
+                'customerEmail': customerEmail,
+                'customerCell': customerCell,
+                'company': company,
+                'startDate': startDate,
+                'endDate': endDate,
+                'projectDesc': projectDesc
+            }
+            # Insert the user data into the MongoDB collection
+            result100 = db['user'].insert_one(user_document)
 
+            response_1000 = {
+                'status': 'success',
+                'message': 'Data submitted successfully',
+                'inserted_id': str(result100.inserted_id)
+            }
+            return jsonify(response_1000), 200
 
-
-def request_project():
-    if request.method == 'POST':
-        # Extract user inputs from the HTML form
-        customerName = request.form['customerName']
-        customerEmail = request.form['customerEmail']
-        customerCell = request.form['customerCell']
-        company = request.form['company']
-        startDate = request.form['startDate']
-        endDate = request.form['endDate']
-        projectDesc = request.form['projectDesc']
-
-        user_data = {
-            'customerName': customerName,
-            'customerEmail': customerEmail,
-            'customerCell': customerCell,
-            'company': company,
-            'startDate': startDate,
-            'endDate': endDate,
-            'projectDesc': projectDesc
+    except Exception as e:
+        # Log the exception for debugging
+        print(f'Error in submit_request route: {e}')
+        response_1000 = {
+            'status': 'failure',
+            'message': str(e)
         }
-
-        try:
-            result = collection.insert_one(user_data)
-            return "Data submitted successfully!"
-        except Exception as e:
-            return f"An error occurred: {str(e)}"
-
-
+        return jsonify(response_1000), 500
 
 
 if __name__ == '__main__':

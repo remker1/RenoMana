@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9cb99a68-cf02-4d76-9efc-92f890eb8464" name="Changes" comment="Git Commit Message: &quot;Add functionality to extract and store user input from the HTML&quot;&#10;&#10;Changes made to the .py script, specifically the addition&#10;of the request_project() function to extract and store customer requests from the HTML form inside the database.">
+    <list default="true" id="9cb99a68-cf02-4d76-9efc-92f890eb8464" name="Changes" comment="Implemented input text fields are cleared once submit is clicked.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/app/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/app/app.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -299,7 +298,14 @@
       <option name="project" value="LOCAL" />
       <updated>1697581103270</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Implemented input text fields are cleared once submit is clicked.">
+      <created>1698455859236</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1698455859236</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -328,6 +334,7 @@
     <MESSAGE value="Implemented the import a csv file method from user directory. Only supports csv files (for now) and is yet to be tested." />
     <MESSAGE value="Implemented the export a csv file method with data from the table. Only supports csv files (for now) and is yet to be tested for windows systems." />
     <MESSAGE value="Redesigned and recoloured MainPage and Login classes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Redesigned and recoloured MainPage and Login classes." />
+    <MESSAGE value="Implemented input text fields are cleared once submit is clicked." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented input text fields are cleared once submit is clicked." />
   </component>
 </project>
