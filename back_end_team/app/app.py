@@ -9,13 +9,15 @@ db = client.renoGp
 ################ Table Definitions ################
 
 
-# Displays the index.html webpage and allows user to input data to mango_tb database table
+# Displays the RenoGrpRequestPage.html webpage and allows user to input data to mango_tb database table
 @app.route('/', methods=['GET'])
 def display():
     try:
-        return render_template('index.html')
+        return render_template('RenoGrpRequestPage.html')
     except:
         pass
+
+
 
 
 # Displays the data from the database table mango_tb
@@ -157,6 +159,54 @@ def login():
         print(f'Error in register route: {e}')
         return jsonify({"status": "failure", "message": str(e)}), 500
 
+
+@app.route('/submitRequest', methods=['GET', 'POST'])
+def submit_request():
+    try:
+        if request.method == 'POST':
+            # Extract user inputs from the HTML form
+            # data_1000 = request.get_json()
+            customerName = request.form.get("customerName")
+            customerEmail = request.form.get("customerEmail")
+            customerCell = request.form.get("customerCell")
+            company = request.form.get("company")
+            startDate = request.form.get("startDate")
+            endDate = request.form.get("endDate")
+            projectDesc = request.form.get("projectDesc")
+            projectInq = request.form.get("projectInq")
+
+            user_document = {
+                'customerName': customerName,
+                'customerEmail': customerEmail,
+                'customerCell': customerCell,
+                'company': company,
+                'startDate': startDate,
+                'endDate': endDate,
+                'projectDesc': projectDesc
+            }
+
+            inq_document = {
+                'projectInq': projectInq
+            }
+            # Insert the user data into the MongoDB collection
+            result100 = db['user'].insert_one(user_document)
+            result200 = db['inq'].insert_one(inq_document)
+
+            response_1000 = {
+                'status': 'success',
+                'message': 'Data submitted successfully',
+                'inserted_id': str(result100.inserted_id)
+            }
+            return jsonify(response_1000), 200
+
+    except Exception as e:
+        # Log the exception for debugging
+        print(f'Error in submit_request route: {e}')
+        response_1000 = {
+            'status': 'failure',
+            'message': str(e)
+        }
+        return jsonify(response_1000), 500
 
 
 if __name__ == '__main__':
