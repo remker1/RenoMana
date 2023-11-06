@@ -9,64 +9,29 @@ db = client.renoGp
 ################ Table Definitions ################
 
 
-# Displays the RenoGrpRequestPage.html webpage and allows user to input data to mango_tb database table
+# Displays the main Reno Group landing page
 @app.route('/', methods=['GET'])
-def display():
+def displayLanding():
+    try:
+        return render_template('landing.html')
+    except:
+        pass
+
+# Displays the RenoGrpRequestPage.html webpage and allows user to input data to mango_tb database table
+@app.route('/requestPage', methods=['GET'])
+def displayRequestPage():
     try:
         return render_template('RenoGrpRequestPage.html')
     except:
         pass
 
-
-
-
-# Displays the data from the database table mango_tb
-@app.route('/database')
-def get_stored_data():
+# Displays the RenoGrpReviewPage.html webpage and allows users to add and view customer reviews
+@app.route('/reviews', methods=['GET'])
+def displayReviews():
     try:
-        _table = db.mango_tb.find()
-        data = [{"id": person["id"], "name": person["name"], "role": person["role"]} for person in _table]
-        return jsonify({"Data": data})
+        return render_template('RenoGrpReviewPage.html')
     except:
         pass
-
-
-# @app.route('/register', methods=['POST'])
-# def register():
-#     try:
-#         data = request.get_json()
-#         print("-------------------------")
-#         print("username: " + data['username'])
-#         print("password: " + data['password'])
-#         print("email: " + data['email'])
-#         print("cellNumber: " + data['cellNumber'])
-#
-#         # Assuming data is a dictionary containing the fields you want to add
-#         document = {
-#             'username': data['username'],
-#             'pass': data['password'],
-#         }
-#
-#         print(document)
-#
-#         # Insert the document into the collection
-#         result = db['auth'].insert_one(document)
-#
-#         response = {
-#             'status': 'success',
-#             'message': 'Document added successfully',
-#             'inserted_id': str(result.inserted_id)
-#         }
-#
-#
-#         return jsonify(response), 200
-#     except:
-#         response = {
-#             'status': 'failure',
-#             'message': 'Operation failed.'
-#         }
-#         print("something went wrong")
-#         return jsonify(response), 500
 
 @app.route('/register', methods=['POST'])
 def register():

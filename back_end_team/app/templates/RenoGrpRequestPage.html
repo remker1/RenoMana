@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="./templates/styles.css">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css')}}">
     </head>
 
     <body>
@@ -11,7 +11,7 @@
                 <nav>
                     <ul>
                         <li><a href="http://localhost:5000/">Home</a></li>
-                        <li><a class="active" href="http://localhost:5000/renoGrpRequestPage">Request a project</a></li>
+                        <li><a class="active" href="http://localhost:5000/requestPage">Request a project</a></li>
                         <li><a href="http://localhost:5000/reviews">Leave a review!</a></li>
                     </ul>
                 </nav>
