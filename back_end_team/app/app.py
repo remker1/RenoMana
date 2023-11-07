@@ -30,6 +30,53 @@ def displayReviews():
     except:
         pass
 
+# Initialize some default employees into the database
+@app.route('/initDB', methods=["GET"])
+def initDB():
+    try:
+        # Insert employees into the database
+        employeeList = [
+            {
+                "id": 1,
+                "first_name": "Bob",
+                "last_name": "Smith",
+                "cell_number": "123-456-7890",
+                "employee_type": "contractor"
+            },
+            {
+                "id": 2,
+                "first_name": "Steven",
+                "last_name": "Johnson",
+                "cell_number": "987-654-3210",
+                "employee_type": "contractor"
+            },
+            {
+                "id": 3,
+                "first_name": "Sam",
+                "last_name": "Davis",
+                "cell_number": "555-555-5555",
+                "employee_type": "contractor"
+            }
+        ]
+        result = db['employees'].insert_many(employeeList)
+        
+
+        response = {
+            'status': 'success',
+            'message': 'Data submitted successfully',
+            'inserted_id': str(result)
+        }
+        return jsonify(response), 200
+
+    except Exception as e:
+        # Log the exception for debugging
+        print(f'Error in initDB route: {e}')
+        response = {
+            'status': 'failure',
+            'message': str(e)
+        }
+        return jsonify(response), 500
+
 @app.route('/register', methods=['POST'])
 def register():
     print("Register qwerty")
@@ -187,7 +234,7 @@ def addReview():
 
     except Exception as e:
         # Log the exception for debugging
-        app.logger.error('Error in addReview route: {e}')
+        # app.logger.error('Error in addReview route: {e}') TODO remove
         print(f'Error in addReview route: {e}')
         response = {
             'status': 'failure',
