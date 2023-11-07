@@ -6,9 +6,6 @@ app = Flask(__name__)
 client = MongoClient(host='db', port=27017, username='root', password='pass')
 db = client.renoGp
 
-################ Table Definitions ################
-
-
 # Displays the main Reno Group landing page
 @app.route('/', methods=['GET'])
 def displayLanding():
@@ -124,7 +121,6 @@ def login():
         print(f'Error in register route: {e}')
         return jsonify({"status": "failure", "message": str(e)}), 500
 
-
 @app.route('/submitRequest', methods=['GET', 'POST'])
 def submit_request():
     try:
@@ -173,6 +169,48 @@ def submit_request():
         }
         return jsonify(response_1000), 500
 
+@app.route('/addReview', methods=['POST'])
+def addReview():
+    try:
+        # Gather review information
+        data = request.json
+
+        reviewTitle = data.get("title")
+        reviewDesc = data.get("description")
+    
+        # Insert the review into the MongoDB collection
+        result = db['reviews'].insert_one({'title': reviewTitle, 'description': reviewDesc})
+
+        response = {
+            'status': 'success',
+            'message': 'Data submitted successfully',
+            'inserted_id': str(result.inserted_id)
+        }
+        return jsonify(response), 200
+
+    except Exception as e:
+        # Log the exception for debugging
+        print(f'Error in addReview route: {e}')
+        response = {
+            'status': 'failure',
+            'message': str(e)
+        }
+        return jsonify(response), 500
+
+@app.route('/getReviews', methods=['GET'])
+def getReviews():
+    try:
+        result = list(db['reviews'].find({}, {"title": 1, "description": 1, "_id": 0}))
+        return jsonify(result), 200
+
+    except Exception as e:
+        # Log the exception for debugging
+        print(f'Error in getReviews route: {e}')
+        response = {
+            'status': 'failure',
+            'message': str(e)
+        }
+        return jsonify(response), 500
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000, debug=True)

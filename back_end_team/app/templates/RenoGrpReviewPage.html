@@ -4,49 +4,89 @@
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css')}}">
     </head>
 
+    <header>
+        <div class="topnav">
+            <!-- <img src="./resources/3.png" alt="logo" class="logo"> -->
+            <nav>
+                <ul>
+                    <li><a href="http://localhost:5000/">Home</a></li>
+                    <li><a class="active" href="http://localhost:5000/requestPage">Request a project</a></li>
+                    <li><a href="http://localhost:5000/reviews">Leave a review!</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
     <body>
-        <header>
-            <div class="topnav">
-                <img src="./resources/3.png" alt="logo" class="logo">
-                <nav>
-                    <ul>
-                        <li><a href="http://localhost:5000/">Home</a></li>
-                        <li><a class="active" href="http://localhost:5000/requestPage">Request a project</a></li>
-                        <li><a href="http://localhost:5000/reviews">Leave a review!</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
+        <script type = "text/javascript">
+    
+            function getReviews() {
+                fetch('/getReviews', {
+                    method: 'GET'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("review-list").value = "";
+                    const reviewList = document.getElementById("review-list");
+
+                    data.forEach(review => {
+                        const listItem = document.createElement("li");
+                        // listItem.classList.add("review-item");
+
+                        const title = document.createElement("h2");
+                        // title.classList.add("review-title");
+                        title.textContent = review.title;
+
+                        const description = document.createElement("p");
+                        // description.classList.add("review-description");
+                        description.textContent = review.description;
+
+                        listItem.appendChild(title);
+                        listItem.appendChild(description);
+                        reviewList.appendChild(listItem);
+                    });
+                    // document.getElementById("reviews-container").innerHTML = JSON.stringify(data)
+                })
+                .catch(error => console.error(error))
+            }
+    
+            function addReview() {
+                fetch('/addReview', {
+                    "method": 'POST',
+                    "headers": {"Content-Type": "application/json"},
+                    "body": JSON.stringify({
+                        "title": document.getElementById("title_input").value,
+                        "description": document.getElementById("description_input").value
+                    })
+                })
+                .then(document.getElementById("title_input").value = "")
+                .then(document.getElementById("description_input").value = "")
+                .then(alert("Thank you for your Review!"))
+                .catch(error => console.error(error))
+            };
+        </script>
 
         <div class="formSection">
             <p>An asterisk (*) indicates a required field</p>
-            <form id="reviewForm" action="http://localhost:5000/submitReview" method="post" onsubmit="showAlert()">
-                <label for="reviewTitle">Title *</label><br>
-                <input type="text" id="reviewTitle" name="reviewTitle" placeholder="Enter your Title" required><br>
-                <label for="reviewDesc">Provide a review description *</label><br>
-                <textarea id="reviewDesc" name="reviewDesc" rows="10" cols="50"></textarea><br>
-                <input type="submit" value="submit">
-            </form>
+
+            <label for="Title"> Title *: </label><br> <br>
+            <input id="title_input" type="text" name="Title" value=""><br> <br>
+            <label for="Description"> Review *: </label><br> <br>
+            <input id="description_input" type="text" name="Description" value=""><br> <br>
+            <br>
+            <button onclick="addReview()">Submit Review</button>
+            <br>
         </div>
 
-        <script>
-            // Function to clear form inputs
-            function clearFormInputs() {
-                document.getElementById('reviewTitle').value = '';
-                document.getElementById('reviewDesc').value = '';
-            }
+        <h1>Reviews</h1>
+        <br>
+        <button onclick="getReviews()">Get Reviews</button>
+        <br>
 
-            // Function to handle form submission
-            function submitForm() {
-                alert("Thank you for your Review!");
-                clearFormInputs();
-            }
+        <br> <br>
 
-            // Add a submit event listener to the form
-            document.getElementById('reviewForm').addEventListener('submit', function (e) {
-                e.preventDefault(); // Prevent the default form submission
-                submitForm(); // Call the custom submitForm function
-            });
-        </script>
+        <!-- <div id="reviews-container"></div> -->
+        <ul id="review-list"></ul>
+
     </body>
 </html>
