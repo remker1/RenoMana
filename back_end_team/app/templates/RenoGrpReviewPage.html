@@ -30,7 +30,7 @@
                     const reviewList = document.getElementById("review-list");
 
                     data.forEach(review => {
-                        const listItem = document.createElement("li");
+                        const listItem = document.createElement("div");
                         // listItem.classList.add("review-item");
 
                         const title = document.createElement("h2");
@@ -41,6 +41,7 @@
                         // description.classList.add("review-description");
                         description.textContent = review.description;
 
+                        listItem.appendChild(document.createElement("hr"));
                         listItem.appendChild(title);
                         listItem.appendChild(description);
                         reviewList.appendChild(listItem);

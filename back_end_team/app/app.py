@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, request, redirect, url_for
+from flask import Flask, jsonify, render_template, request
 import pymongo
 from pymongo import MongoClient
 
@@ -174,12 +174,9 @@ def addReview():
     try:
         # Gather review information
         data = request.json
-
-        reviewTitle = data.get("title")
-        reviewDesc = data.get("description")
     
         # Insert the review into the MongoDB collection
-        result = db['reviews'].insert_one({'title': reviewTitle, 'description': reviewDesc})
+        result = db['reviews'].insert_one({'title': data.get("title"), 'description': data.get("description")})
 
         response = {
             'status': 'success',
@@ -190,6 +187,7 @@ def addReview():
 
     except Exception as e:
         # Log the exception for debugging
+        app.logger.error('Error in addReview route: {e}')
         print(f'Error in addReview route: {e}')
         response = {
             'status': 'failure',
