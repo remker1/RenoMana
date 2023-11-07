@@ -17,7 +17,7 @@
         </div>
     </header>
 
-    <body>
+    <body onload="getReviews()">
         <script type = "text/javascript">
     
             function getReviews() {
@@ -26,7 +26,7 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById("review-list").value = "";
+                    document.getElementById("review-list").innerHTML = "";
                     const reviewList = document.getElementById("review-list");
 
                     data.forEach(review => {
@@ -63,6 +63,7 @@
                 .then(document.getElementById("title_input").value = "")
                 .then(document.getElementById("description_input").value = "")
                 .then(alert("Thank you for your Review!"))
+                .then(getReviews())
                 .catch(error => console.error(error))
             };
         </script>
@@ -73,21 +74,15 @@
             <label for="Title"> Title *: </label><br> <br>
             <input id="title_input" type="text" name="Title" value=""><br> <br>
             <label for="Description"> Review *: </label><br> <br>
-            <input id="description_input" type="text" name="Description" value=""><br> <br>
+            <textarea id="description_input" name="Description" class="reviewTextBox"> </textarea><br> <br>
             <br>
             <button onclick="addReview()">Submit Review</button>
             <br>
         </div>
 
-        <h1>Reviews</h1>
-        <br>
-        <button onclick="getReviews()">Get Reviews</button>
-        <br>
+        <h1>Reviews: </h1>
 
-        <br> <br>
-
-        <!-- <div id="reviews-container"></div> -->
-        <ul id="review-list"></ul>
+        <div id="review-list"></div>
 
     </body>
 </html>

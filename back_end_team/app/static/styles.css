@@ -3,6 +3,18 @@ label {
     color: #ffa500;
 }
 
+h1 {
+    color: #ffa500;
+    padding: 10px;
+    margin: 10px 0; 
+}
+
+h2 {
+    color: #ffa500;
+    padding: 10px;
+    margin: 10px 0; 
+}
+
 p {
     font-size: 14px;
     color: #ffa500;
@@ -122,4 +134,17 @@ textarea {
    height: 200px;
    resize: vertical;
    vertical-align: text-top;
+}
+
+.reviewTextBox{
+    height: 20%;
+    width: 70%;
+    margin: 10px;
+    padding:10px;
+    border:0;
+    box-shadow:0 0 15px 4px rgba(#eee,#eee,#eee,#eee);
+    border-radius: 10px;
+    border: 2px solid #000;
+    border-bottom:1px solid #000;
+    text-align: left;
 }
