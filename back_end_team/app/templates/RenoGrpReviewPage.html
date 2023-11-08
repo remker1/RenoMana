@@ -23,7 +23,11 @@
     
             function getReviews() {
                 fetch('/getReviews', {
-                    method: 'GET'
+                    "method": 'POST',
+                    "headers": {"Content-Type": "application/json"},
+                    "body": JSON.stringify({
+                        "rating": document.getElementById("search_input").value
+                    })
                 })
                 .then(response => response.json())
                 .then(data => {
@@ -32,14 +36,11 @@
 
                     data.forEach(review => {
                         const listItem = document.createElement("div");
-                        // listItem.classList.add("review-item");
 
                         const title = document.createElement("h2");
-                        // title.classList.add("review-title");
                         title.textContent = review.title;
 
                         const description = document.createElement("p");
-                        // description.classList.add("review-description");
                         description.textContent = review.description;
                         
                         const rating = document.createElement("div");
@@ -77,7 +78,7 @@
                 })
                 .then(document.getElementById("title_input").value = "")
                 .then(document.getElementById("description_input").value = "")
-                .then(document.getElementById("rating_input").value = "0")
+                .then(document.getElementById("rating_input").value = "5")
                 .then(alert("Thank you for your Review!"))
                 .then(getReviews())
                 .catch(error => console.error(error))
@@ -106,6 +107,16 @@
         </div>
 
         <h1>Reviews: </h1>
+
+        <label for="ratingSearch"> Select Rating: </label><br> <br>
+        <select id="search_input" name="ratingSearch">
+            <option value="0">All Ratings</option>
+            <option value="5">5 Star</option>
+            <option value="4">4 Star</option>
+            <option value="3">3 Star</option>
+            <option value="2">2 Star</option>
+            <option value="1">1 Star</option>
+        </select> <br> <br>
 
         <div id="review-list"></div>
 

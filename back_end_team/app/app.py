@@ -234,7 +234,6 @@ def addReview():
 
     except Exception as e:
         # Log the exception for debugging
-        # app.logger.error('Error in addReview route: {e}') TODO remove
         print(f'Error in addReview route: {e}')
         response = {
             'status': 'failure',
@@ -242,11 +241,15 @@ def addReview():
         }
         return jsonify(response), 500
 
-@app.route('/getReviews', methods=['GET'])
+@app.route('/getReviews', methods=['POST'])
 def getReviews():
     try:
+        data = request.json
 
-        result = list(db['reviews'].find({}, {"title": 1, "description": 1, "rating": 1, "_id": 0}))
+        if (data.get("rating") == "0"):
+            result = list(db['reviews'].find({}, {"title": 1, "description": 1, "rating": 1, "_id": 0}))
+        else:
+            result = list(db['reviews'].find({"rating": data.get("rating")}, {"title": 1, "description": 1, "rating": 1 , "_id": 0}))
         return jsonify(result), 200
 
     except Exception as e:
