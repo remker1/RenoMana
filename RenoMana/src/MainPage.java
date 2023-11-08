@@ -16,7 +16,7 @@
 import dashboardMana.Dashboard;
 import inventoryMana.Inventory;
 import javafx.scene.image.Image;
-import reviewMana.ReviewList;
+import reviewMana.Review;
 import timeMana.Scheduler;
 import timeMana.Calendar;
 import employeeMana.EmployeeList;
@@ -94,7 +94,7 @@ public class MainPage extends BasicPage {
         createTabButton("Calendar", new Calendar(), "Calendar");
         createTabButton("Inventory", new Inventory(), "Inventory");
         createTabButton("Employees", new EmployeeList(), "Employees");
-        createTabButton("Reviews", new ReviewList(), "Reviews");
+        createTabButton("Reviews", new Review(), "Reviews");
 
         mainLayout.getChildren().addAll(sideBar, contentArea);
         rootLayout.getChildren().addAll(topBar, mainLayout);
