@@ -2,7 +2,9 @@ package reviewMana;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
@@ -47,22 +49,19 @@ public class Review extends VBox {
         reviewTable.getColumns().addAll(titleCol, descriptionCol, ratingCol);
         reviewTable.setItems(data);
 
+        // Setting up refresh reviews button
+        Button refreshReviews = new Button("Refresh");
+        refreshReviews.setOnAction(actionEvent -> loadReviews());
+
+        HBox optButton = new HBox(10, refreshReviews);
+        optButton.setPadding(new Insets(10, 0, 10, 0)); // top, right, bottom, left padding
+
         // Set vertical grow for the table and add it along with the buttons to the VBox
         VBox.setVgrow(reviewTable, Priority.ALWAYS);
-        this.getChildren().addAll(reviewTable);
+        this.getChildren().addAll(reviewTable, optButton);
     }
 
-    /**
-     * Shows an alert dialog with the specified title and content text.
-     *
-     * @param title   The title of the alert dialog.
-     * @param content The content text of the alert dialog.
-     */
-    private void showAlert(String title, String content) {
-        Alert invalidNumAlert = new Alert(Alert.AlertType.ERROR);
-        invalidNumAlert.setTitle(title);
-        invalidNumAlert.setHeaderText(null);
-        invalidNumAlert.setContentText(content);
-        invalidNumAlert.showAndWait();
+    public void loadReviews(){
+        System.out.println("Refresh Page");
     }
 }
