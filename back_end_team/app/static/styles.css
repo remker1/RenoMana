@@ -150,7 +150,27 @@ h2 {
 }
 
 button{
-    width: 5%;
+    width: 10%;
+    margin: 10px;
+    padding:10px;
+    box-shadow:0 0 15px 4px rgba(#eee,#eee,#eee,#eee);
+    border-radius: 10px;
+    border: 2px solid #000;
+    border-bottom:1px solid #000;
+    color: #444;
+    background-color: #ffa500;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+select {
+    width: 10%;
+    margin: 10px;
+    padding:10px;
+    box-shadow:0 0 15px 4px rgba(#eee,#eee,#eee,#eee);
+    border-radius: 10px;
+    border: 2px solid #000;
+    border-bottom:1px solid #000;
     color: #444;
     background-color: #ffa500;
     text-align: center;
