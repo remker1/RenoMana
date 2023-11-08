@@ -3,18 +3,6 @@ label {
     color: #ffa500;
 }
 
-h1 {
-    color: #ffa500;
-    padding: 10px;
-    margin: 10px 0; 
-}
-
-h2 {
-    color: #ffa500;
-    padding: 10px;
-    margin: 10px 0; 
-}
-
 p {
     font-size: 14px;
     color: #ffa500;
@@ -147,4 +135,33 @@ textarea {
     border: 2px solid #000;
     border-bottom:1px solid #000;
     text-align: left;
+}
+
+h1 {
+    color: #ffa500;
+    padding: 10px;
+    margin: 10px 0; 
+}
+
+h2 {
+    color: #ffa500;
+    padding: 10px;
+    margin: 10px 0; 
+}
+
+button{
+    width: 5%;
+    color: #444;
+    background-color: #ffa500;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.checked {
+    color: orange;
+}
+
+.padding {
+    padding: 10px;
+    margin: 10px 0; 
 }

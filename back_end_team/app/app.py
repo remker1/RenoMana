@@ -223,7 +223,7 @@ def addReview():
         data = request.json
     
         # Insert the review into the MongoDB collection
-        result = db['reviews'].insert_one({'title': data.get("title"), 'description': data.get("description")})
+        result = db['reviews'].insert_one({'title': data.get("title"), 'description': data.get("description"), 'rating': data.get("rating")})
 
         response = {
             'status': 'success',
@@ -245,7 +245,8 @@ def addReview():
 @app.route('/getReviews', methods=['GET'])
 def getReviews():
     try:
-        result = list(db['reviews'].find({}, {"title": 1, "description": 1, "_id": 0}))
+
+        result = list(db['reviews'].find({}, {"title": 1, "description": 1, "rating": 1, "_id": 0}))
         return jsonify(result), 200
 
     except Exception as e:

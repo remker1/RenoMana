@@ -2,6 +2,7 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css')}}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
     <header>
@@ -40,9 +41,22 @@
                         const description = document.createElement("p");
                         // description.classList.add("review-description");
                         description.textContent = review.description;
-
+                        
+                        const rating = document.createElement("div");
+                        rating.className = "padding";
+                        for (let i = 0; i < review.rating; i++){
+                            let star = document.createElement("span");
+                            star.className = "fa fa-star checked";
+                            rating.appendChild(star);
+                        }
+                        for (let i = 0; i < (5-review.rating); i++){
+                            let star = document.createElement("span");
+                            star.className = "fa fa-star";
+                            rating.appendChild(star);
+                        }
                         listItem.appendChild(document.createElement("hr"));
                         listItem.appendChild(title);
+                        listItem.append(rating);
                         listItem.appendChild(description);
                         reviewList.appendChild(listItem);
                     });
@@ -57,11 +71,13 @@
                     "headers": {"Content-Type": "application/json"},
                     "body": JSON.stringify({
                         "title": document.getElementById("title_input").value,
-                        "description": document.getElementById("description_input").value
+                        "description": document.getElementById("description_input").value,
+                        "rating": document.getElementById("rating_input").value
                     })
                 })
                 .then(document.getElementById("title_input").value = "")
                 .then(document.getElementById("description_input").value = "")
+                .then(document.getElementById("rating_input").value = "0")
                 .then(alert("Thank you for your Review!"))
                 .then(getReviews())
                 .catch(error => console.error(error))
@@ -75,6 +91,15 @@
             <input id="title_input" type="text" name="Title" value=""><br> <br>
             <label for="Description"> Review *: </label><br> <br>
             <textarea id="description_input" name="Description" class="reviewTextBox"> </textarea><br> <br>
+            <label for="Rating"> Rating *: </label><br> <br>
+            <select id="rating_input" name="Rating">
+                <option value="5">5 Star</option>
+                <option value="4">4 Star</option>
+                <option value="3">3 Star</option>
+                <option value="2">2 Star</option>
+                <option value="1">1 Star</option>
+            </select> <br> <br>
+
             <br>
             <button onclick="addReview()">Submit Review</button>
             <br>
