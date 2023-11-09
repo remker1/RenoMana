@@ -88,7 +88,7 @@ public class Review extends VBox {
 
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://127.0.0.1:5000/getReviews"))
+                .uri(URI.create("http://127.0.0.1:5001/getReviews"))
                 .timeout(Duration.ofMinutes(2))
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(msg, StandardCharsets.UTF_8))
@@ -102,9 +102,9 @@ public class Review extends VBox {
             System.out.println(i + ": ");
 
             // Create the review
-            String title = getValue(responseBody[i], "\"title\"").split("}")[0];
-            String description = getValue(responseBody[i], "\"description\"");
-            String rating = getValue(responseBody[i], "\"rating\"");
+            String title = getJsonValue(responseBody[i], "\"title\"").split("}")[0];
+            String description = getJsonValue(responseBody[i], "\"description\"");
+            String rating = getJsonValue(responseBody[i], "\"rating\"");
             ReviewItem newReview = new ReviewItem(new SimpleStringProperty(title),
                     new SimpleStringProperty(description), new SimpleStringProperty(rating));
 
@@ -113,7 +113,7 @@ public class Review extends VBox {
 
         }
     }
-    public String getValue(String jsonString, String id){
+    public String getJsonValue(String jsonString, String id){
         int startIndex = jsonString.indexOf(id);
         // Check if the key is found
         if (startIndex != -1) {
