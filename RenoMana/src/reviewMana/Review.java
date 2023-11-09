@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URI;
@@ -31,9 +32,15 @@ public class Review extends VBox {
      * Observable list for storing review data
      */
     private ObservableList<ReviewItem> data;
+
     /**
-     * Constructor for the EmployeeList class.
-     * Initializes the UI components and sets up the employee table with columns and buttons.
+     * The selected search rating
+     */
+    private String searchRating = "\"0\"";
+
+    /**
+     * Constructor for the Review class.
+     * Initializes the UI components and sets up the review table with columns and buttons.
      */
     public Review() {
         // Setting up the table
@@ -64,27 +71,84 @@ public class Review extends VBox {
             try {
                 loadReviews();
             } catch(Exception e){
-                System.out.println("Something went wrong when loading reviews");
+                showAlert("Error!", "Something went wrong when loading reviews");
             }
-
         });
 
-        HBox optButton = new HBox(10, refreshReviews);
+        // Setting up rating search combo box
+        ComboBox selectRating = new ComboBox();
+        selectRating.getItems().addAll("All reviews", "5 Star", "4 Star", "3 Star", "2 Star", "1 Star");
+        selectRating.setValue("All reviews");
+        selectRating.setCellFactory(
+                new Callback<ListView<String>, ListCell<String>>() {
+                    @Override public ListCell<String> call(ListView<String> param) {
+                        final ListCell<String> cell = new ListCell<String>() {
+                            {
+                                super.setPrefWidth(100);
+                            }
+                            @Override public void updateItem(String item,
+                                                             boolean empty) {
+                                super.updateItem(item, empty);
+                                if (item != null) {
+                                    setText(item);
+                                    if (item.contains("5 Star")) {
+                                        searchRating = "\"5\"";
+                                    }
+                                    else if (item.contains("4 Star")){
+                                        searchRating = "\"4\"";
+                                    }
+                                    else if (item.contains("3 Star")){
+                                        searchRating = "\"3\"";
+                                    }
+                                    else if (item.contains("2 Star")){
+                                        searchRating = "\"2\"";
+                                    }
+                                    else if (item.contains("1 Star")){
+                                        searchRating = "\"1\"";
+                                    }
+                                    else if (item.contains("All reviews")){
+                                        searchRating = "\"0\"";
+                                    }
+                                    else {
+                                        searchRating = "\"0\"";
+                                    }
+                                }
+                                else {
+                                    setText(null);
+                                }
+                            }
+                        };
+                        return cell;
+                    }
+                });
+
+        HBox optButton = new HBox(10, selectRating, refreshReviews);
+
         optButton.setPadding(new Insets(10, 0, 10, 0)); // top, right, bottom, left padding
 
         // Set vertical grow for the table and add it along with the buttons to the VBox
         VBox.setVgrow(reviewTable, Priority.ALWAYS);
         this.getChildren().addAll(reviewTable, optButton);
+
+        try{
+            loadReviews();
+        } catch (Exception e){
+            showAlert("Error!", "Something went wrong when loading reviews");
+        }
     }
 
+    /**
+     * Gather all reviews from Flask server and load them into the review table
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public void loadReviews() throws IOException, InterruptedException {
 
+        // Clear the review table
         this.data.clear();
 
-        String searchRating = "\"0\"";
+        // Build POST message
         String msg =  "{\"rating\":" + searchRating + "}";
-
-        System.out.println("Refreshing Review Page");
 
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -94,13 +158,13 @@ public class Review extends VBox {
                 .POST(HttpRequest.BodyPublishers.ofString(msg, StandardCharsets.UTF_8))
                 .build();
 
+        // Send POST message to Flask server
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
         String[] responseBody = response.body().split("(?<=},)");
 
+        // Loop over all reviews in the response
         for (int i = 0; i < responseBody.length; i++){
-            System.out.println(i + ": ");
-
             // Create the review
             String title = getJsonValue(responseBody[i], "\"title\"").split("}")[0];
             String description = getJsonValue(responseBody[i], "\"description\"");
@@ -108,13 +172,21 @@ public class Review extends VBox {
             ReviewItem newReview = new ReviewItem(new SimpleStringProperty(title),
                     new SimpleStringProperty(description), new SimpleStringProperty(rating));
 
+            // Add review to the table
             this.data.add(newReview);
-            reviewTable.refresh();
-
         }
+        reviewTable.refresh();
     }
-    public String getJsonValue(String jsonString, String id){
-        int startIndex = jsonString.indexOf(id);
+
+    /**
+     * Find the value of the inputted key
+     *
+     * @param jsonString - JSON String
+     * @param key - The key of the value being searched for
+     * @return The value of the inputted key
+     */
+    public String getJsonValue(String jsonString, String key){
+        int startIndex = jsonString.indexOf(key);
         // Check if the key is found
         if (startIndex != -1) {
             // Move the index to the start of the value
@@ -129,7 +201,21 @@ public class Review extends VBox {
             // Extract the value
             return jsonString.substring(startIndex, endIndex).trim();
         }else {
-            return id + " not found in the response";
+            return key + " not found in the response";
         }
+    }
+
+    /**
+     * Shows an alert dialog with the specified title and content text.
+     *
+     * @param title   The title of the alert dialog.
+     * @param content The content text of the alert dialog.
+     */
+    private void showAlert(String title, String content) {
+        Alert invalidNumAlert = new Alert(Alert.AlertType.ERROR);
+        invalidNumAlert.setTitle(title);
+        invalidNumAlert.setHeaderText(null);
+        invalidNumAlert.setContentText(content);
+        invalidNumAlert.showAndWait();
     }
 }
