@@ -8,7 +8,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URI;
@@ -34,9 +33,9 @@ public class Review extends VBox {
     private ObservableList<ReviewItem> data;
 
     /**
-     * The selected search rating
+     * The drop-down menu that stores search rating
      */
-    private String searchRating = "\"0\"";
+    private ComboBox<String> selectRating;
 
     /**
      * Constructor for the Review class.
@@ -76,51 +75,9 @@ public class Review extends VBox {
         });
 
         // Setting up rating search combo box
-        ComboBox selectRating = new ComboBox();
+        selectRating = new ComboBox<>();
         selectRating.getItems().addAll("All reviews", "5 Star", "4 Star", "3 Star", "2 Star", "1 Star");
         selectRating.setValue("All reviews");
-        selectRating.setCellFactory(
-                new Callback<ListView<String>, ListCell<String>>() {
-                    @Override public ListCell<String> call(ListView<String> param) {
-                        final ListCell<String> cell = new ListCell<String>() {
-                            {
-                                super.setPrefWidth(100);
-                            }
-                            @Override public void updateItem(String item,
-                                                             boolean empty) {
-                                super.updateItem(item, empty);
-                                if (item != null) {
-                                    setText(item);
-                                    if (item.contains("5 Star")) {
-                                        searchRating = "\"5\"";
-                                    }
-                                    else if (item.contains("4 Star")){
-                                        searchRating = "\"4\"";
-                                    }
-                                    else if (item.contains("3 Star")){
-                                        searchRating = "\"3\"";
-                                    }
-                                    else if (item.contains("2 Star")){
-                                        searchRating = "\"2\"";
-                                    }
-                                    else if (item.contains("1 Star")){
-                                        searchRating = "\"1\"";
-                                    }
-                                    else if (item.contains("All reviews")){
-                                        searchRating = "\"0\"";
-                                    }
-                                    else {
-                                        searchRating = "\"0\"";
-                                    }
-                                }
-                                else {
-                                    setText(null);
-                                }
-                            }
-                        };
-                        return cell;
-                    }
-                });
 
         HBox optButton = new HBox(10, selectRating, refreshReviews);
 
@@ -147,6 +104,17 @@ public class Review extends VBox {
         // Clear the review table
         this.data.clear();
 
+        String searchRating;
+        switch (selectRating.getValue()) {
+            case "5 Star" -> searchRating = "\"5\"";
+            case "4 Star" -> searchRating = "\"4\"";
+            case "3 Star" -> searchRating = "\"3\"";
+            case "2 Star" -> searchRating = "\"2\"";
+            case "1 Star" -> searchRating = "\"1\"";
+            default ->  searchRating = "\"0\"";
+        }
+
+
         // Build POST message
         String msg =  "{\"rating\":" + searchRating + "}";
 
@@ -169,6 +137,13 @@ public class Review extends VBox {
             String title = getJsonValue(responseBody[i], "\"title\"").split("}")[0];
             String description = getJsonValue(responseBody[i], "\"description\"");
             String rating = getJsonValue(responseBody[i], "\"rating\"");
+
+            // Check if review server response is empty
+            if (title.equals("\"title\"" + " not found in the response") ||
+                    description.equals("\"description\"" + " not found in the response") ||
+                    rating.equals("\"rating\"" + " not found in the response")){
+                return; // Leave the table blank
+            }
             ReviewItem newReview = new ReviewItem(new SimpleStringProperty(title),
                     new SimpleStringProperty(description), new SimpleStringProperty(rating));
 
