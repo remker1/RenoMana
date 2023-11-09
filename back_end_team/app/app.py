@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, request, redirect, url_for
+from flask import Flask, jsonify, render_template, request
 import pymongo
 from pymongo import MongoClient
 
@@ -6,67 +6,76 @@ app = Flask(__name__)
 client = MongoClient(host='db', port=27017, username='root', password='pass')
 db = client.renoGp
 
-################ Table Definitions ################
-
+# Displays the main Reno Group landing page
+@app.route('/', methods=['GET'])
+def displayLanding():
+    try:
+        return render_template('landing.html')
+    except:
+        pass
 
 # Displays the RenoGrpRequestPage.html webpage and allows user to input data to mango_tb database table
-@app.route('/', methods=['GET'])
-def display():
+@app.route('/requestPage', methods=['GET'])
+def displayRequestPage():
     try:
         return render_template('RenoGrpRequestPage.html')
     except:
         pass
 
-
-
-
-# Displays the data from the database table mango_tb
-@app.route('/database')
-def get_stored_data():
+# Displays the RenoGrpReviewPage.html webpage and allows users to add and view customer reviews
+@app.route('/reviews', methods=['GET'])
+def displayReviews():
     try:
-        _table = db.mango_tb.find()
-        data = [{"id": person["id"], "name": person["name"], "role": person["role"]} for person in _table]
-        return jsonify({"Data": data})
+        return render_template('RenoGrpReviewPage.html')
     except:
         pass
 
+# Initialize some default employees into the database
+@app.route('/initDB', methods=["GET"])
+def initDB():
+    try:
+        # Insert employees into the database
+        employeeList = [
+            {
+                "id": 1,
+                "first_name": "Bob",
+                "last_name": "Smith",
+                "cell_number": "123-456-7890",
+                "employee_type": "contractor"
+            },
+            {
+                "id": 2,
+                "first_name": "Steven",
+                "last_name": "Johnson",
+                "cell_number": "987-654-3210",
+                "employee_type": "contractor"
+            },
+            {
+                "id": 3,
+                "first_name": "Sam",
+                "last_name": "Davis",
+                "cell_number": "555-555-5555",
+                "employee_type": "contractor"
+            }
+        ]
+        result = db['employees'].insert_many(employeeList)
+        
 
-# @app.route('/register', methods=['POST'])
-# def register():
-#     try:
-#         data = request.get_json()
-#         print("-------------------------")
-#         print("username: " + data['username'])
-#         print("password: " + data['password'])
-#         print("email: " + data['email'])
-#         print("cellNumber: " + data['cellNumber'])
-#
-#         # Assuming data is a dictionary containing the fields you want to add
-#         document = {
-#             'username': data['username'],
-#             'pass': data['password'],
-#         }
-#
-#         print(document)
-#
-#         # Insert the document into the collection
-#         result = db['auth'].insert_one(document)
-#
-#         response = {
-#             'status': 'success',
-#             'message': 'Document added successfully',
-#             'inserted_id': str(result.inserted_id)
-#         }
-#
-#
-#         return jsonify(response), 200
-#     except:
-#         response = {
-#             'status': 'failure',
-#             'message': 'Operation failed.'
-#         }
-#         print("something went wrong")
-#         return jsonify(response), 500
+        response = {
+            'status': 'success',
+            'message': 'Data submitted successfully',
+            'inserted_id': str(result)
+        }
+        return jsonify(response), 200
+
+    except Exception as e:
+        # Log the exception for debugging
+        print(f'Error in initDB route: {e}')
+        response = {
+            'status': 'failure',
+            'message': str(e)
+        }
+        return jsonify(response), 500
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -159,7 +168,6 @@ def login():
         print(f'Error in register route: {e}')
         return jsonify({"status": "failure", "message": str(e)}), 500
 
-
 @app.route('/submitRequest', methods=['GET', 'POST'])
 def submit_request():
     try:
@@ -208,6 +216,50 @@ def submit_request():
         }
         return jsonify(response_1000), 500
 
+@app.route('/addReview', methods=['POST'])
+def addReview():
+    try:
+        # Gather review information
+        data = request.json
+    
+        # Insert the review into the MongoDB collection
+        result = db['reviews'].insert_one({'title': data.get("title"), 'description': data.get("description"), 'rating': data.get("rating")})
+
+        response = {
+            'status': 'success',
+            'message': 'Data submitted successfully',
+            'inserted_id': str(result.inserted_id)
+        }
+        return jsonify(response), 200
+
+    except Exception as e:
+        # Log the exception for debugging
+        print(f'Error in addReview route: {e}')
+        response = {
+            'status': 'failure',
+            'message': str(e)
+        }
+        return jsonify(response), 500
+
+@app.route('/getReviews', methods=['POST'])
+def getReviews():
+    try:
+        data = request.json
+
+        if (data.get("rating") == "0"):
+            result = list(db['reviews'].find({}, {"title": 1, "description": 1, "rating": 1, "_id": 0}))
+        else:
+            result = list(db['reviews'].find({"rating": data.get("rating")}, {"title": 1, "description": 1, "rating": 1 , "_id": 0}))
+        return jsonify(result), 200
+
+    except Exception as e:
+        # Log the exception for debugging
+        print(f'Error in getReviews route: {e}')
+        response = {
+            'status': 'failure',
+            'message': str(e)
+        }
+        return jsonify(response), 500
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000, debug=True)
