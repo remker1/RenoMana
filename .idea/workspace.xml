@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="added comments to scheduler">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/timeMana/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/timeMana/Project.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +85,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.Login">
+  <component name="RunManager" selected="Application.MainPage">
     <configuration name="Login" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
