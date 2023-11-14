@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="libjavafx">
+    <CLASSES>
+      <root url="file://$USER_HOME$/Library/CloudStorage/OneDrive-UniversityofSaskatchewan/School/Year4/Fall/CMPT370/javafx-sdk-21-mac/lib" />
+    </CLASSES>
+    <JAVADOC />
+    <NATIVE>
+      <root url="file://$USER_HOME$/Library/CloudStorage/OneDrive-UniversityofSaskatchewan/School/Year4/Fall/CMPT370/javafx-sdk-21-mac/lib" />
+    </NATIVE>
+    <SOURCES />
+    <jarDirectory url="file://$USER_HOME$/Library/CloudStorage/OneDrive-UniversityofSaskatchewan/School/Year4/Fall/CMPT370/javafx-sdk-21-mac/lib" recursive="false" />
+  </library>
+</component>

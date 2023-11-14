@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css')}}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+
+    <header>
+        <div class="topnav">
+            <!-- <img src="./resources/3.png" alt="logo" class="logo"> -->
+            <nav>
+                <ul>
+                    <li><a href="http://localhost:5001/">Home</a></li>
+                    <li><a class="active" href="http://localhost:5001/requestPage">Request a project</a></li>
+                    <li><a href="http://localhost:5001/reviews">Leave a review!</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <body onload="getReviews()">
+        <script type = "text/javascript">
+    
+            function getReviews() {
+                fetch('/getReviews', {
+                    "method": 'POST',
+                    "headers": {"Content-Type": "application/json"},
+                    "body": JSON.stringify({
+                        "rating": document.getElementById("search_input").value
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("review-list").innerHTML = "";
+                    const reviewList = document.getElementById("review-list");
+
+                    data.forEach(review => {
+                        const listItem = document.createElement("div");
+
+                        const title = document.createElement("h2");
+                        title.textContent = review.title;
+
+                        const description = document.createElement("p");
+                        description.textContent = review.description;
+                        
+                        const rating = document.createElement("div");
+                        rating.className = "padding";
+                        for (let i = 0; i < review.rating; i++){
+                            let star = document.createElement("span");
+                            star.className = "fa fa-star checked";
+                            rating.appendChild(star);
+                        }
+                        for (let i = 0; i < (5-review.rating); i++){
+                            let star = document.createElement("span");
+                            star.className = "fa fa-star";
+                            rating.appendChild(star);
+                        }
+                        listItem.appendChild(document.createElement("hr"));
+                        listItem.appendChild(title);
+                        listItem.append(rating);
+                        listItem.appendChild(description);
+                        reviewList.appendChild(listItem);
+                    });
+                })
+                .catch(error => console.error(error))
+            }
+    
+            function addReview() {
+                if (document.getElementById("title_input").value == "" || document.getElementById("rating_input").value == ""){
+                    return
+                } 
+                fetch('/addReview', {
+                    "method": 'POST',
+                    "headers": {"Content-Type": "application/json"},
+                    "body": JSON.stringify({
+                        "title": document.getElementById("title_input").value,
+                        "description": document.getElementById("description_input").value,
+                        "rating": document.getElementById("rating_input").value
+                    })
+                })
+                .then(document.getElementById("title_input").value = "")
+                .then(document.getElementById("description_input").value = "")
+                .then(document.getElementById("rating_input").value = "")
+                .then(alert("Thank you for your Review!"))
+                .then(getReviews())
+                .catch(error => console.error(error))
+            };
+        </script>
+
+        <div class="formSection">
+            <p>An asterisk (*) indicates a required field</p>
+            <form id="reviewForm">
+                <label for="Title"> Title *: </label><br>
+                <input id="title_input" type="text" name="Title" value="" placeholder="Enter Topic" required><br>
+                <label for="Description"> Review : </label><br>
+                <textarea id="description_input" name="Description" class="reviewTextBox"> </textarea><br>
+                <label for="Rating"> Rating *: </label><br>
+                <select id="rating_input" name="Rating" required>
+                    <option value="">Select Star</option>
+                    <option value="5">5 Star</option>
+                    <option value="4">4 Star</option>
+                    <option value="3">3 Star</option>
+                    <option value="2">2 Star</option>
+                    <option value="1">1 Star</option>
+                </select><br>
+                <button onclick="addReview()">Submit Review</button>
+            </form><br>
+        </div>
+
+        <h1>Reviews: </h1>
+
+        <label for="ratingSearch"> Select Rating: </label><br>
+        <select id="search_input" name="ratingSearch" onchange="getReviews()">
+            <option value="0">All Ratings</option>
+            <option value="5">5 Star</option>
+            <option value="4">4 Star</option>
+            <option value="3">3 Star</option>
+            <option value="2">2 Star</option>
+            <option value="1">1 Star</option>
+        </select><br> <br>
+
+        <div id="review-list"></div>
+
+    </body>
+</html>
