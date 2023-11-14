@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9cb99a68-cf02-4d76-9efc-92f890eb8464" name="Changes" comment="Redesigned and recoloured MainPage and Login classes.">
+    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="added comments to scheduler">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/MainPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/inventoryMana/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/inventoryMana/Inventory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/inventoryMana/InventoryItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/inventoryMana/InventoryItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/timeMana/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/timeMana/Project.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,39 +17,15 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
+        <option value="JavaFXApplication" />
         <option value="Class" />
       </list>
     </option>
   </component>
-  <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="JewelBranch" />
-  </component>
   <component name="Git.Settings">
-    <favorite-branches>
-      <branch-storage>
-        <map>
-          <entry type="LOCAL">
-            <value>
-              <list>
-                <branch-info repo="$PROJECT_DIR$" source="Leo-JavaGUI" />
-                <branch-info repo="$PROJECT_DIR$" source="JewelBranch" />
-              </list>
-            </value>
-          </entry>
-          <entry type="REMOTE">
-            <value>
-              <list>
-                <branch-info repo="$PROJECT_DIR$" source="origin/JewelBranch" />
-              </list>
-            </value>
-          </entry>
-        </map>
-      </branch-storage>
-    </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="JewelBranch" />
+        <entry key="$PROJECT_DIR$" value="vince_branch" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -75,223 +49,135 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 3
+  &quot;associatedIndex&quot;: 7
 }</component>
-  <component name="ProjectId" id="2W96nCXTwRkfu4YmgEJ7Fh7RA5n" />
+  <component name="ProjectId" id="2VqPpCYY7ldfkeTDnBPX1Q2XQy6" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
-    <option name="showMembers" value="true" />
-    <option name="showVisibilityIcons" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Leo-JavaGUI&quot;,
-    &quot;last_opened_file_path&quot;: &quot;L:/JavaFX/openjfx-20.0.2_windows-x64_bin-sdk/javafx-sdk-20.0.2/lib&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;DannPanganBranch&quot;,
+    &quot;last_opened_file_path&quot;: &quot;Z:/2023/FallTerm/CMPT370/Project/javafx-sdk-21/lib&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.48965517&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.14641148&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/RenoMana/src" />
-      <recent name="$PROJECT_DIR$/RenoMana" />
-    </key>
-  </component>
   <component name="RunManager" selected="Application.MainPage">
-    <configuration name="MainPage" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="MainPage" />
-      <module name="RenoMana" />
-      <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Downloads/javafx-sdk-21/lib --add-modules javafx.controls,javafx.fxml" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ManaLogin" type="Application" factoryName="Application">
+    <configuration name="Login" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="Login" />
       <module name="RenoMana" />
-      <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Downloads/javafx-sdk-21/lib --add-modules javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path $PROJECT_DIR$/../javafx-sdk-21/lib --add-modules javafx.controls,javafx.fxml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Registration" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Registration" />
+    <configuration name="MainPage" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="MainPage" />
       <module name="RenoMana" />
-      <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Downloads/javafx-sdk-21/lib --add-modules javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path $PROJECT_DIR$/../javafx-sdk-21/lib --add-modules javafx.controls,javafx.fxml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.ManaLogin" />
       <item itemvalue="Application.MainPage" />
-      <item itemvalue="Application.Registration" />
+      <item itemvalue="Application.Login" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Registration" />
-        <item itemvalue="Application.Registration" />
-        <item itemvalue="Application.Registration" />
-        <item itemvalue="Application.Registration" />
+        <item itemvalue="Application.MainPage" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="9cb99a68-cf02-4d76-9efc-92f890eb8464" name="Changes" comment="" />
-      <created>1696132613056</created>
+      <changelist id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="" />
+      <created>1695560817387</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1696132613056</updated>
-      <workItem from="1696132614075" duration="128000" />
-      <workItem from="1696132744167" duration="850000" />
-      <workItem from="1696392813893" duration="15404000" />
-      <workItem from="1696522318072" duration="388000" />
-      <workItem from="1697063927600" duration="115000" />
-      <workItem from="1697067455036" duration="6000" />
-      <workItem from="1697070344108" duration="3606000" />
-      <workItem from="1697079858451" duration="4900000" />
-      <workItem from="1697118703283" duration="305000" />
-      <workItem from="1697119053465" duration="24000" />
-      <workItem from="1697128845713" duration="997000" />
-      <workItem from="1697149427555" duration="712000" />
-      <workItem from="1697156367080" duration="515000" />
-      <workItem from="1697157694569" duration="68000" />
-      <workItem from="1697232507585" duration="846000" />
-      <workItem from="1697235729908" duration="2783000" />
-      <workItem from="1697238591611" duration="14000" />
-      <workItem from="1697238756406" duration="31000" />
-      <workItem from="1697240056752" duration="1697000" />
-      <workItem from="1697242227838" duration="1675000" />
-      <workItem from="1697297934610" duration="22000" />
-      <workItem from="1697297966588" duration="1993000" />
-      <workItem from="1697302585639" duration="124000" />
-      <workItem from="1697310775333" duration="945000" />
-      <workItem from="1697311735379" duration="7022000" />
-      <workItem from="1697392918077" duration="57000" />
-      <workItem from="1697460342034" duration="84000" />
-      <workItem from="1697476356794" duration="5000" />
-      <workItem from="1697579794964" duration="3139000" />
-      <workItem from="1697655656713" duration="384000" />
-      <workItem from="1697663268036" duration="35000" />
-      <workItem from="1697663308939" duration="46000" />
+      <updated>1695560817387</updated>
+      <workItem from="1695560818666" duration="131000" />
+      <workItem from="1695994638644" duration="1495000" />
+      <workItem from="1695996186111" duration="30000" />
+      <workItem from="1695996229532" duration="155000" />
+      <workItem from="1695996909970" duration="14000" />
+      <workItem from="1696078636270" duration="1669000" />
+      <workItem from="1696131408534" duration="2502000" />
+      <workItem from="1696133925861" duration="872000" />
+      <workItem from="1696162385340" duration="1767000" />
+      <workItem from="1696164299262" duration="3400000" />
+      <workItem from="1696217542796" duration="1195000" />
+      <workItem from="1696276661216" duration="320000" />
+      <workItem from="1696277728527" duration="403000" />
+      <workItem from="1696282114845" duration="741000" />
+      <workItem from="1696291005823" duration="36000" />
+      <workItem from="1696364311229" duration="840000" />
+      <workItem from="1696365207238" duration="4293000" />
+      <workItem from="1696442201683" duration="172000" />
+      <workItem from="1696451729390" duration="164000" />
+      <workItem from="1696457143116" duration="1065000" />
     </task>
-    <task id="LOCAL-00001" summary="Testing changes to Sub-branch">
+    <task id="LOCAL-00001" summary="Finished setting up the log in page in accordance to agreed upon outline">
       <option name="closed" value="true" />
-      <created>1696132967084</created>
+      <created>1696282779620</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1696132967084</updated>
+      <updated>1696282779621</updated>
     </task>
-    <task id="LOCAL-00002" summary="updates">
+    <task id="LOCAL-00002" summary="Refined Login Class&#10;- Added comments&#10;- Log In button leads to main page&#10;- New? button leads to registration page">
       <option name="closed" value="true" />
-      <created>1696393704151</created>
+      <created>1696369195402</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1696393704151</updated>
+      <updated>1696369195402</updated>
     </task>
-    <task id="LOCAL-00003" summary="Added some colors in MainPage and Login classes.">
+    <task id="LOCAL-00003" summary="Refined Login Class&#10;- Added comments&#10;- Log In button leads to main page&#10;- New? button leads to registration page">
       <option name="closed" value="true" />
-      <created>1697158292069</created>
+      <created>1696369473137</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1697158292069</updated>
+      <updated>1696369473137</updated>
     </task>
-    <task id="LOCAL-00004" summary="Added some colors in MainPage and Login classes.">
+    <task id="LOCAL-00004" summary="added comments to scheduler">
       <option name="closed" value="true" />
-      <created>1697158314119</created>
+      <created>1698111996372</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1697158314119</updated>
+      <updated>1698111996372</updated>
     </task>
-    <task id="LOCAL-00005" summary="Added initial structure for Inventory management system with Inventory and InventoryItem classes">
-      <option name="closed" value="true" />
-      <created>1697236406991</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1697236406991</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Added table state view with column names, add, delete, modify, import, and export buttons. These buttons do not do anything yet.">
-      <option name="closed" value="true" />
-      <created>1697238399029</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1697238399029</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Implemented the add a new item method to the table with invalid input error handling. Tested the method by typing wrong data types.">
-      <option name="closed" value="true" />
-      <created>1697241723202</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1697241723202</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Implemented the delete an item method from the table with error handling for cases when there is no tool existing in the table. Tested the method by clicking on an empty table.">
-      <option name="closed" value="true" />
-      <created>1697243015182</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1697243015182</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Implemented the modify an item method from the table with error handling for cases when there is no tool existing in the table. Tested the method by clicking on an empty table and modify an existing information.">
-      <option name="closed" value="true" />
-      <created>1697298164191</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1697298164192</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Implemented the import a csv file method from user directory. Only supports csv files (for now) and is yet to be tested.">
-      <option name="closed" value="true" />
-      <created>1697302661862</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1697302661862</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Implemented the export a csv file method with data from the table. Only supports csv files (for now) and is yet to be tested for windows systems.">
-      <option name="closed" value="true" />
-      <created>1697312298987</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1697312298987</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Redesigned and recoloured MainPage and Login classes.">
-      <option name="closed" value="true" />
-      <created>1697581103270</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1697581103270</updated>
-    </task>
-    <option name="localTasksCounter" value="13" />
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -309,17 +195,14 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Testing changes to Sub-branch" />
+    <MESSAGE value="committing unversioned files" />
+    <MESSAGE value="Finished setting up the log in page in accordance to agreed upon outline" />
+    <MESSAGE value="Refined Login Class&#10;- Added comments&#10;- Log In button leads to main page&#10;- New? button leads to registration page" />
+    <MESSAGE value="added comments to scheduler" />
     <MESSAGE value="updates" />
-    <MESSAGE value="Added some colors in MainPage and Login classes." />
-    <MESSAGE value="Added initial structure for Inventory management system with Inventory and InventoryItem classes" />
-    <MESSAGE value="Added table state view with column names, add, delete, modify, import, and export buttons. These buttons do not do anything yet." />
-    <MESSAGE value="Implemented the add a new item method to the table with invalid input error handling. Tested the method by typing wrong data types." />
-    <MESSAGE value="Implemented the delete an item method from the table with error handling for cases when there is no tool existing in the table. Tested the method by clicking on an empty table." />
-    <MESSAGE value="Implemented the modify an item method from the table with error handling for cases when there is no tool existing in the table. Tested the method by clicking on an empty table and modify an existing information." />
-    <MESSAGE value="Implemented the import a csv file method from user directory. Only supports csv files (for now) and is yet to be tested." />
-    <MESSAGE value="Implemented the export a csv file method with data from the table. Only supports csv files (for now) and is yet to be tested for windows systems." />
-    <MESSAGE value="Redesigned and recoloured MainPage and Login classes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Redesigned and recoloured MainPage and Login classes." />
+    <option name="LAST_COMMIT_MESSAGE" value="updates" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/cmpt370_g29$MainPage.ic" NAME="MainPage Coverage Results" MODIFIED="1698361182269" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

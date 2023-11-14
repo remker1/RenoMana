@@ -42,8 +42,52 @@ public class Scheduler extends VBox {
         projName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
 
         TableColumn<Project, String> projTimeline = new TableColumn<>("Timeline");
+        // set cell value factory to use timeline property of the Project class
         projTimeline.setCellValueFactory(cellData -> cellData.getValue().timelineProperty());
-        projTimeline.setPrefWidth(500);
+        projTimeline.setCellFactory(column -> new TableCell<Project, String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+
+                // check if cell is empty or not
+                if (empty || item == null) {
+                    // clear the text and style if the cell is empty
+                    setText(null);
+                    setStyle("");
+                } else {
+                    // retrieve the project object associated with current row
+                    Project project = getTableView().getItems().get(getIndex());
+                    if (project != null) {
+                        // get timeline status from project object
+                        String status = project.getTimelineStatus();
+                        setText(item);
+
+                        // change the cell's background colour based on timeline status
+                        switch (status) {
+                            case "green":
+                                setStyle("-fx-background-color: lightgreen;");
+                                break;
+                            case "yellow":
+                                setStyle("-fx-background-color: yellow;");
+                                break;
+                            case "red":
+                                setStyle("-fx-background-color: salmon;");
+                                break;
+                            case "overdue":
+                                setStyle("-fx-background-color: darkred;");
+                                break;
+                            default:
+                                setStyle(""); // reset the style for any unknown status
+                                break;
+                        }
+                    } else {
+                        // clear the text and style if project is null
+                        setText(null);
+                        setStyle("");
+                    }
+                }
+            }
+        });
 
         TableColumn<Project, String> projDetails = new TableColumn<>("Details");
         projDetails.setCellValueFactory(cellData -> cellData.getValue().detailsProperty());
@@ -124,6 +168,7 @@ public class Scheduler extends VBox {
 
         // add the project to data list
         data.add(newProject);
+        table.refresh();
     }
 
     /***
@@ -173,6 +218,8 @@ public class Scheduler extends VBox {
         selectedProject.setTimeline(newProjectTimeline);
         selectedProject.setDetails(newProjectDetails);
         selectedProject.setMembers(FXCollections.observableArrayList(selectedMember));
+
+        table.refresh();
     }
 
 

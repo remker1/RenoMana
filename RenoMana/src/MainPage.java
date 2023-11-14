@@ -16,8 +16,11 @@
 import dashboardMana.Dashboard;
 import inventoryMana.Inventory;
 import javafx.scene.image.Image;
+import reviewMana.Review;
 import timeMana.Scheduler;
 import timeMana.Calendar;
+import employeeMana.EmployeeList;
+import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -35,14 +38,13 @@ public class MainPage extends BasicPage {
     HBox mainLayout = new HBox();
     private VBox sideBar;
     private VBox contentArea;
-
     private Label contentTitle = new Label();
     private LinearGradient gradient = new LinearGradient(0, 0, 1, 1, true, CycleMethod.NO_CYCLE,
             new Stop(0, Color.web("#4B1517")),
             new Stop(1, Color.web("#C49102")));
 
     private boolean isDarkMode = false;
-    private ProfileCircle profileCircleInstance;
+
 
     @Override
     public void start(Stage stage) {
@@ -65,10 +67,9 @@ public class MainPage extends BasicPage {
         Label accountName = new Label("Hello, User!");
         accountName.setStyle("-fx-text-fill: white; -fx-font-weight: bold");
 
-        profileCircleInstance = new ProfileCircle(this);
-        Circle profileCircle = profileCircleInstance.getProfileCircle();
+        Circle profileCircle = new Circle(30);
         profileCircle.setStyle("-fx-background-color: #9E1C29; -fx-stroke: #7C1715; -fx-border-radius: 2;");
-        profileCircle.setOnMouseClicked(event -> profileCircleInstance.openProfileWindow());
+        profileCircle.setOnMouseClicked(event -> openProfileWindow());
 
         topBar.getChildren().addAll(toggleSidebar, spacer, accountName, profileCircle);
         topBar.setAlignment(Pos.CENTER_RIGHT);
@@ -92,7 +93,8 @@ public class MainPage extends BasicPage {
         createTabButton("Scheduler", new Scheduler(), "Scheduler");
         createTabButton("Calendar", new Calendar(), "Calendar");
         createTabButton("Inventory", new Inventory(), "Inventory");
-        createTabButton("Employees", new MainPageTab4(), "Employees");
+        createTabButton("Employees", new EmployeeList(), "Employees");
+        createTabButton("Reviews", new Review(), "Reviews");
 
         mainLayout.getChildren().addAll(sideBar, contentArea);
         rootLayout.getChildren().addAll(topBar, mainLayout);
@@ -108,6 +110,60 @@ public class MainPage extends BasicPage {
         stage.setScene(scene);
         stage.setTitle("The Reno Group Management App");
         stage.show();
+    }
+
+    /**
+     * This method creates a new window (Stage) that represents the user's profile. Inside this window,
+     * we plan to display the person's information(future implementation) and a back button are displayed.
+     * Clicking the back button will close the profile window and return the user to the main application.
+     */
+    private void openProfileWindow() {
+        // Profile window creation and set up.
+        Stage profileStage = new Stage();
+        VBox profileLayout = new VBox(20);
+        Scene profileScene = new Scene(profileLayout, 300, 200);
+
+        // Slider for light and dark mode
+        Slider modeSlider = new Slider();
+        modeSlider.setMin(0);
+        modeSlider.setMax(1);
+        modeSlider.setValue(0); // 0 for light mode, 1 for dark mode
+        modeSlider.setShowTickLabels(true);
+        modeSlider.setShowTickMarks(true);
+        modeSlider.setMajorTickUnit(1);
+        modeSlider.setMinorTickCount(0);
+        modeSlider.setSnapToTicks(true);
+        modeSlider.setBlockIncrement(1);
+
+        Label modeLabel = new Label("Light Mode");
+
+        if (isDarkMode) {
+            modeSlider.setValue(1);
+            modeLabel.setText("Dark Mode");
+        } else {
+            modeSlider.setValue(0);
+            modeLabel.setText("Light Mode");
+        }
+
+
+        modeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.intValue() == 1) {
+                modeLabel.setText("Dark Mode");
+                setDarkMode();
+            } else {
+                modeLabel.setText("Light Mode");
+                setLightMode();
+            }
+        });
+
+        // Button with an event where, upon click, will take the user back to the MainPage.
+        Button backButton = new Button("Back");
+        backButton.setOnAction(event -> profileStage.close());
+
+        profileLayout.getChildren().addAll(modeLabel, modeSlider, backButton);
+        profileStage.setScene(profileScene);
+        profileStage.setTitle("Profile");
+        profileStage.show();
     }
 
     private void setDarkMode() {
@@ -167,59 +223,7 @@ public class MainPage extends BasicPage {
         return toggleSidebar;
     }
 
-    public VBox getContentArea() {
-        return contentArea;
-    }
-
-    public HBox getMainLayout() {
-        return mainLayout;
-    }
-
-    public VBox getSideBar() {
-        return sideBar;
-    }
-
-    public Label getContentTitle() {
-        return contentTitle;
-    }
-
-    public LinearGradient getGradient() {
-        return gradient;
-    }
-
-    public boolean isDarkMode() {
-        return isDarkMode;
-    }
-
-    public Slider createModeSlider() {
-        Slider modeSlider = new Slider();
-        modeSlider.setMin(0);
-        modeSlider.setMax(1);
-        if (isDarkMode) {
-            modeSlider.setValue(1);
-        } else {
-            modeSlider.setValue(0);  // 0 for light mode, 1 for dark mode
-        }
-
-        modeSlider.setShowTickLabels(true);
-        modeSlider.setShowTickMarks(true);
-        modeSlider.setMajorTickUnit(1);
-        modeSlider.setMinorTickCount(0);
-        modeSlider.setSnapToTicks(true);
-        modeSlider.setBlockIncrement(1);
-
-        modeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.intValue() == 1) {
-                setDarkMode();
-            } else {
-                setLightMode();
-            }
-        });
-
-        return modeSlider;
-    }
     public static void main(String[] args) {
         launch(args);
     }
-
 }
