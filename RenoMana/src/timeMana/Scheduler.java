@@ -40,6 +40,7 @@ public class Scheduler extends VBox {
         // columns with appropriate headers
         TableColumn<Project, String> projName = new TableColumn<>("Name");
         projName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        projName.prefWidthProperty().bind(table.widthProperty().multiply(0.20));
 
         TableColumn<Project, String> projTimeline = new TableColumn<>("Timeline");
         // set cell value factory to use timeline property of the Project class
@@ -88,13 +89,16 @@ public class Scheduler extends VBox {
                 }
             }
         });
+        projTimeline.prefWidthProperty().bind(table.widthProperty().multiply(0.15));
 
         TableColumn<Project, String> projDetails = new TableColumn<>("Details");
         projDetails.setCellValueFactory(cellData -> cellData.getValue().detailsProperty());
+        projDetails.prefWidthProperty().bind(table.widthProperty().multiply(0.45));
 
         // currently only displays first member from the list of members
         TableColumn<Project, String> projMembers = new TableColumn<>("Members");
         projMembers.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().membersProperty().get(0)));
+        projMembers.prefWidthProperty().bind(table.widthProperty().multiply(0.20));
 
         // add all defined columns to TableView
         table.getColumns().addAll(projName, projTimeline, projDetails, projMembers);
