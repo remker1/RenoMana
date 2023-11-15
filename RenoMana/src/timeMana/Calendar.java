@@ -154,6 +154,13 @@ public class Calendar extends VBox {
             dayButton.setOnAction(e -> {
                 System.out.println("Clicked on: " + dayInWeek.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
                 // other functionalities
+                List<Project> dueProjects = allProjects.stream()
+                        .filter(project -> !LocalDate.parse(project.getTimeline(), DateTimeFormatter.ofPattern("yyyy-MM-dd")).isBefore(dayInWeek))
+                        .collect(Collectors.toList());
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, formatProjectList(dueProjects), ButtonType.OK);
+                alert.setHeaderText("Projects due on or after " + dayInWeek.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+                alert.showAndWait();
             });
 
             // add button to the grid
@@ -191,6 +198,13 @@ public class Calendar extends VBox {
                         dayButton.setOnAction(e -> {
                             System.out.println("Clicked on: " + dayDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
                             // other functionalities
+                            List<Project> dueProjects = allProjects.stream()
+                                    .filter(project -> !LocalDate.parse(project.getTimeline(), DateTimeFormatter.ofPattern("yyyy-MM-dd")).isBefore(dayDate))
+                                    .collect(Collectors.toList());
+
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION, formatProjectList(dueProjects), ButtonType.OK);
+                            alert.setHeaderText("Projects due on or after " + dayDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+                            alert.showAndWait();
                         });
 
                         monthGrid.add(dayButton, day, week);
