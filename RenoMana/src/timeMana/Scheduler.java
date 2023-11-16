@@ -19,7 +19,9 @@ public class Scheduler extends VBox {
     private final TableView<Project> table;
 
     // list that holds the data for the table
-    private final ObservableList<Project> data;
+    public static ObservableList<Project> data;
+
+    public static ObservableList<String> projectsTimelineList;
 
     /***
      * Constructor for Scheduler UI
@@ -31,6 +33,7 @@ public class Scheduler extends VBox {
 
         // initialize data
         data = FXCollections.observableArrayList();
+        projectsTimelineList = FXCollections.observableArrayList();
 
         // make table editable
         // to display schedule in a table format
@@ -172,6 +175,7 @@ public class Scheduler extends VBox {
 
         // add the project to data list
         data.add(newProject);
+        projectsTimelineList.add(projectTimeline);
         table.refresh();
     }
 
