@@ -1,5 +1,7 @@
 package timeMana;
 
+import employeeMana.Employee;
+import employeeMana.EmployeeList;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -159,8 +161,8 @@ public class Scheduler extends VBox {
         String projectDetails = detailsInput.showAndWait().orElse("");
 
         // provide choices for members and prompt user to select one (for now)
-        List<String> choices = Arrays.asList("Member A", "Member B", "Member C");
-        ChoiceDialog<String> memberDialog = new ChoiceDialog<>("Member A", choices);
+        ObservableList<String> choices = EmployeeList.employeeFirstNameList;
+        ChoiceDialog<String> memberDialog = new ChoiceDialog<>("Members", choices);
         memberDialog.setTitle("Choose a Member");
         memberDialog.setHeaderText("Choose a Project Member");
         String selectedMember = memberDialog.showAndWait().orElse("");
@@ -177,6 +179,18 @@ public class Scheduler extends VBox {
         data.add(newProject);
         projectsTimelineList.add(projectTimeline);
         table.refresh();
+
+        int chosenEmployeeIdx = EmployeeList.employeeSearch(selectedMember);
+        if (chosenEmployeeIdx == -1){
+            Alert notFoundError = new Alert(Alert.AlertType.ERROR);
+            notFoundError.setTitle("Error!");
+            notFoundError.setHeaderText("Employee Search");
+            notFoundError.setContentText("Employee Not Found! Please try again");
+            notFoundError.showAndWait();
+        } else{
+            EmployeeList.data.get(chosenEmployeeIdx).addProject2Employee(data.getLast());
+        }
+
     }
 
     /***
@@ -215,7 +229,7 @@ public class Scheduler extends VBox {
 
         // provide choices for members and prompt the user to select one
         // defaults to current member of selected project
-        List<String> choices = Arrays.asList("Member A", "Member B", "Member C");
+        ObservableList<String> choices = EmployeeList.employeeFirstNameList;
         ChoiceDialog<String> memberDialog = new ChoiceDialog<>(selectedProject.getMembers().get(0), choices);
         memberDialog.setTitle("Choose a Member");
         memberDialog.setHeaderText("Choose a Project Member");
@@ -226,6 +240,8 @@ public class Scheduler extends VBox {
         selectedProject.setTimeline(newProjectTimeline);
         selectedProject.setDetails(newProjectDetails);
         selectedProject.setMembers(FXCollections.observableArrayList(selectedMember));
+
+        // TODO: Modification functionality for syncing modified project in case of changing members
 
         table.refresh();
     }
@@ -242,6 +258,11 @@ public class Scheduler extends VBox {
         // remove selected project from data list
         if (selectedProject != null) {
             data.remove(selectedProject);
+            for(Employee employee:EmployeeList.data){
+                if (employee.getProjects().contains(selectedProject)){
+                    employee.removeProject2Employee(selectedProject);
+                }
+            }
         } else { // show alert if no project is selected
             Alert noSelectedAlert = new Alert(Alert.AlertType.WARNING);
             noSelectedAlert.setTitle("Error!");

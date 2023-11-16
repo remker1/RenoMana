@@ -62,6 +62,13 @@ public class Employee {
         return projects;
     }
 
+    public void addProject2Employee(Project project){
+        projects.add(project);
+    }
+    public void removeProject2Employee(Project project){
+        projects.remove(project);
+    }
+
     public String getCell() {return cellNumber.get();}
 
     public SimpleStringProperty cellProperty() {

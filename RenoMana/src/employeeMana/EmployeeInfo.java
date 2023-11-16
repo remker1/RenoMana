@@ -39,24 +39,33 @@ public class EmployeeInfo extends Application {
 
         // Create text elements to display employee information
         Text employeeTitle = new Text("Job Title: " + employee.getTitle());
-        Text employeeName = new Text("Full Name: " + employee.getEmployeeFirstName()+employee.getEmployeeLastName());
+        Text employeeName = new Text("Full Name: " + employee.getEmployeeFirstName()+" "+employee.getEmployeeLastName());
         Text employeeID = new Text("Employee ID: " + employee.getEmployeeID());
         Text employeeEmail = new Text("Email: " + employee.getEMail());
         Text employeeCell = new Text("Cell Number: " + employee.getCell());
 
         Text projectMsg = new Text("Current Projects:");
         ObservableList<Project> projectList = employee.getProjects();
-        Text projects;
+        Text projectsString;
         if (projectList.isEmpty()){
-            projects = new Text("No project assigned to this employee yet...");
+            projectsString = new Text("No project assigned to this employee yet...");
         }else{
-            projects = new Text(projectList.toString());
+            int index = 1;
+            StringBuffer result = new StringBuffer("");
+            for (Project project: projectList){
+                result.append("Project: "+index+
+                        "\nProject Name: "+ project.getName()+
+                        "\nProject Deadline: "+ project.getTimeline()+
+                        "\nProject Description: "+ project.getDetails()+"\n\n");
+                index++;
+            }
+            projectsString = new Text(result.toString());
         }
 
         // Create VBox containers for organizing the text elements
         VBox nameBox = new VBox(employeeTitle, employeeName, employeeID);
         VBox contactBox = new VBox(employeeEmail, employeeCell);
-        VBox projectBox = new VBox(projectMsg, projects);
+        VBox projectBox = new VBox(projectMsg, projectsString);
 
         // Create a main VBox container for the entire employee information layout
         VBox employeeInfo = new VBox(nameBox, contactBox, projectBox);
