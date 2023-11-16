@@ -14,6 +14,11 @@ import javafx.geometry.Insets;
 import javafx.stage.Stage;
 
 import timeMana.Project;
+import timeMana.Scheduler;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * This class represents an Employee List UI component, which displays a list of employees
@@ -24,6 +29,8 @@ public class EmployeeList extends VBox {
     private TableView<Employee> employeeList; // Table view for displaying employees
     public static ObservableList<Employee> data; // Observable list for storing employee data
 
+    public static ObservableList<String> employeeFirstNameList;
+
     /**
      * Constructor for the EmployeeList class.
      * Initializes the UI components and sets up the employee table with columns and buttons.
@@ -33,6 +40,7 @@ public class EmployeeList extends VBox {
         employeeList = new TableView<>();
         employeeList.prefWidthProperty().bind(this.widthProperty());
         data = FXCollections.observableArrayList();
+        employeeFirstNameList = FXCollections.observableArrayList();
 
         // Adding column names
         TableColumn<Employee, String> firstNameCol = new TableColumn<>("Employee First Name");
@@ -77,9 +85,6 @@ public class EmployeeList extends VBox {
         Button employeeInfo = new Button("Personal Details");
         employeeInfo.setOnAction(actionEvent -> openEmployeeInfo());
 
-        // Button addEProject = new Button("Add Project");
-        // employeeInfo.setOnAction(actionEvent -> {addProject();});
-
         // Create a horizontal box to hold the buttons
         HBox optButton = new HBox(10, addItem, deleteItem, modifyItem, employeeInfo);
         optButton.setPadding(new Insets(10, 0, 10, 0)); // top, right, bottom, left padding
@@ -87,6 +92,33 @@ public class EmployeeList extends VBox {
         // Set vertical grow for the table and add it along with the buttons to the VBox
         VBox.setVgrow(employeeList, Priority.ALWAYS);
         this.getChildren().addAll(employeeList, optButton);
+    }
+
+    /**
+     * Searches for an employee with the specified first name in the 'data' list.
+     *
+     * @param firstName The first name of the employee to search for.
+     * @return The index of the first occurrence of the employee with the specified first name,
+     *         or -1 if no such employee is found.
+     */
+    public static int employeeSearch(String firstName) {
+        // Initialize index variable to keep track of the current position in the list.
+        int idx = 0;
+
+        // Iterate through the 'data' list to search for the employee.
+        for (Employee employee : data) {
+            // Check if the first name of the current employee matches the specified first name.
+            if (Objects.equals(employee.getEmployeeFirstName(), firstName)) {
+                // If a match is found, return the index.
+                return idx;
+            }
+
+            // Increment the index for the next iteration.
+            idx++;
+        }
+
+        // If no matching employee is found, return -1.
+        return -1;
     }
 
 
@@ -183,7 +215,7 @@ public class EmployeeList extends VBox {
         lastNameInput.setHeaderText("Enter Last Name");
         String lastName = lastNameInput.showAndWait().orElse("");
 
-        ObservableList<Project> projects = null;
+        ObservableList<Project> projects = FXCollections.observableArrayList();
 
         // Prompt the user for cell phone number
         String newEmployeeCell;
@@ -212,7 +244,7 @@ public class EmployeeList extends VBox {
             employeeEMail = emailInput.showAndWait().orElse("");
 
             // Validate the email address format
-            if (!employeeEMail.contains("@")) {
+            if (!employeeEMail.contains("@") && employeeCell.length() <= 4) {
                 throw new RuntimeException();
             }
         } catch (RuntimeException e) {
@@ -235,25 +267,10 @@ public class EmployeeList extends VBox {
 
         // Add the new employee to the data list and refresh the table view
         this.data.add(newEmployee);
+        employeeFirstNameList.add(firstName);
         employeeList.refresh();
     }
 
-    /*
-    private void addProject() {
-        Employee selectedEmployee = employeeList.getSelectionModel().getSelectedItem();
-
-        // Check if that item row is valid or does exists, if not, throw an alert
-        if (selectedEmployee == null) {
-            Alert noSelectedAlert = new Alert(Alert.AlertType.WARNING);
-            noSelectedAlert.setTitle("Error!");
-            noSelectedAlert.setHeaderText("No Employee is selected!");
-            noSelectedAlert.setContentText("Please select an Employee from the table to modify.");
-            noSelectedAlert.showAndWait();
-            return;
-        }
-    }
-
-     */
 
     /**
      * Allows the user to modify the information of a selected employee.
@@ -294,6 +311,8 @@ public class EmployeeList extends VBox {
                 firstNameInput.setHeaderText("Enter new First Name");
                 String newFirstName = firstNameInput.showAndWait().orElse("");
                 selectedEmployee.firstNameProperty().set(newFirstName);
+                employeeFirstNameList.remove(selectedEmployee.getEmployeeFirstName());
+                employeeFirstNameList.add(newFirstName);
             }
 
             if (lastNameMod.isSelected()) {
@@ -307,7 +326,7 @@ public class EmployeeList extends VBox {
             if (cellNumberMod.isSelected()) {
                 String newEmployeeCell;
                 try {
-                    TextInputDialog cellInput = new TextInputDialog(selectedEmployee.getCell());
+                    TextInputDialog cellInput = new TextInputDialog();
                     cellInput.setHeaderText("Enter 10 digit American Phone Number");
                     newEmployeeCell = cellInput.showAndWait().orElse("Invalid Input!");
 
@@ -373,6 +392,7 @@ public class EmployeeList extends VBox {
 
         // Remove the selected employee from the data list
         data.remove(selectedEmployee);
+        employeeFirstNameList.remove(selectedEmployee.getEmployeeFirstName());
 
         // Refresh the table view to reflect the changes
         employeeList.refresh();
