@@ -1,8 +1,7 @@
 package timeMana;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.collections.ObservableList;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
@@ -11,6 +10,8 @@ import javafx.scene.layout.VBox;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Calendar extends VBox {
 
@@ -18,8 +19,11 @@ public class Calendar extends VBox {
     private final BorderPane root;
     LocalDate today = LocalDate.now();
 
+    private final ObservableList<Project> allProjects;
 
-    public Calendar() {
+    public Calendar(ObservableList<Project> allProjects) {
+
+        this.allProjects = allProjects;
 
         root = new BorderPane();
 
@@ -96,6 +100,16 @@ public class Calendar extends VBox {
                 dayButton.setOnAction(e -> {
                     System.out.println("Clicked on: " + finalDateBeingSetup.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
                     // other functionalities
+                    LocalDate clickedDate = finalDateBeingSetup;
+                    // filter projects whose due date is on or after the clicked date
+                    List<Project> dueProjects = allProjects.stream()
+                            .filter(project -> !LocalDate.parse(project.getTimeline(), DateTimeFormatter.ofPattern("yyyy-MM-dd")).isBefore(clickedDate))
+                            .collect(Collectors.toList());
+
+                    // display the due projects (simple example using an alert)
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, formatProjectList(dueProjects), ButtonType.OK);
+                    alert.setHeaderText("Projects due on or after " + clickedDate);
+                    alert.showAndWait();
                 });
 
                 // add button to calendar grid
@@ -108,6 +122,12 @@ public class Calendar extends VBox {
 
         // update main layout to display the month grid
         root.setCenter(monthGrid);
+    }
+
+    private String formatProjectList(List<Project> projects) {
+        return projects.stream()
+                .map(Project::getName)
+                .collect(Collectors.joining("\n"));
     }
 
     /***
@@ -134,6 +154,13 @@ public class Calendar extends VBox {
             dayButton.setOnAction(e -> {
                 System.out.println("Clicked on: " + dayInWeek.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
                 // other functionalities
+                List<Project> dueProjects = allProjects.stream()
+                        .filter(project -> !LocalDate.parse(project.getTimeline(), DateTimeFormatter.ofPattern("yyyy-MM-dd")).isBefore(dayInWeek))
+                        .collect(Collectors.toList());
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, formatProjectList(dueProjects), ButtonType.OK);
+                alert.setHeaderText("Projects due on or after " + dayInWeek.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+                alert.showAndWait();
             });
 
             // add button to the grid
@@ -171,6 +198,13 @@ public class Calendar extends VBox {
                         dayButton.setOnAction(e -> {
                             System.out.println("Clicked on: " + dayDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
                             // other functionalities
+                            List<Project> dueProjects = allProjects.stream()
+                                    .filter(project -> !LocalDate.parse(project.getTimeline(), DateTimeFormatter.ofPattern("yyyy-MM-dd")).isBefore(dayDate))
+                                    .collect(Collectors.toList());
+
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION, formatProjectList(dueProjects), ButtonType.OK);
+                            alert.setHeaderText("Projects due on or after " + dayDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+                            alert.showAndWait();
                         });
 
                         monthGrid.add(dayButton, day, week);
