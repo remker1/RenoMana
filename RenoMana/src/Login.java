@@ -57,7 +57,6 @@ public class Login extends BasicPage {
             int status;
             try {
                 status = login(userField.getText(), passField.getText());
-                System.out.println("Cookies: " + COOKIES);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             } catch (InterruptedException e) {
@@ -112,8 +111,6 @@ public class Login extends BasicPage {
                 "\"password\":\"" + password + "\"" +
                 "}";
 
-        System.out.println(msg);
-
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("http://127.0.0.1:5001/login"))
@@ -122,7 +119,7 @@ public class Login extends BasicPage {
                 .POST(HttpRequest.BodyPublishers.ofString(msg, StandardCharsets.UTF_8))
                 .build();
 
-        System.out.println(request.toString());
+        System.out.println("[LOGIN]: " + request.toString());
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
         String responseBody = response.body();
@@ -144,7 +141,6 @@ public class Login extends BasicPage {
             // Extract the value
             String value = responseBody.substring(startIndex, endIndex).trim();
 
-            System.out.println("Value for 'cookie': " + value);
             if (value != "") {
                 COOKIES = value;
             }

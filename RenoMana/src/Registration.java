@@ -161,9 +161,9 @@ public class Registration extends BasicPage {
                 .POST(HttpRequest.BodyPublishers.ofString(msg, StandardCharsets.UTF_8))
                 .build();
 
-        System.out.println(request.toString());
+        System.out.println("[REGISTRATION]: " + request.toString());
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println(response.toString());
+        System.out.println("[REGISTRATION]: " +response.toString());
     }
 
     private void displayErrorMessage(String message) {

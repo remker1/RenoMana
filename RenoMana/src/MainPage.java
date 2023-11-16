@@ -15,8 +15,11 @@
 
 import dashboardMana.Dashboard;
 import inventoryMana.Inventory;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import reviewMana.Review;
+import timeMana.Project;
 import timeMana.Scheduler;
 import timeMana.Calendar;
 import employeeMana.EmployeeList;
@@ -45,6 +48,7 @@ public class MainPage extends BasicPage {
 
     private boolean isDarkMode = false;
 
+    private ObservableList<Project> allProjects = FXCollections.observableArrayList();
 
     @Override
     public void start(Stage stage) {
@@ -91,7 +95,8 @@ public class MainPage extends BasicPage {
         // Create buttons for each tab and add them to the sidebar
         createTabButton("Dashboard", new Dashboard(), "Dashboard");
         createTabButton("Scheduler", new Scheduler(), "Scheduler");
-        createTabButton("Calendar", new Calendar(), "Calendar");
+        //loadProjects();
+        createTabButton("Calendar", new Calendar(allProjects), "Calendar");
         createTabButton("Inventory", new Inventory(), "Inventory");
         createTabButton("Employees", new EmployeeList(), "Employees");
         createTabButton("Reviews", new Review(), "Reviews");
@@ -101,7 +106,7 @@ public class MainPage extends BasicPage {
 
         // Display Dashboard content by default
         sideBar.setMaxWidth(0);
-        displayContent(new MainPageTab1(), "Dashboard");
+        displayContent(new Dashboard(), "Dashboard");
 
         // Ensure system expand vertically and horizontally to fill available space
         VBox.setVgrow(mainLayout, Priority.ALWAYS);
