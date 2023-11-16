@@ -106,7 +106,7 @@ public class MainPage extends BasicPage {
 
         // Display Dashboard content by default
         sideBar.setMaxWidth(0);
-        displayContent(new MainPageTab1(), "Dashboard");
+        displayContent(new Dashboard(), "Dashboard");
 
         // Ensure system expand vertically and horizontally to fill available space
         VBox.setVgrow(mainLayout, Priority.ALWAYS);

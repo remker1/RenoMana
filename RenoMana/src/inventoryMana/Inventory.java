@@ -15,8 +15,8 @@ import java.io.*;
 
 public class Inventory extends VBox {
 
-    private TableView<InventoryItem> inventoryTable;
-    private ObservableList<InventoryItem> data;
+    public static TableView<InventoryItem> inventoryTable;
+    public static ObservableList<InventoryItem> data;
 
      public Inventory(){
          // Setting up the table
@@ -68,6 +68,7 @@ public class Inventory extends VBox {
          VBox.setVgrow(inventoryTable, Priority.ALWAYS);
          this.getChildren().addAll(inventoryTable, optButton);
      }
+
 
     private void exportInventoryFile() {
         FileChooser fileChooser = new FileChooser();

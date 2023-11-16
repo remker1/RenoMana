@@ -22,7 +22,7 @@ import timeMana.Project;
 public class EmployeeList extends VBox {
 
     private TableView<Employee> employeeList; // Table view for displaying employees
-    private ObservableList<Employee> data; // Observable list for storing employee data
+    public static ObservableList<Employee> data; // Observable list for storing employee data
 
     /**
      * Constructor for the EmployeeList class.
