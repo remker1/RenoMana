@@ -31,11 +31,9 @@ public class Dashboard extends HBox {
     private final TableView<Project> projectTableView;
     private final TableView<InventoryItem> dashboardInventoryTable;
 
-
     public Dashboard() {
 
-        // Second option Project timelines as List (inline commented)
-        // timeLineListView = new ListView<>();
+        // Second option Project timelines as List (inline commented)timeLineListView = new ListView<>();
 
         dashboardInventoryTable = new TableView<>();
         projectTableView = new TableView<>();
@@ -103,8 +101,8 @@ public class Dashboard extends HBox {
             // Second option Project timelines as List (inline commented)
             // timeLineListView.setItems(Scheduler.projectsTimelineList);
 
-            projectTableView.setItems(Scheduler.data);
-            projectTableView.refresh();
+            //projectTableView.setItems(Scheduler.data);
+            //projectTableView.refresh();
 
         });
         timeline.setCycleCount(Timeline.INDEFINITE);
