@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="Merge commit">
+    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="Modified Inventory.class's method, modifyInventoryItem(). &#10;- modifyInventoryItem() now has check box so the user would be able to pick and choose what attribute they would want to modify without having to type everything else.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RenoMana/src/inventoryMana/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/inventoryMana/Inventory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/inventoryMana/InventoryItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/inventoryMana/InventoryItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RenoMana/inventoryMana/Inventory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/inventoryMana/Inventory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/inventoryMana/InventoryItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/inventoryMana/InventoryItem.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +199,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700290932387</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Modified Inventory.class's method, modifyInventoryItem(). &#10;- modifyInventoryItem() now has check box so the user would be able to pick and choose what attribute they would want to modify without having to type everything else.">
+      <option name="closed" value="true" />
+      <created>1700294179587</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1700294179587</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -225,7 +231,8 @@
     <MESSAGE value="added comments to scheduler" />
     <MESSAGE value="updates" />
     <MESSAGE value="Merge commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge commit" />
+    <MESSAGE value="Modified Inventory.class's method, modifyInventoryItem(). &#10;- modifyInventoryItem() now has check box so the user would be able to pick and choose what attribute they would want to modify without having to type everything else." />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified Inventory.class's method, modifyInventoryItem(). &#10;- modifyInventoryItem() now has check box so the user would be able to pick and choose what attribute they would want to modify without having to type everything else." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/cmpt370_g29$MainPage.ic" NAME="MainPage Coverage Results" MODIFIED="1698361182269" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

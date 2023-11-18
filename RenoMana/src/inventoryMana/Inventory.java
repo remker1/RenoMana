@@ -298,8 +298,13 @@ public class Inventory extends VBox {
         toolInput.setHeaderText("Enter Tool Name");
         String toolName = toolInput.showAndWait().orElse("");
 
+        while (toolName.isEmpty()) {
+            toolInput.setHeaderText("Tool Name Cannot be Empty, Try Again!");
+            toolName = toolInput.showAndWait().orElse("");
+        }
+
         // Error Handling: If tool name is already in the table
-        for (InventoryItem item : this.data) {
+        for (InventoryItem item : data) {
             if (item.getToolName().equals(toolName)){
                 Alert duplicateAlert = new Alert(Alert.AlertType.ERROR);
                 duplicateAlert.setTitle("Error!");
