@@ -92,4 +92,16 @@ public class InventoryItem {
     public SimpleIntegerProperty estimationProperty() {
         return estimation;
     }
+
+    public void setToolName(String toolName) {
+        this.toolName.set(toolName);
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity.set(quantity);
+    }
+
+    public void setEstimation(int estimation) {
+        this.estimation.set(estimation);
+    }
 }
