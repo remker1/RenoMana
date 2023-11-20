@@ -36,6 +36,9 @@ import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.geometry.Insets;
+import ProjectMana.Project2;
+
+import java.io.IOException;
 
 public class MainPage extends BasicPage {
     HBox mainLayout = new HBox();
@@ -51,7 +54,7 @@ public class MainPage extends BasicPage {
     private ObservableList<Project> allProjects = FXCollections.observableArrayList();
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws IOException, InterruptedException {
 //        stage.getIcons().add(new Image("./resources/icon.png"));
         VBox rootLayout = new VBox();
         mainLayout.setStyle("-fx-background-color: lightGray");
@@ -100,6 +103,8 @@ public class MainPage extends BasicPage {
         createTabButton("Inventory", new Inventory(), "Inventory");
         createTabButton("Employees", new EmployeeList(), "Employees");
         createTabButton("Reviews", new Review(), "Reviews");
+        createTabButton("Projects", new Project2(), "Projects");
+
 
         mainLayout.getChildren().addAll(sideBar, contentArea);
         rootLayout.getChildren().addAll(topBar, mainLayout);

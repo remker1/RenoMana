@@ -21,16 +21,15 @@ public class ProjectItem {
                        SimpleStringProperty Start_date,
                        SimpleStringProperty End_date,
                        SimpleStringProperty Description,
-                       SimpleStringProperty Inquiry)
-    {
-                    this.Name = Name;
-                    this.Email = Email;
-                    this.Contact = Contact;
-                    this.Company = Company;
-                    this.Start_date = Start_date;
-                    this.End_date = End_date;
-                    this.Description = Description;
-                    this.Inquiry = Inquiry;
+                       SimpleStringProperty Inquiry) {
+                        this.Name = Name;
+                        this.Email = Email;
+                        this.Contact = Contact;
+                        this.Company = Company;
+                        this.Start_date = Start_date;
+                        this.End_date = End_date;
+                        this.Description = Description;
+                        this.Inquiry = Inquiry;
     }
 
     public String getName() { return Name.get(); }
