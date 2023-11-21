@@ -2,10 +2,82 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62d76d9b-05ee-4c69-a7a4-e7b9c7f180dc" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/libraries/lib.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../RenoMana/src/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../RenoMana/src/MainPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RenoMana/src/ProjectMana/Project2.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../RenoMana/src/ProjectMana/Project2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RenoMana/src/reviewMana/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../RenoMana/src/reviewMana/Review.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/MainPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/MainPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/RenoGrpRequestPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RenoGrpRequestPage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/.mongodb/mongosh/653af96a55e991dd4f069c74_log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/.mongodb/mongosh/653af96e0f76c8cccae0797f_log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/.mongodb/mongosh/6542cf0c1f4d5538f5d3fc3f_log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/.mongodb/mongosh/6542cf0e755f23c90571cc0f_log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/.mongodb/mongosh/6542cf501ec5164c3918b992_log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/.mongodb/mongosh/6542cf50cbd61fa0a7dfb839_log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/.mongodb/mongosh/am-653af96a55e991dd4f069c73.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/.mongodb/mongosh/am-6542cf0c1f4d5538f5d3fc3e.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/.mongodb/mongosh/am-6542cf501ec5164c3918b991.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/.mongodb/mongosh/config" beforeDir="false" afterPath="$PROJECT_DIR$/../db/.mongodb/mongosh/config" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/.mongodb/mongosh/snippets/index.bson.br" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/WiredTiger" beforeDir="false" afterPath="$PROJECT_DIR$/../db/WiredTiger" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/WiredTiger.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../db/WiredTiger.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/WiredTiger.turtle" beforeDir="false" afterPath="$PROJECT_DIR$/../db/WiredTiger.turtle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/WiredTiger.wt" beforeDir="false" afterPath="$PROJECT_DIR$/../db/WiredTiger.wt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/_mdb_catalog.wt" beforeDir="false" afterPath="$PROJECT_DIR$/../db/_mdb_catalog.wt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/collection-0--6497439860735669609.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/collection-0--7394452067772645410.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/collection-0--9017261746629576879.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/collection-0-1020687177800518261.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/collection-0-1756978961854141784.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/collection-2--6497439860735669609.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/collection-2--7394452067772645410.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/collection-2--9017261746629576879.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/collection-2-1020687177800518261.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/collection-2-1756978961854141784.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/collection-4--6497439860735669609.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/collection-4--7394452067772645410.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/collection-4-1756978961854141784.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/collection-7--6497439860735669609.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/collection-7--7394452067772645410.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/collection-7-1756978961854141784.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/diagnostic.data/metrics.2023-10-26T23-42-32Z-00000" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/diagnostic.data/metrics.2023-10-26T23-44-09Z-00000" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/diagnostic.data/metrics.2023-11-01T22-19-55Z-00000" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/diagnostic.data/metrics.2023-11-01T22-20-46Z-00000" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/diagnostic.data/metrics.2023-11-01T22-21-04Z-00000" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/diagnostic.data/metrics.2023-11-01T22-21-08Z-00000" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/diagnostic.data/metrics.2023-11-01T22-54-35Z-00000" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/index-1--6497439860735669609.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/index-1--7394452067772645410.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/index-1--9017261746629576879.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/index-1-1020687177800518261.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/index-1-1756978961854141784.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/index-3--6497439860735669609.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/index-3--7394452067772645410.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/index-3--9017261746629576879.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/index-3-1020687177800518261.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/index-3-1756978961854141784.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/index-5--6497439860735669609.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/index-5--7394452067772645410.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/index-5-1756978961854141784.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/index-6--6497439860735669609.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/index-6--7394452067772645410.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/index-6-1756978961854141784.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/index-8--6497439860735669609.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/index-8--7394452067772645410.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/index-8-1756978961854141784.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/index-9--6497439860735669609.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/index-9--7394452067772645410.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/index-9-1756978961854141784.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/journal/WiredTigerLog.0000000002" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/journal/WiredTigerLog.0000000003" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/mongod.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../db/mongod.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db/sizeStorer.wt" beforeDir="false" afterPath="$PROJECT_DIR$/../db/sizeStorer.wt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/employeeMana/EmployeeList.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/employeeMana/EmployeeList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/reviewMana/Review.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/reviewMana/Review.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,25 +87,28 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2XJwGrxNhCSKym1DmB3aP3pgMyk" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "DannPanganBranch",
-    "last_opened_file_path": "Z:/2023/FallTerm/CMPT370/Project/cmpt370-g29/back_end_team/app",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;DannPanganBranch&quot;,
+    &quot;last_opened_file_path&quot;: &quot;Z:/2023/FallTerm/CMPT370/Project/cmpt370-g29/back_end_team/app&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="app" type="PythonConfigurationType" factoryName="Python">
       <module name="app" />
@@ -42,7 +117,7 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="C:\Users\emana\anaconda3\python.exe" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -72,5 +147,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

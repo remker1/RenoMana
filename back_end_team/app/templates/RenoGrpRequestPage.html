@@ -20,25 +20,34 @@
 
         <div class="formSection">
             <p>An asterisk (*) indicates a required field</p>
-            <form id="projectForm" action="http://localhost:5001/submitRequest" method="post" onsubmit="showAlert()">
-                <label for "customerName">Name *</label><br>
+            <form id="projectForm" action="/submitRequest" enctype="multipart/form-data" method="POST">
+                <label for="customerName">Name *</label><br>
                 <input type="text" id="customerName" name="customerName" placeholder="Enter your name" required><br>
-                <label for "customerEmail">Email *</label><br>
+            
+                <label for="customerEmail">Email *</label><br>
                 <input type="email" id="customerEmail" name="customerEmail" placeholder="Enter your email" required><br>
+            
                 <label for="customerCell">Contact Number *</label><br>
                 <input type="tel" id="customerCell" name="customerCell" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="xxx-xxx-xxxx" required><br>
-                <label for "company">Company (optional)</label><br>
-                <input type="text" id="company" name="company" placeholder="Enter your company name" required><br>
+            
+                <label for="company">Company (optional)</label><br>
+                <input type="text" id="company" name="company" placeholder="Enter your company name"><br>
+            
                 <label for="startDate">Predicted Project Start Date *</label><br>
                 <input type="date" id="startDate" name="startDate" required><br>
+            
                 <label for="endDate">Predicted Project End Date *</label><br>
                 <input type="date" id="endDate" name="endDate" required><br>
+            
                 <label for="projectDesc">Provide a description of your proposed project *</label><br>
-                <textarea id="projectDesc" name="projectDesc" rows="10" cols="50"></textarea><br>
+                <textarea id="projectDesc" name="projectDesc" rows="10" cols="50" required></textarea><br>
+            
                 <label for="projectInq">Having problems with our service? Reach out! </label><br>
                 <textarea id="projectInq" name="projectInq" rows="10" cols="50"></textarea><br>
+            
                 <input type="submit" value="submit">
             </form>
+            
         </div>
 
         <script>
@@ -51,13 +60,37 @@
                 document.getElementById('startDate').value = '';
                 document.getElementById('endDate').value = '';
                 document.getElementById('projectDesc').value = '';
+                document.getElementById('projectInq').value = '';
             }
 
             // Function to handle form submission
-            function submitForm() {
-                alert("Thank you for your request!");
-                clearFormInputs();
+            async function submitForm() {
+                try {
+                // Get form data
+                const formData = new FormData(document.getElementById('projectForm'));
+
+                // Make a POST request to the server
+                const response = await fetch('/submitRequest', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                if (response.ok) {
+                    // Display a success message to the user
+                    alert('Thank you for your request bro!');
+
+                    // Clear form inputs
+                    clearFormInputs();
+                } else {
+                    // Display an error message to the user
+                    alert('Failed to submit the request. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error submitting the form:', error);
+                // Display an error message to the user
+                alert('An unexpected error occurred. Please try again later.');
             }
+        }
 
             // Add a submit event listener to the form
             document.getElementById('projectForm').addEventListener('submit', function (e) {

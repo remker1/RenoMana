@@ -4,23 +4,93 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="DashBoard Partially Done, now dashboard could sync data with Scheduler and Inventory, user pointed welcome section and Charts for Employees still needs implementation. Two options of project timeline (TableView/ListVew) are both implemented for choices of better UI Design.">
+    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="Configured and debugged both Project.java and ProjectItem.java; Table is now able to be viewed upon start up">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/employeeMana/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/employeeMana/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeList.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/dashboardMana/Dashboard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/dashboardMana/Dashboard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/employeeMana/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/employeeMana/Employee.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/employeeMana/EmployeeInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/employeeMana/EmployeeInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/ProjectMana/Project2.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/ProjectMana/Project2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/reviewMana/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/reviewMana/Review.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/app/.idea/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/app/.idea/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/app/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/app/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/app/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/app/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/app/templates/RenoGrpRequestPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/app/templates/RenoGrpRequestPage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/.mongodb/mongosh/653af96a55e991dd4f069c74_log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/.mongodb/mongosh/653af96e0f76c8cccae0797f_log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/.mongodb/mongosh/6542cf0c1f4d5538f5d3fc3f_log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/.mongodb/mongosh/6542cf0e755f23c90571cc0f_log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/.mongodb/mongosh/6542cf501ec5164c3918b992_log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/.mongodb/mongosh/6542cf50cbd61fa0a7dfb839_log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/.mongodb/mongosh/am-653af96a55e991dd4f069c73.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/.mongodb/mongosh/am-6542cf0c1f4d5538f5d3fc3e.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/.mongodb/mongosh/am-6542cf501ec5164c3918b991.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/.mongodb/mongosh/config" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/db/.mongodb/mongosh/config" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/.mongodb/mongosh/snippets/index.bson.br" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/WiredTiger" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/db/WiredTiger" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/WiredTiger.lock" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/db/WiredTiger.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/WiredTiger.turtle" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/db/WiredTiger.turtle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/WiredTiger.wt" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/db/WiredTiger.wt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/_mdb_catalog.wt" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/db/_mdb_catalog.wt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-0--6497439860735669609.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-0--7394452067772645410.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-0--9017261746629576879.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-0-1020687177800518261.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-0-1756978961854141784.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-2--6497439860735669609.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-2--7394452067772645410.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-2--9017261746629576879.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-2-1020687177800518261.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-2-1756978961854141784.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-4--6497439860735669609.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-4--7394452067772645410.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-4-1756978961854141784.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-7--6497439860735669609.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-7--7394452067772645410.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-7-1756978961854141784.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/diagnostic.data/metrics.2023-10-26T23-42-32Z-00000" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/diagnostic.data/metrics.2023-10-26T23-44-09Z-00000" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/diagnostic.data/metrics.2023-11-01T22-19-55Z-00000" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/diagnostic.data/metrics.2023-11-01T22-20-46Z-00000" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/diagnostic.data/metrics.2023-11-01T22-21-04Z-00000" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/diagnostic.data/metrics.2023-11-01T22-21-08Z-00000" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/diagnostic.data/metrics.2023-11-01T22-54-35Z-00000" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-1--6497439860735669609.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-1--7394452067772645410.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-1--9017261746629576879.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-1-1020687177800518261.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-1-1756978961854141784.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-3--6497439860735669609.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-3--7394452067772645410.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-3--9017261746629576879.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-3-1020687177800518261.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-3-1756978961854141784.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-5--6497439860735669609.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-5--7394452067772645410.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-5-1756978961854141784.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-6--6497439860735669609.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-6--7394452067772645410.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-6-1756978961854141784.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-8--6497439860735669609.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-8--7394452067772645410.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-8-1756978961854141784.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-9--6497439860735669609.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-9--7394452067772645410.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-9-1756978961854141784.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/journal/WiredTigerLog.0000000002" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/journal/WiredTigerLog.0000000003" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/mongod.lock" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/db/mongod.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/sizeStorer.wt" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/db/sizeStorer.wt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RenoMana/employeeMana/EmployeeList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/employeeMana/EmployeeList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Scheduler$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Scheduler$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Scheduler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Scheduler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/reviewMana/Review.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/reviewMana/Review.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="module" />
+    </option>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -83,17 +153,23 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "Leo-JavaGUI",
-    "last_opened_file_path": "L:/JavaFX/openjfx-20.0.2_windows-x64_bin-sdk/javafx-sdk-20.0.2/lib",
+    "last_opened_file_path": "C:/Users/emana/OneDrive/Desktop/temo/lib",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "Global Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.14641148",
     "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "ChangesTree.GroupingKeys": [
+      "directory",
+      "module"
+    ]
   }
 }]]></component>
   <component name="RunManager" selected="Application.MainPage">
@@ -102,7 +178,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="Login" />
       <module name="RenoMana" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;L:\JavaFX\openjfx-20.0.2_windows-x64_bin-sdk\javafx-sdk-20.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value=" --module-path C:\Users\emana\OneDrive\Desktop\temo\lib --add-modules javafx.controls,javafx.fxml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -112,7 +188,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="MainPage" />
       <module name="RenoMana" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;L:\JavaFX\openjfx-20.0.2_windows-x64_bin-sdk\javafx-sdk-20.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value=" --module-path C:\Users\emana\OneDrive\Desktop\temo\lib --add-modules javafx.controls,javafx.fxml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -253,7 +329,23 @@
       <option name="project" value="LOCAL" />
       <updated>1700132644032</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Added both Project.java and ProjectItem.java to be viewed as tabs within the manager frontend. &#10;User requests saved in the Mongo database will be able to be viewed due to these two modules.">
+      <option name="closed" value="true" />
+      <created>1700392533857</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1700392533857</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Configured and debugged both Project.java and ProjectItem.java; Table is now able to be viewed upon start up">
+      <option name="closed" value="true" />
+      <created>1700468798819</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1700468798819</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -280,7 +372,9 @@
     <MESSAGE value="calendar can now show a list of projects due on or after set date" />
     <MESSAGE value="calendar can now show a list of projects due on or after current date" />
     <MESSAGE value="DashBoard Partially Done, now dashboard could sync data with Scheduler and Inventory, user pointed welcome section and Charts for Employees still needs implementation. Two options of project timeline (TableView/ListVew) are both implemented for choices of better UI Design." />
-    <option name="LAST_COMMIT_MESSAGE" value="DashBoard Partially Done, now dashboard could sync data with Scheduler and Inventory, user pointed welcome section and Charts for Employees still needs implementation. Two options of project timeline (TableView/ListVew) are both implemented for choices of better UI Design." />
+    <MESSAGE value="Added both Project.java and ProjectItem.java to be viewed as tabs within the manager frontend. &#10;User requests saved in the Mongo database will be able to be viewed due to these two modules." />
+    <MESSAGE value="Configured and debugged both Project.java and ProjectItem.java; Table is now able to be viewed upon start up" />
+    <option name="LAST_COMMIT_MESSAGE" value="Configured and debugged both Project.java and ProjectItem.java; Table is now able to be viewed upon start up" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/cmpt370_g29$MainPage.ic" NAME="MainPage Coverage Results" MODIFIED="1698361182269" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
