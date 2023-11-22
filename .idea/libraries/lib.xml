@@ -1,10 +1,18 @@
 <component name="libraryTable">
   <library name="lib">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../../../../JavaFX/openjfx-20.0.2_windows-x64_bin-sdk/javafx-sdk-20.0.2/lib" />
+<<<<<<< HEAD
+      <root url="file://$PROJECT_DIR$/../javafx-sdk-21.0.1/lib" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
-    <jarDirectory url="file://$PROJECT_DIR$/../../../../JavaFX/openjfx-20.0.2_windows-x64_bin-sdk/javafx-sdk-20.0.2/lib" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../javafx-sdk-21.0.1/lib" recursive="false" />
+=======
+      <root url="file://$USER_HOME$/Desktop/temo/lib" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$USER_HOME$/Desktop/temo/lib" recursive="false" />
+>>>>>>> 91525bdfc7857ba1c07bf434825da93e79b523d9
   </library>
 </component>
