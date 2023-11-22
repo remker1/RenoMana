@@ -11,8 +11,9 @@
                 <nav>
                     <ul>
                         <li><a href="http://localhost:5001/">Home</a></li>
-                        <li><a class="active" href="http://localhost:5001/requestPage">Request a project</a></li>
+                        <li><a class="active" href="http://localhost:5001/requestPage">Request a project!</a></li>
                         <li><a href="http://localhost:5001/reviews">Leave a review!</a></li>
+                        <li><a href="http://localhost:5001/inquiry">If you're having any trouble, reach out!</a></li>
                     </ul>
                 </nav>
             </div>
@@ -41,10 +42,7 @@
             
                 <label for="projectDesc">Provide a description of your proposed project *</label><br>
                 <textarea id="projectDesc" name="projectDesc" rows="10" cols="50" required></textarea><br>
-            
-                <label for="projectInq">Having problems with our service? Reach out! </label><br>
-                <textarea id="projectInq" name="projectInq" rows="10" cols="50"></textarea><br>
-            
+                        
                 <input type="submit" value="submit">
             </form>
             
@@ -60,7 +58,6 @@
                 document.getElementById('startDate').value = '';
                 document.getElementById('endDate').value = '';
                 document.getElementById('projectDesc').value = '';
-                document.getElementById('projectInq').value = '';
             }
 
             // Function to handle form submission

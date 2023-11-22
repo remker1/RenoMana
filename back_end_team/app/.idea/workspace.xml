@@ -1,83 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="62d76d9b-05ee-4c69-a7a4-e7b9c7f180dc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../../.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/libraries/lib.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../RenoMana/src/ProjectMana/Project2.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../RenoMana/src/ProjectMana/Project2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../RenoMana/src/reviewMana/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../RenoMana/src/reviewMana/Review.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/RenoGrpRequestPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RenoGrpRequestPage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/.mongodb/mongosh/653af96a55e991dd4f069c74_log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/.mongodb/mongosh/653af96e0f76c8cccae0797f_log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/.mongodb/mongosh/6542cf0c1f4d5538f5d3fc3f_log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/.mongodb/mongosh/6542cf0e755f23c90571cc0f_log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/.mongodb/mongosh/6542cf501ec5164c3918b992_log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/.mongodb/mongosh/6542cf50cbd61fa0a7dfb839_log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/.mongodb/mongosh/am-653af96a55e991dd4f069c73.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/.mongodb/mongosh/am-6542cf0c1f4d5538f5d3fc3e.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/.mongodb/mongosh/am-6542cf501ec5164c3918b991.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/.mongodb/mongosh/config" beforeDir="false" afterPath="$PROJECT_DIR$/../db/.mongodb/mongosh/config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/.mongodb/mongosh/snippets/index.bson.br" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/WiredTiger" beforeDir="false" afterPath="$PROJECT_DIR$/../db/WiredTiger" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/WiredTiger.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../db/WiredTiger.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/WiredTiger.turtle" beforeDir="false" afterPath="$PROJECT_DIR$/../db/WiredTiger.turtle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/WiredTiger.wt" beforeDir="false" afterPath="$PROJECT_DIR$/../db/WiredTiger.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/_mdb_catalog.wt" beforeDir="false" afterPath="$PROJECT_DIR$/../db/_mdb_catalog.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/collection-0--6497439860735669609.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/collection-0--7394452067772645410.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/collection-0--9017261746629576879.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/collection-0-1020687177800518261.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/collection-0-1756978961854141784.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/collection-2--6497439860735669609.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/collection-2--7394452067772645410.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/collection-2--9017261746629576879.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/collection-2-1020687177800518261.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/collection-2-1756978961854141784.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/collection-4--6497439860735669609.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/collection-4--7394452067772645410.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/collection-4-1756978961854141784.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/collection-7--6497439860735669609.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/collection-7--7394452067772645410.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/collection-7-1756978961854141784.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/diagnostic.data/metrics.2023-10-26T23-42-32Z-00000" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/diagnostic.data/metrics.2023-10-26T23-44-09Z-00000" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/diagnostic.data/metrics.2023-11-01T22-19-55Z-00000" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/diagnostic.data/metrics.2023-11-01T22-20-46Z-00000" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/diagnostic.data/metrics.2023-11-01T22-21-04Z-00000" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/diagnostic.data/metrics.2023-11-01T22-21-08Z-00000" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/diagnostic.data/metrics.2023-11-01T22-54-35Z-00000" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/index-1--6497439860735669609.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/index-1--7394452067772645410.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/index-1--9017261746629576879.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/index-1-1020687177800518261.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/index-1-1756978961854141784.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/index-3--6497439860735669609.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/index-3--7394452067772645410.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/index-3--9017261746629576879.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/index-3-1020687177800518261.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/index-3-1756978961854141784.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/index-5--6497439860735669609.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/index-5--7394452067772645410.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/index-5-1756978961854141784.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/index-6--6497439860735669609.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/index-6--7394452067772645410.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/index-6-1756978961854141784.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/index-8--6497439860735669609.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/index-8--7394452067772645410.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/index-8-1756978961854141784.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/index-9--6497439860735669609.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/index-9--7394452067772645410.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/index-9-1756978961854141784.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/journal/WiredTigerLog.0000000002" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/journal/WiredTigerLog.0000000003" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/mongod.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../db/mongod.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db/sizeStorer.wt" beforeDir="false" afterPath="$PROJECT_DIR$/../db/sizeStorer.wt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/RenoGrpReviewPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RenoGrpReviewPage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/landing.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/landing.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/BasicPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/BasicPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/Login.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/MainPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/MainPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/MainPageTab1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/MainPageTab1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/MainPageTab2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/MainPageTab2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/MainPageTab4.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/MainPageTab4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/MainPageTab5.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/MainPageTab5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/MainPageTab6.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/MainPageTab6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/ProjectMana/ProjectItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/ProjectMana/ProjectItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/Registration.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/Registration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/dashboardMana/Dashboard.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/dashboardMana/Dashboard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/employeeMana/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/employeeMana/Employee.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/employeeMana/EmployeeInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/employeeMana/EmployeeInfo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/employeeMana/EmployeeList.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/employeeMana/EmployeeList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/inventoryMana/Inventory.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/inventoryMana/Inventory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/inventoryMana/InventoryItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/inventoryMana/InventoryItem.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/reviewMana/Review.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/reviewMana/Review.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/reviewMana/ReviewItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/reviewMana/ReviewItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/timeMana/Calendar.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/timeMana/Calendar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/timeMana/Project.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/timeMana/Project.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/timeMana/Scheduler$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/timeMana/Scheduler$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/timeMana/Scheduler.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/timeMana/Scheduler.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,17 +55,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;DannPanganBranch&quot;,
-    &quot;last_opened_file_path&quot;: &quot;Z:/2023/FallTerm/CMPT370/Project/cmpt370-g29/back_end_team/app&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "eman__branch",
+    "last_opened_file_path": "Z:/2023/FallTerm/CMPT370/Project/cmpt370-g29/back_end_team/app",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="app" type="PythonConfigurationType" factoryName="Python">
       <module name="app" />
