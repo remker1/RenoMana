@@ -31,6 +31,13 @@ def displayReviews():
     except:
         pass
 
+@app.route('/inquiry', methods=['GET'])
+def displayInquiry():
+    try:
+        return render_template('RenoGrpInquiryPage.html')
+    except:
+        pass
+
 # Initialize some default employees into the database
 @app.route('/initDB', methods=["GET"])
 def initDB():
@@ -275,7 +282,10 @@ def getReviews():
             result = list(db['reviews'].find({}, {"title": 1, "description": 1, "rating": 1, "_id": 0}))
         else:
             result = list(db['reviews'].find({"rating": data.get("rating")}, {"title": 1, "description": 1, "rating": 1 , "_id": 0}))
-        return jsonify(result), 200
+        response = {
+            "reviews": result
+            }
+        return jsonify(response), 200
 
     except Exception as e:
         # Log the exception for debugging

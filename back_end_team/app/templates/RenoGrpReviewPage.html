@@ -35,7 +35,7 @@
                     document.getElementById("review-list").innerHTML = "";
                     const reviewList = document.getElementById("review-list");
 
-                    data.forEach(review => {
+                    data.reviews.forEach(review => {
                         const listItem = document.createElement("div");
 
                         const title = document.createElement("h2");
@@ -67,9 +67,13 @@
             }
     
             function addReview() {
-                if (document.getElementById("title_input").value == "" || document.getElementById("rating_input").value == ""){
+                if (document.getElementById("title_input").value == ""){
+                    alert("Please enter a review title")
                     return
-                } 
+                } else if (document.getElementById("rating_input").value == ""){
+                    alert("Please select review rating")
+                    return
+                }
                 fetch('/addReview', {
                     "method": 'POST',
                     "headers": {"Content-Type": "application/json"},
@@ -90,22 +94,20 @@
 
         <div class="formSection">
             <p>An asterisk (*) indicates a required field</p>
-            <form id="reviewForm">
-                <label for="Title"> Title *: </label><br>
-                <input id="title_input" type="text" name="Title" value="" placeholder="Enter Topic" required><br>
-                <label for="Description"> Review : </label><br>
-                <textarea id="description_input" name="Description" class="reviewTextBox"> </textarea><br>
-                <label for="Rating"> Rating *: </label><br>
-                <select id="rating_input" name="Rating" required>
-                    <option value="">Select Star</option>
-                    <option value="5">5 Star</option>
-                    <option value="4">4 Star</option>
-                    <option value="3">3 Star</option>
-                    <option value="2">2 Star</option>
-                    <option value="1">1 Star</option>
-                </select><br>
-                <button onclick="addReview()">Submit Review</button>
-            </form><br>
+            <label for="Title"> Title *: </label><br>
+            <input id="title_input" type="text" name="Title" value="" placeholder="Enter Title" required><br>
+            <label for="Description"> Review : </label><br>
+            <textarea id="description_input" name="Description" class="reviewTextBox"> </textarea><br>
+            <label for="Rating"> Rating *: </label><br>
+            <select id="rating_input" name="Rating" required>
+                <option value="">Select Star</option>
+                <option value="5">5 Star</option>
+                <option value="4">4 Star</option>
+                <option value="3">3 Star</option>
+                <option value="2">2 Star</option>
+                <option value="1">1 Star</option>
+            </select><br>
+            <button onclick="addReview()">Submit Review</button>
         </div>
 
         <h1>Reviews: </h1>
