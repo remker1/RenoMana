@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62d76d9b-05ee-4c69-a7a4-e7b9c7f180dc" name="Changes" comment="">
+    <list default="true" id="62d76d9b-05ee-4c69-a7a4-e7b9c7f180dc" name="Changes" comment="Added project inquiries for its own web page">
       <change beforePath="$PROJECT_DIR$/../../.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/libraries/lib.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" afterDir="false" />
@@ -100,6 +100,15 @@
       <updated>1698360403477</updated>
       <workItem from="1698360404431" duration="186000" />
     </task>
+    <task id="LOCAL-00001" summary="Added project inquiries for its own web page">
+      <option name="closed" value="true" />
+      <created>1700613653678</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1700613653678</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -115,5 +124,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added project inquiries for its own web page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added project inquiries for its own web page" />
   </component>
 </project>
