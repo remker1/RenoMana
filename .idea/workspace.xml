@@ -4,15 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="- Added logging labels for login and registration page console outputs">
+    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/RenoMana.iml" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/RenoMana.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RenoMana/src/BasicPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/BasicPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RenoMana/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/Login.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RenoMana/src/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/MainPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RenoMana/src/dashboardMana/Dashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/dashboardMana/Dashboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/RenoMana.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/RenoMana.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/employeeMana/EmployeeList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/employeeMana/EmployeeList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeList.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/reviewMana/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/reviewMana/Review.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/app/.idea/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/app/.idea/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/app/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/app/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/app/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/app/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/BasicPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/BasicPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/Login.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/dashboardMana/Dashboard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/dashboardMana/Dashboard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/reviewMana/Review.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/reviewMana/Review.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Scheduler$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Scheduler$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Scheduler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Scheduler.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +43,19 @@
     <option name="BRANCH" value="origin/main" />
   </component>
   <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="main" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="main" />
@@ -64,13 +89,16 @@
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="2VqPpCYY7ldfkeTDnBPX1Q2XQy6" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
     &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
     &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
@@ -89,7 +117,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.14641148&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -268,6 +296,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="committing unversioned files" />
     <MESSAGE value="Finished setting up the log in page in accordance to agreed upon outline" />
     <MESSAGE value="Refined Login Class&#10;- Added comments&#10;- Log In button leads to main page&#10;- New? button leads to registration page" />

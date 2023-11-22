@@ -16,6 +16,13 @@ import javafx.stage.Stage;
 import timeMana.Project;
 import timeMana.Scheduler;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -35,7 +42,7 @@ public class EmployeeList extends VBox {
      * Constructor for the EmployeeList class.
      * Initializes the UI components and sets up the employee table with columns and buttons.
      */
-    public EmployeeList() {
+    public EmployeeList(String COOKIES) {
         // Setting up the table
         employeeList = new TableView<>();
         employeeList.prefWidthProperty().bind(this.widthProperty());
@@ -85,8 +92,19 @@ public class EmployeeList extends VBox {
         Button employeeInfo = new Button("Personal Details");
         employeeInfo.setOnAction(actionEvent -> openEmployeeInfo());
 
+        Button testButton = new Button("Test");
+        testButton.setOnAction(e -> {
+            try {
+                String result = getEmployeeData(COOKIES);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            } catch (InterruptedException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
         // Create a horizontal box to hold the buttons
-        HBox optButton = new HBox(10, addItem, deleteItem, modifyItem, employeeInfo);
+        HBox optButton = new HBox(10, addItem, deleteItem, modifyItem, employeeInfo, testButton);
         optButton.setPadding(new Insets(10, 0, 10, 0)); // top, right, bottom, left padding
 
         // Set vertical grow for the table and add it along with the buttons to the VBox
@@ -396,6 +414,53 @@ public class EmployeeList extends VBox {
 
         // Refresh the table view to reflect the changes
         employeeList.refresh();
+    }
+
+    private String getEmployeeData(String COOKIES) throws IOException, InterruptedException {
+        String msg = "{" +
+                "\"cookie\":\"" + COOKIES + "\"" +
+                "}";
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://127.0.0.1:5001/getEmployeeData"))
+                .timeout(Duration.ofMinutes(2))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(msg, StandardCharsets.UTF_8))
+                .build();
+
+        System.out.println("[EMPLOYEE]: " + request.toString());
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+        String responseBody = response.body();
+        String name = parseJson(responseBody, "fname");
+        System.out.println(name);
+        return responseBody;
+
+    }
+
+    public static String parseJson(String string, String target) {
+        // Find the index of the cookie key
+        int startIndex = string.indexOf("\"" + target + "\"");
+
+        // Check if the key is found
+        if (startIndex != -1) {
+            // Move the index to the start of the value
+            startIndex = string.indexOf(":", startIndex) + 1;
+
+            // Find the end of the value (up to the next comma or the end of the JSON object)
+            int endIndex = string.indexOf(",", startIndex);
+            if (endIndex == -1) {
+                endIndex = string.indexOf("}", startIndex);
+            }
+
+            String value = string.substring(startIndex, endIndex).trim().replace("\"", "");
+
+            return value;
+
+        } else {
+            System.out.println(target + " not found in the response");
+            return null;
+        }
     }
 
 }

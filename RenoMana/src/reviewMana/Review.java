@@ -193,4 +193,31 @@ public class Review extends VBox {
         invalidNumAlert.setContentText(content);
         invalidNumAlert.showAndWait();
     }
+
+    public static void main(String[] args) throws IOException, InterruptedException {
+        //Regression test
+        // Build POST message
+
+        /* Test 1: */
+        HttpClient httpClient2 = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://127.0.0.1:5001/dropReviews"))
+                .timeout(Duration.ofMinutes(2))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString("", StandardCharsets.UTF_8))
+                .build();
+
+        // Send POST message to Flask server
+        HttpResponse<String> response = httpClient2.send(request, HttpResponse.BodyHandlers.ofString());
+
+        if (response.statusCode() != 200 || !response.body().equals("[]")) {
+            System.out.println("Test 1 failed!");
+        }
+
+        HttpRequest request1 = HttpRequest.newBuilder()
+                .uri(URI.create("http://127.0.0.1:5001/dropReviews"))
+                .timeout(Duration.ofMinutes(2))
+                .header("Content-Type", "application/json")
+                .build();
+    }
 }

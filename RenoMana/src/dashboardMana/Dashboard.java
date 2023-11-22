@@ -157,7 +157,7 @@ public class Dashboard extends HBox {
     private String fetchDashboardData(String COOKIES) throws IOException, InterruptedException {
         System.out.println(COOKIES);
         String msg = "{" +
-                "\"username\":\"" + COOKIES +
+                "\"cookie\":\"" + COOKIES +
                 "\"}";
 
         HttpClient httpClient = HttpClient.newHttpClient();
@@ -207,7 +207,7 @@ public class Dashboard extends HBox {
             return value;
 
         } else {
-            System.out.println("'cookie' not found in the response");
+            System.out.println(target + " not found in the response");
             return null;
         }
     }

@@ -32,7 +32,7 @@ public class BasicPage extends Application {
             return value;
 
         } else {
-            System.out.println("'cookie' not found in the response");
+            System.out.println(target + " not found in the response");
             return null;
         }
     }

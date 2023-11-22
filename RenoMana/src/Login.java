@@ -123,6 +123,7 @@ public class Login extends BasicPage {
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
         String responseBody = response.body();
+        System.out.println(responseBody);
 
         COOKIES = parseJson(responseBody, "cookie");
         return response.statusCode();
