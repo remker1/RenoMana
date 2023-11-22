@@ -43,6 +43,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import ProjectMana.Project2;
 
 public class MainPage extends BasicPage {
     HBox mainLayout = new HBox();
@@ -115,6 +116,8 @@ public class MainPage extends BasicPage {
         createTabButton("Inventory", new Inventory(), "Inventory");
         createTabButton("Employees", new EmployeeList(), "Employees");
         createTabButton("Reviews", new Review(), "Reviews");
+        createTabButton("Projects", new Project2(), "Projects");
+
         Button button = new Button("Log out");
         button.setPrefWidth(Double.MAX_VALUE);
         button.setStyle("-fx-background-color: transparent; -fx-text-fill: white;");
