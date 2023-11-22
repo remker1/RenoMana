@@ -5,33 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="DashBoard Partially Done, now dashboard could sync data with Scheduler and Inventory, user pointed welcome section and Charts for Employees still needs implementation. Two options of project timeline (TableView/ListVew) are both implemented for choices of better UI Design.">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/ProjectMana/Project2.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/ProjectMana/Project2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/BasicPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/BasicPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/Login.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/ProjectMana/ProjectItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/ProjectMana/ProjectItem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Registration.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/Registration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/dashboardMana/Dashboard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/dashboardMana/Dashboard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/employeeMana/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/employeeMana/Employee.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/employeeMana/EmployeeInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/employeeMana/EmployeeInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/employeeMana/EmployeeList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/employeeMana/EmployeeList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/inventoryMana/Inventory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/inventoryMana/Inventory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/inventoryMana/InventoryItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/inventoryMana/InventoryItem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/reviewMana/Review.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/reviewMana/Review.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/reviewMana/ReviewItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/reviewMana/ReviewItem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Calendar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Calendar.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Project.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Project.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Scheduler$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Scheduler$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Scheduler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Scheduler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/app/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/app/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

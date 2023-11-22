@@ -4,38 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62d76d9b-05ee-4c69-a7a4-e7b9c7f180dc" name="Changes" comment="Added project inquiries for its own web page">
-      <change beforePath="$PROJECT_DIR$/../../.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/libraries/lib.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RenoGrpRequestPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RenoGrpRequestPage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RenoGrpReviewPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RenoGrpReviewPage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/landing.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/landing.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/BasicPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/BasicPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/Login.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/MainPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/MainPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/MainPageTab1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/MainPageTab1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/MainPageTab2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/MainPageTab2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/MainPageTab4.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/MainPageTab4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/MainPageTab5.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/MainPageTab5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/MainPageTab6.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/MainPageTab6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/ProjectMana/ProjectItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/ProjectMana/ProjectItem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/Registration.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/Registration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/dashboardMana/Dashboard.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/dashboardMana/Dashboard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/employeeMana/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/employeeMana/Employee.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/employeeMana/EmployeeInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/employeeMana/EmployeeInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/employeeMana/EmployeeList.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/employeeMana/EmployeeList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/inventoryMana/Inventory.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/inventoryMana/Inventory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/inventoryMana/InventoryItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/inventoryMana/InventoryItem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/reviewMana/Review.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/reviewMana/Review.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/reviewMana/ReviewItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/reviewMana/ReviewItem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/timeMana/Calendar.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/timeMana/Calendar.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/timeMana/Project.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/timeMana/Project.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/timeMana/Scheduler$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/timeMana/Scheduler$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/timeMana/Scheduler.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/timeMana/Scheduler.class" afterDir="false" />
-    </list>
+    <list default="true" id="62d76d9b-05ee-4c69-a7a4-e7b9c7f180dc" name="Changes" comment="Added project inquiries for its own web page" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -108,7 +77,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700613653678</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added project inquiries for its own web page">
+      <option name="closed" value="true" />
+      <created>1700613884120</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1700613884120</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
