@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css')}}">
+    </head>
+
+    <body>
+        <header>
+            <div class="topnav">
+                <img src="./resources/3.png" alt="logo" class="logo">
+                <nav>
+                    <ul>
+                        <li><a href="http://localhost:5001/">Home</a></li>
+                        <li><a class="active" href="http://localhost:5001/requestPage">Request a project!</a></li>
+                        <li><a href="http://localhost:5001/reviews">Leave a review!</a></li>
+                        <li><a href="http://localhost:5001/inquiry">Submit an inquiry.</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <div class="formSection">
+            <form id="projectInq" action="/submitinquiry" enctype="multipart/form-data" method="POST">
+                <label for="projectInq">Having problems with our service? Reach out!</label><br>
+                <textarea id="projectInq" name="projectInq" rows="10" cols="50" required></textarea><br>
+
+                <input type="submit" value="submit">
+            <form>
+        <div>
+
+        
+        <script>
+             function clearFormInputs() {
+                document.getElementById('projectInq').value = '';
+            }
+
+            async function submitForm() {
+                    try {
+                    // Get form data
+                    const formData = new FormData(document.getElementById('projectInq'));
+
+                    // Make a POST request to the server
+                    const response = await fetch('/submitinquiry', {
+                        method: 'POST',
+                        body: formData,
+                    });
+
+                    if (response.ok) {
+                        // Display a success message to the user
+                        alert('Thank you for your submitting an inquiry!');
+
+                        // Clear form inputs
+                        clearFormInputs();
+                    } else {
+                        // Display an error message to the user
+                        alert('Failed to submit your inqiuiry. Please try again.');
+                    }
+                } catch (error) {
+                    console.error('Error submitting the inquiry:', error);
+                    // Display an error message to the user
+                    alert('An unexpected error occurred. Please try again later.');
+            }
+         }
+        
+         document.getElementById('projectInq').addEventListener('submit', function (e) {
+                e.preventDefault(); // Prevent the default form submission
+                submitForm(); // Call the custom submitForm function
+            });
+
+        </script>
+    <body>
+<html>
+
