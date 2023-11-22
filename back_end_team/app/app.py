@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, render_template, request
 import pymongo
 from pymongo import MongoClient
+from bson import json_util
 
 app = Flask(__name__)
 client = MongoClient(host='db', port=27017, username='root', password='pass')
@@ -124,6 +125,7 @@ def register():
         print(f'Error in register route: {e}')
         return jsonify({"status": "failure", "message": str(e)}), 500
 
+# Route for submitting login
 @app.route('/login', methods=['POST'])
 def login():
     try:
@@ -168,6 +170,28 @@ def login():
         print(f'Error in register route: {e}')
         return jsonify({"status": "failure", "message": str(e)}), 500
 
+@app.route('/getDashboardData', methods=['POST'])
+def getDashboardData():
+    try:
+        data = request.get_json()
+        cookie = data['username']
+        print("cookie: " + cookie)
+        
+        # Fetching the documents from MongoDB
+        cursor = db['employees'].find({'username':cookie})
+        
+        # Converting cursor to a list and then to JSON
+        response = json_util.dumps(list(cursor))
+        
+        return response, 200
+    except Exception as e:
+        response = {
+            'status': 'failure',
+            'message': str(e)
+        }
+        return jsonify(response), 500
+
+# Route for submitting requests
 @app.route('/submitRequest', methods=['GET', 'POST'])
 def submit_request():
     try:
@@ -216,6 +240,7 @@ def submit_request():
         }
         return jsonify(response_1000), 500
 
+# Route for adding reviews
 @app.route('/addReview', methods=['POST'])
 def addReview():
     try:

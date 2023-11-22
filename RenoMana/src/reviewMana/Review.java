@@ -132,6 +132,7 @@ public class Review extends VBox {
                 .POST(HttpRequest.BodyPublishers.ofString(msg, StandardCharsets.UTF_8))
                 .build();
 
+
         // Send POST message to Flask server
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
