@@ -1,6 +1,6 @@
 package reviewMana;
 
-import javafx.beans.property.SimpleStringProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -78,6 +78,13 @@ public class Review extends VBox {
         selectRating = new ComboBox<>();
         selectRating.getItems().addAll("All reviews", "5 Star", "4 Star", "3 Star", "2 Star", "1 Star");
         selectRating.setValue("All reviews");
+        selectRating.setOnAction(actionEvent -> {
+            try {
+                loadReviews();
+            } catch (IOException | InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
         HBox optButton = new HBox(10, selectRating, refreshReviews);
 
@@ -114,7 +121,6 @@ public class Review extends VBox {
             default ->  searchRating = "\"0\"";
         }
 
-
         // Build POST message
         String msg =  "{\"rating\":" + searchRating + "}";
 
@@ -129,55 +135,18 @@ public class Review extends VBox {
         // Send POST message to Flask server
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
-        String[] responseBody = response.body().split("(?<=},)");
+        // Decode POST response and add reviews to table data
+        try {
+            ObjectMapper mapper = new ObjectMapper();
 
-        // Loop over all reviews in the response
-        for (int i = 0; i < responseBody.length; i++){
-            // Create the review
-            String title = getJsonValue(responseBody[i], "\"title\"").split("}")[0];
-            String description = getJsonValue(responseBody[i], "\"description\"");
-            String rating = getJsonValue(responseBody[i], "\"rating\"");
-
-            // Check if review server response is empty
-            if (title.equals("\"title\"" + " not found in the response") ||
-                    description.equals("\"description\"" + " not found in the response") ||
-                    rating.equals("\"rating\"" + " not found in the response")){
-                return; // Leave the table blank
-            }
-            ReviewItem newReview = new ReviewItem(new SimpleStringProperty(title),
-                    new SimpleStringProperty(description), new SimpleStringProperty(rating));
-
-            // Add review to the table
-            this.data.add(newReview);
+            ReviewItems reviews = mapper.readValue(response.body(), ReviewItems.class);
+            this.data.addAll(reviews.getReviews());
+        } catch (Exception e){
+            System.out.println(e);
         }
+
+        // Refresh table
         reviewTable.refresh();
-    }
-
-    /**
-     * Find the value of the inputted key
-     *
-     * @param jsonString - JSON String
-     * @param key - The key of the value being searched for
-     * @return The value of the inputted key
-     */
-    public String getJsonValue(String jsonString, String key){
-        int startIndex = jsonString.indexOf(key);
-        // Check if the key is found
-        if (startIndex != -1) {
-            // Move the index to the start of the value
-            startIndex = jsonString.indexOf(":", startIndex) + 1;
-
-            // Find the end of the value (up to the next comma or the end of the JSON object)
-            int endIndex = jsonString.indexOf(",", startIndex);
-            if (endIndex == -1) {
-                endIndex = jsonString.indexOf("}", startIndex);
-            }
-
-            // Extract the value
-            return jsonString.substring(startIndex, endIndex).trim();
-        }else {
-            return key + " not found in the response";
-        }
     }
 
     /**
