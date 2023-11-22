@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 
 import timeMana.Project;
 
+import javax.crypto.SecretKey;
 import java.util.List;
 
 public class Employee {
@@ -18,9 +19,16 @@ public class Employee {
     private ObservableList<Project> projects;
     private SimpleStringProperty title;
 
+    private SimpleStringProperty username;
+
+    private SimpleStringProperty password;
+
+    private SecretKey passwordKey;
+
     public Employee(SimpleStringProperty employeeID, SimpleStringProperty firstName,
                     SimpleStringProperty lastName, ObservableList<Project> projects,
-                    SimpleStringProperty cellNumber,SimpleStringProperty eMail,SimpleStringProperty title){
+                    SimpleStringProperty cellNumber,SimpleStringProperty eMail,SimpleStringProperty title,
+                    SimpleStringProperty username, SimpleStringProperty password, SecretKey passwordKey){
         this.employeeID = employeeID;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -28,6 +36,9 @@ public class Employee {
         this.eMail = eMail;
         this.projects = projects;
         this.title = title;
+        this.username = username;
+        this.password = password;
+        this.passwordKey = passwordKey;
     }
 
     public String getEmployeeFirstName() {
@@ -86,6 +97,22 @@ public class Employee {
     public SimpleStringProperty titleProperty() {
         return title;
     }
+
+    public String getUsername() {return username.get();}
+
+    public SimpleStringProperty usernameProperty() {
+        return username;
+    }
+
+    public String getPassword() {return password.get();}
+
+    public SimpleStringProperty passwordProperty() {
+        return password;
+    }
+
+    public SecretKey getPasswordKey() {return passwordKey;}
+
+
 
 
 }
