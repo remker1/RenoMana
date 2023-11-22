@@ -15,6 +15,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.util.Arrays;
 
 public class Inventory extends VBox {
 
@@ -121,8 +122,15 @@ public class Inventory extends VBox {
             try (BufferedReader br = new BufferedReader(new FileReader(file))) {
                 String line;
 
+
                 // Read each line of the file until there are no more lines left
+                boolean isFirstLine = true;
                 while ((line = br.readLine()) != null) {
+                    if (isFirstLine) {
+                        isFirstLine = false;
+                        continue;
+                    }
+
                     String[] values = line.split(",");
 
                     // Check if the line has at least 3 values (for toolName, quantity, and estimation) and create an
@@ -132,14 +140,13 @@ public class Inventory extends VBox {
                         String toolName = values[0];
                         int quantity = Integer.parseInt(values[1].trim());
                         int estimation = Integer.parseInt(values[2].trim());
-
                         InventoryItem newItem = new InventoryItem(
                                 new SimpleStringProperty(toolName),
                                 new SimpleIntegerProperty(quantity),
                                 new SimpleIntegerProperty(estimation)
                         );
 
-                        this.data.add(newItem);
+                        data.add(newItem);
                     }
                 }
 
