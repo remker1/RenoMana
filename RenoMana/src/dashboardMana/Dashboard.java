@@ -5,13 +5,12 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
-import javafx.scene.chart.PieChart;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.chart.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import employeeMana.Employee;
 import employeeMana.EmployeeList;
@@ -22,6 +21,13 @@ import javafx.util.Duration;
 import timeMana.Project;
 import timeMana.Scheduler;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+
 
 public class Dashboard extends HBox {
 
@@ -31,9 +37,17 @@ public class Dashboard extends HBox {
     private final TableView<Project> projectTableView;
     private final TableView<InventoryItem> dashboardInventoryTable;
 
-    public Dashboard() {
+    private String userFname;
+    private String userLname;
 
-        // Second option Project timelines as List (inline commented)timeLineListView = new ListView<>();
+
+    public Dashboard(String COOKIES, String dashboardData) throws IOException, InterruptedException {
+
+        this.userFname = parseJson(dashboardData, "fname");
+        this.userLname = parseJson(dashboardData, "lname");
+
+        // Second option Project timelines as List (inline commented)
+        // timeLineListView = new ListView<>();
 
         dashboardInventoryTable = new TableView<>();
         projectTableView = new TableView<>();
@@ -46,7 +60,7 @@ public class Dashboard extends HBox {
         VBox inventoryBox = new VBox();
 
         // set up labels for Dashboard
-        final Label welcomeMsg = new Label("Welcome,_____");
+        final Label welcomeMsg = new Label("Welcome, " + this.userFname + " " + this.userLname + "!");
         welcomeMsg.setFont(new Font("Arial", 20));
         final Label inventoryTitle = new Label("Inventory Items: ");
         inventoryTitle.setFont(new Font("Arial", 20));
@@ -101,8 +115,8 @@ public class Dashboard extends HBox {
             // Second option Project timelines as List (inline commented)
             // timeLineListView.setItems(Scheduler.projectsTimelineList);
 
-            //projectTableView.setItems(Scheduler.data);
-            //projectTableView.refresh();
+            projectTableView.setItems(Scheduler.data);
+            projectTableView.refresh();
 
         });
         timeline.setCycleCount(Timeline.INDEFINITE);
@@ -119,12 +133,17 @@ public class Dashboard extends HBox {
         //rightBox.getChildren().addAll(projectTimeLineTitle,timeLineListView);
         rightBox.getChildren().addAll(projectTimeLineTitle,projectTableView);
 
-        getChildren().addAll(leftBox,rightBox);
-    }
+        Button refreshDashboard = new Button("Refresh");
+        refreshDashboard.setOnAction(actionEvent -> {
+            try {
+                fetchDashboardData(COOKIES);
+            } catch(Exception e){
+                showAlert("Error!", "Something went wrong when loading reviews");
+            }
+        });
 
-    // TODO:
-    //  For Vince:
-    //      displayPieChart and Hello to currently Logged in User
+        getChildren().addAll(leftBox,rightBox, refreshDashboard);
+    }
 
     private PieChart displayPieChart (ObservableList<Employee> employeeList){
 
@@ -133,6 +152,64 @@ public class Dashboard extends HBox {
         }
 
         return null;
+    }
+
+    private String fetchDashboardData(String COOKIES) throws IOException, InterruptedException {
+        System.out.println(COOKIES);
+        String msg = "{" +
+                "\"username\":\"" + COOKIES +
+                "\"}";
+
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://127.0.0.1:5001/getDashboardData"))
+                .timeout(java.time.Duration.ofMinutes(2))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(msg, StandardCharsets.UTF_8))
+                .build();
+
+        System.out.println("[DASHBOARD] " + request.toString());
+        System.out.println(msg);
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+        String responseBody = response.body();
+        System.out.println("[DASHBOARD] " + responseBody);
+        System.out.println();
+        return responseBody;
+    }
+
+    private void showAlert(String title, String content) {
+        Alert invalidNumAlert = new Alert(Alert.AlertType.ERROR);
+        invalidNumAlert.setTitle(title);
+        invalidNumAlert.setHeaderText(null);
+        invalidNumAlert.setContentText(content);
+        invalidNumAlert.showAndWait();
+    }
+
+    private static String parseJson(String string, String target) {
+        // Find the index of the cookie key
+        int startIndex = string.indexOf("\"" + target + "\"");
+
+        // Check if the key is found
+        if (startIndex != -1) {
+            // Move the index to the start of the value
+            startIndex = string.indexOf(":", startIndex) + 1;
+
+            // Find the end of the value (up to the next comma or the end of the JSON object)
+            int endIndex = string.indexOf(",", startIndex);
+            if (endIndex == -1) {
+                endIndex = string.indexOf("}", startIndex);
+            }
+
+            // Extract the value
+            String value = string.substring(startIndex, endIndex).trim().replace("\"", "");
+
+            return value;
+
+        } else {
+            System.out.println("'cookie' not found in the response");
+            return null;
+        }
     }
 
 }

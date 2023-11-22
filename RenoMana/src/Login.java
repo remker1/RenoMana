@@ -124,37 +124,8 @@ public class Login extends BasicPage {
 
         String responseBody = response.body();
 
-        // Find the index of the cookie key
-        int startIndex = responseBody.indexOf("\"cookie\"");
-
-        // Check if the key is found
-        if (startIndex != -1) {
-            // Move the index to the start of the value
-            startIndex = responseBody.indexOf(":", startIndex) + 1;
-
-            // Find the end of the value (up to the next comma or the end of the JSON object)
-            int endIndex = responseBody.indexOf(",", startIndex);
-            if (endIndex == -1) {
-                endIndex = responseBody.indexOf("}", startIndex);
-            }
-
-            // Extract the value
-            String value = responseBody.substring(startIndex, endIndex).trim();
-
-            if (value != "") {
-                COOKIES = value;
-            }
-            else {
-                COOKIES = null;
-            }
-            return response.statusCode();
-
-        } else {
-            System.out.println("'cookie' not found in the response");
-            COOKIES = null;
-            return response.statusCode();
-        }
-
+        COOKIES = parseJson(responseBody, "cookie");
+        return response.statusCode();
     }
 
     // Add this method to display an error message
