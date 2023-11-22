@@ -36,9 +36,13 @@ import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.geometry.Insets;
-import ProjectMana.Project2;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 
 public class MainPage extends BasicPage {
     HBox mainLayout = new HBox();
@@ -53,8 +57,16 @@ public class MainPage extends BasicPage {
 
     private ObservableList<Project> allProjects = FXCollections.observableArrayList();
 
+    private String userFname;
+    private String userLname;
+
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
+        String dashboardData = fetchDashboardData(COOKIES);
+
+        this.userFname = parseJson(dashboardData, "fname");
+        this.userLname = parseJson(dashboardData, "lname");
+
 //        stage.getIcons().add(new Image("./resources/icon.png"));
         VBox rootLayout = new VBox();
         mainLayout.setStyle("-fx-background-color: lightGray");
@@ -71,7 +83,7 @@ public class MainPage extends BasicPage {
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
         // The top bar will contain account profile and search tab
-        Label accountName = new Label("Hello, User!");
+        Label accountName = new Label(this.userFname + " " + this.userLname);
         accountName.setStyle("-fx-text-fill: white; -fx-font-weight: bold");
 
         Circle profileCircle = new Circle(30);
@@ -96,22 +108,45 @@ public class MainPage extends BasicPage {
         contentArea.setStyle("-fx-background-color: lightGray; -fx-padding: 10px;");
 
         // Create buttons for each tab and add them to the sidebar
-        createTabButton("Dashboard", new Dashboard(), "Dashboard");
+        createTabButton("Dashboard", new Dashboard(COOKIES, dashboardData), "Dashboard");
         createTabButton("Scheduler", new Scheduler(), "Scheduler");
         //loadProjects();
         createTabButton("Calendar", new Calendar(allProjects), "Calendar");
         createTabButton("Inventory", new Inventory(), "Inventory");
         createTabButton("Employees", new EmployeeList(), "Employees");
         createTabButton("Reviews", new Review(), "Reviews");
-        createTabButton("Projects", new Project2(), "Projects");
+        Button button = new Button("Log out");
+        button.setPrefWidth(Double.MAX_VALUE);
+        button.setStyle("-fx-background-color: transparent; -fx-text-fill: white;");
 
+        button.hoverProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                button.setStyle("-fx-background-color: #7C1715; -fx-text-fill: white;");
+            } else {
+                button.setStyle("-fx-background-color: transparent; -fx-text-fill: white;");
+            }
+        });
+
+        button.setOnAction(e -> {
+            COOKIES = null;
+            // Close the login stage
+            stage.close();
+            // Launch the main page
+            try {
+                new Login().start(new Stage());
+            } catch (Exception exc) {
+                System.out.println("Something went wrong when going into main page.");
+            }
+        });
+
+        sideBar.getChildren().add(button);
 
         mainLayout.getChildren().addAll(sideBar, contentArea);
         rootLayout.getChildren().addAll(topBar, mainLayout);
 
         // Display Dashboard content by default
         sideBar.setMaxWidth(0);
-        displayContent(new Dashboard(), "Dashboard");
+        displayContent(new Dashboard(COOKIES, dashboardData), "Dashboard");
 
         // Ensure system expand vertically and horizontally to fill available space
         VBox.setVgrow(mainLayout, Priority.ALWAYS);
@@ -218,6 +253,11 @@ public class MainPage extends BasicPage {
         sideBar.getChildren().add(button);
     }
 
+    private void createLogoutButton() {
+
+    }
+
+
     private ToggleButton getToggleButton() {
         ToggleButton toggleSidebar = new ToggleButton("Menu");
         toggleSidebar.setStyle("-fx-background-color: transparent; -fx-text-fill: white;");
@@ -231,6 +271,32 @@ public class MainPage extends BasicPage {
             }
         });
         return toggleSidebar;
+    }
+
+    private String fetchDashboardData(String COOKIES) throws IOException, InterruptedException {
+        System.out.println(COOKIES);
+        String msg = "{" +
+                "\"username\":\"" + COOKIES +
+                "\"}";
+
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://127.0.0.1:5001/getDashboardData"))
+                .timeout(java.time.Duration.ofMinutes(2))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(msg, StandardCharsets.UTF_8))
+                .build();
+
+        System.out.println("[DASHBOARD] " + request.toString());
+        System.out.println(msg);
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+        String responseBody = response.body();
+        System.out.println("[DASHBOARD] " + responseBody);
+        this.userFname = parseJson(responseBody, "fname");
+        this.userLname = parseJson(responseBody, "lname");
+        System.out.println();
+        return responseBody;
     }
 
     public static void main(String[] args) {
