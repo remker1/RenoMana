@@ -4,221 +4,56 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="DashBoard Partially Done, now dashboard could sync data with Scheduler and Inventory, user pointed welcome section and Charts for Employees still needs implementation. Two options of project timeline (TableView/ListVew) are both implemented for choices of better UI Design.">
-      <change afterPath="$PROJECT_DIR$/RenoMana/src/reviewMana/ReviewItems.java" afterDir="false" />
+    <list default="true" id="f9113f89-93fb-44f8-a0c1-da583e6e9a43" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Downloads.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/local_2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/jackson_annotations_2_16_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/jackson_core_2_16_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/jackson_databind_2_16_0.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/RenoMana.iml" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/RenoMana.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/reviewMana/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/reviewMana/Review.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/reviewMana/ReviewItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/reviewMana/ReviewItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/app/templates/RenoGrpReviewPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/app/templates/RenoGrpReviewPage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/.mongodb/mongosh/653af96a55e991dd4f069c74_log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/.mongodb/mongosh/653af96e0f76c8cccae0797f_log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/.mongodb/mongosh/6542cf0c1f4d5538f5d3fc3f_log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/.mongodb/mongosh/6542cf0e755f23c90571cc0f_log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/.mongodb/mongosh/6542cf501ec5164c3918b992_log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/.mongodb/mongosh/6542cf50cbd61fa0a7dfb839_log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/.mongodb/mongosh/am-653af96a55e991dd4f069c73.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/.mongodb/mongosh/am-6542cf0c1f4d5538f5d3fc3e.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/.mongodb/mongosh/am-6542cf501ec5164c3918b991.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/.mongodb/mongosh/config" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/db/.mongodb/mongosh/config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/.mongodb/mongosh/snippets/index.bson.br" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/WiredTiger" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/db/WiredTiger" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/WiredTiger.lock" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/db/WiredTiger.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/WiredTiger.turtle" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/db/WiredTiger.turtle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/WiredTiger.wt" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/db/WiredTiger.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/_mdb_catalog.wt" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/db/_mdb_catalog.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-0--6497439860735669609.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-0--7394452067772645410.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-0--9017261746629576879.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-0-1020687177800518261.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-0-1756978961854141784.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-2--6497439860735669609.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-2--7394452067772645410.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-2--9017261746629576879.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-2-1020687177800518261.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-2-1756978961854141784.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-4--6497439860735669609.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-4--7394452067772645410.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-4-1756978961854141784.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-7--6497439860735669609.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-7--7394452067772645410.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/collection-7-1756978961854141784.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/diagnostic.data/metrics.2023-10-26T23-42-32Z-00000" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/diagnostic.data/metrics.2023-10-26T23-44-09Z-00000" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/diagnostic.data/metrics.2023-11-01T22-19-55Z-00000" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/diagnostic.data/metrics.2023-11-01T22-20-46Z-00000" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/diagnostic.data/metrics.2023-11-01T22-21-04Z-00000" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/diagnostic.data/metrics.2023-11-01T22-21-08Z-00000" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/diagnostic.data/metrics.2023-11-01T22-54-35Z-00000" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-1--6497439860735669609.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-1--7394452067772645410.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-1--9017261746629576879.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-1-1020687177800518261.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-1-1756978961854141784.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-3--6497439860735669609.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-3--7394452067772645410.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-3--9017261746629576879.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-3-1020687177800518261.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-3-1756978961854141784.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-5--6497439860735669609.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-5--7394452067772645410.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-5-1756978961854141784.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-6--6497439860735669609.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-6--7394452067772645410.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-6-1756978961854141784.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-8--6497439860735669609.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-8--7394452067772645410.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-8-1756978961854141784.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-9--6497439860735669609.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-9--7394452067772645410.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/index-9-1756978961854141784.wt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/journal/WiredTigerLog.0000000002" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/db/journal/WiredTigerLog.0000000002" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/journal/WiredTigerLog.0000000003" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/mongod.lock" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/db/mongod.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/db/sizeStorer.wt" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/db/sizeStorer.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/BasicPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/BasicPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/Login.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Registration.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/Registration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/dashboardMana/Dashboard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/dashboardMana/Dashboard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/employeeMana/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/employeeMana/Employee.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/employeeMana/EmployeeInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/employeeMana/EmployeeInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/employeeMana/EmployeeList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/employeeMana/EmployeeList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/inventoryMana/Inventory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/inventoryMana/Inventory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/inventoryMana/InventoryItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/inventoryMana/InventoryItem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/reviewMana/Review.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/reviewMana/Review.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/reviewMana/ReviewItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/reviewMana/ReviewItem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Calendar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Calendar.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Project.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Project.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Scheduler$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Scheduler$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Scheduler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Scheduler.class" afterDir="false" />
-=======
-    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="Re-commit Inquiry html webpage">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/RenoMana.iml" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/RenoMana.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/MainPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/app/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/app/.idea/workspace.xml" afterDir="false" />
->>>>>>> 91525bdfc7857ba1c07bf434825da93e79b523d9
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="JavaFXApplication" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="origin/main" />
-  </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="main" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitLabMergeRequestFiltersHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPENED&quot;,
-    &quot;assignee&quot;: {
-      &quot;type&quot;: &quot;org.jetbrains.plugins.gitlab.mergerequest.ui.filters.GitLabMergeRequestsFiltersValue.MergeRequestsMemberFilterValue.MergeRequestsAssigneeFilterValue&quot;,
-      &quot;username&quot;: &quot;wzt206&quot;,
-      &quot;fullname&quot;: &quot;Jewel Magcawas (wzt206)&quot;
-    }
-  }
-}</component>
-  <component name="GitLabMergeRequestsSettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;first&quot;: &quot;https://git.cs.usask.ca/xpo285/cmpt370-g29.git&quot;,
-    &quot;second&quot;: &quot;36043286-452f-4304-bfad-15318694ad84&quot;
-  }
-}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
-  </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 7
+  &quot;associatedIndex&quot;: 5
 }</component>
-  <component name="ProjectId" id="2VqPpCYY7ldfkeTDnBPX1Q2XQy6" />
+  <component name="ProjectId" id="2YW3McY5SRn9cmQwCk26o4HpNVo" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-<<<<<<< HEAD
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "elliott__branch__v2",
-    "last_opened_file_path": "C:/Users/Ellio/Desktop/University/Year 3/Term 1/CMPT-370-Project/jackson-databind-2.16.0.jar",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
+    "last_opened_file_path": "C:/Users/emana/Downloads/jackson-databind-2.16.0.jar",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.26666668",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
-    "vue.rearranger.settings.migration": "true"
-=======
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Leo-JavaGUI&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Emmanuel/Desktop/temo/lib&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.14641148&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
->>>>>>> 91525bdfc7857ba1c07bf434825da93e79b523d9
+    "project.structure.side.proportion": "0.31724137"
   }
-}</component>
-  <component name="RunManager" selected="Application.Login">
+}]]></component>
+  <component name="RunManager" selected="Application.MainPage">
     <configuration name="Login" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="Login" />
-      <module name="RenoMana" />
-      <option name="VM_PARAMETERS" value="--module-path C:\Users\Emmanuel\Desktop\temo\lib --add-modules javafx.controls,javafx.fxml" />
+      <module name="local_2" />
+      <option name="VM_PARAMETERS" value="--module-path C:\Users\emana\OneDrive\Desktop\temo\lib --add-modules javafx.controls,javafx.fxml " />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -227,209 +62,26 @@
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="MainPage" />
-      <module name="RenoMana" />
-<<<<<<< HEAD
-      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\Ellio\Desktop\University\Year 3\Term 1\CMPT-370-Project\javafx-sdk-21.0.1\lib&quot; --add-modules javafx.controls,javafx.fxml" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Registration" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Registration" />
-      <module name="RenoMana" />
-      <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Downloads/javafx-sdk-21/lib --add-modules javafx.controls,javafx.fxml" />
-=======
-      <option name="VM_PARAMETERS" value="--module-path C:\Users\Emmanuel\Desktop\temo\lib --add-modules javafx.controls,javafx.fxml" />
->>>>>>> 91525bdfc7857ba1c07bf434825da93e79b523d9
+      <module name="local_2" />
+      <option name="VM_PARAMETERS" value="--module-path C:\Users\emana\OneDrive\Desktop\temo\lib --add-modules javafx.controls,javafx.fxml " />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.MainPage" />
       <item itemvalue="Application.Login" />
-      <item itemvalue="Application.Registration" />
+      <item itemvalue="Application.MainPage" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Registration" />
-        <item itemvalue="Application.MainPage" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="" />
-      <created>1695560817387</created>
+      <changelist id="f9113f89-93fb-44f8-a0c1-da583e6e9a43" name="Changes" comment="" />
+      <created>1700627461782</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1695560817387</updated>
-      <workItem from="1695560818666" duration="131000" />
-      <workItem from="1695994638644" duration="1495000" />
-      <workItem from="1695996186111" duration="30000" />
-      <workItem from="1695996229532" duration="155000" />
-      <workItem from="1695996909970" duration="14000" />
-      <workItem from="1696078636270" duration="1669000" />
-      <workItem from="1696131408534" duration="2502000" />
-      <workItem from="1696133925861" duration="872000" />
-      <workItem from="1696162385340" duration="1767000" />
-      <workItem from="1696164299262" duration="3400000" />
-      <workItem from="1696217542796" duration="1195000" />
-      <workItem from="1696276661216" duration="320000" />
-      <workItem from="1696277728527" duration="403000" />
-      <workItem from="1696282114845" duration="741000" />
-      <workItem from="1696291005823" duration="36000" />
-      <workItem from="1696364311229" duration="840000" />
-      <workItem from="1696365207238" duration="4293000" />
-      <workItem from="1696442201683" duration="172000" />
-      <workItem from="1696451729390" duration="164000" />
-      <workItem from="1696457143116" duration="1065000" />
-      <workItem from="1700003285969" duration="5225000" />
-      <workItem from="1700604465134" duration="268000" />
-      <workItem from="1700609319076" duration="2044000" />
+      <updated>1700627461782</updated>
     </task>
-    <task id="LOCAL-00001" summary="Finished setting up the log in page in accordance to agreed upon outline">
-      <option name="closed" value="true" />
-      <created>1696282779620</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1696282779621</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Refined Login Class&#10;- Added comments&#10;- Log In button leads to main page&#10;- New? button leads to registration page">
-      <option name="closed" value="true" />
-      <created>1696369195402</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1696369195402</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Refined Login Class&#10;- Added comments&#10;- Log In button leads to main page&#10;- New? button leads to registration page">
-      <option name="closed" value="true" />
-      <created>1696369473137</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1696369473137</updated>
-    </task>
-    <task id="LOCAL-00004" summary="added comments to scheduler">
-      <option name="closed" value="true" />
-      <created>1698111996372</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1698111996372</updated>
-    </task>
-    <task id="LOCAL-00005" summary="added colour visualization to scheduler timeline">
-      <option name="closed" value="true" />
-      <created>1699913863635</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1699913863635</updated>
-    </task>
-    <task id="LOCAL-00006" summary="added colour visualization to scheduler timeline">
-      <option name="closed" value="true" />
-      <created>1699913976851</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1699913976851</updated>
-    </task>
-    <task id="LOCAL-00007" summary="commit">
-      <option name="closed" value="true" />
-      <created>1699914169335</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1699914169335</updated>
-    </task>
-    <task id="LOCAL-00008" summary="scheduler cell widths now fill up the entire table">
-      <option name="closed" value="true" />
-      <created>1700006923148</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1700006923148</updated>
-    </task>
-    <task id="LOCAL-00009" summary="scheduler cell widths now fill up the entire table">
-      <option name="closed" value="true" />
-      <created>1700009193919</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1700009193919</updated>
-    </task>
-    <task id="LOCAL-00010" summary="calendar can now show a list of projects due on or after set date">
-      <option name="closed" value="true" />
-      <created>1700012327971</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1700012327971</updated>
-    </task>
-    <task id="LOCAL-00011" summary="calendar can now show a list of projects due on or after current date">
-      <option name="closed" value="true" />
-      <created>1700012578691</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1700012578691</updated>
-    </task>
-    <task id="LOCAL-00012" summary="DashBoard Partially Done, now dashboard could sync data with Scheduler and Inventory, user pointed welcome section and Charts for Employees still needs implementation. Two options of project timeline (TableView/ListVew) are both implemented for choices of better UI Design.">
-      <option name="closed" value="true" />
-      <created>1700132644032</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1700132644032</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Re-commit Inquiry html webpage">
-      <created>1700614407099</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1700614407099</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Re-commit Inquiry html webpage">
-      <created>1700614450266</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1700614450266</updated>
-    </task>
-    <option name="localTasksCounter" value="15" />
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="committing unversioned files" />
-    <MESSAGE value="Finished setting up the log in page in accordance to agreed upon outline" />
-    <MESSAGE value="Refined Login Class&#10;- Added comments&#10;- Log In button leads to main page&#10;- New? button leads to registration page" />
-    <MESSAGE value="added comments to scheduler" />
-    <MESSAGE value="updates" />
-    <MESSAGE value="scheduler cell widths now fill up the entire table" />
-    <MESSAGE value="calendar can now show a list of projects due on or after set date" />
-    <MESSAGE value="calendar can now show a list of projects due on or after current date" />
-    <MESSAGE value="DashBoard Partially Done, now dashboard could sync data with Scheduler and Inventory, user pointed welcome section and Charts for Employees still needs implementation. Two options of project timeline (TableView/ListVew) are both implemented for choices of better UI Design." />
-    <MESSAGE value="Re-commit Inquiry html webpage" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-commit Inquiry html webpage" />
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/cmpt370_g29$MainPage.ic" NAME="MainPage Coverage Results" MODIFIED="1698361182269" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
