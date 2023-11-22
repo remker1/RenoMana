@@ -31,6 +31,13 @@ def displayReviews():
     except:
         pass
 
+@app.route('/inquiry', methods=['GET'])
+def displayInquiry():
+    try:
+        return render_template('RenoGrpInquiryPage.html')
+    except:
+        pass
+
 # Initialize some default employees into the database
 @app.route('/initDB', methods=["GET"])
 def initDB():
