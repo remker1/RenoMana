@@ -16,16 +16,18 @@ import javafx.stage.Stage;
 import timeMana.Project;
 import timeMana.Scheduler;
 
+import javax.crypto.*;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * This class represents an Employee List UI component, which displays a list of employees
@@ -139,6 +141,63 @@ public class EmployeeList extends VBox {
         return -1;
     }
 
+    /**
+     * Searches for an employee with the specified username in the 'data' list.
+     *
+     * @param username The username of the employee to search for.
+     * @return The index of the first occurrence of the employee with the specified username,
+     *         or -1 if no such employee is found.
+     */
+    public static int searchByUsername(String username) {
+        for (Employee employee : data) {
+
+            int idx = 0;
+            // Check if the username of the current employee matches the specified username.
+            if (Objects.equals(employee.getUsername(), username)) {
+                // If a match is found, return the index.
+                return idx;
+            }
+            // Increment the index for the next iteration.
+            idx++;
+        }
+        return -1;
+    }
+
+    public static String encryptPassword(String password, SecretKey secretKey) throws NoSuchPaddingException, NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+
+        Cipher myCipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+
+        byte[] passwordBytes = password.getBytes(StandardCharsets.UTF_8);
+        myCipher.init(Cipher.ENCRYPT_MODE,secretKey);
+
+        byte[] encryptedPassword = myCipher.doFinal(passwordBytes);
+
+        return Base64.getEncoder().encodeToString(encryptedPassword);
+
+    }
+
+    public static String decryptPassword(String encryptedPassword, SecretKey secretKey) throws NoSuchPaddingException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
+
+        Cipher myCipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+
+        byte[] encryptedPasswordBytes = Base64.getDecoder().decode(encryptedPassword);
+
+        myCipher.init(Cipher.DECRYPT_MODE,secretKey);
+
+        byte[] decryptedPasswordBytes = myCipher.doFinal(encryptedPasswordBytes);
+
+        return new String(decryptedPasswordBytes,StandardCharsets.UTF_8);
+    }
+
+    private String generateUsername(String fname, String lname){
+
+        StringBuffer result = new StringBuffer();
+        result.append(fname.substring(0,2).toLowerCase());
+        result.append(lname.substring(0,2).toLowerCase());
+        result.append(new Random().nextInt(900)+100);
+
+        return result.toString();
+    }
 
     /**
      * Generates a formatted employee ID based on the provided integer ID.
@@ -262,7 +321,7 @@ public class EmployeeList extends VBox {
             employeeEMail = emailInput.showAndWait().orElse("");
 
             // Validate the email address format
-            if (!employeeEMail.contains("@") && employeeCell.length() <= 4) {
+            if (!employeeEMail.contains("@") && employeeEMail.length() <= 4) {
                 throw new RuntimeException();
             }
         } catch (RuntimeException e) {
@@ -277,11 +336,29 @@ public class EmployeeList extends VBox {
         titleInput.setHeaderText("Add title to this employee");
         String employeeTitle = titleInput.showAndWait().orElse("");
 
+        String username = generateUsername(firstName,lastName);
+        System.out.println(username);
+        String password = "DPassword";
+
+        String encryptedPassword = password;
+        SecretKey encryKey = null;
+        try {
+            KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
+            keyGenerator.init(128);
+            encryKey = keyGenerator.generateKey();
+            encryptedPassword = encryptPassword(password, encryKey);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        System.out.println(encryptedPassword);
+
         // Create the new employee and add it to the data list
         Employee newEmployee = new Employee(new SimpleStringProperty(stringid), new SimpleStringProperty(firstName),
                 new SimpleStringProperty(lastName), new SimpleListProperty<Project>(projects),
                 new SimpleStringProperty(employeeCell), new SimpleStringProperty(employeeEMail),
-                new SimpleStringProperty(employeeTitle));
+                new SimpleStringProperty(employeeTitle), new SimpleStringProperty(username), new SimpleStringProperty(encryptedPassword),
+                encryKey);
 
         // Add the new employee to the data list and refresh the table view
         this.data.add(newEmployee);

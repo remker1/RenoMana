@@ -12,12 +12,14 @@ public class ReviewItem {
 
     private SimpleStringProperty rating;
 
+
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
     public ReviewItem(@JsonProperty("title") String title, @JsonProperty("description") String description, @JsonProperty("rating") int rating){
         this.title = new SimpleStringProperty(title);
         this.description = new SimpleStringProperty(description);
         this.rating = new SimpleStringProperty("★".repeat(rating) + "☆".repeat(5 - rating));
     }
+
 
     public ReviewItem(){}
 

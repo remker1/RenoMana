@@ -4,14 +4,40 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f9113f89-93fb-44f8-a0c1-da583e6e9a43" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Downloads.xml" beforeDir="false" />
+    <list default="true" id="f9113f89-93fb-44f8-a0c1-da583e6e9a43" name="Changes" comment="Updated Employee.java to store Username, Password, and passwordKey">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/fasterxml.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/JavaFX/javafx-sdk-20.0.2/src/javafx.base/javafx.base.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/JavaFX/javafx-sdk-20.0.2/src/javafx.controls/javafx.controls.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/JavaFX/javafx-sdk-20.0.2/src/javafx.fxml/javafx.fxml.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/JavaFX/javafx-sdk-20.0.2/src/javafx.graphics/javafx.graphics.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/JavaFX/javafx-sdk-20.0.2/src/javafx.media/javafx.media.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/JavaFX/javafx-sdk-20.0.2/src/javafx.swing/javafx.swing.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libraries/JavaFX/javafx-sdk-20.0.2/src/javafx.web/javafx.web.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/local_2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/local_2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/MainPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/employeeMana/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/employeeMana/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeList.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/reviewMana/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/reviewMana/Review.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/reviewMana/ReviewItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/reviewMana/ReviewItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/db/journal/WiredTigerLog.0000000002" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/db/journal/WiredTigerLog.0000000002" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/BasicPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Login.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/ProjectMana/ProjectItem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Registration.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/dashboardMana/Dashboard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/employeeMana/Employee.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/employeeMana/EmployeeInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/employeeMana/EmployeeList.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/inventoryMana/Inventory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/inventoryMana/InventoryItem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/reviewMana/Review.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/reviewMana/ReviewItem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Calendar.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Project.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Scheduler$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Scheduler.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,12 +65,13 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "Leo-JavaGUI",
-    "last_opened_file_path": "L:/JavaFX/openjfx-20.0.2_windows-x64_bin-sdk/javafx-sdk-20.0.2/lib",
+    "last_opened_file_path": "L:/Usask/Fall23/CMPT370/RenoProject/Libraries/fasterxml",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Modules",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.31724137"
   }
@@ -55,7 +82,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="Login" />
       <module name="local_2" />
-      <option name="VM_PARAMETERS" value="--module-path C:\Users\emana\OneDrive\Desktop\temo\lib --add-modules javafx.controls,javafx.fxml " />
+      <option name="VM_PARAMETERS" value="--module-path L:\Usask\Fall23\CMPT370\RenoProject\Libraries\JavaFX\javafx-sdk-20.0.2\lib --add-modules javafx.controls,javafx.fxml " />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -65,7 +92,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="MainPage" />
       <module name="local_2" />
-      <option name="VM_PARAMETERS" value="--module-path C:\Users\emana\OneDrive\Desktop\temo\lib --add-modules javafx.controls,javafx.fxml " />
+      <option name="VM_PARAMETERS" value="--module-path L:\Usask\Fall23\CMPT370\RenoProject\Libraries\JavaFX\javafx-sdk-20.0.2\lib --add-modules javafx.controls,javafx.fxml " />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -84,7 +111,20 @@
       <option name="presentableId" value="Default" />
       <updated>1700627461782</updated>
     </task>
+    <task id="LOCAL-00001" summary="Updated Employee.java to store Username, Password, and passwordKey">
+      <option name="closed" value="true" />
+      <created>1700643593757</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1700643593757</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Updated Employee.java to store Username, Password, and passwordKey" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated Employee.java to store Username, Password, and passwordKey" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/cmpt370_g29$MainPage.ic" NAME="MainPage Coverage Results" MODIFIED="1698361182269" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

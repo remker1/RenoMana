@@ -136,6 +136,7 @@ public class Review extends VBox {
         // Send POST message to Flask server
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
+
         // Decode POST response and add reviews to table data
         try {
             ObjectMapper mapper = new ObjectMapper();
@@ -145,6 +146,7 @@ public class Review extends VBox {
         } catch (Exception e){
             System.out.println(e);
         }
+
 
         // Refresh table
         reviewTable.refresh();
