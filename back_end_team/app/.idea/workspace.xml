@@ -4,25 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62d76d9b-05ee-4c69-a7a4-e7b9c7f180dc" name="Changes" comment="">
+    <list default="true" id="62d76d9b-05ee-4c69-a7a4-e7b9c7f180dc" name="Changes" comment="Added project inquiries for its own web page">
+      <change afterPath="$PROJECT_DIR$/../../.idea/libraries/Downloads.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../.idea/local_2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/libraries/jackson_annotations_2_16_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/libraries/jackson_core_2_16_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/libraries/jackson_databind_2_16_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/libraries/lib.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../RenoMana/src/BasicPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../RenoMana/src/BasicPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../RenoMana/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../RenoMana/src/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../RenoMana/src/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../RenoMana/src/MainPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../RenoMana/src/dashboardMana/Dashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../RenoMana/src/dashboardMana/Dashboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../RenoMana/src/reviewMana/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../RenoMana/src/reviewMana/Review.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../RenoMana/src/timeMana/Scheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../RenoMana/src/timeMana/Scheduler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RenoMana/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../RenoMana/.idea/libraries/lib.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RenoMana/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../RenoMana/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RenoMana/out/production/RenoMana/BasicPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../RenoMana/out/production/RenoMana/BasicPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RenoMana/out/production/RenoMana/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../RenoMana/out/production/RenoMana/Login.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RenoMana/out/production/RenoMana/MainPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../RenoMana/out/production/RenoMana/MainPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RenoMana/out/production/RenoMana/MainPageTab1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RenoMana/out/production/RenoMana/MainPageTab2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RenoMana/out/production/RenoMana/MainPageTab4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RenoMana/out/production/RenoMana/MainPageTab5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RenoMana/out/production/RenoMana/MainPageTab6.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RenoMana/out/production/RenoMana/Registration.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../RenoMana/out/production/RenoMana/Registration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RenoMana/out/production/RenoMana/dashboardMana/Dashboard.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../RenoMana/out/production/RenoMana/dashboardMana/Dashboard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RenoMana/out/production/RenoMana/inventoryMana/Inventory.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../RenoMana/out/production/RenoMana/inventoryMana/Inventory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RenoMana/out/production/RenoMana/inventoryMana/InventoryItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../RenoMana/out/production/RenoMana/inventoryMana/InventoryItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RenoMana/out/production/RenoMana/timeMana/Calendar.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../RenoMana/out/production/RenoMana/timeMana/Calendar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RenoMana/out/production/RenoMana/timeMana/Project.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../RenoMana/out/production/RenoMana/timeMana/Project.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RenoMana/out/production/RenoMana/timeMana/Scheduler.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../RenoMana/out/production/RenoMana/timeMana/Scheduler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/BasicPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/BasicPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/Login.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/MainPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/MainPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/dashboardMana/Dashboard.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/dashboardMana/Dashboard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/reviewMana/Review.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/reviewMana/Review.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/timeMana/Scheduler$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/timeMana/Scheduler$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/RenoMana/timeMana/Scheduler.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/RenoMana/timeMana/Scheduler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/RenoGrpInquiryPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RenoGrpInquiryPage.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +43,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
@@ -45,25 +60,26 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;DannPanganBranch&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;eman__branch&quot;,
     &quot;last_opened_file_path&quot;: &quot;Z:/2023/FallTerm/CMPT370/Project/cmpt370-g29/back_end_team/app&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RunManager">
-    <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="app" type="PythonConfigurationType" factoryName="Python">
       <module name="app" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="SDK_HOME" value="C:\Users\emana\anaconda3\python.exe" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -73,11 +89,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Python.app" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -89,9 +100,41 @@
       <updated>1698360403477</updated>
       <workItem from="1698360404431" duration="186000" />
     </task>
+    <task id="LOCAL-00001" summary="Added project inquiries for its own web page">
+      <option name="closed" value="true" />
+      <created>1700613653678</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1700613653678</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added project inquiries for its own web page">
+      <option name="closed" value="true" />
+      <created>1700613884120</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1700613884120</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added project inquiries for its own web page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added project inquiries for its own web page" />
   </component>
 </project>
