@@ -117,6 +117,7 @@ public class MainPage extends BasicPage {
         createTabButton("Employees", new EmployeeList(), "Employees");
         createTabButton("Reviews", new Review(), "Reviews");
         createTabButton("Projects", new Project2(), "Projects");
+        createTabButton("Reports", new Report(), "Reports");
 
         Button button = new Button("Log out");
         button.setPrefWidth(Double.MAX_VALUE);
