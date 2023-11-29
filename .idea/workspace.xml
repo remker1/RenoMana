@@ -4,47 +4,130 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f9113f89-93fb-44f8-a0c1-da583e6e9a43" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/BasicPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/BasicPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/MainPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/dashboardMana/Dashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/dashboardMana/Dashboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeList.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/reviewMana/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/reviewMana/Review.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/app/.idea/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/app/.idea/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/app/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/app/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/app/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/app/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/BasicPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/BasicPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/Login.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/dashboardMana/Dashboard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/dashboardMana/Dashboard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/reviewMana/Review.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/reviewMana/Review.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Scheduler$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Scheduler$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Scheduler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Scheduler.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaFXApplication" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="origin/main" />
+  </component>
   <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="main" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitLabMergeRequestFiltersHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPENED&quot;,
+    &quot;assignee&quot;: {
+      &quot;type&quot;: &quot;org.jetbrains.plugins.gitlab.mergerequest.ui.filters.GitLabMergeRequestsFiltersValue.MergeRequestsMemberFilterValue.MergeRequestsAssigneeFilterValue&quot;,
+      &quot;username&quot;: &quot;wzt206&quot;,
+      &quot;fullname&quot;: &quot;Jewel Magcawas (wzt206)&quot;
+    }
+  }
+}</component>
+  <component name="GitLabMergeRequestsSettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;first&quot;: &quot;https://git.cs.usask.ca/xpo285/cmpt370-g29.git&quot;,
+    &quot;second&quot;: &quot;36043286-452f-4304-bfad-15318694ad84&quot;
+  }
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 5
+  &quot;associatedIndex&quot;: 7
 }</component>
-  <component name="ProjectId" id="2YW3McY5SRn9cmQwCk26o4HpNVo" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="2VqPpCYY7ldfkeTDnBPX1Q2XQy6" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/emana/Downloads/jackson-databind-2.16.0.jar&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Leo-JavaGUI&quot;,
+    &quot;last_opened_file_path&quot;: &quot;L:/JavaFX/openjfx-20.0.2_windows-x64_bin-sdk/javafx-sdk-20.0.2/lib&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.31724137&quot;
+    &quot;project.structure.side.proportion&quot;: &quot;0.14641148&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.MainPage">
+  <component name="RunManager" selected="Application.Login">
     <configuration name="Login" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="Login" />
-      <module name="local_2" />
-      <option name="VM_PARAMETERS" value="--module-path C:\Users\emana\OneDrive\Desktop\temo\lib --add-modules javafx.controls,javafx.fxml " />
+      <module name="RenoMana" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;$USER_HOME$/javafx-sdk-21-mac/lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -53,26 +136,179 @@
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="MainPage" />
-      <module name="local_2" />
-      <option name="VM_PARAMETERS" value="--module-path C:\Users\emana\OneDrive\Desktop\temo\lib --add-modules javafx.controls,javafx.fxml " />
+      <module name="RenoMana" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;L:\JavaFX\openjfx-20.0.2_windows-x64_bin-sdk\javafx-sdk-20.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Login" />
       <item itemvalue="Application.MainPage" />
+      <item itemvalue="Application.Login" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.MainPage" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f9113f89-93fb-44f8-a0c1-da583e6e9a43" name="Changes" comment="" />
-      <created>1700627461782</created>
+      <changelist id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="" />
+      <created>1695560817387</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1700627461782</updated>
+      <updated>1695560817387</updated>
+      <workItem from="1695560818666" duration="131000" />
+      <workItem from="1695994638644" duration="1495000" />
+      <workItem from="1695996186111" duration="30000" />
+      <workItem from="1695996229532" duration="155000" />
+      <workItem from="1695996909970" duration="14000" />
+      <workItem from="1696078636270" duration="1669000" />
+      <workItem from="1696131408534" duration="2502000" />
+      <workItem from="1696133925861" duration="872000" />
+      <workItem from="1696162385340" duration="1767000" />
+      <workItem from="1696164299262" duration="3400000" />
+      <workItem from="1696217542796" duration="1195000" />
+      <workItem from="1696276661216" duration="320000" />
+      <workItem from="1696277728527" duration="403000" />
+      <workItem from="1696282114845" duration="741000" />
+      <workItem from="1696291005823" duration="36000" />
+      <workItem from="1696364311229" duration="840000" />
+      <workItem from="1696365207238" duration="4293000" />
+      <workItem from="1696442201683" duration="172000" />
+      <workItem from="1696451729390" duration="164000" />
+      <workItem from="1696457143116" duration="1065000" />
+      <workItem from="1700003285969" duration="5225000" />
     </task>
+    <task id="LOCAL-00001" summary="Finished setting up the log in page in accordance to agreed upon outline">
+      <option name="closed" value="true" />
+      <created>1696282779620</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1696282779621</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Refined Login Class&#10;- Added comments&#10;- Log In button leads to main page&#10;- New? button leads to registration page">
+      <option name="closed" value="true" />
+      <created>1696369195402</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1696369195402</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Refined Login Class&#10;- Added comments&#10;- Log In button leads to main page&#10;- New? button leads to registration page">
+      <option name="closed" value="true" />
+      <created>1696369473137</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1696369473137</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added comments to scheduler">
+      <option name="closed" value="true" />
+      <created>1698111996372</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1698111996372</updated>
+    </task>
+    <task id="LOCAL-00005" summary="added colour visualization to scheduler timeline">
+      <option name="closed" value="true" />
+      <created>1699913863635</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1699913863635</updated>
+    </task>
+    <task id="LOCAL-00006" summary="added colour visualization to scheduler timeline">
+      <option name="closed" value="true" />
+      <created>1699913976851</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1699913976851</updated>
+    </task>
+    <task id="LOCAL-00007" summary="commit">
+      <option name="closed" value="true" />
+      <created>1699914169335</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1699914169335</updated>
+    </task>
+    <task id="LOCAL-00008" summary="scheduler cell widths now fill up the entire table">
+      <option name="closed" value="true" />
+      <created>1700006923148</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1700006923148</updated>
+    </task>
+    <task id="LOCAL-00009" summary="scheduler cell widths now fill up the entire table">
+      <option name="closed" value="true" />
+      <created>1700009193919</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1700009193919</updated>
+    </task>
+    <task id="LOCAL-00010" summary="calendar can now show a list of projects due on or after set date">
+      <option name="closed" value="true" />
+      <created>1700012327971</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1700012327971</updated>
+    </task>
+    <task id="LOCAL-00011" summary="calendar can now show a list of projects due on or after current date">
+      <option name="closed" value="true" />
+      <created>1700012578691</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1700012578691</updated>
+    </task>
+    <task id="LOCAL-00012" summary="DashBoard Partially Done, now dashboard could sync data with Scheduler and Inventory, user pointed welcome section and Charts for Employees still needs implementation. Two options of project timeline (TableView/ListVew) are both implemented for choices of better UI Design.">
+      <option name="closed" value="true" />
+      <created>1700132644032</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1700132644032</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="committing unversioned files" />
+    <MESSAGE value="Finished setting up the log in page in accordance to agreed upon outline" />
+    <MESSAGE value="Refined Login Class&#10;- Added comments&#10;- Log In button leads to main page&#10;- New? button leads to registration page" />
+    <MESSAGE value="added comments to scheduler" />
+    <MESSAGE value="updates" />
+    <MESSAGE value="scheduler cell widths now fill up the entire table" />
+    <MESSAGE value="calendar can now show a list of projects due on or after set date" />
+    <MESSAGE value="calendar can now show a list of projects due on or after current date" />
+    <MESSAGE value="DashBoard Partially Done, now dashboard could sync data with Scheduler and Inventory, user pointed welcome section and Charts for Employees still needs implementation. Two options of project timeline (TableView/ListVew) are both implemented for choices of better UI Design." />
+    <option name="LAST_COMMIT_MESSAGE" value="DashBoard Partially Done, now dashboard could sync data with Scheduler and Inventory, user pointed welcome section and Charts for Employees still needs implementation. Two options of project timeline (TableView/ListVew) are both implemented for choices of better UI Design." />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/cmpt370_g29$MainPage.ic" NAME="MainPage Coverage Results" MODIFIED="1698361182269" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
