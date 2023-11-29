@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="- Inventory class: Added duplication alert message when adding an item with the same serial id with an existing item.">
+    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="- Inventory class: Added missing JavaDocs to methods import and export along with some helpful comments.">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/jackson_annotations_2_16_0.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/jackson_core_2_16_0.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/jackson_databind_2_16_0.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Downloads.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RenoMana/src/inventoryMana/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/inventoryMana/Inventory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RenoMana/BasicPage.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Login.class" beforeDir="false" />
@@ -185,7 +187,7 @@
       <workItem from="1696451729390" duration="164000" />
       <workItem from="1696457143116" duration="1065000" />
       <workItem from="1700003285969" duration="5225000" />
-      <workItem from="1701234798754" duration="3134000" />
+      <workItem from="1701234798754" duration="5025000" />
     </task>
     <task id="LOCAL-00001" summary="Finished setting up the log in page in accordance to agreed upon outline">
       <option name="closed" value="true" />
@@ -315,7 +317,23 @@
       <option name="project" value="LOCAL" />
       <updated>1701238725424</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="- Inventory class: Added a hover over item name or item description so the full text gets displayed when the input is very very long.">
+      <option name="closed" value="true" />
+      <created>1701239727072</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1701239727072</updated>
+    </task>
+    <task id="LOCAL-00018" summary="- Inventory class: Added missing JavaDocs to methods import and export along with some helpful comments.">
+      <option name="closed" value="true" />
+      <created>1701239970706</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1701239970706</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -347,7 +365,9 @@
     <MESSAGE value="- Fixed Inventory class's `Import` csv method where it does not properly read a csv file. It should now be able to read user's import." />
     <MESSAGE value="- Fixed Inventory class's Add Item feature where it kept on asking item name input despite clicking the `Cancel` button or x buttun." />
     <MESSAGE value="- Inventory class: Added duplication alert message when adding an item with the same serial id with an existing item." />
-    <option name="LAST_COMMIT_MESSAGE" value="- Inventory class: Added duplication alert message when adding an item with the same serial id with an existing item." />
+    <MESSAGE value="- Inventory class: Added a hover over item name or item description so the full text gets displayed when the input is very very long." />
+    <MESSAGE value="- Inventory class: Added missing JavaDocs to methods import and export along with some helpful comments." />
+    <option name="LAST_COMMIT_MESSAGE" value="- Inventory class: Added missing JavaDocs to methods import and export along with some helpful comments." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/cmpt370_g29$MainPage.ic" NAME="MainPage Coverage Results" MODIFIED="1698361182269" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

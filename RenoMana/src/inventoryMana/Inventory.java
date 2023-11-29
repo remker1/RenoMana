@@ -313,7 +313,7 @@ public class Inventory extends VBox {
         // When item is selected ...
         InventoryItem selectedItem = inventoryTable.getSelectionModel().getSelectedItem();
 
-        // Check if that item row is valid or does exists, if not, alert
+        // Check if that item row is valid or does exist, if not, alert
         if (selectedItem == null) {
             Alert noSelectedAlert = new Alert(Alert.AlertType.WARNING);
             noSelectedAlert.setTitle("Error!");
@@ -335,19 +335,17 @@ public class Inventory extends VBox {
         CheckBox itemSNMod = new CheckBox("Serial Number");
         CheckBox itemMNMod = new CheckBox("Model Number");
 
-
         Button doneBtn = new Button("Done");
         doneBtn.setOnAction(event -> {
+            Optional<String> result;
 
             // Modify the tool's name if the corresponding checkbox is selected.
             if (itemNameMod.isSelected()) {
                 TextInputDialog nameInput = new TextInputDialog(selectedItem.getItemName());
                 nameInput.setTitle("Modify Item Name");
                 nameInput.setHeaderText("Enter New Item Name");
-                String newName = nameInput.showAndWait().orElse("");
-
-                // Update the tool name after validation.
-                selectedItem.setItemName(newName);
+                result = nameInput.showAndWait();
+                result.ifPresent(selectedItem::setItemName);
             }
 
             // Modify the item's description, validating the input.
@@ -355,9 +353,8 @@ public class Inventory extends VBox {
                 TextInputDialog descriptionInput = new TextInputDialog(selectedItem.getItemDescription());
                 descriptionInput.setTitle("Modify Description");
                 descriptionInput.setHeaderText("Enter New Description");
-                String newDescription = descriptionInput.showAndWait().orElse("");
-
-                selectedItem.setItemDescription(newDescription);
+                result = descriptionInput.showAndWait();
+                result.ifPresent(selectedItem::setItemDescription);
             }
 
             // Modify the item's project, validating the input.
@@ -365,9 +362,8 @@ public class Inventory extends VBox {
                 TextInputDialog projectInput = new TextInputDialog(selectedItem.getItemProject());
                 projectInput.setTitle("Modify Project");
                 projectInput.setHeaderText("Enter New Project");
-                String newProject = projectInput.showAndWait().orElse("");
-
-                selectedItem.setItemProject(newProject);
+                result = projectInput.showAndWait();
+                result.ifPresent(selectedItem::setItemProject);
             }
 
             // Modify the item's serial number, validating the input.
@@ -375,9 +371,26 @@ public class Inventory extends VBox {
                 TextInputDialog snInput = new TextInputDialog(selectedItem.getItemSN());
                 snInput.setTitle("Modify Estimation");
                 snInput.setHeaderText("Enter New Serial Number");
-                String newSN = snInput.showAndWait().orElse("");
+                result = snInput.showAndWait();
+                result.ifPresent(selectedItem::setItemSerialNumber);
 
-                selectedItem.setItemSerialNumber(newSN);
+                result.ifPresent(newSN -> {
+                    // Check if the new serial number already exists in any other item
+                    boolean duplicateExists = data.stream()
+                            .anyMatch(item -> item != selectedItem && item.getItemSN().equals(newSN));
+
+                    if (duplicateExists) {
+                        // Alert the user about the duplicate
+                        Optional<ButtonType> confirmationResult = snDuplicateAlert("Duplicate Serial Number Detected", "An item with this serial number already exists. Do you want to continue?");
+                        if (confirmationResult.isPresent() && confirmationResult.get() == ButtonType.OK) {
+                            // If user confirms, proceed with the change
+                            selectedItem.setItemSerialNumber(newSN);
+                        }
+                    } else {
+                        // If no duplicate, proceed with the change
+                        selectedItem.setItemSerialNumber(newSN);
+                    }
+                });
             }
 
             // Modify the item's serial number, validating the input.
@@ -385,15 +398,12 @@ public class Inventory extends VBox {
                 TextInputDialog mnInput = new TextInputDialog(selectedItem.getItemMN());
                 mnInput.setTitle("Modify Estimation");
                 mnInput.setHeaderText("Enter New Model Number");
-                String newMN = mnInput.showAndWait().orElse("");
-
-                selectedItem.setItemModelNumber(newMN);
+                result = mnInput.showAndWait();
+                result.ifPresent(selectedItem::setItemModelNumber);
             }
             try {
                 syncToDatabase(Collections.singletonList(selectedItem));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } catch (InterruptedException e) {
+            } catch (IOException | InterruptedException e) {
                 throw new RuntimeException(e);
             }
             inventoryTable.refresh();
@@ -409,6 +419,26 @@ public class Inventory extends VBox {
         modifyStage.setScene(modifyScene);
         modifyStage.show();
     }
+
+
+    /**
+     * This method displays an alert dialog to the user when a duplicate serial number is detected.
+     * It will ask the user to confirm whether they wish to proceed with using the duplicate serial number.
+     *
+     * @param Duplicate_Serial_Number_Detected The header text for the alert.
+     * @param s The content text for the alert, usually asking the user if they want to continue despite the duplicate.
+     * @return An Optional containing the ButtonType, which indicates the user's choice in the confirmation dialog.
+     */
+    private static Optional<ButtonType> snDuplicateAlert(String Duplicate_Serial_Number_Detected, String s) {
+        Alert duplicateAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        duplicateAlert.setTitle("Duplicate Serial Number");
+        duplicateAlert.setHeaderText(Duplicate_Serial_Number_Detected);
+        duplicateAlert.setContentText(s);
+
+        Optional<ButtonType> confirmationResult = duplicateAlert.showAndWait();
+        return confirmationResult;
+    }
+
 
     private void deleteInventoryItem() throws IOException, InterruptedException {
          // When item is selected ...
@@ -468,12 +498,7 @@ public class Inventory extends VBox {
         // Check for duplicate serial number
         for (InventoryItem item : data) {
             if (item.getItemSN().equals(serialNumber)) {
-                Alert duplicateAlert = new Alert(Alert.AlertType.CONFIRMATION);
-                duplicateAlert.setTitle("Duplicate Serial Number");
-                duplicateAlert.setHeaderText("An item with the same serial number already exists.");
-                duplicateAlert.setContentText("Do you want to continue, or use the Modify button instead?");
-
-                Optional<ButtonType> result = duplicateAlert.showAndWait();
+                Optional<ButtonType> result = snDuplicateAlert("An item with the same serial number already exists.", "Do you want to continue, or use the Modify button instead?");
                 if (result.isPresent() && result.get() == ButtonType.OK) {
                     // If user chooses to continue, continue with adding the item.
                     break;
