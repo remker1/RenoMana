@@ -42,6 +42,8 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.util.Optional;
+
 import ProjectMana.Project2;
 
 public class MainPage extends BasicPage {
@@ -60,12 +62,18 @@ public class MainPage extends BasicPage {
     private String userFname;
     private String userLname;
 
+    String userEmail;
+    String userProjects;
+
+
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
         String dashboardData = fetchDashboardData(COOKIES);
 
         this.userFname = parseJson(dashboardData, "fname");
         this.userLname = parseJson(dashboardData, "lname");
+        this.userEmail = parseJson(dashboardData, "email");
+        this.userProjects = parseJson(dashboardData, "projects");
 
 //        stage.getIcons().add(new Image("./resources/icon.png"));
         VBox rootLayout = new VBox();
@@ -88,7 +96,7 @@ public class MainPage extends BasicPage {
 
         Circle profileCircle = new Circle(25);
         profileCircle.setStyle("-fx-background-color: #9E1C29; -fx-stroke: #7C1715; -fx-border-radius: 2;");
-        profileCircle.setOnMouseClicked(event -> openProfileWindow());
+        profileCircle.setOnMouseClicked(event -> openSettingsWindow());
 
         topBar.getChildren().addAll(toggleSidebar, spacer, accountName, profileCircle);
         topBar.setAlignment(Pos.CENTER_RIGHT);
@@ -157,17 +165,25 @@ public class MainPage extends BasicPage {
      * This method creates a new window (Stage) that will show the settings of the application such as
      * light mode and dark mode.
      */
-    private void openProfileWindow() {
-        // Profile window creation and set up.
-        Stage profileStage = new Stage();
-        VBox profileLayout = new VBox(20);
-        Scene profileScene = new Scene(profileLayout, 300, 200);
+    private void openSettingsWindow() {
+        // Setting up layout and spacing for the window
+        Stage settingsStage = new Stage();
+        VBox settingsLayout = new VBox(10);
+        settingsLayout.setPadding(new Insets(15, 20, 15, 20));
+
+
+        // ====== Personal information section ======
+        TitledPane personalInfoTitledPane = getPersonalInfoTitledPane();
+
+        // ====== Display Mode Section ======
+        TitledPane modeTitledPane = new TitledPane();
+        modeTitledPane.setText("Display Mode");
 
         // Slider for light and dark mode
         Slider modeSlider = new Slider();
         modeSlider.setMin(0);
         modeSlider.setMax(1);
-        modeSlider.setValue(0); // 0 for light mode, 1 for dark mode
+        modeSlider.setValue(isDarkMode ? 1 : 0);
         modeSlider.setShowTickLabels(true);
         modeSlider.setShowTickMarks(true);
         modeSlider.setMajorTickUnit(1);
@@ -175,36 +191,71 @@ public class MainPage extends BasicPage {
         modeSlider.setSnapToTicks(true);
         modeSlider.setBlockIncrement(1);
 
-        Label modeLabel = new Label("Light Mode");
+        Label modeLabel = new Label(isDarkMode ? "Dark Mode" : "Light Mode");
 
-        if (isDarkMode) {
-            modeSlider.setValue(1);
-            modeLabel.setText("Dark Mode");
-        } else {
-            modeSlider.setValue(0);
-            modeLabel.setText("Light Mode");
-        }
-
-
+        // Listen for changes in slider value to update the label and mode
         modeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.intValue() == 1) {
-                modeLabel.setText("Dark Mode");
+            boolean darkMode = newValue.intValue() == 1;
+            modeLabel.setText(darkMode ? "Dark Mode" : "Light Mode");
+            if (darkMode) {
                 setDarkMode();
             } else {
-                modeLabel.setText("Light Mode");
                 setLightMode();
             }
         });
 
-        // Button with an event where, upon click, will take the user back to the MainPage.
-        Button backButton = new Button("Back");
-        backButton.setOnAction(event -> profileStage.close());
+        VBox modeBox = new VBox(5); // Use 5px spacing between children
+        modeBox.getChildren().addAll(modeLabel, modeSlider);
+        modeTitledPane.setContent(modeBox);
 
-        profileLayout.getChildren().addAll(modeLabel, modeSlider, backButton);
-        profileStage.setScene(profileScene);
-        profileStage.setTitle("Profile");
-        profileStage.show();
+        // Buttons
+        Button backButton = new Button("Back");
+        Button logoutButton = new Button("Log out");
+
+        // ButtonBar for a more native look
+        ButtonBar buttonBar = new ButtonBar();
+        ButtonBar.setButtonData(backButton, ButtonBar.ButtonData.LEFT);
+        ButtonBar.setButtonData(logoutButton, ButtonBar.ButtonData.RIGHT);
+
+        buttonBar.getButtons().addAll(backButton, logoutButton);
+
+        backButton.setOnAction(event -> settingsStage.close());
+        logoutButton.setOnAction(event -> confirmLogout(settingsStage));
+
+        settingsLayout.getChildren().add(0, personalInfoTitledPane);
+        settingsLayout.getChildren().addAll(modeTitledPane, buttonBar);
+        Scene settingsScene = new Scene(settingsLayout);
+        settingsStage.setScene(settingsScene);
+        settingsStage.setTitle("Settings");
+        settingsStage.show();
     }
+
+    /**
+     * This method creates a titled pane object that displays the employee's information in when profile
+     * circle is clicked
+     * @return TitledPane that will display employee information.
+     */
+    private TitledPane getPersonalInfoTitledPane() {
+        TitledPane personalInfoTitledPane = new TitledPane();
+        personalInfoTitledPane.setText("Personal Information");
+
+        GridPane personalInfoGrid = new GridPane();
+        personalInfoGrid.setVgap(10);
+        personalInfoGrid.setHgap(10);
+
+        Label NameLabel = new Label("Name: " + userFname + ' ' + userLname);
+        Label emailLabel = new Label("Email: " + userEmail);
+        Label projectsLabel = new Label("Projects: " + userProjects);
+
+
+        // Adding labels and fields to the grid
+        personalInfoGrid.add(NameLabel, 0, 0);
+        personalInfoGrid.add(emailLabel, 0, 1);
+        personalInfoGrid.add(projectsLabel, 0, 2);
+        personalInfoTitledPane.setContent(personalInfoGrid);
+        return personalInfoTitledPane;
+    }
+
 
     private void setDarkMode() {
         // Set the dark mode styles
@@ -233,38 +284,28 @@ public class MainPage extends BasicPage {
         }
     }
 
+    private void confirmLogout(Stage profileStage) {
+        // Confirmation dialog for logging out
+        Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to log out?", ButtonType.YES, ButtonType.NO);
+        confirmDialog.setHeaderText(null);
+        confirmDialog.setTitle("Log out");
 
-    private void confirmLogout(Stage mainStage) {
-        // Profile window creation and set up.
-        Stage logoutStage = new Stage();
-        VBox logoutLayout = new VBox(20);
-        Scene logoutScene = new Scene(logoutLayout, 300, 200);
+        // Wait for user response
+        Optional<ButtonType> result = confirmDialog.showAndWait();
 
-        Label titlelabel = new Label("Are you sure you want to log out?");
-
-        Button yesButton = new Button("Yes");
-        yesButton.setOnAction(event -> {
+        if (result.isPresent() && result.get() == ButtonType.YES) {
+            // User chose to log out
             COOKIES = null;
-            System.out.println(COOKIES);
-            logoutStage.close();
+            profileStage.close();
+            Stage mainStage = (Stage) mainLayout.getScene().getWindow(); // get the main stage
             mainStage.close();
+            // Open login window
             try {
                 new Login().start(new Stage());
             } catch (Exception exc) {
-                System.out.println("Something went wrong when going into main page.");
+                exc.printStackTrace();
             }
-        });
-
-        // Button with an event where, upon click, will take the user back to the MainPage.
-        Button noButton = new Button("No");
-        noButton.setOnAction(event -> {
-            logoutStage.close();
-        });
-
-        logoutLayout.getChildren().addAll(titlelabel, yesButton, noButton);
-        logoutStage.setScene(logoutScene);
-        logoutStage.setTitle("Log out");
-        logoutStage.show();
+        }
     }
 
     private void displayContent(Node content, String title) {
@@ -292,7 +333,6 @@ public class MainPage extends BasicPage {
         button.setOnAction(e -> displayContent(content, contentTitle));
         sideBar.getChildren().add(button);
     }
-
 
     private ToggleButton getToggleButton() {
         ToggleButton toggleSidebar = new ToggleButton("Menu");
@@ -334,9 +374,6 @@ public class MainPage extends BasicPage {
         return responseBody;
     }
 
-    public boolean isDarkMode() {
-        return isDarkMode;
-    }
 
     public static void main(String[] args) {
         launch(args);
