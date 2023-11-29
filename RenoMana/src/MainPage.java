@@ -44,6 +44,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import ProjectMana.Project2;
+import inquiryMana.inquiry;
 
 public class MainPage extends BasicPage {
     HBox mainLayout = new HBox();
@@ -117,6 +118,7 @@ public class MainPage extends BasicPage {
         createTabButton("Employees", new EmployeeList(COOKIES), "Employees");
         createTabButton("Reviews", new Review(), "Reviews");
         createTabButton("Projects", new Project2(), "Projects");
+        createTabButton("Inquiries", new inquiry(), "Inquiries");
 
         Button button = new Button("Log out");
         button.setPrefWidth(Double.MAX_VALUE);
