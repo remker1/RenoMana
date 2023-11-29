@@ -14,6 +14,7 @@
  */
 
 import dashboardMana.Dashboard;
+import inquiryMana.inquiry;
 import inventoryMana.Inventory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -117,6 +118,7 @@ public class MainPage extends BasicPage {
         createTabButton("Employees", new EmployeeList(COOKIES), "Employees");
         createTabButton("Reviews", new Review(), "Reviews");
         createTabButton("Projects", new Project2(), "Projects");
+        createTabButton("Inquiries", new inquiry(), "Inquiries");
 
         Button button = new Button("Log out");
         button.setPrefWidth(Double.MAX_VALUE);
