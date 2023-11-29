@@ -4,7 +4,7 @@ from pymongo import MongoClient
 from bson import json_util
 
 app = Flask(__name__)
-client = MongoClient(host='localhost', port=27017, username='root', password='pass')
+client = MongoClient(host='db', port=27017, username='root', password='pass')
 db = client.renoGp
 
 # Displays the main Reno Group landing page
