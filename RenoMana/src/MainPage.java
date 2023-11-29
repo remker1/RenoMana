@@ -18,6 +18,12 @@ import inquiryMana.inquiry;
 import inventoryMana.Inventory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.paint.*;
+import javafx.scene.paint.Color;
 import reviewMana.Review;
 import timeMana.Project;
 import timeMana.Scheduler;
@@ -30,12 +36,9 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.CycleMethod;
-import javafx.scene.paint.LinearGradient;
-import javafx.scene.paint.Stop;
 import javafx.geometry.Insets;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -64,7 +67,6 @@ public class MainPage extends BasicPage {
 
     String userEmail;
     String userProjects;
-
 
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
@@ -95,8 +97,10 @@ public class MainPage extends BasicPage {
         accountName.setStyle("-fx-text-fill: white; -fx-font-weight: bold");
 
         Circle profileCircle = new Circle(25);
+        Image image = new Image("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
         profileCircle.setStyle("-fx-background-color: #9E1C29; -fx-stroke: #7C1715; -fx-border-radius: 2;");
         profileCircle.setOnMouseClicked(event -> openSettingsWindow());
+        profileCircle.setFill(new ImagePattern(image));
 
         topBar.getChildren().addAll(toggleSidebar, spacer, accountName, profileCircle);
         topBar.setAlignment(Pos.CENTER_RIGHT);
