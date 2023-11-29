@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="- Fixed Inventory class's `Import` csv method where it does not properly read a csv file. It should now be able to read user's import.">
+    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="- Fixed Inventory class's Add Item feature where it kept on asking item name input despite clicking the `Cancel` button or x buttun.">
       <change afterPath="$PROJECT_DIR$/.idea/libraries/jackson_annotations_2_16_0.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/jackson_core_2_16_0.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/jackson_databind_2_16_0.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Downloads.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RenoMana/src/inventoryMana/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/inventoryMana/Inventory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RenoMana/BasicPage.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Login.class" beforeDir="false" />
@@ -185,7 +186,7 @@
       <workItem from="1696451729390" duration="164000" />
       <workItem from="1696457143116" duration="1065000" />
       <workItem from="1700003285969" duration="5225000" />
-      <workItem from="1701234798754" duration="1147000" />
+      <workItem from="1701234798754" duration="2511000" />
     </task>
     <task id="LOCAL-00001" summary="Finished setting up the log in page in accordance to agreed upon outline">
       <option name="closed" value="true" />
@@ -299,7 +300,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701235799404</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="- Fixed Inventory class's Add Item feature where it kept on asking item name input despite clicking the `Cancel` button or x buttun.">
+      <option name="closed" value="true" />
+      <created>1701236264412</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1701236264412</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -329,7 +338,8 @@
     <MESSAGE value="DashBoard Partially Done, now dashboard could sync data with Scheduler and Inventory, user pointed welcome section and Charts for Employees still needs implementation. Two options of project timeline (TableView/ListVew) are both implemented for choices of better UI Design." />
     <MESSAGE value="- Removed comment from the top of the MainPage class&#10;- Extracted Inventory class button maker in the constructor to its own separate class" />
     <MESSAGE value="- Fixed Inventory class's `Import` csv method where it does not properly read a csv file. It should now be able to read user's import." />
-    <option name="LAST_COMMIT_MESSAGE" value="- Fixed Inventory class's `Import` csv method where it does not properly read a csv file. It should now be able to read user's import." />
+    <MESSAGE value="- Fixed Inventory class's Add Item feature where it kept on asking item name input despite clicking the `Cancel` button or x buttun." />
+    <option name="LAST_COMMIT_MESSAGE" value="- Fixed Inventory class's Add Item feature where it kept on asking item name input despite clicking the `Cancel` button or x buttun." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/cmpt370_g29$MainPage.ic" NAME="MainPage Coverage Results" MODIFIED="1698361182269" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

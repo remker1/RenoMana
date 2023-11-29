@@ -375,7 +375,7 @@ public class Inventory extends VBox {
             }
         }
 
-                TextInputDialog descriptionInput = new TextInputDialog("");
+        TextInputDialog descriptionInput = new TextInputDialog("");
         descriptionInput.setHeaderText("Enter New Description");
         String itemDescription = descriptionInput.showAndWait().orElse("");
 
@@ -386,6 +386,25 @@ public class Inventory extends VBox {
         TextInputDialog snInput = new TextInputDialog("");
         snInput.setHeaderText("Enter Item's Serial Number");
         String serialNumber = snInput.showAndWait().orElse("");
+
+        // Check for duplicate serial number
+        for (InventoryItem item : data) {
+            if (item.getItemSN().equals(serialNumber)) {
+                Alert duplicateAlert = new Alert(Alert.AlertType.CONFIRMATION);
+                duplicateAlert.setTitle("Duplicate Serial Number");
+                duplicateAlert.setHeaderText("An item with the same serial number already exists.");
+                duplicateAlert.setContentText("Do you want to continue, or use the Modify button instead?");
+
+                Optional<ButtonType> result = duplicateAlert.showAndWait();
+                if (result.isPresent() && result.get() == ButtonType.OK) {
+                    // If user chooses to continue, continue with adding the item.
+                    break;
+                } else {
+                    // If user cancels, stop the item addition process.
+                    return;
+                }
+            }
+        }
 
         TextInputDialog mnInput = new TextInputDialog("");
         mnInput.setHeaderText("Enter Item's Model Number");
@@ -399,7 +418,6 @@ public class Inventory extends VBox {
         data.add(newItem);
         syncToDatabase(Collections.singletonList(newItem));
         inventoryTable.refresh();
-
     }
 
     /**
