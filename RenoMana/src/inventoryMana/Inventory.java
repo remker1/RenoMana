@@ -50,14 +50,11 @@ public class Inventory extends VBox {
          itemID.setCellValueFactory(cellData -> cellData.getValue().itemIDProperty().asObject());
          itemID.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.16)); // 30% width
 
-         TableColumn<InventoryItem, String> itemNameCol = new TableColumn<>("Item Name");
-         itemNameCol.setCellValueFactory(cellData -> cellData.getValue().itemNameProperty());
-         itemNameCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.16)); // 40% width
+         TableColumn<InventoryItem, String> itemNameCol = getItemNameCol();
+         itemNameCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.16));
 
-
-         TableColumn<InventoryItem, String> itemDescCol = new TableColumn<>("Item Description");
-         itemDescCol.setCellValueFactory(cellData -> cellData.getValue().itemDescriptionPropety());
-         itemDescCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.16)); // 30% width
+         TableColumn<InventoryItem, String> itemDescCol = getItemDescCol();
+         itemDescCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.16));
 
 
          TableColumn<InventoryItem, String> itemProjectCol = new TableColumn<>("Project");
@@ -84,6 +81,66 @@ public class Inventory extends VBox {
          VBox.setVgrow(inventoryTable, Priority.ALWAYS);
          this.getChildren().addAll(inventoryTable, optButton);
      }
+
+    /**
+     * This method creates and returns a TableColumn for item descriptions in the inventory table.
+     * It sets up how each cell in the column should display the item description so a tooltip
+     * shows the full description when the user hovers over it.
+     *
+     * @return TableColumn for item descriptions.
+     */
+    private static TableColumn<InventoryItem, String> getItemDescCol() {
+        TableColumn<InventoryItem, String> itemDescCol = new TableColumn<>("Item Description");
+        itemDescCol.setCellValueFactory(cellData -> cellData.getValue().itemDescriptionPropety());
+        itemDescCol.setCellFactory(column -> {
+            return new TableCell<InventoryItem, String>() {
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    setText(empty ? "" : getItem()); // Set the text of the cell
+                    setGraphic(null);
+
+                    // Create and set a tooltip showing the full description
+                    if (item != null) {
+                        Tooltip tooltip = new Tooltip(item);
+                        tooltip.setWrapText(true);
+                        tooltip.setMaxWidth(300);
+                        setTooltip(tooltip);
+                    }
+                }
+            };
+        });
+        return itemDescCol;
+    }
+
+    /**
+     * This method creates and returns a TableColumn for item names in the inventory table.
+     * It sets up how each cell in the column should display the item name, so a tooltip
+     * shows the full name when the user hovers over it.
+     *
+     * @return TableColumn for item names.
+     */
+    private static TableColumn<InventoryItem, String> getItemNameCol() {
+        TableColumn<InventoryItem, String> itemNameCol = new TableColumn<>("Item Name");
+        itemNameCol.setCellValueFactory(cellData -> cellData.getValue().itemNameProperty());
+        itemNameCol.setCellFactory(column -> {
+            return new TableCell<InventoryItem, String>() {
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    setText(empty ? "" : getItem());
+                    setGraphic(null);
+                    if (item != null) {
+                        Tooltip tooltip = new Tooltip(item);
+                        tooltip.setWrapText(true);
+                        tooltip.setMaxWidth(300);
+                        setTooltip(tooltip);
+                    }
+                }
+            };
+        });
+        return itemNameCol;
+    }
 
     private HBox getOptButton() {
         Button addItem = new Button("Add");
