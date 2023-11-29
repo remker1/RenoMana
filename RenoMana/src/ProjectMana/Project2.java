@@ -1,6 +1,6 @@
 package ProjectMana;
 
-import inventoryMana.InventoryItem;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,7 +9,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import timeMana.Project;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -17,10 +16,8 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
-
 
 public class Project2 extends VBox {
 
@@ -60,11 +57,7 @@ public class Project2 extends VBox {
 
         TableColumn<ProjectItem, String> DescriptionCol = new TableColumn<>("Description");
         DescriptionCol.setCellValueFactory(cellData -> cellData.getValue().Description());
-        DescriptionCol.prefWidthProperty().bind(ProjectTable.widthProperty().multiply(0.15));
-
-        TableColumn<ProjectItem, String> InquiryCol = new TableColumn<>("Inquiry");
-        InquiryCol.setCellValueFactory(cellData -> cellData.getValue().Inquiry());
-        InquiryCol.prefWidthProperty().bind(ProjectTable.widthProperty().multiply(0.15));
+        DescriptionCol.prefWidthProperty().bind(ProjectTable.widthProperty().multiply(0.50));
 
 
         ProjectTable.getColumns().addAll(ProjectCol,
@@ -73,13 +66,14 @@ public class Project2 extends VBox {
                 CompanyCol,
                 Start_dateCol,
                 End_dateCol,
-                DescriptionCol,
-                InquiryCol);
+                DescriptionCol
+        );
         ProjectTable.setItems(data);
+
+        loadProjects();
 
         Button deleteItem = new Button("Delete");
         Button refreshProjects = new Button("Refresh");
-
         refreshProjects.setOnAction(actionEvent -> {
             try {
                 loadProjects();
@@ -87,6 +81,9 @@ public class Project2 extends VBox {
                 showAlert("Error!", "Something went wrong when loading reviews");
             }
         });
+
+
+        ProjectTable.setItems(data);
 
         deleteItem.setOnAction(actionEvent -> deleteProjectRequest());
 
@@ -97,73 +94,40 @@ public class Project2 extends VBox {
         this.getChildren().addAll(ProjectTable, optButton);
     }
 
-    public void loadProjects() {
+    public void loadProjects() throws IOException, InterruptedException {
+        this.data.clear();
+
+        String url = "http://localhost:5001/submitRequest";
+
+
+        // Create an HttpClient
+        HttpClient httpClient = HttpClient.newHttpClient();
+
+
+        // Build the request
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .GET()
+                .build();
+
+        // Send POST message to Flask server
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        // Decode POST response and add reviews to table data
         try {
-            // Define the target URL
-            String url = "http://localhost:5001/submitRequest";
+            ObjectMapper mapper = new ObjectMapper();
 
-            // Create an HttpClient
-            HttpClient httpClient = HttpClient.newHttpClient();
-
-            // Build the request
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(url))
-                    .GET()
-                    .build();
-
-            // Send the request and receive the response
-            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-
-            // Print the response body
-            System.out.println("Response Code: " + response.statusCode());
-            System.out.println("Response Body:\n" + response.body());
-
-            // Parse form data from the response body
-            Map<String, String> formData = parseFormData(response.body());
-
-            // Extract specific values
-            String customerName = formData.get("customerName");
-            String customerEmail = formData.get("customerEmail");
-            String customerCell = formData.get("customerCell");
-            String company = formData.get("company");
-            String startDate = formData.get("startDate");
-            String endDate = formData.get("endDate");
-            String projectDesc = formData.get("projectDesc");
-            String projectInq = formData.get("projectInq");
-
-            // Add more keys as needed...
-
-            // Print extracted values
-            ProjectItem newProject = new ProjectItem(new SimpleStringProperty(customerName),
-                    new SimpleStringProperty(customerEmail), new SimpleStringProperty(customerCell),
-            new SimpleStringProperty(company), new SimpleStringProperty(startDate), new SimpleStringProperty(endDate),
-            new SimpleStringProperty(projectDesc), new SimpleStringProperty(projectInq));
-            data.add(newProject);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static Map<String, String> parseFormData(String formDataString) throws UnsupportedEncodingException {
-        Map<String, String> formData = new HashMap<>();
-
-        // Split the formDataString into key-value pairs
-        String[] pairs = formDataString.split("&");
-
-        // Extract key-value pairs and populate the map
-        for (String pair : pairs) {
-            String[] keyValue = pair.split("=");
-            if (keyValue.length == 2) {
-                String key = keyValue[0];
-                String value = keyValue[1];
-                // URL decode the value if needed
-                value = java.net.URLDecoder.decode(value, java.nio.charset.StandardCharsets.UTF_8.name());
-                formData.put(key, value);
-            }
+            ProjectItems projects = mapper.readValue(response.body(), ProjectItems.class);
+            this.data.addAll(projects.getprojects());
+        } catch (Exception e){
+            System.out.println(e);
         }
 
-        return formData;
+        // Refresh table
+        ProjectTable.refresh();
+
     }
+
+
 
     private void deleteProjectRequest() {
         // When item is selected ...
