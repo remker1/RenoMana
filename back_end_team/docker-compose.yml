@@ -11,7 +11,7 @@ services:
     depends_on:
       - db
 
-  # MongoDB database 
+  # MongoDB dçatabase 
   db:
     image: mongo:latest
     hostname: mongodb
