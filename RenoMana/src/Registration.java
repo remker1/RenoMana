@@ -1,16 +1,18 @@
+import employeeMana.Employee;
+import employeeMana.EmployeeList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import timeMana.Project;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -46,6 +48,7 @@ public class Registration extends BasicPage {
         Label fnameLabel = new Label("First Name: ");
         TextField fnameField = new TextField();
         fnameField.setPromptText("Enter your First Name: ");
+
 
         // First Name label that prompts text field
         Label lnameLabel = new Label("Last Name: ");
@@ -84,31 +87,49 @@ public class Registration extends BasicPage {
         logInCentre.setAlignment(Pos.CENTER);
         logInCentre.getChildren().add(registerButton);
 
+
+
         // Set action for the register button
         registerButton.setOnAction(event -> {
-            try {
-                if (passwordValid(passField.getText(), verifyPassField.getText())) {
-                    register(fnameField.getText(), lnameField.getText(), userField.getText(), passField.getText(), emailField.getText(), cellField.getText());
-                    // Close the login stage
+
+            if (isDuplicate(userField.getText(),"username")){
+                showAlert("Duplication Error!","Employee with this username already exist");
+            }
+            else if (passField.getText().length()<8){
+                showAlert("Invalidation Input Error!","Password should be at least 8 digits");
+            }
+            else if(!passField.getText().equals(verifyPassField.getText())){
+                showAlert("Invalidation Input Error!","Please confirm your password!");
+            }
+            else if(!emailField.getText().contains("@")||emailField.getText().length()<4||!emailField.getText().contains(".")){
+                showAlert("Invalidation Input Error!","Please make sure Email is valid!");
+            }
+            else if(isDuplicate(emailField.getText(),"email")){
+                showAlert("Duplication Error", "Employee with the email already exist!");
+            }
+            else if(cellField.getText().length()!= 10){
+                showAlert("Invalidation Input Error!", "Please make sure Cell Number is valid North America number (10 digits)");
+            }
+            else if(isDuplicate(EmployeeList.formatCell(cellField.getText()),"cell")){
+                showAlert("Duplication Error", "Employee with the cell number already exist!");
+            }
+            else {
+                try {
+                    register(fnameField.getText(), lnameField.getText(), userField.getText(), passField.getText(), emailField.getText(), EmployeeList.formatCell(cellField.getText()));
                     stage.close();
-                    // Launch the main page
+                    // Launch the registration page
                     try {
                         new Login().start(new Stage());
                     } catch (Exception e) {
-                        System.out.println("Something went wrong when going into main page.");
+                        showAlert("Error!",e.toString());
                     }
+                } catch (IOException e) {
+                    showAlert("Error!",e.toString());
+                } catch (InterruptedException e) {
+                    showAlert("Error!",e.toString());
                 }
-                else {
-                    if (!(passField.getText().length() >= 8))
-                        displayErrorMessage("Password must be 8 characters or longer!");
-                    else if (!passField.getText().equals(verifyPassField.getText()))
-                        displayErrorMessage("Passwords do not Match!");
-                }
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+            }
+
         });
 
         // Registration button for new users
@@ -138,12 +159,8 @@ public class Registration extends BasicPage {
 
     }
 
-    private boolean passwordValid(String password, String verifyPassword) {
-        return (password.equals(verifyPassword) && password.length() >= 8);
-    }
-
-
     private static void register(String fname, String lname, String username, String password, String email, String cellNumber) throws IOException, InterruptedException {
+
         String msg = "{" +
                 "\"username\":\"" + username + "\"," +
                 "\"password\":\"" + password + "\"," +
@@ -171,6 +188,40 @@ public class Registration extends BasicPage {
         errorLabel.setTextFill(Color.RED);
     }
 
+    private void showAlert(String title, String content) {
+        Alert invalidNumAlert = new Alert(Alert.AlertType.ERROR);
+        invalidNumAlert.setTitle(title);
+        invalidNumAlert.setHeaderText(null);
+        invalidNumAlert.setContentText(content);
+        invalidNumAlert.showAndWait();
+    }
+
+    private boolean isDuplicate(String input, String attributeType) {
+        input = input.toLowerCase();
+        if (EmployeeList.data == null){
+            return false;
+        }
+        for (Employee employee : EmployeeList.data) {
+            switch (attributeType) {
+                case "cell":
+                    if (employee.getCell().equals(input)) {
+                        return true;
+                    }
+                    break;
+                case "email":
+                    if (employee.getEMail().toLowerCase().equals(input)) {
+                        return true;
+                    }
+                    break;
+                case "username":
+                    if (employee.getUsername().toLowerCase().equals(input)) {
+                        return true;
+                    }
+                    break;
+            }
+        }
+        return false;
+    }
 
     public static void main(String[] args) {
         launch(args);

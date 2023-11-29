@@ -311,6 +311,16 @@ public class Scheduler extends VBox {
         }
     }
 
+    public static Project searchProjectByName(String projectName){
+
+        for (Project project:data){
+            if (project.getName().equals(projectName)){
+                return project;
+            }
+        }
+        return null;
+    }
+
     private void showAlert(String title, String content) {
         Alert invalidNumAlert = new Alert(Alert.AlertType.ERROR);
         invalidNumAlert.setTitle(title);
