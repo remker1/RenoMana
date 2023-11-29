@@ -107,8 +107,8 @@ public class Registration extends BasicPage {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+            throw new RuntimeException(e);
+        }
         });
 
         // Registration button for new users
@@ -163,7 +163,7 @@ public class Registration extends BasicPage {
 
         System.out.println("[REGISTRATION]: " + request.toString());
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println("[REGISTRATION]: " +response.toString());
+        System.out.println("[REGISTRATION]: " +response.body());
     }
 
     private void displayErrorMessage(String message) {
