@@ -4,33 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="- Inventory class: Added alert message when user modified an item with a serial number that is already being used by another existing item.">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/.idea/libraries/jackson_annotations_2_16_0.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/jackson_core_2_16_0.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/jackson_databind_2_16_0.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Downloads.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/inventoryMana/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/inventoryMana/Inventory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/BasicPage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Login.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/ProjectMana/ProjectItem.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Registration.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/dashboardMana/Dashboard.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/employeeMana/Employee.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/employeeMana/EmployeeInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/employeeMana/EmployeeList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/inventoryMana/Inventory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/inventoryMana/InventoryItem.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/reviewMana/Review.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/reviewMana/ReviewItem.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Calendar.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Project.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Scheduler$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Scheduler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/local_2/ProjectMana/Project2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/local_2/ProjectMana/Project2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/local_2/ProjectMana/ProjectItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/local_2/ProjectMana/ProjectItem.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +109,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.MainPage">
+  <component name="RunManager" selected="Application.Login">
     <configuration name="Login" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -187,7 +169,6 @@
       <workItem from="1696451729390" duration="164000" />
       <workItem from="1696457143116" duration="1065000" />
       <workItem from="1700003285969" duration="5225000" />
-      <workItem from="1701234798754" duration="7741000" />
     </task>
     <task id="LOCAL-00001" summary="Finished setting up the log in page in accordance to agreed upon outline">
       <option name="closed" value="true" />
@@ -285,63 +266,7 @@
       <option name="project" value="LOCAL" />
       <updated>1700132644032</updated>
     </task>
-    <task id="LOCAL-00013" summary="- Removed comment from the top of the MainPage class&#10;- Extracted Inventory class button maker in the constructor to its own separate class">
-      <option name="closed" value="true" />
-      <created>1701235296264</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1701235296264</updated>
-    </task>
-    <task id="LOCAL-00014" summary="- Fixed Inventory class's `Import` csv method where it does not properly read a csv file. It should now be able to read user's import.">
-      <option name="closed" value="true" />
-      <created>1701235799404</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1701235799404</updated>
-    </task>
-    <task id="LOCAL-00015" summary="- Fixed Inventory class's Add Item feature where it kept on asking item name input despite clicking the `Cancel` button or x buttun.">
-      <option name="closed" value="true" />
-      <created>1701236264412</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1701236264412</updated>
-    </task>
-    <task id="LOCAL-00016" summary="- Inventory class: Added duplication alert message when adding an item with the same serial id with an existing item.">
-      <option name="closed" value="true" />
-      <created>1701238725424</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1701238725424</updated>
-    </task>
-    <task id="LOCAL-00017" summary="- Inventory class: Added a hover over item name or item description so the full text gets displayed when the input is very very long.">
-      <option name="closed" value="true" />
-      <created>1701239727072</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1701239727072</updated>
-    </task>
-    <task id="LOCAL-00018" summary="- Inventory class: Added missing JavaDocs to methods import and export along with some helpful comments.">
-      <option name="closed" value="true" />
-      <created>1701239970706</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1701239970706</updated>
-    </task>
-    <task id="LOCAL-00019" summary="- Inventory class: Added alert message when user modified an item with a serial number that is already being used by another existing item.">
-      <option name="closed" value="true" />
-      <created>1701242161193</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1701242161193</updated>
-    </task>
-    <option name="localTasksCounter" value="20" />
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -369,14 +294,7 @@
     <MESSAGE value="calendar can now show a list of projects due on or after set date" />
     <MESSAGE value="calendar can now show a list of projects due on or after current date" />
     <MESSAGE value="DashBoard Partially Done, now dashboard could sync data with Scheduler and Inventory, user pointed welcome section and Charts for Employees still needs implementation. Two options of project timeline (TableView/ListVew) are both implemented for choices of better UI Design." />
-    <MESSAGE value="- Removed comment from the top of the MainPage class&#10;- Extracted Inventory class button maker in the constructor to its own separate class" />
-    <MESSAGE value="- Fixed Inventory class's `Import` csv method where it does not properly read a csv file. It should now be able to read user's import." />
-    <MESSAGE value="- Fixed Inventory class's Add Item feature where it kept on asking item name input despite clicking the `Cancel` button or x buttun." />
-    <MESSAGE value="- Inventory class: Added duplication alert message when adding an item with the same serial id with an existing item." />
-    <MESSAGE value="- Inventory class: Added a hover over item name or item description so the full text gets displayed when the input is very very long." />
-    <MESSAGE value="- Inventory class: Added missing JavaDocs to methods import and export along with some helpful comments." />
-    <MESSAGE value="- Inventory class: Added alert message when user modified an item with a serial number that is already being used by another existing item." />
-    <option name="LAST_COMMIT_MESSAGE" value="- Inventory class: Added alert message when user modified an item with a serial number that is already being used by another existing item." />
+    <option name="LAST_COMMIT_MESSAGE" value="DashBoard Partially Done, now dashboard could sync data with Scheduler and Inventory, user pointed welcome section and Charts for Employees still needs implementation. Two options of project timeline (TableView/ListVew) are both implemented for choices of better UI Design." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/cmpt370_g29$MainPage.ic" NAME="MainPage Coverage Results" MODIFIED="1698361182269" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
