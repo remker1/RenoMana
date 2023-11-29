@@ -1,18 +1,3 @@
-/**
- * MainPage Class
- *
- * <p>
- * The application has a user interface with several tab where each tab shows a different feature
- * or part of the application. By putting the content of each tab into its own class, the
- * application makes it easier to change and maintain. The content of each tab is made and
- * put into place in its own class. This method lets developers work on single features at a time,
- * which makes the codebase more organised and easier to use.
- * <p>
- *
- * @author Jewel Magcawas
- * @since 2023-08-01
- */
-
 import dashboardMana.Dashboard;
 import inventoryMana.Inventory;
 import javafx.collections.FXCollections;

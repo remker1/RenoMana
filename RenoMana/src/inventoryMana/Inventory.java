@@ -78,45 +78,50 @@ public class Inventory extends VBox {
 
 
          // Setting up the button options for things user can do in this tab
-         Button addItem = new Button("Add");
-         addItem.setOnAction(actionEvent -> {
-             try {
-                 addInventoryItem();
-             } catch (IOException e) {
-                 throw new RuntimeException(e);
-             } catch (InterruptedException e) {
-                 throw new RuntimeException(e);
-             }
-         });
-
-         Button deleteItem = new Button("Delete");
-         deleteItem.setOnAction(actionEvent -> {
-             try {
-                 deleteInventoryItem();
-             } catch (IOException e) {
-                 throw new RuntimeException(e);
-             } catch (InterruptedException e) {
-                 throw new RuntimeException(e);
-             }
-         });
-
-         Button modifyItem = new Button("Modify");
-         modifyItem.setOnAction(actionEvent -> {modifyInventoryItem();});
-
-         Button importFile = new Button("Import");
-         importFile.setOnAction(actionEvent -> {importInventoryFile();});
-
-         Button exportFile = new Button("Export");
-         exportFile.setOnAction(actionEvent -> {exportInventoryFile();});
-
-
-         HBox optButton = new HBox(10, addItem, deleteItem, modifyItem, importFile, exportFile);
-         optButton.setPadding(new Insets(10, 0, 10, 0)); // top, right, bottom, left padding
+         HBox optButton = getOptButton();
 
 
          VBox.setVgrow(inventoryTable, Priority.ALWAYS);
          this.getChildren().addAll(inventoryTable, optButton);
      }
+
+    private HBox getOptButton() {
+        Button addItem = new Button("Add");
+        addItem.setOnAction(actionEvent -> {
+            try {
+                addInventoryItem();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        Button deleteItem = new Button("Delete");
+        deleteItem.setOnAction(actionEvent -> {
+            try {
+                deleteInventoryItem();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        Button modifyItem = new Button("Modify");
+        modifyItem.setOnAction(actionEvent -> {modifyInventoryItem();});
+
+        Button importFile = new Button("Import");
+        importFile.setOnAction(actionEvent -> {importInventoryFile();});
+
+        Button exportFile = new Button("Export");
+        exportFile.setOnAction(actionEvent -> {exportInventoryFile();});
+
+
+        HBox optButton = new HBox(10, addItem, deleteItem, modifyItem, importFile, exportFile);
+        optButton.setPadding(new Insets(10, 0, 10, 0)); // top, right, bottom, left padding
+        return optButton;
+    }
 
     private void exportInventoryFile() {
         FileChooser fileChooser = new FileChooser();
