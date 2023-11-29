@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="">
+    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="- Removed comment from the top of the MainPage class&#10;- Extracted Inventory class button maker in the constructor to its own separate class">
       <change afterPath="$PROJECT_DIR$/.idea/libraries/jackson_annotations_2_16_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/jackson_core_2_16_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/jackson_databind_2_16_0.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Downloads.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/RenoMana.iml" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/RenoMana.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/MainPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/local_2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/local_2.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RenoMana/BasicPage.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Login.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Main.class" beforeDir="false" />
@@ -185,6 +185,7 @@
       <workItem from="1696451729390" duration="164000" />
       <workItem from="1696457143116" duration="1065000" />
       <workItem from="1700003285969" duration="5225000" />
+      <workItem from="1701234798754" duration="536000" />
     </task>
     <task id="LOCAL-00001" summary="Finished setting up the log in page in accordance to agreed upon outline">
       <option name="closed" value="true" />
@@ -282,7 +283,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700132644032</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="- Removed comment from the top of the MainPage class&#10;- Extracted Inventory class button maker in the constructor to its own separate class">
+      <option name="closed" value="true" />
+      <created>1701235296264</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1701235296264</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -310,7 +319,8 @@
     <MESSAGE value="calendar can now show a list of projects due on or after set date" />
     <MESSAGE value="calendar can now show a list of projects due on or after current date" />
     <MESSAGE value="DashBoard Partially Done, now dashboard could sync data with Scheduler and Inventory, user pointed welcome section and Charts for Employees still needs implementation. Two options of project timeline (TableView/ListVew) are both implemented for choices of better UI Design." />
-    <option name="LAST_COMMIT_MESSAGE" value="DashBoard Partially Done, now dashboard could sync data with Scheduler and Inventory, user pointed welcome section and Charts for Employees still needs implementation. Two options of project timeline (TableView/ListVew) are both implemented for choices of better UI Design." />
+    <MESSAGE value="- Removed comment from the top of the MainPage class&#10;- Extracted Inventory class button maker in the constructor to its own separate class" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Removed comment from the top of the MainPage class&#10;- Extracted Inventory class button maker in the constructor to its own separate class" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/cmpt370_g29$MainPage.ic" NAME="MainPage Coverage Results" MODIFIED="1698361182269" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

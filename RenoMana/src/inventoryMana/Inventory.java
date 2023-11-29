@@ -173,7 +173,13 @@ public class Inventory extends VBox {
                 String line;
 
                 // Read each line of the file until there are no more lines left
+                boolean isFirstLine = true;
                 while ((line = br.readLine()) != null) {
+                    if (isFirstLine) {
+                        isFirstLine = false;
+                        continue;
+                    }
+
                     String[] values = line.split(",");
 
                     // Check if the line has at least 6 values (for ID, Name, Desc, Project, SN, and MN) and create an
