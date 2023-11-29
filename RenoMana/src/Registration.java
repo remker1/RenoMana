@@ -1,14 +1,17 @@
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -30,6 +33,9 @@ public class Registration extends BasicPage {
     final double scene_height = 500;
 
     private Label errorLabel = new Label();
+    private LinearGradient gradient = new LinearGradient(0, 0, 1, 1, true, CycleMethod.NO_CYCLE,
+            new Stop(0, Color.web("#4B1517")),
+            new Stop(1, Color.web("#C49102")));
 
     @Override
     public void start(Stage stage) {
@@ -37,7 +43,8 @@ public class Registration extends BasicPage {
 
         // Hello label message
         Label helloLabel = new Label("Registration");
-        helloLabel.setFont(new Font(36));
+        helloLabel.setTextFill(Color.WHITE);
+        helloLabel.setFont(new Font(Font.getFontNames().get(1), 36));
         HBox helloCentre = new HBox(); // HBox to centre the greeting label
         helloCentre.setAlignment(Pos.CENTER);
         helloCentre.getChildren().add(helloLabel);
@@ -129,6 +136,13 @@ public class Registration extends BasicPage {
         VBox root = new VBox(10);
         root.setPadding(new Insets(20));
         root.getChildren().addAll(helloCentre, fnameLabel, fnameField, lnameLabel, lnameField, userLabel, userField, passLabel, passField, verifyPassLabel, verifyPassField, emailLabel, emailField, cellLabel, cellField, logInCentre, newButton, errorLabel);
+
+        root.setBackground(new Background(new BackgroundFill(gradient, CornerRadii.EMPTY, Insets.EMPTY)));
+        for (Node node: root.getChildren()) {
+            if (node instanceof Label) {
+                ((Label) node).setTextFill(Color.WHITE);
+            }
+        }
 
         Scene scene = new Scene(root, 500, 800);
         stage.setTitle("Log In");
