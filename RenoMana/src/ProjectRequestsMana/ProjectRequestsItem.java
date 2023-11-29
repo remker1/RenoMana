@@ -1,10 +1,10 @@
-package ProjectMana;
+package ProjectRequestsMana;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class ProjectItem {
+public class ProjectRequestsItem {
     private SimpleStringProperty customerName;
     private SimpleStringProperty customerEmail;
     private SimpleStringProperty customerCell;
@@ -16,14 +16,14 @@ public class ProjectItem {
 
 
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
-    public ProjectItem(@JsonProperty("customerName") String customerName,
-                       @JsonProperty("customerEmail") String customerEmail,
-                       @JsonProperty("customerCell") String customerCell,
-                       @JsonProperty("company") String company,
-                       @JsonProperty("startDate") String startDate,
-                       @JsonProperty("endDate") String endDate,
-                       @JsonProperty("projectDesc") String projectDesc,
-                       @JsonProperty("projectInq") String projectInq)
+    public ProjectRequestsItem(@JsonProperty("customerName") String customerName,
+                               @JsonProperty("customerEmail") String customerEmail,
+                               @JsonProperty("customerCell") String customerCell,
+                               @JsonProperty("company") String company,
+                               @JsonProperty("startDate") String startDate,
+                               @JsonProperty("endDate") String endDate,
+                               @JsonProperty("projectDesc") String projectDesc,
+                               @JsonProperty("projectInq") String projectInq)
     {
         this.customerName =new SimpleStringProperty(customerName);
         this.customerEmail = new SimpleStringProperty(customerEmail);
@@ -35,7 +35,7 @@ public class ProjectItem {
         this.projectInq = new SimpleStringProperty(projectInq);
     }
 
-    public ProjectItem() {}
+    public ProjectRequestsItem() {}
     public SimpleStringProperty Name() { return customerName; }
 
     public SimpleStringProperty Email() {

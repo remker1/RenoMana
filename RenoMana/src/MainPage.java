@@ -21,7 +21,6 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.paint.*;
 import javafx.scene.paint.Color;
 import reviewMana.Review;
@@ -38,7 +37,6 @@ import javafx.scene.Node;
 import javafx.scene.layout.*;
 import javafx.geometry.Insets;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -47,7 +45,7 @@ import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 
-import ProjectMana.Project2;
+import ProjectRequestsMana.ProjectRequests;
 
 public class MainPage extends BasicPage {
     HBox mainLayout = new HBox();
@@ -121,14 +119,13 @@ public class MainPage extends BasicPage {
 
         // Create buttons for each tab and add them to the sidebar
         createTabButton("Dashboard", new Dashboard(COOKIES, dashboardData), "Dashboard");
+        createTabButton("Project Requests", new ProjectRequests(), "Project Requests");
         createTabButton("Scheduler", new Scheduler(COOKIES), "Scheduler");
-
         //loadProjects();
         createTabButton("Calendar", new Calendar(allProjects), "Calendar");
         createTabButton("Inventory", new Inventory(), "Inventory");
         createTabButton("Employees", new EmployeeList(COOKIES), "Employees");
         createTabButton("Reviews", new Review(), "Reviews");
-        createTabButton("Projects", new Project2(), "Projects");
         createTabButton("Inquiries", new inquiry(), "Inquiries");
 
         Button button = new Button("Log out");

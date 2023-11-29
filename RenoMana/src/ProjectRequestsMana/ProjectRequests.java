@@ -1,7 +1,6 @@
-package ProjectMana;
+package ProjectRequestsMana;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -11,51 +10,48 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.HashMap;
-import java.util.Map;
 
-public class Project2 extends VBox {
+public class ProjectRequests extends VBox {
 
-    private TableView<ProjectItem> ProjectTable;
-    private ObservableList<ProjectItem> data;
+    private TableView<ProjectRequestsItem> ProjectTable;
+    private ObservableList<ProjectRequestsItem> data;
 
-    public Project2() throws IOException, InterruptedException {
+    public ProjectRequests() throws IOException, InterruptedException {
         // Setting up the table
         ProjectTable = new TableView<>();
         ProjectTable.prefWidthProperty().bind(this.widthProperty());
         data = FXCollections.observableArrayList();
 
         // Adding column names
-        TableColumn<ProjectItem, String> ProjectCol = new TableColumn<>("Name");
+        TableColumn<ProjectRequestsItem, String> ProjectCol = new TableColumn<>("Name");
         ProjectCol.setCellValueFactory(cellData -> cellData.getValue().Name());
         ProjectCol.prefWidthProperty().bind(ProjectTable.widthProperty().multiply(0.15));
 
-        TableColumn<ProjectItem, String> EmailCol = new TableColumn<>("Email");
+        TableColumn<ProjectRequestsItem, String> EmailCol = new TableColumn<>("Email");
         EmailCol.setCellValueFactory(cellData -> cellData.getValue().Email());
         EmailCol.prefWidthProperty().bind(ProjectTable.widthProperty().multiply(0.10));
 
-        TableColumn<ProjectItem, String> ContactCol = new TableColumn<>("Contact");
+        TableColumn<ProjectRequestsItem, String> ContactCol = new TableColumn<>("Contact");
         ContactCol.setCellValueFactory(cellData -> cellData.getValue().Contact());
         ContactCol.prefWidthProperty().bind(ProjectTable.widthProperty().multiply(0.10));
 
-        TableColumn<ProjectItem, String> CompanyCol = new TableColumn<>("Company");
+        TableColumn<ProjectRequestsItem, String> CompanyCol = new TableColumn<>("Company");
         CompanyCol.setCellValueFactory(cellData -> cellData.getValue().Company());
         CompanyCol.prefWidthProperty().bind(ProjectTable.widthProperty().multiply(0.10));
 
-        TableColumn<ProjectItem, String> Start_dateCol = new TableColumn<>("Start date");
+        TableColumn<ProjectRequestsItem, String> Start_dateCol = new TableColumn<>("Start date");
         Start_dateCol.setCellValueFactory(cellData -> cellData.getValue().Start_date());
         Start_dateCol.prefWidthProperty().bind(ProjectTable.widthProperty().multiply(0.10));
 
-        TableColumn<ProjectItem, String> End_dateCol = new TableColumn<>("End date");
+        TableColumn<ProjectRequestsItem, String> End_dateCol = new TableColumn<>("End date");
         End_dateCol.setCellValueFactory(cellData -> cellData.getValue().End_date());
         End_dateCol.prefWidthProperty().bind(ProjectTable.widthProperty().multiply(0.10));
 
-        TableColumn<ProjectItem, String> DescriptionCol = new TableColumn<>("Description");
+        TableColumn<ProjectRequestsItem, String> DescriptionCol = new TableColumn<>("Description");
         DescriptionCol.setCellValueFactory(cellData -> cellData.getValue().Description());
         DescriptionCol.prefWidthProperty().bind(ProjectTable.widthProperty().multiply(0.50));
 
@@ -116,7 +112,7 @@ public class Project2 extends VBox {
         try {
             ObjectMapper mapper = new ObjectMapper();
 
-            ProjectItems projects = mapper.readValue(response.body(), ProjectItems.class);
+            ProjectRequestsItems projects = mapper.readValue(response.body(), ProjectRequestsItems.class);
             this.data.addAll(projects.getprojects());
         } catch (Exception e){
             System.out.println(e);
@@ -131,7 +127,7 @@ public class Project2 extends VBox {
 
     private void deleteProjectRequest() {
         // When item is selected ...
-        ProjectItem selectedproject = ProjectTable.getSelectionModel().getSelectedItem();
+        ProjectRequestsItem selectedproject = ProjectTable.getSelectionModel().getSelectedItem();
 
         // Check if that item row is valid or does exists, if not, throw an alert
         if (selectedproject == null) {
