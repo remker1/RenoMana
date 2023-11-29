@@ -73,6 +73,9 @@ public class Calendar extends VBox {
         LocalDate firstDayOfMonth = currentDate.withDayOfMonth(1);
         DayOfWeek firstDayOfWeek = firstDayOfMonth.getDayOfWeek();
 
+        Label monthNameLabel = new Label(firstDayOfMonth.format(DateTimeFormatter.ofPattern("MMMM")));
+        monthGrid.add(monthNameLabel, 0, 0, 7, 1);
+
         // calculate the starting cell for the 1st of the month
         int startCell = firstDayOfWeek.getValue() % 7;
 
@@ -81,7 +84,7 @@ public class Calendar extends VBox {
         LocalDate dateBeingSetup = firstDayOfMonth;
 
         // populate the calendar grid for the month
-        for (int i = 0; i < 6; i++) { // for up to 6 weeks in a month
+        for (int i = 1; i <= 6; i++) { // for up to 6 weeks in a month
             for (int j = startCell; j < 7; j++) { // 7 days in a week
 
                 // stop once all days of the month are added
@@ -182,11 +185,15 @@ public class Calendar extends VBox {
         // populate the calendar grid for the year
         for (int month = 0; month < 12; month++) {
             GridPane monthGrid = new GridPane();
+
+            Label monthNameLabel = new Label(currentDate.format(DateTimeFormatter.ofPattern("MMMM")));
+            monthGrid.add(monthNameLabel, 0, 0, 7, 1);
+
             int daysInMonth = currentDate.lengthOfMonth();
             int dayCount = 1;
 
             // iterate through a potential maximum of 6 weeks for each month
-            for (int week = 0; week < 6; week++) {
+            for (int week = 1; week <= 6; week++) {
                 for (int day = 0; day < 7 && dayCount <= daysInMonth; day++) {
                     LocalDate dayDate = currentDate.withDayOfMonth(dayCount);
 
