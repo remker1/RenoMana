@@ -31,6 +31,13 @@ def displayReviews():
     except:
         pass
 
+@app.route('/inquiry', methods=['GET'])
+def displayInquiry():
+    try:
+        return render_template('RenoGrpInquiryPage.html')
+    except:
+        pass
+
 # Initialize some default employees into the database
 @app.route('/initDB', methods=["GET"])
 def initDB():
@@ -130,6 +137,7 @@ def register():
 def login():
     try:
         data = request.get_json() #{username: ____, password:______}
+        print(data)
 
         input_user = data['username']
         input_pass = data['password']
@@ -174,15 +182,49 @@ def login():
 def getDashboardData():
     try:
         data = request.get_json()
+        queryUser = data['cookie']
+
+        cursor = db['employees'].find({"username": queryUser})
+        result = [doc for doc in cursor]
+
+        for doc in result:
+            if '_id' in doc:
+                doc['_id'] = str(doc['_id'])
+
+        if result:
+            return jsonify(result[0]), 200
+        else:
+            response = {
+                "message": "Could not find the user"
+            }
+            return jsonify(response), 500
+    except Exception as e:
+        print(e)
+        response = {
+            "message": str(e)
+        }
+        return jsonify(response), 500
+    
+@app.route('/getProjectsData', methods=['POST'])
+def getProjectsData():
+    try:
+        data = request.get_json()
         cookie = data['username']
         print("cookie: " + cookie)
         
         # Fetching the documents from MongoDB
-        cursor = db['employees'].find({'username':cookie})
+        cursor = db['projects'].find({})
         
         # Converting cursor to a list and then to JSON
         response = json_util.dumps(list(cursor))
-        
+        json_data = json_util.dumps(list(cursor))
+        print(response)
+
+        # if cookie in json_data["members"]:
+        #     return response, 200
+        # else:
+        #     return response, 400
+
         return response, 200
     except Exception as e:
         response = {
@@ -240,6 +282,36 @@ def submit_request():
         }
         return jsonify(response_1000), 500
 
+@app.route('/submitinquiry', methods=['GET', 'POST'])
+def submit_inquiry():
+    try:
+        if request.method == 'POST':
+            # Extract user inputs from the HTML form
+            # data_1000 = request.get_json()
+            projectInq = request.form.get("projectInq")
+
+            inq_document = {
+                'projectInq': projectInq
+            }
+            # Insert the user data into the MongoDB collection
+            result200 = db['inq'].insert_one(inq_document)
+
+            response_1000 = {
+                'status': 'success',
+                'message': 'Data submitted successfully',
+                'inserted_id': str(result200.inserted_id)
+            }
+            return jsonify(response_1000), 200
+
+    except Exception as e:
+        # Log the exception for debugging
+        print(f'Error in submit_request route: {e}')
+        response_1000 = {
+            'status': 'failure',
+            'message': str(e)
+        }
+        return jsonify(response_1000), 500
+
 # Route for adding reviews
 @app.route('/addReview', methods=['POST'])
 def addReview():
@@ -275,7 +347,10 @@ def getReviews():
             result = list(db['reviews'].find({}, {"title": 1, "description": 1, "rating": 1, "_id": 0}))
         else:
             result = list(db['reviews'].find({"rating": data.get("rating")}, {"title": 1, "description": 1, "rating": 1 , "_id": 0}))
-        return jsonify(result), 200
+        response = {
+            "reviews": result
+            }
+        return jsonify(response), 200
 
     except Exception as e:
         # Log the exception for debugging
@@ -286,5 +361,122 @@ def getReviews():
         }
         return jsonify(response), 500
 
+@app.route('/getEmployeeData', methods=['POST'])
+def getEmployeeData():
+    try:
+        data = request.get_json()
+        queryUser = data['cookie']
+
+        cursor = db['employees'].find({"username":queryUser})
+        result = [doc for doc in cursor]
+
+        for doc in result:
+            if '_id' in doc:
+                doc['_id'] = str(doc['_id'])
+
+        if result:
+            return jsonify(result[0]), 200
+        else:
+            response = {
+                "message": "Could not find the user"
+            }
+            return jsonify(response), 500
+    except Exception as e:
+        print(e)
+        response = {
+            "message": str(e)
+        }
+        return jsonify(response), 500
+
+# @app.route('/deleteEmployeeData', methods=['POST'])
+# def deleteEmployeeData():
+#     try:
+#         data = request.get_json()
+#         queryUser = data['cookie']
+#
+#         result = db['employees'].delete({"username":queryUser})
+#
+#         if result:
+#             return result, 200
+#         else:
+#             response = {
+#                 "message":"Could not find the user"
+#             }
+#             return jsonify(response), 500
+#     except Exception as e:
+#         print(e)
+#         response = {
+#             "message": e
+#         }
+#         return jsonify(response), 500
+
+@app.route('/getProjects', methods=['POST'])
+def getProjects():
+    try:
+        data = request.get_json()
+        queryUser = data['cookie']
+
+        result = db['projects'].find({"username": queryUser})
+
+        if result:
+            return result, 200
+        else:
+            response = {
+                "message": "Could not find the user"
+            }
+            return jsonify(response), 500
+    except Exception as e:
+        print(e)
+        response = {
+            "message": e
+        }
+        return jsonify(response), 500
+
+@app.route('/syncInventoryDelete', methods=['POST'])
+def syncInventoryDelete():
+    try:
+        data = request.get_json()
+        deleteID = data['deleteItemID']
+        print(deleteID)
+
+        result = db['inventory'].delete_one({"itemID":"\""+deleteID+"\""})
+        print(result)
+
+        if result:
+            response = {
+                "message": "Successfully deleted item"
+            }
+            return response, 200
+        else:
+            response = {
+                "message": "Could not find the item to delete"
+            }
+            return jsonify(response), 500
+    except Exception as e:
+        print(e)
+
+
+@app.route('/syncInventoryAdd', methods=['POST'])
+def syncInventoryAdd():
+    try:
+        data = request.get_json()
+        result = db['inventory'].insert_many(data['items'])
+        print(result)
+
+        if result:
+            response = {
+                "message": "Success!"
+            }
+            return response, 200
+        else:
+            response = {
+                "message": "Could not add item(s) to inventory"
+            }
+            return jsonify(response, 500)
+
+    except Exception as e:
+        print(e)
+
+
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5001, debug=True)

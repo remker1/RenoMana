@@ -87,7 +87,7 @@ public class MainPage extends BasicPage {
         Label accountName = new Label(this.userFname + " " + this.userLname);
         accountName.setStyle("-fx-text-fill: white; -fx-font-weight: bold");
 
-        Circle profileCircle = new Circle(30);
+        Circle profileCircle = new Circle(25);
         profileCircle.setStyle("-fx-background-color: #9E1C29; -fx-stroke: #7C1715; -fx-border-radius: 2;");
         profileCircle.setOnMouseClicked(event -> openProfileWindow());
 
@@ -110,11 +110,11 @@ public class MainPage extends BasicPage {
 
         // Create buttons for each tab and add them to the sidebar
         createTabButton("Dashboard", new Dashboard(COOKIES, dashboardData), "Dashboard");
-        createTabButton("Scheduler", new Scheduler(), "Scheduler");
+        createTabButton("Scheduler", new Scheduler(COOKIES), "Scheduler");
         //loadProjects();
         createTabButton("Calendar", new Calendar(allProjects), "Calendar");
         createTabButton("Inventory", new Inventory(), "Inventory");
-        createTabButton("Employees", new EmployeeList(), "Employees");
+        createTabButton("Employees", new EmployeeList(COOKIES), "Employees");
         createTabButton("Reviews", new Review(), "Reviews");
         createTabButton("Projects", new Project2(), "Projects");
         // createTabButton("Reports", new Report(COOKIES), "Reports");
@@ -132,15 +132,7 @@ public class MainPage extends BasicPage {
         });
 
         button.setOnAction(e -> {
-            COOKIES = null;
-            // Close the login stage
-            stage.close();
-            // Launch the main page
-            try {
-                new Login().start(new Stage());
-            } catch (Exception exc) {
-                System.out.println("Something went wrong when going into main page.");
-            }
+            confirmLogout(stage);
         });
 
         sideBar.getChildren().add(button);
@@ -230,6 +222,39 @@ public class MainPage extends BasicPage {
         isDarkMode = false;
     }
 
+    private void confirmLogout(Stage mainStage) {
+        // Profile window creation and set up.
+        Stage logoutStage = new Stage();
+        VBox logoutLayout = new VBox(20);
+        Scene logoutScene = new Scene(logoutLayout, 300, 200);
+
+        Label titlelabel = new Label("Are you sure you want to log out?");
+
+        Button yesButton = new Button("Yes");
+        yesButton.setOnAction(event -> {
+            COOKIES = null;
+            System.out.println(COOKIES);
+            logoutStage.close();
+            mainStage.close();
+            try {
+                new Login().start(new Stage());
+            } catch (Exception exc) {
+                System.out.println("Something went wrong when going into main page.");
+            }
+        });
+
+        // Button with an event where, upon click, will take the user back to the MainPage.
+        Button noButton = new Button("No");
+        noButton.setOnAction(event -> {
+            logoutStage.close();
+        });
+
+        logoutLayout.getChildren().addAll(titlelabel, yesButton, noButton);
+        logoutStage.setScene(logoutScene);
+        logoutStage.setTitle("Log out");
+        logoutStage.show();
+    }
+
     private void displayContent(Node content, String title) {
         contentArea.getChildren().clear();
         contentTitle.setText(title);
@@ -257,10 +282,6 @@ public class MainPage extends BasicPage {
         sideBar.getChildren().add(button);
     }
 
-    private void createLogoutButton() {
-
-    }
-
 
     private ToggleButton getToggleButton() {
         ToggleButton toggleSidebar = new ToggleButton("Menu");
@@ -280,7 +301,7 @@ public class MainPage extends BasicPage {
     private String fetchDashboardData(String COOKIES) throws IOException, InterruptedException {
         System.out.println(COOKIES);
         String msg = "{" +
-                "\"username\":\"" + COOKIES +
+                "\"cookie\":\"" + COOKIES +
                 "\"}";
 
         HttpClient httpClient = HttpClient.newHttpClient();
@@ -299,7 +320,6 @@ public class MainPage extends BasicPage {
         System.out.println("[DASHBOARD] " + responseBody);
         this.userFname = parseJson(responseBody, "fname");
         this.userLname = parseJson(responseBody, "lname");
-        System.out.println();
         return responseBody;
     }
 

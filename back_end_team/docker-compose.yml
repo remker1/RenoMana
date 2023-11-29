@@ -7,11 +7,11 @@ services:
     environment:
       - FLASK_ENV=development
     ports:
-      - "5001:5000"
+      - "5001:5001"
     depends_on:
       - db
 
-  # MongoDB database 
+  # MongoDB dçatabase 
   db:
     image: mongo:latest
     hostname: mongodb

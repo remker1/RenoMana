@@ -12,6 +12,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,7 +34,7 @@ public class Scheduler extends VBox {
     /***
      * Constructor for Scheduler UI
      */
-    public Scheduler() {
+    public Scheduler(String COOKIES) {
         // Project Schedule label
         final Label label = new Label("Projects Schedule");
         label.setFont(new Font("Arial", 20));
@@ -118,8 +124,17 @@ public class Scheduler extends VBox {
         Button deleteButton = new Button("Delete");
         deleteButton.setOnAction(actionEvent -> deleteProject());
 
+        Button refreshButton = new Button("Refresh");
+        refreshButton.setOnAction(actionEvent -> {
+            try {
+                fetchProjects(COOKIES);
+            } catch(Exception e){
+                showAlert("Error!", "Something went wrong when fetching Projects!");
+            }
+        });
+
         // container for the buttons
-        HBox buttonBox = new HBox(10, addButton, modifyButton, deleteButton);
+        HBox buttonBox = new HBox(10, addButton, modifyButton, deleteButton, refreshButton);
         buttonBox.setPadding(new Insets(10, 0, 10, 0));
 
         // add the label, table, and buttons to the main container
@@ -246,6 +261,30 @@ public class Scheduler extends VBox {
         table.refresh();
     }
 
+    private String fetchProjects(String COOKIES) throws IOException, InterruptedException {
+        System.out.println(COOKIES);
+        String msg = "{" +
+                "\"username\":\"" + COOKIES +
+                "\"}";
+
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://127.0.0.1:5001/getProjectsData"))
+                .timeout(java.time.Duration.ofMinutes(2))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(msg, StandardCharsets.UTF_8))
+                .build();
+
+        System.out.println("[DASHBOARD] " + request.toString());
+        System.out.println(msg);
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+        String responseBody = response.body();
+        System.out.println("[DASHBOARD] " + responseBody);
+        System.out.println();
+        return responseBody;
+    }
+
 
     /***
      * Method to delete a selected project
@@ -270,6 +309,14 @@ public class Scheduler extends VBox {
             noSelectedAlert.setContentText("Please select a project from the table to delete.");
             noSelectedAlert.showAndWait();
         }
+    }
+
+    private void showAlert(String title, String content) {
+        Alert invalidNumAlert = new Alert(Alert.AlertType.ERROR);
+        invalidNumAlert.setTitle(title);
+        invalidNumAlert.setHeaderText(null);
+        invalidNumAlert.setContentText(content);
+        invalidNumAlert.showAndWait();
     }
 
 }

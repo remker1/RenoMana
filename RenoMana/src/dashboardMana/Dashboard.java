@@ -83,15 +83,15 @@ public class Dashboard extends HBox {
         projectTableView.prefHeightProperty().bind(heightProperty());
 
         // Create columns of TableView for Inventory and add them into inventory table
-        TableColumn<InventoryItem, String> toolNameCol = new TableColumn<>("Tool Name");
-        toolNameCol.setCellValueFactory(cellData -> cellData.getValue().toolNameProperty());
-        toolNameCol.prefWidthProperty().bind(dashboardInventoryTable.widthProperty().multiply(0.5));
+        TableColumn<InventoryItem, String> itemNameCol = new TableColumn<>("Tool Name");
+        itemNameCol.setCellValueFactory(cellData -> cellData.getValue().itemNameProperty());
+        itemNameCol.prefWidthProperty().bind(dashboardInventoryTable.widthProperty().multiply(0.5));
 
-        TableColumn<InventoryItem, Integer> quantityCol = new TableColumn<>("Total Quantity");
-        quantityCol.setCellValueFactory(cellData -> cellData.getValue().quantityProperty().asObject());
-        quantityCol.prefWidthProperty().bind(dashboardInventoryTable.widthProperty().multiply(0.5));
+        TableColumn<InventoryItem, String> itemDescriptionCol = new TableColumn<>("Tool Description");
+        itemDescriptionCol.setCellValueFactory(cellData -> cellData.getValue().itemDescriptionPropety());
+        itemDescriptionCol.prefWidthProperty().bind(dashboardInventoryTable.widthProperty().multiply(0.5));
 
-        dashboardInventoryTable.getColumns().addAll(toolNameCol,quantityCol);
+        dashboardInventoryTable.getColumns().addAll(itemNameCol,itemDescriptionCol);
 
         // First option projects as table
         // Create columns of TableView for Project and add them into project table
@@ -157,7 +157,7 @@ public class Dashboard extends HBox {
     private String fetchDashboardData(String COOKIES) throws IOException, InterruptedException {
         System.out.println(COOKIES);
         String msg = "{" +
-                "\"username\":\"" + COOKIES +
+                "\"cookie\":\"" + COOKIES +
                 "\"}";
 
         HttpClient httpClient = HttpClient.newHttpClient();
@@ -207,7 +207,7 @@ public class Dashboard extends HBox {
             return value;
 
         } else {
-            System.out.println("'cookie' not found in the response");
+            System.out.println(target + " not found in the response");
             return null;
         }
     }

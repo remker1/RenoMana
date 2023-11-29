@@ -14,10 +14,22 @@ import javafx.geometry.Insets;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.util.*;
+
 import java.io.*;
-import java.util.Arrays;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+import java.time.Duration;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 public class Inventory extends VBox {
+
+    private TreeSet<Integer> availableIds = new TreeSet<>();
 
     public static TableView<InventoryItem> inventoryTable;
     public static ObservableList<InventoryItem> data;
@@ -28,32 +40,65 @@ public class Inventory extends VBox {
          inventoryTable.prefWidthProperty().bind(this.widthProperty());
          data = FXCollections.observableArrayList();
 
-         // Adding column names
-         TableColumn<InventoryItem, String> toolNameCol = new TableColumn<>("Tool Name");
-         toolNameCol.setCellValueFactory(cellData -> cellData.getValue().toolNameProperty());
-         toolNameCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.3)); // 40% width
+         //determine which IDs are currently available
+         for (int i = 1; i <= 1000; i++) {
+             availableIds.add(i);
+         }
+
+         // =================COLUMN NAMES================
+         TableColumn<InventoryItem, Integer> itemID = new TableColumn<>("id");
+         itemID.setCellValueFactory(cellData -> cellData.getValue().itemIDProperty().asObject());
+         itemID.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.16)); // 30% width
+
+         TableColumn<InventoryItem, String> itemNameCol = new TableColumn<>("Item Name");
+         itemNameCol.setCellValueFactory(cellData -> cellData.getValue().itemNameProperty());
+         itemNameCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.16)); // 40% width
 
 
-         TableColumn<InventoryItem, Integer> quantityCol = new TableColumn<>("Total Quantity");
-         quantityCol.setCellValueFactory(cellData -> cellData.getValue().quantityProperty().asObject());
-         quantityCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.3)); // 30% width
+         TableColumn<InventoryItem, String> itemDescCol = new TableColumn<>("Item Description");
+         itemDescCol.setCellValueFactory(cellData -> cellData.getValue().itemDescriptionPropety());
+         itemDescCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.16)); // 30% width
 
 
-         TableColumn<InventoryItem, Integer> estCol = new TableColumn<>("Estimation for Project");
-         estCol.setCellValueFactory(cellData -> cellData.getValue().estimationProperty().asObject());
-         estCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.3)); // 30% width
+         TableColumn<InventoryItem, String> itemProjectCol = new TableColumn<>("Project");
+         itemProjectCol.setCellValueFactory(cellData -> cellData.getValue().itemProjectPropety());
+         itemProjectCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.16)); // 30% width
+
+         TableColumn<InventoryItem, String> itemSerialCol = new TableColumn<>("Serial Number");
+         itemSerialCol.setCellValueFactory(cellData -> cellData.getValue().itemSNProperty());
+         itemSerialCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.16)); // 30% width
+
+         TableColumn<InventoryItem, String> itemModelCol = new TableColumn<>("Model Number");
+         itemModelCol.setCellValueFactory(cellData -> cellData.getValue().itemMNProperty());
+         itemModelCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.16)); // 30% width
 
 
-         inventoryTable.getColumns().addAll(toolNameCol, quantityCol, estCol);
+         inventoryTable.getColumns().addAll(itemID, itemNameCol, itemDescCol, itemProjectCol, itemSerialCol, itemModelCol);
          inventoryTable.setItems(data);
 
 
          // Setting up the button options for things user can do in this tab
          Button addItem = new Button("Add");
-         addItem.setOnAction(actionEvent -> addInventoryItem());
+         addItem.setOnAction(actionEvent -> {
+             try {
+                 addInventoryItem();
+             } catch (IOException e) {
+                 throw new RuntimeException(e);
+             } catch (InterruptedException e) {
+                 throw new RuntimeException(e);
+             }
+         });
 
          Button deleteItem = new Button("Delete");
-         deleteItem.setOnAction(actionEvent -> deleteInventoryItem());
+         deleteItem.setOnAction(actionEvent -> {
+             try {
+                 deleteInventoryItem();
+             } catch (IOException e) {
+                 throw new RuntimeException(e);
+             } catch (InterruptedException e) {
+                 throw new RuntimeException(e);
+             }
+         });
 
          Button modifyItem = new Button("Modify");
          modifyItem.setOnAction(actionEvent -> {modifyInventoryItem();});
@@ -73,7 +118,6 @@ public class Inventory extends VBox {
          this.getChildren().addAll(inventoryTable, optButton);
      }
 
-
     private void exportInventoryFile() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save Inventory as CSV");
@@ -84,10 +128,11 @@ public class Inventory extends VBox {
         if (file != null) {
             // Write the header and data in the file
             try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
-                bw.write("Tool Name,Total Quantity,Estimation for Project\n");
+                bw.write("Item ID,Item Name,Item Description,Item Project,Item Serial Number,Item Model Number\n");
 
                 for (InventoryItem item : data) {
-                    bw.write(item.getToolName() + "," + item.getQuantity() + "," + item.getEstimation() + "\n");
+                    bw.write(item.getItemID() + "," + item.getItemName() + "," + item.getItemDescription() + "," +
+                            item.getItemProject() + "," + item.getItemSN() + "," + item.getItemMN() + "\n");
                 }
 
                 Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
@@ -122,31 +167,37 @@ public class Inventory extends VBox {
             try (BufferedReader br = new BufferedReader(new FileReader(file))) {
                 String line;
 
-
                 // Read each line of the file until there are no more lines left
-                boolean isFirstLine = true;
                 while ((line = br.readLine()) != null) {
-                    if (isFirstLine) {
-                        isFirstLine = false;
-                        continue;
-                    }
-
                     String[] values = line.split(",");
 
-                    // Check if the line has at least 3 values (for toolName, quantity, and estimation) and create an
+                    // Check if the line has at least 6 values (for ID, Name, Desc, Project, SN, and MN) and create an
                     // InventoryItem Object from it to add in our table
                     // If not, error alert will be displayed
-                    if (values.length >= 3) {
-                        String toolName = values[0];
-                        int quantity = Integer.parseInt(values[1].trim());
-                        int estimation = Integer.parseInt(values[2].trim());
+                    if (values.length >= 6) {
+                        int itemID;
+                        if (availableIds.contains(Integer.parseInt(values[0].trim()))) {
+                            itemID = Integer.parseInt(values[0].trim());
+                            availableIds.remove(itemID);
+                        }
+                        else
+                            itemID = availableIds.first();
+                        String itemName = values[1];
+                        String itemDescription = values[2];
+                        String itemProject = values[3];
+                        String itemSN = values[4];
+                        String itemMN = values[5];
+
                         InventoryItem newItem = new InventoryItem(
-                                new SimpleStringProperty(toolName),
-                                new SimpleIntegerProperty(quantity),
-                                new SimpleIntegerProperty(estimation)
+                                new SimpleIntegerProperty(itemID),
+                                new SimpleStringProperty(itemName),
+                                new SimpleStringProperty(itemDescription),
+                                new SimpleStringProperty(itemProject),
+                                new SimpleStringProperty(itemSN),
+                                new SimpleStringProperty(itemMN)
                         );
 
-                        data.add(newItem);
+                        this.data.add(newItem);
                     }
                 }
 
@@ -189,88 +240,79 @@ public class Inventory extends VBox {
 
         // Set up UI elements for modifying the item.
         Label promptMessage = new Label("Select information to modify:");
-        CheckBox toolNameMod = new CheckBox("Tool Name");
-        CheckBox quantityMod = new CheckBox("Quantity");
-        CheckBox estimateMod = new CheckBox("Estimation");
+        CheckBox itemNameMod = new CheckBox("Item Name");
+        CheckBox itemDescriptionMod = new CheckBox("Item Description");
+        CheckBox itemProjectMod = new CheckBox("Project");
+        CheckBox itemSNMod = new CheckBox("Serial Number");
+        CheckBox itemMNMod = new CheckBox("Model Number");
 
 
         Button doneBtn = new Button("Done");
         doneBtn.setOnAction(event -> {
-            int quantity = 0;
-            int estimation = 0;
 
             // Modify the tool's name if the corresponding checkbox is selected.
-            if (toolNameMod.isSelected()) {
-                TextInputDialog toolInput = new TextInputDialog(selectedItem.getToolName());
-                toolInput.setTitle("Modify Tool Name");
-                toolInput.setHeaderText("Enter New Tool Name");
-                String newTool = toolInput.showAndWait().orElse("");
+            if (itemNameMod.isSelected()) {
+                TextInputDialog nameInput = new TextInputDialog(selectedItem.getItemName());
+                nameInput.setTitle("Modify Item Name");
+                nameInput.setHeaderText("Enter New Item Name");
+                String newName = nameInput.showAndWait().orElse("");
 
-                // Error Handling: If tool name is already in the table (excluding the currently selected item)
-                for (InventoryItem item: data) {
-                    if (item.getToolName().equals(newTool) && item != selectedItem) {
-                        Alert duplicateAlert = new Alert(Alert.AlertType.ERROR);
-                        duplicateAlert.setTitle("Error!");
-                        duplicateAlert.setHeaderText("Tool already exists!");
-                        duplicateAlert.setContentText("Please choose a different tool name.");
-                        duplicateAlert.showAndWait();
-                        return;
-                    } else {
-                        while (newTool.isEmpty()) {
-                            toolInput.setTitle("Modify Tool Name");
-                            toolInput.setHeaderText("Tool Name Cannot be empty!");
-                            newTool = toolInput.showAndWait().orElse("");
-                        }
-                    }
-                }
                 // Update the tool name after validation.
-                selectedItem.setToolName(newTool);
+                selectedItem.setItemName(newName);
             }
 
+            // Modify the item's description, validating the input.
+            if (itemDescriptionMod.isSelected()) {
+                TextInputDialog descriptionInput = new TextInputDialog(selectedItem.getItemDescription());
+                descriptionInput.setTitle("Modify Description");
+                descriptionInput.setHeaderText("Enter New Description");
+                String newDescription = descriptionInput.showAndWait().orElse("");
+
+                selectedItem.setItemDescription(newDescription);
+            }
+
+            // Modify the item's project, validating the input.
+            if (itemProjectMod.isSelected()) {
+                TextInputDialog projectInput = new TextInputDialog(selectedItem.getItemProject());
+                projectInput.setTitle("Modify Project");
+                projectInput.setHeaderText("Enter New Project");
+                String newProject = projectInput.showAndWait().orElse("");
+
+                selectedItem.setItemProject(newProject);
+            }
+
+            // Modify the item's serial number, validating the input.
+            if (itemSNMod.isSelected()) {
+                TextInputDialog snInput = new TextInputDialog(selectedItem.getItemSN());
+                snInput.setTitle("Modify Estimation");
+                snInput.setHeaderText("Enter New Serial Number");
+                String newSN = snInput.showAndWait().orElse("");
+
+                selectedItem.setItemSerialNumber(newSN);
+            }
+
+            // Modify the item's serial number, validating the input.
+            if (itemMNMod.isSelected()) {
+                TextInputDialog mnInput = new TextInputDialog(selectedItem.getItemMN());
+                mnInput.setTitle("Modify Estimation");
+                mnInput.setHeaderText("Enter New Model Number");
+                String newMN = mnInput.showAndWait().orElse("");
+
+                selectedItem.setItemModelNumber(newMN);
+            }
             try {
-                // Modify the item's quantity, validating the input.
-                if (quantityMod.isSelected()) {
-                    TextInputDialog quantityInput = new TextInputDialog(selectedItem.getToolName());
-                    quantityInput.setTitle("Modify Quantity");
-                    quantityInput.setHeaderText("Enter New Quantity");
-                    quantity = Integer.parseInt(quantityInput.showAndWait().orElse("Invalid Input!"));
-
-                    if (quantity < 0) {
-                        throw new NumberFormatException();
-                    }
-
-                    selectedItem.setQuantity(quantity);
-                }
-
-                // Modify the item's estimation, validating the input.
-                if (estimateMod.isSelected()) {
-                    TextInputDialog estInput = new TextInputDialog(selectedItem.getToolName());
-                    estInput.setTitle("Modify Estimation");
-                    estInput.setHeaderText("Enter New Estimation");
-                    estimation = Integer.parseInt(estInput.showAndWait().orElse("Invalid Input!"));
-
-                    if (estimation < 0) {
-                        throw new NumberFormatException();
-                    }
-
-                    selectedItem.setEstimation(estimation);
-                }
-
-            } catch (NumberFormatException e) {
-                Alert invalidNumAlert = new Alert(Alert.AlertType.ERROR);
-                invalidNumAlert.setTitle("Error!");
-                invalidNumAlert.setHeaderText("Invalid Input!");
-                invalidNumAlert.setContentText("Please enter a valid positive integer for quantity and estimation.");
-                invalidNumAlert.showAndWait();
-                return;
+                syncToDatabase(Collections.singletonList(selectedItem));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
-
             inventoryTable.refresh();
             modifyStage.close();
         });
 
         // Add UI elements to the modification stage
-        modifyTitle.getChildren().addAll(promptMessage, toolNameMod, quantityMod, estimateMod, doneBtn);
+        modifyTitle.getChildren().addAll(promptMessage, itemNameMod, itemDescriptionMod, itemProjectMod, itemSNMod, itemMNMod, doneBtn);
 
         Scene modifyScene = new Scene(modifyTitle, 200, 200);
         modifyStage.setResizable(false);
@@ -279,11 +321,11 @@ public class Inventory extends VBox {
         modifyStage.show();
     }
 
-    private void deleteInventoryItem() {
+    private void deleteInventoryItem() throws IOException, InterruptedException {
          // When item is selected ...
         InventoryItem selectedItem = inventoryTable.getSelectionModel().getSelectedItem();
 
-        // Check if that item row is valid or does exists, if not, throw an alert
+        // Check if that item row is valid or does exist, if not, throw an alert
         if (selectedItem == null) {
             Alert noSelectedAlert = new Alert(Alert.AlertType.WARNING);
             noSelectedAlert.setTitle("Error!");
@@ -295,68 +337,97 @@ public class Inventory extends VBox {
 
         // Else, remove the item from the table
         data.remove(selectedItem);
+        availableIds.add(selectedItem.getItemID());
+        syncToDatabase(selectedItem.getItemID());
         inventoryTable.refresh();
     }
 
-    private void addInventoryItem() {
+    private void addInventoryItem() throws IOException, InterruptedException {
+        int itemID = availableIds.isEmpty() ? 1 : availableIds.first();
+        availableIds.remove(itemID);
+
          // Gather user input for tool, quantity, and estimation values
-        TextInputDialog toolInput = new TextInputDialog();
-        toolInput.setTitle("Add New Tool");
-        toolInput.setHeaderText("Enter Tool Name");
-        String toolName = toolInput.showAndWait().orElse("");
+        TextInputDialog newItemDialog = new TextInputDialog();
+        newItemDialog.setTitle("Add New Item");
+        newItemDialog.setHeaderText("Enter Item Name");
+        String itemName = newItemDialog.showAndWait().orElse("");
 
-        while (toolName.isEmpty()) {
-            toolInput.setHeaderText("Tool Name Cannot be Empty, Try Again!");
-            toolName = toolInput.showAndWait().orElse("");
+        while (itemName.isEmpty()) {
+            newItemDialog.setHeaderText("Item Name Cannot be Empty, Try Again!");
+            itemName = newItemDialog.showAndWait().orElse("");
         }
 
-        // Error Handling: If tool name is already in the table
-        for (InventoryItem item : data) {
-            if (item.getToolName().equals(toolName)){
-                Alert duplicateAlert = new Alert(Alert.AlertType.ERROR);
-                duplicateAlert.setTitle("Error!");
-                duplicateAlert.setHeaderText("Tool already exists!");
-                duplicateAlert.setContentText("Please use the modify button to change the existing tool's " +
-                        "details instead!");
-                duplicateAlert.showAndWait();
-                return;
-            }
-        }
+        TextInputDialog descriptionInput = new TextInputDialog("");
+        descriptionInput.setHeaderText("Enter New Description");
+        String itemDescription = descriptionInput.showAndWait().orElse("");
 
-        int quantity = 0;
-        int estimation = 0;
+        TextInputDialog projectInput = new TextInputDialog("");
+        projectInput.setHeaderText("Enter Project to Assign Item to");
+        String itemProject = projectInput.showAndWait().orElse("");
 
-        try {
-            TextInputDialog quantityInput = new TextInputDialog("0");
-            quantityInput.setHeaderText("Enter Quantity");
-            quantity = Integer.parseInt(quantityInput.showAndWait().orElse("Invalid Input!"));
+        TextInputDialog snInput = new TextInputDialog("");
+        snInput.setHeaderText("Enter Item's Serial Number");
+        String serialNumber = snInput.showAndWait().orElse("");
 
-            if (quantity < 0) {
-                throw new NumberFormatException();
-            }
-
-            TextInputDialog estimateInput = new TextInputDialog("0");
-            estimateInput.setHeaderText("Enter Estimate");
-            estimation = Integer.parseInt(estimateInput.showAndWait().orElse("Invalid Input!"));
-
-            if (estimation < 0) {
-                throw new NumberFormatException();
-            }
-        } catch (NumberFormatException e) {
-            Alert invalidNumAlert = new Alert(Alert.AlertType.ERROR);
-            invalidNumAlert.setTitle("Error!");
-            invalidNumAlert.setHeaderText("Invalid Input!");
-            invalidNumAlert.setContentText("Please enter a valid positive integer for quantity and estimation.");
-            invalidNumAlert.showAndWait();
-            return;
-        }
+        TextInputDialog mnInput = new TextInputDialog("");
+        mnInput.setHeaderText("Enter Item's Model Number");
+        String modelNumber = mnInput.showAndWait().orElse("");
 
         // Create the InventoryItem
-        InventoryItem newItem = new InventoryItem(new SimpleStringProperty(toolName),
-                new SimpleIntegerProperty(quantity), new SimpleIntegerProperty(estimation));
+        InventoryItem newItem = new InventoryItem(new SimpleIntegerProperty(itemID), new SimpleStringProperty(itemName),
+                new SimpleStringProperty(itemDescription), new SimpleStringProperty(itemProject), new SimpleStringProperty(serialNumber),
+                new SimpleStringProperty(modelNumber));
 
         data.add(newItem);
+        syncToDatabase(Collections.singletonList(newItem));
         inventoryTable.refresh();
+
+    }
+
+    /**
+     * Reflect item deletion in database
+     * @param id                    item to be deleted
+     * @throws IOException          IOException
+     * @throws InterruptedException InterruptedException
+     */
+    private void syncToDatabase(int id) throws IOException, InterruptedException {
+        String msg = "{" +
+                "\"deleteItemID\":\"" + id + "\"" +
+                "}";
+        System.out.println("[INVENTORY DELETE]: " + msg);
+
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://127.0.0.1:5001/syncInventoryDelete"))
+                .timeout(Duration.ofMinutes(2))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(msg, StandardCharsets.UTF_8))
+                .build();
+
+        System.out.println("[INVENTORY]: " + request.toString());
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+    }
+
+    /**
+     * Reflect item add in database
+     * @param items items to be added in database
+     */
+    private void syncToDatabase(List<InventoryItem> items) throws IOException, InterruptedException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String itemsJson = objectMapper.writeValueAsString(items);
+        String msg = "{\"" + "items" + "\":" + itemsJson + "}";
+        System.out.println("[INVENTORY ADD]: " + msg);
+
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://127.0.0.1:5001/syncInventoryAdd"))
+                .timeout(Duration.ofMinutes(2))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(msg, StandardCharsets.UTF_8))
+                .build();
+
+        System.out.println("[INVENTORY]: " + request.toString());
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
     }
 

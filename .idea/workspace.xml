@@ -4,11 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="- Init for Report class for Emma epic implementation.">
+    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/Report.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/BasicPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/BasicPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/MainPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/dashboardMana/Dashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/dashboardMana/Dashboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeList.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/employeeMana/EmployeeList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/employeeMana/EmployeeList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/reviewMana/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/reviewMana/Review.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/app/.idea/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/app/.idea/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/app/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/app/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/app/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/app/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/BasicPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/BasicPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/Login.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/MainPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/dashboardMana/Dashboard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/dashboardMana/Dashboard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/reviewMana/Review.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/reviewMana/Review.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Scheduler$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Scheduler$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Scheduler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/timeMana/Scheduler.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,19 +43,19 @@
     <option name="BRANCH" value="origin/main" />
   </component>
   <component name="Git.Settings">
-    <favorite-branches>
+    <excluded-from-favorite>
       <branch-storage>
         <map>
           <entry type="LOCAL">
             <value>
               <list>
-                <branch-info repo="$PROJECT_DIR$" source="JewelBranch" />
+                <branch-info repo="$PROJECT_DIR$" source="main" />
               </list>
             </value>
           </entry>
         </map>
       </branch-storage>
-    </favorite-branches>
+    </excluded-from-favorite>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="main" />
@@ -67,20 +83,22 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="2VqPpCYY7ldfkeTDnBPX1Q2XQy6" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
     &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
     &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
@@ -90,26 +108,26 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;Leo-JavaGUI&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Emmanuel/Desktop/temo/lib&quot;,
+    &quot;last_opened_file_path&quot;: &quot;L:/JavaFX/openjfx-20.0.2_windows-x64_bin-sdk/javafx-sdk-20.0.2/lib&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.14641148&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.MainPage">
+  <component name="RunManager" selected="Application.Login">
     <configuration name="Login" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="Login" />
       <module name="RenoMana" />
-      <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Downloads/javafx-sdk-21/lib  --add-modules javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;$USER_HOME$/javafx-sdk-21-mac/lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -119,7 +137,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="MainPage" />
       <module name="RenoMana" />
-      <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Downloads/javafx-sdk-21/lib --add-modules javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;L:\JavaFX\openjfx-20.0.2_windows-x64_bin-sdk\javafx-sdk-20.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -163,19 +181,6 @@
       <workItem from="1696451729390" duration="164000" />
       <workItem from="1696457143116" duration="1065000" />
       <workItem from="1700003285969" duration="5225000" />
-      <workItem from="1700624375558" duration="183000" />
-      <workItem from="1700681275105" duration="165000" />
-      <workItem from="1700689330730" duration="647000" />
-      <workItem from="1700709129427" duration="548000" />
-      <workItem from="1700709873509" duration="95000" />
-      <workItem from="1700710217201" duration="792000" />
-      <workItem from="1700711656874" duration="3524000" />
-      <workItem from="1700716314904" duration="32000" />
-      <workItem from="1700717149342" duration="6984000" />
-      <workItem from="1700725205137" duration="28000" />
-      <workItem from="1700909106815" duration="486000" />
-      <workItem from="1700909672065" duration="1475000" />
-      <workItem from="1700951971585" duration="238000" />
     </task>
     <task id="LOCAL-00001" summary="Finished setting up the log in page in accordance to agreed upon outline">
       <option name="closed" value="true" />
@@ -273,37 +278,7 @@
       <option name="project" value="LOCAL" />
       <updated>1700132644032</updated>
     </task>
-    <task id="LOCAL-00013" summary="Re-commit Inquiry html webpage">
-      <created>1700614407099</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1700614407099</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Re-commit Inquiry html webpage">
-      <created>1700614450266</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1700614450266</updated>
-    </task>
-    <task id="LOCAL-00015" summary="- Re-commit after merge (emmanuel's merge, nov 21)&#10;- Fixed Inventory table not importing file as expected in test cases">
-      <option name="closed" value="true" />
-      <created>1700624095170</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1700624095170</updated>
-    </task>
-    <task id="LOCAL-00016" summary="- Init for Report class for Emma epic implementation.">
-      <option name="closed" value="true" />
-      <created>1700909781124</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1700909781124</updated>
-    </task>
-    <option name="localTasksCounter" value="17" />
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -321,6 +296,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="committing unversioned files" />
     <MESSAGE value="Finished setting up the log in page in accordance to agreed upon outline" />
     <MESSAGE value="Refined Login Class&#10;- Added comments&#10;- Log In button leads to main page&#10;- New? button leads to registration page" />
@@ -330,10 +306,7 @@
     <MESSAGE value="calendar can now show a list of projects due on or after set date" />
     <MESSAGE value="calendar can now show a list of projects due on or after current date" />
     <MESSAGE value="DashBoard Partially Done, now dashboard could sync data with Scheduler and Inventory, user pointed welcome section and Charts for Employees still needs implementation. Two options of project timeline (TableView/ListVew) are both implemented for choices of better UI Design." />
-    <MESSAGE value="Re-commit Inquiry html webpage" />
-    <MESSAGE value="- Re-commit after merge (emmanuel's merge, nov 21)&#10;- Fixed Inventory table not importing file as expected in test cases" />
-    <MESSAGE value="- Init for Report class for Emma epic implementation." />
-    <option name="LAST_COMMIT_MESSAGE" value="- Init for Report class for Emma epic implementation." />
+    <option name="LAST_COMMIT_MESSAGE" value="DashBoard Partially Done, now dashboard could sync data with Scheduler and Inventory, user pointed welcome section and Charts for Employees still needs implementation. Two options of project timeline (TableView/ListVew) are both implemented for choices of better UI Design." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/cmpt370_g29$MainPage.ic" NAME="MainPage Coverage Results" MODIFIED="1698361182269" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
