@@ -4,15 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="MainPage Class modified:&#10;- Reformatted the profile/settins window (the one on top right) &#10;- On click, user is now able to see their information, set light and dark mode, and sign out.">
+    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="MainPage Class modified:&#10;- Added image to profile circle">
       <change afterPath="$PROJECT_DIR$/.idea/libraries/jackson_annotations_2_16_0.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/jackson_core_2_16_0.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/jackson_databind_2_16_0.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RenoMana/src/blank-profile-picture-973460_1280.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Downloads.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/MainPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/Registration.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/Registration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/local_2/ProjectMana/Project2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/local_2/ProjectMana/Project2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/local_2/ProjectMana/ProjectItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/local_2/ProjectMana/ProjectItem.class" afterDir="false" />
     </list>
@@ -116,7 +116,7 @@
       <recent name="$PROJECT_DIR$/RenoMana/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MainPage">
+  <component name="RunManager" selected="Application.Login">
     <configuration name="Login" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -176,7 +176,7 @@
       <workItem from="1696451729390" duration="164000" />
       <workItem from="1696457143116" duration="1065000" />
       <workItem from="1700003285969" duration="5225000" />
-      <workItem from="1701286269164" duration="2834000" />
+      <workItem from="1701286269164" duration="3864000" />
     </task>
     <task id="LOCAL-00001" summary="Finished setting up the log in page in accordance to agreed upon outline">
       <option name="closed" value="true" />
@@ -290,7 +290,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701280226850</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="MainPage Class modified:&#10;- Added image to profile circle">
+      <option name="closed" value="true" />
+      <created>1701289483704</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1701289483704</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -320,7 +328,8 @@
     <MESSAGE value="DashBoard Partially Done, now dashboard could sync data with Scheduler and Inventory, user pointed welcome section and Charts for Employees still needs implementation. Two options of project timeline (TableView/ListVew) are both implemented for choices of better UI Design." />
     <MESSAGE value="MainPage Class modified:&#10;- Fixed light and dark mode inconsistency when it comes to text/Labels not updating properly when modes switch. For example, if in dark mode, the texts stays as colour gray which makes it hard to read." />
     <MESSAGE value="MainPage Class modified:&#10;- Reformatted the profile/settins window (the one on top right) &#10;- On click, user is now able to see their information, set light and dark mode, and sign out." />
-    <option name="LAST_COMMIT_MESSAGE" value="MainPage Class modified:&#10;- Reformatted the profile/settins window (the one on top right) &#10;- On click, user is now able to see their information, set light and dark mode, and sign out." />
+    <MESSAGE value="MainPage Class modified:&#10;- Added image to profile circle" />
+    <option name="LAST_COMMIT_MESSAGE" value="MainPage Class modified:&#10;- Added image to profile circle" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/cmpt370_g29$MainPage.ic" NAME="MainPage Coverage Results" MODIFIED="1698361182269" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
