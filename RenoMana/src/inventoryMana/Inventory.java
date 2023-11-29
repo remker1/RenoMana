@@ -358,17 +358,24 @@ public class Inventory extends VBox {
         availableIds.remove(itemID);
 
          // Gather user input for tool, quantity, and estimation values
-        TextInputDialog newItemDialog = new TextInputDialog();
-        newItemDialog.setTitle("Add New Item");
-        newItemDialog.setHeaderText("Enter Item Name");
-        String itemName = newItemDialog.showAndWait().orElse("");
+        String itemName = null;
+        while (true) { // Keep asking item name until user click `Cancel` or a valid string.
+            TextInputDialog newItemDialog = new TextInputDialog();
+            newItemDialog.setTitle("Add New Item");
+            newItemDialog.setHeaderText(itemName == null ? "Enter Item Name" : "Item Name Cannot be Empty, Try Again!");
 
-        while (itemName.isEmpty()) {
-            newItemDialog.setHeaderText("Item Name Cannot be Empty, Try Again!");
-            itemName = newItemDialog.showAndWait().orElse("");
+            Optional<String> result = newItemDialog.showAndWait();
+            if (result.isPresent()) {
+                itemName = result.get();
+                if (!itemName.isEmpty()) {
+                    break; // Exit the loop if itemName is not empty
+                }
+            } else {
+                return; // Exit the method if user cancels or closes the dialog
+            }
         }
 
-        TextInputDialog descriptionInput = new TextInputDialog("");
+                TextInputDialog descriptionInput = new TextInputDialog("");
         descriptionInput.setHeaderText("Enter New Description");
         String itemDescription = descriptionInput.showAndWait().orElse("");
 
