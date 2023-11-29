@@ -142,6 +142,13 @@ public class Inventory extends VBox {
         return itemNameCol;
     }
 
+    /**
+     * This method creates and returns an HBox containing buttons for
+     * adding, deleting, modifying, importing, and exporting inventory items.
+     * Each button is also set up with an action event that triggers the respective method.
+     *
+     * @return HBox containing operation buttons.
+     */
     private HBox getOptButton() {
         Button addItem = new Button("Add");
         addItem.setOnAction(actionEvent -> {
@@ -180,23 +187,30 @@ public class Inventory extends VBox {
         return optButton;
     }
 
+    /**
+     * This method allows the user to export the current inventory data to a CSV file.
+     * It will open a file chooser dialog for the user to select a save location and then writes
+     * the inventory data to this file in CSV format.
+     */
     private void exportInventoryFile() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save Inventory as CSV");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
 
-        // If a file is selected, write the TableView data to the file as CSV
+        // If a file is selected, write the TableView data to the file as CSV.
         File file = fileChooser.showSaveDialog(null);
         if (file != null) {
             // Write the header and data in the file
             try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
                 bw.write("Item ID,Item Name,Item Description,Item Project,Item Serial Number,Item Model Number\n");
 
+                // Looping through each item in the data and writing it to the file
                 for (InventoryItem item : data) {
                     bw.write(item.getItemID() + "," + item.getItemName() + "," + item.getItemDescription() + "," +
                             item.getItemProject() + "," + item.getItemSN() + "," + item.getItemMN() + "\n");
                 }
 
+                // Show a success alert after successfully writing the file
                 Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                 successAlert.setTitle("Success!");
                 successAlert.setHeaderText("Export Successful");
@@ -204,6 +218,7 @@ public class Inventory extends VBox {
                 successAlert.showAndWait();
 
             } catch (IOException e) {
+                // Else, show an error alert in case of any issues during the file write
                 Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                 errorAlert.setTitle("Error!");
                 errorAlert.setHeaderText("File Writing Error");
@@ -212,6 +227,12 @@ public class Inventory extends VBox {
             }
         }
     }
+
+    /**
+     * This method allows the user to import inventory data from a CSV file.
+     * It opens a file chooser dialog for the user to select a CSV file, then reads
+     * the data from the file and adds it to the inventory.
+     */
     private void importInventoryFile() {
         // Create a new FileChooser object to let the user select a file
         FileChooser fileChooser = new FileChooser();
