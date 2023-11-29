@@ -4,7 +4,7 @@ from pymongo import MongoClient
 from bson import json_util
 
 app = Flask(__name__)
-client = MongoClient(host='localhost', port=27017, username='root', password='pass')
+client = MongoClient(host='db', port=27017, username='root', password='pass')
 db = client.renoGp
 
 # Displays the main Reno Group landing page
@@ -409,6 +409,74 @@ def getEmployeeData():
 #             "message": e
 #         }
 #         return jsonify(response), 500
+
+@app.route('/getProjects', methods=['POST'])
+def getProjects():
+    try:
+        data = request.get_json()
+        queryUser = data['cookie']
+
+        result = db['projects'].find({"username": queryUser})
+
+        if result:
+            return result, 200
+        else:
+            response = {
+                "message": "Could not find the user"
+            }
+            return jsonify(response), 500
+    except Exception as e:
+        print(e)
+        response = {
+            "message": e
+        }
+        return jsonify(response), 500
+
+@app.route('/syncInventoryDelete', methods=['POST'])
+def syncInventoryDelete():
+    try:
+        data = request.get_json()
+        deleteID = data['deleteItemID']
+        print(deleteID)
+
+        result = db['inventory'].delete_one({"itemID":"\""+deleteID+"\""})
+        print(result)
+
+        if result:
+            response = {
+                "message": "Successfully deleted item"
+            }
+            return response, 200
+        else:
+            response = {
+                "message": "Could not find the item to delete"
+            }
+            return jsonify(response), 500
+    except Exception as e:
+        print(e)
+
+
+@app.route('/syncInventoryAdd', methods=['POST'])
+def syncInventoryAdd():
+    try:
+        data = request.get_json()
+        result = db['inventory'].insert_many(data['items'])
+        print(result)
+
+        if result:
+            response = {
+                "message": "Success!"
+            }
+            return response, 200
+        else:
+            response = {
+                "message": "Could not add item(s) to inventory"
+            }
+            return jsonify(response, 500)
+
+    except Exception as e:
+        print(e)
+
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5001, debug=True)
