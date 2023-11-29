@@ -14,6 +14,7 @@
  */
 
 import dashboardMana.Dashboard;
+import inquiryMana.inquiry;
 import inventoryMana.Inventory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -44,7 +45,6 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import ProjectMana.Project2;
-import inquiryMana.inquiry;
 
 public class MainPage extends BasicPage {
     HBox mainLayout = new HBox();
