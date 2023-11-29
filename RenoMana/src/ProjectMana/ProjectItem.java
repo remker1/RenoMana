@@ -1,74 +1,66 @@
 package ProjectMana;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class ProjectItem {
-    private final SimpleStringProperty Name;
-    private final SimpleStringProperty Email;
-    private final SimpleStringProperty Contact;
-    private final SimpleStringProperty Company;
-    private final SimpleStringProperty Start_date;
-    private final SimpleStringProperty End_date;
-    private final SimpleStringProperty Description;
-    private final SimpleStringProperty Inquiry;
+    private SimpleStringProperty customerName;
+    private SimpleStringProperty customerEmail;
+    private SimpleStringProperty customerCell;
+    private SimpleStringProperty company;
+    private SimpleStringProperty startDate;
+    private SimpleStringProperty endDate;
+    private SimpleStringProperty projectDesc;
+    private SimpleStringProperty projectInq;
 
 
-
-    public ProjectItem(SimpleStringProperty Name,
-                       SimpleStringProperty Email,
-                       SimpleStringProperty Contact,
-                       SimpleStringProperty Company,
-                       SimpleStringProperty Start_date,
-                       SimpleStringProperty End_date,
-                       SimpleStringProperty Description,
-                       SimpleStringProperty Inquiry) {
-                        this.Name = Name;
-                        this.Email = Email;
-                        this.Contact = Contact;
-                        this.Company = Company;
-                        this.Start_date = Start_date;
-                        this.End_date = End_date;
-                        this.Description = Description;
-                        this.Inquiry = Inquiry;
+    @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
+    public ProjectItem(@JsonProperty("customerName") String customerName,
+                       @JsonProperty("customerEmail") String customerEmail,
+                       @JsonProperty("customerCell") String customerCell,
+                       @JsonProperty("company") String company,
+                       @JsonProperty("startDate") String startDate,
+                       @JsonProperty("endDate") String endDate,
+                       @JsonProperty("projectDesc") String projectDesc,
+                       @JsonProperty("projectInq") String projectInq)
+    {
+        this.customerName =new SimpleStringProperty(customerName);
+        this.customerEmail = new SimpleStringProperty(customerEmail);
+        this.customerCell = new SimpleStringProperty(customerCell);
+        this.company = new SimpleStringProperty(company);
+        this.startDate = new SimpleStringProperty(startDate);
+        this.endDate = new SimpleStringProperty(endDate);
+        this.projectDesc = new SimpleStringProperty(projectDesc);
+        this.projectInq = new SimpleStringProperty(projectInq);
     }
 
-    public String getName() { return Name.get(); }
-    public SimpleStringProperty Name() {
-        return Name;
-    }
+    public ProjectItem() {}
+    public SimpleStringProperty Name() { return customerName; }
 
-    public String getEmail() { return Email.get(); }
     public SimpleStringProperty Email() {
-        return Email;
+        return customerEmail;
     }
 
-    public String getContact() { return Contact.get(); }
     public SimpleStringProperty Contact() {
-        return Contact;
+        return customerCell;
     }
 
-    public String getCompany() { return Company.get(); }
     public SimpleStringProperty Company() {
-        return Company;
+        return company;
     }
 
-    public String getStart_date() { return Start_date.get(); }
-    public SimpleStringProperty Start_date() {
-        return Start_date;
-    }
+    public SimpleStringProperty Start_date() {return startDate;}
 
-    public String getEnd_date() { return End_date.get(); }
     public SimpleStringProperty End_date() {
-        return End_date;
+        return endDate;
     }
 
-    public String getDescription() { return Description.get(); }
     public SimpleStringProperty Description() {
-        return Description;
+        return projectDesc;
     }
 
-    public String getInquiry() { return Inquiry.get(); }
     public SimpleStringProperty Inquiry() {
-        return Inquiry;
+        return projectInq;
     }
 }
