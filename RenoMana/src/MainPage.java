@@ -18,13 +18,11 @@ import inquiryMana.inquiry;
 import inventoryMana.Inventory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.image.Image;
 import reviewMana.Review;
 import timeMana.Project;
 import timeMana.Scheduler;
 import timeMana.Calendar;
 import employeeMana.EmployeeList;
-import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -112,6 +110,7 @@ public class MainPage extends BasicPage {
         // Create buttons for each tab and add them to the sidebar
         createTabButton("Dashboard", new Dashboard(COOKIES, dashboardData), "Dashboard");
         createTabButton("Scheduler", new Scheduler(COOKIES), "Scheduler");
+
         //loadProjects();
         createTabButton("Calendar", new Calendar(allProjects), "Calendar");
         createTabButton("Inventory", new Inventory(), "Inventory");
@@ -155,9 +154,8 @@ public class MainPage extends BasicPage {
     }
 
     /**
-     * This method creates a new window (Stage) that represents the user's profile. Inside this window,
-     * we plan to display the person's information(future implementation) and a back button are displayed.
-     * Clicking the back button will close the profile window and return the user to the main application.
+     * This method creates a new window (Stage) that will show the settings of the application such as
+     * light mode and dark mode.
      */
     private void openProfileWindow() {
         // Profile window creation and set up.
@@ -209,19 +207,32 @@ public class MainPage extends BasicPage {
     }
 
     private void setDarkMode() {
+        // Set the dark mode styles
         contentArea.setStyle("-fx-background-color: #1C1C1C; -fx-padding: 10px;");
-        contentTitle.setTextFill(Color.WHITE);
         mainLayout.setStyle("-fx-background-color: #1C1C1C;");
         isDarkMode = true;
-
+        updateTextFill(contentArea, Color.WHITE);
     }
 
     private void setLightMode() {
+        // Set the light mode styles
         contentArea.setStyle("-fx-background-color: lightGray; -fx-padding: 10px;");
-        contentTitle.setTextFill(Color.BLACK);
         mainLayout.setStyle("-fx-background-color: lightGray;");
         isDarkMode = false;
+        updateTextFill(contentArea, Color.BLACK);
     }
+
+    // Helper method to update text fill of all labels in a page
+    private void updateTextFill(Pane page, Color colour) {
+        for (Node node : page.getChildren()) {
+            if (node instanceof Label) {
+                ((Label) node).setTextFill(colour);
+            } else if (node instanceof Pane) {
+                updateTextFill((Pane) node, colour);
+            }
+        }
+    }
+
 
     private void confirmLogout(Stage mainStage) {
         // Profile window creation and set up.
@@ -279,7 +290,6 @@ public class MainPage extends BasicPage {
         });
 
         button.setOnAction(e -> displayContent(content, contentTitle));
-
         sideBar.getChildren().add(button);
     }
 
@@ -322,6 +332,10 @@ public class MainPage extends BasicPage {
         this.userFname = parseJson(responseBody, "fname");
         this.userLname = parseJson(responseBody, "lname");
         return responseBody;
+    }
+
+    public boolean isDarkMode() {
+        return isDarkMode;
     }
 
     public static void main(String[] args) {
