@@ -154,9 +154,7 @@ public class Inventory extends VBox {
         addItem.setOnAction(actionEvent -> {
             try {
                 addInventoryItem();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } catch (InterruptedException e) {
+            } catch (IOException | InterruptedException e) {
                 throw new RuntimeException(e);
             }
         });
@@ -165,9 +163,7 @@ public class Inventory extends VBox {
         deleteItem.setOnAction(actionEvent -> {
             try {
                 deleteInventoryItem();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } catch (InterruptedException e) {
+            } catch (IOException | InterruptedException e) {
                 throw new RuntimeException(e);
             }
         });
@@ -439,7 +435,13 @@ public class Inventory extends VBox {
         return confirmationResult;
     }
 
-
+    /**
+     * This method removes a selected inventory item from the table. If no item is selected,
+     * it shows an alert to the user asking them to select an item.
+     *
+     * @throws IOException          If an I/O error occurs during database synchronization.
+     * @throws InterruptedException If the thread is interrupted while waiting.
+     */
     private void deleteInventoryItem() throws IOException, InterruptedException {
          // When item is selected ...
         InventoryItem selectedItem = inventoryTable.getSelectionModel().getSelectedItem();
@@ -461,6 +463,12 @@ public class Inventory extends VBox {
         inventoryTable.refresh();
     }
 
+    /**
+     * This method adds a new item to be added to the table and database
+     *
+     * @throws IOException          If an I/O error occurs during database synchronization.
+     * @throws InterruptedException If the thread is interrupted while waiting.
+     */
     private void addInventoryItem() throws IOException, InterruptedException {
         int itemID = availableIds.isEmpty() ? 1 : availableIds.first();
         availableIds.remove(itemID);
