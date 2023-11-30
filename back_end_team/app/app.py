@@ -3,6 +3,7 @@ import pymongo
 from pymongo import MongoClient
 from bson import json_util
 
+
 app = Flask(__name__)
 client = MongoClient(host='db', port=27017, username='root', password='pass')
 db = client.renoGp
@@ -496,7 +497,7 @@ def addEmployeeData():
             'inserted_id1': str(result1.inserted_id),
             'inserted_id2': str(result2.inserted_id)
         }
-        employeeID += 1
+
         return jsonify(response), 200
     except Exception as e:
         # Log the exception for debugging
@@ -508,31 +509,24 @@ def modEmployeeData():
         data = request.get_json()
 
         # Assuming data is a dictionary containing the fields you want to add
-        auth_mod_document = {
-            "username": data['username']
-        }
 
         employee_mod_document = {
                 'fname': data['fname'],
                 'lname': data['lname'],
-                'username': data['username'],
                 'email': data['email'],
                 'cellNumber': data['cellNumber'],
                 'title': data['title']
         }
 
 
-        print(employee_mod_document)
-
         # Insert the document into the collection
-        result1 = db['auth'].update_one({'username': data['username']}, {"$set": auth_mod_document},upsert = True)
-        result2 = db['employees'].update_one({'_id': ObjectID(data['_id'])}, {"$set":employee_mod_document},upsert = True)
+
+        result = db['employees'].update_one({'username': data['username']}, {"$set":employee_mod_document},upsert = True)
 
         response = {
             'status': 'success',
             'message': 'Document modified successfully',
-            'modified_count1': result1.modified_count,
-            'modified_count2': result2.modified_count
+            'modified_count': result.modified_count,
         }
 
         return jsonify(response), 200

@@ -98,28 +98,35 @@ public class Registration extends BasicPage {
 
         // Set action for the register button
         registerButton.setOnAction(event -> {
-
+            // Check if the entered username already exists
             if (isDuplicate(userField.getText(),"username")){
                 showAlert("Duplication Error!","Employee with this username already exist");
             }
+            // Check if the password is less than 8 characters
             else if (passField.getText().length()<8){
                 showAlert("Invalidation Input Error!","Password should be at least 8 digits");
             }
+            // Check if the entered password and confirmed password match
             else if(!passField.getText().equals(verifyPassField.getText())){
                 showAlert("Invalidation Input Error!","Please confirm your password!");
             }
+            // Check if the entered email is valid
             else if(!emailField.getText().contains("@")||emailField.getText().length()<4||!emailField.getText().contains(".")){
                 showAlert("Invalidation Input Error!","Please make sure Email is valid!");
             }
+            // Check if the entered email already exists
             else if(isDuplicate(emailField.getText(),"email")){
                 showAlert("Duplication Error", "Employee with the email already exist!");
             }
+            // Check if the entered cell number is valid (North America number with 10 digits)
             else if(cellField.getText().length()!= 10){
                 showAlert("Invalidation Input Error!", "Please make sure Cell Number is valid North America number (10 digits)");
             }
+            // Check if the entered cell number already exists
             else if(isDuplicate(EmployeeList.formatCell(cellField.getText()),"cell")){
                 showAlert("Duplication Error", "Employee with the cell number already exist!");
             }
+            // If all validations pass, proceed with registration
             else {
                 try {
                     register(fnameField.getText(), lnameField.getText(), userField.getText(), passField.getText(), emailField.getText(), EmployeeList.formatCell(cellField.getText()));
@@ -202,38 +209,72 @@ public class Registration extends BasicPage {
         errorLabel.setTextFill(Color.RED);
     }
 
+    /**
+     * Displays an error alert with the specified title and content.
+     *
+     * @param title   The title of the error alert.
+     * @param content The content (message) of the error alert.
+     */
     private void showAlert(String title, String content) {
+        // Create a new Alert with AlertType.ERROR
         Alert invalidNumAlert = new Alert(Alert.AlertType.ERROR);
+
+        // Set the title of the alert
         invalidNumAlert.setTitle(title);
+
+        // Set the header text (null means no header text)
         invalidNumAlert.setHeaderText(null);
+
+        // Set the content text (main message) of the alert
         invalidNumAlert.setContentText(content);
+
+        // Display the alert and wait for user interaction
         invalidNumAlert.showAndWait();
     }
 
+    /**
+     * Checks whether a given input for a specific attribute type (cell, email, or username)
+     * already exists in the EmployeeList.data.
+     *
+     * @param input         The input to check for duplicates.
+     * @param attributeType The type of attribute to check (cell, email, or username).
+     * @return              True if a duplicate is found, false otherwise.
+     */
     private boolean isDuplicate(String input, String attributeType) {
+        // Convert the input to lowercase for case-insensitive comparison
         input = input.toLowerCase();
-        if (EmployeeList.data == null){
+
+        // Check if the EmployeeList.data is null, return false if it is
+        if (EmployeeList.data == null) {
             return false;
         }
+
+        // Iterate through each employee in the EmployeeList.data
         for (Employee employee : EmployeeList.data) {
+            // Check based on the attribute type
             switch (attributeType) {
                 case "cell":
+                    // If the input matches any employee's cell, return true (duplicate found)
                     if (employee.getCell().equals(input)) {
                         return true;
                     }
                     break;
                 case "email":
+                    // If the input matches any employee's email (case-insensitive), return true (duplicate found)
                     if (employee.getEMail().toLowerCase().equals(input)) {
                         return true;
                     }
                     break;
                 case "username":
+                    // If the input matches any employee's username (case-insensitive), return true (duplicate found)
                     if (employee.getUsername().toLowerCase().equals(input)) {
                         return true;
                     }
                     break;
             }
         }
+
+        // If no match is found, return false (no duplicate)
         return false;
     }
 
