@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -45,7 +46,7 @@ public class ProjectRequests extends VBox {
 
         TableColumn<ProjectRequestsItem, String> Start_dateCol = new TableColumn<>("Start date");
         Start_dateCol.setCellValueFactory(cellData -> cellData.getValue().Start_date());
-        Start_dateCol.prefWidthProperty().bind(ProjectTable.widthProperty().multiply(0.10));
+        Start_dateCol.prefWidthProperty().bind(ProjectTable.widthProperty().multiply(0));
 
         TableColumn<ProjectRequestsItem, String> End_dateCol = new TableColumn<>("End date");
         End_dateCol.setCellValueFactory(cellData -> cellData.getValue().End_date());
@@ -53,8 +54,46 @@ public class ProjectRequests extends VBox {
 
         TableColumn<ProjectRequestsItem, String> DescriptionCol = new TableColumn<>("Description");
         DescriptionCol.setCellValueFactory(cellData -> cellData.getValue().Description());
-        DescriptionCol.prefWidthProperty().bind(ProjectTable.widthProperty().multiply(0.50));
+        DescriptionCol.prefWidthProperty().bind(ProjectTable.widthProperty().multiply(0.35));
 
+        TableColumn<ProjectRequestsItem, String> ActionCol = new TableColumn<>("Action");
+        ActionCol.setCellFactory(col -> new TableCell<ProjectRequestsItem, String>() {
+            private final ComboBox<String> comboBox = new ComboBox<>();
+
+            {
+                comboBox.getItems().addAll("Accept", "Decline");
+                comboBox.setOnAction(e -> handleAction(comboBox.getValue(), getTableView().getItems().get(getIndex())));
+            }
+
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(comboBox);
+                }
+            }
+        });
+        ActionCol.prefWidthProperty().bind(ProjectTable.widthProperty().multiply(0.10));
+
+        // set a custom row factory to change the row appearance based on the 'accepted' property
+        ProjectTable.setRowFactory(tv -> new TableRow<ProjectRequestsItem>() {
+            @Override
+            protected void updateItem(ProjectRequestsItem item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item == null || empty) {
+                    setStyle("");
+                } else {
+                    // if the project is accepted, highlight the row in green
+                    if (item.isAccepted()) {
+                        setStyle("-fx-background-color: lightgreen;");
+                    } else {
+                        setStyle("");
+                    }
+                }
+            }
+        });
 
         ProjectTable.getColumns().addAll(ProjectCol,
                 EmailCol,
@@ -62,13 +101,14 @@ public class ProjectRequests extends VBox {
                 CompanyCol,
                 Start_dateCol,
                 End_dateCol,
-                DescriptionCol
+                DescriptionCol,
+                ActionCol
         );
         ProjectTable.setItems(data);
 
         loadProjects();
 
-        Button deleteItem = new Button("Delete");
+        Button deleteItem = new Button("Delete Project Transferred to Scheduler");
         Button refreshProjects = new Button("Refresh");
         refreshProjects.setOnAction(actionEvent -> {
             try {
@@ -77,17 +117,36 @@ public class ProjectRequests extends VBox {
                 showAlert("Error!", "Something went wrong when loading reviews");
             }
         });
-
+//        Button addProject = new Button("Add Project");
+//        addProject.setOnAction(actionEvent -> addProjectForDebugging());
 
         ProjectTable.setItems(data);
 
         deleteItem.setOnAction(actionEvent -> deleteProjectRequest());
 
         HBox optButton = new HBox(10, deleteItem, refreshProjects);
+//        HBox optButton = new HBox(10, addProject, deleteItem, refreshProjects);
         optButton.setPadding(new Insets(10));
 
         VBox.setVgrow(ProjectTable, Priority.ALWAYS);
         this.getChildren().addAll(ProjectTable, optButton);
+    }
+
+//    private void addProjectForDebugging() {
+//        ProjectRequestsItem debugItem = new ProjectRequestsItem(
+//                "Debug Project", "debug@example.com", "1234567890", "Debug Company",
+//                "2023-01-01", "2023-12-31", "This is a debug project", "Debug inquiry"
+//        );
+//        data.add(debugItem);
+//        ProjectTable.refresh();
+//    }
+    private void handleAction(String action, ProjectRequestsItem project) {
+        if ("Accept".equals(action)) {
+            project.setAccepted(true);
+        } else if ("Decline".equals(action)) {
+            data.remove(project);
+        }
+        ProjectTable.refresh();
     }
 
     public void loadProjects() throws IOException, InterruptedException {
