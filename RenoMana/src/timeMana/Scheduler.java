@@ -33,13 +33,13 @@ public class Scheduler extends VBox {
     /***
      * Constructor for Scheduler UI
      */
-    public Scheduler(String COOKIES) {
+    public Scheduler(String COOKIES, ObservableList<Project> projects) {
         // Project Schedule label
         final Label label = new Label("Projects Schedule");
         label.setFont(new Font("Arial", 20));
 
         // initialize data
-        data = FXCollections.observableArrayList();
+        data = projects;
         projectsTimelineList = FXCollections.observableArrayList();
 
         // make table editable
