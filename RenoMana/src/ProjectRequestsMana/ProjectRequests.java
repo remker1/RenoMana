@@ -57,25 +57,43 @@ public class ProjectRequests extends VBox {
         DescriptionCol.prefWidthProperty().bind(ProjectTable.widthProperty().multiply(0.35));
 
         TableColumn<ProjectRequestsItem, String> ActionCol = new TableColumn<>("Action");
-        ActionCol.setCellValueFactory(new PropertyValueFactory<>("action"));
-        ActionCol.setCellFactory(col -> {
-            TableCell<ProjectRequestsItem, String> cell = new TableCell<ProjectRequestsItem, String>() {
-                @Override
-                public void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if (empty) {
-                        setGraphic(null);
-                    } else {
-                        ComboBox<String> comboBox = new ComboBox<>();
-                        comboBox.getItems().addAll("Accept", "Decline");
-                        comboBox.setOnAction(e -> handleAction(comboBox.getValue(), getTableView().getItems().get(getIndex())));
-                        setGraphic(comboBox);
-                    }
+        ActionCol.setCellFactory(col -> new TableCell<ProjectRequestsItem, String>() {
+            private final ComboBox<String> comboBox = new ComboBox<>();
+
+            {
+                comboBox.getItems().addAll("Accept", "Decline");
+                comboBox.setOnAction(e -> handleAction(comboBox.getValue(), getTableView().getItems().get(getIndex())));
+            }
+
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(comboBox);
                 }
-            };
-            return cell;
+            }
         });
         ActionCol.prefWidthProperty().bind(ProjectTable.widthProperty().multiply(0.10));
+
+        // set a custom row factory to change the row appearance based on the 'accepted' property
+        ProjectTable.setRowFactory(tv -> new TableRow<ProjectRequestsItem>() {
+            @Override
+            protected void updateItem(ProjectRequestsItem item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item == null || empty) {
+                    setStyle("");
+                } else {
+                    // if the project is accepted, highlight the row in green
+                    if (item.isAccepted()) {
+                        setStyle("-fx-background-color: lightgreen;");
+                    } else {
+                        setStyle("");
+                    }
+                }
+            }
+        });
 
         ProjectTable.getColumns().addAll(ProjectCol,
                 EmailCol,
@@ -90,7 +108,7 @@ public class ProjectRequests extends VBox {
 
         loadProjects();
 
-        Button deleteItem = new Button("Delete");
+        Button deleteItem = new Button("Delete Project Transferred to Scheduler");
         Button refreshProjects = new Button("Refresh");
         refreshProjects.setOnAction(actionEvent -> {
             try {
@@ -99,25 +117,33 @@ public class ProjectRequests extends VBox {
                 showAlert("Error!", "Something went wrong when loading reviews");
             }
         });
-
+//        Button addProject = new Button("Add Project");
+//        addProject.setOnAction(actionEvent -> addProjectForDebugging());
 
         ProjectTable.setItems(data);
 
         deleteItem.setOnAction(actionEvent -> deleteProjectRequest());
 
         HBox optButton = new HBox(10, deleteItem, refreshProjects);
+//        HBox optButton = new HBox(10, addProject, deleteItem, refreshProjects);
         optButton.setPadding(new Insets(10));
 
         VBox.setVgrow(ProjectTable, Priority.ALWAYS);
         this.getChildren().addAll(ProjectTable, optButton);
     }
 
+//    private void addProjectForDebugging() {
+//        ProjectRequestsItem debugItem = new ProjectRequestsItem(
+//                "Debug Project", "debug@example.com", "1234567890", "Debug Company",
+//                "2023-01-01", "2023-12-31", "This is a debug project", "Debug inquiry"
+//        );
+//        data.add(debugItem);
+//        ProjectTable.refresh();
+//    }
     private void handleAction(String action, ProjectRequestsItem project) {
         if ("Accept".equals(action)) {
-            // Handle the accept action (e.g., highlight the project green)
             project.setAccepted(true);
         } else if ("Decline".equals(action)) {
-            // Handle the decline action (e.g., remove the project from the list)
             data.remove(project);
         }
         ProjectTable.refresh();
