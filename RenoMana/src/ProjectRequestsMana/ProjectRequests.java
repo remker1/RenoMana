@@ -147,12 +147,11 @@ public class ProjectRequests extends VBox {
 
     private String formatProjectDetails(ProjectRequestsItem project) {
         // Format the project details as a string
-        return "Name: " + project.Name().get() + "\n" +
-                " Email: " + project.Email().get() + "\n" +
-                " Contact: " + project.Contact().get() + "\n" +
-                " Company: " + project.Company().get() + "\n" +
-                " Start Date: " + project.Start_date().get() + "\n" +
-                " End Date: " + project.End_date().get() + "\n" +
+        return "Client Name: " + project.Name().get() +
+                " Email: " + project.Email().get() +
+                " Contact: " + project.Contact().get() +
+                " Company: " + project.Company().get() +
+                " End Date: " + project.End_date().get() +
                 " Description: " + project.Description().get();
     }
 
