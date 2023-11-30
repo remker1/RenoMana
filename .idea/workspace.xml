@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="MOD: &#10;EmployeeList.java: partially implemented modifyEmployeeData&#10;app.py: partially implemented modEmployeeData endpoint" />
+    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="Updated the README for dir to Google Doc.">
+      <change beforePath="$PROJECT_DIR$/.idea/RenoPeoject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/RenoPeoject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/Registration.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/Registration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeList.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/app/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/app/app.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -93,7 +100,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.14641148&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
@@ -281,7 +288,23 @@
       <option name="project" value="LOCAL" />
       <updated>1701322739693</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="MOD: &#10;bug fix and updates">
+      <option name="closed" value="true" />
+      <created>1701323220285</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1701323220285</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Updated the README for dir to Google Doc.">
+      <option name="closed" value="true" />
+      <created>1701323605836</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1701323605836</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -312,7 +335,9 @@
     <MESSAGE value="Update branch to make sure project code is up-to-date" />
     <MESSAGE value="Add: &#10;Employees.java: for parsing JSON Data&#10;LibPack: a folder containing both JavaFX and FasterXML&#10;Modified: &#10;app.py: for server to work with database and front end for employeelist&#10;Employee.java: deleted unused info and added _id for database data sync&#10;EmployeeList.java: Modified deleteEmployeeInfo and loadEmployeeInfo to make sure of basic use of employee with syncing data with database&#10;Registration.java: Modified for info validation and Alerting, also worked for employeelist data sync&#10;Scheduler.java: Modified for local data sync&#10;&#10;TODO: finish implementing addEmployeeInfo and modifyEmployeeInfo as well as the commenting" />
     <MESSAGE value="MOD: &#10;EmployeeList.java: partially implemented modifyEmployeeData&#10;app.py: partially implemented modEmployeeData endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="MOD: &#10;EmployeeList.java: partially implemented modifyEmployeeData&#10;app.py: partially implemented modEmployeeData endpoint" />
+    <MESSAGE value="MOD: &#10;bug fix and updates" />
+    <MESSAGE value="Updated the README for dir to Google Doc." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated the README for dir to Google Doc." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/cmpt370_g29$MainPage.ic" NAME="MainPage Coverage Results" MODIFIED="1698361182269" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

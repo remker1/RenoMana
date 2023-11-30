@@ -113,21 +113,8 @@ public class EmployeeList extends VBox {
             }
         });
 
-        Button testButton = new Button("Test");
-        testButton.setOnAction(e -> {
-            try {
-                String result = getEmployeeData(COOKIES);
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            } catch (InterruptedException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
-
-
-
         // Create a horizontal box to hold the buttons
-        HBox optButton = new HBox(10, addItem, deleteItem, modifyItem, employeeInfo, refreshEmployeeTable, testButton);
+        HBox optButton = new HBox(10, addItem, deleteItem, modifyItem, employeeInfo, refreshEmployeeTable);
         optButton.setPadding(new Insets(10, 0, 10, 0)); // top, right, bottom, left padding
 
         // Set vertical grow for the table and add it along with the buttons to the VBox
@@ -184,39 +171,28 @@ public class EmployeeList extends VBox {
         }
     }
 
-    public static String encryptPassword(String password, SecretKey secretKey) throws NoSuchPaddingException, NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
-
-        Cipher myCipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-
-        byte[] passwordBytes = password.getBytes(StandardCharsets.UTF_8);
-        myCipher.init(Cipher.ENCRYPT_MODE,secretKey);
-
-        byte[] encryptedPassword = myCipher.doFinal(passwordBytes);
-
-        return Base64.getEncoder().encodeToString(encryptedPassword);
-
-    }
-
-    public static String decryptPassword(String encryptedPassword, SecretKey secretKey) throws NoSuchPaddingException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
-
-        Cipher myCipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-
-        byte[] encryptedPasswordBytes = Base64.getDecoder().decode(encryptedPassword);
-
-        myCipher.init(Cipher.DECRYPT_MODE,secretKey);
-
-        byte[] decryptedPasswordBytes = myCipher.doFinal(encryptedPasswordBytes);
-
-        return new String(decryptedPasswordBytes,StandardCharsets.UTF_8);
-    }
-
-    private String generateUsername(String fname, String lname){
-
+    /**
+     * Generates a username based on the first two characters of the first name,
+     * the first character of the last name, and a random three-digit number.
+     *
+     * @param fname The first name used for generating the username.
+     * @param lname The last name used for generating the username.
+     * @return      The generated username.
+     */
+    private String generateUsername(String fname, String lname) {
+        // Create a StringBuffer to build the username
         StringBuffer result = new StringBuffer();
-        result.append(fname.substring(0,2).toLowerCase());
-        result.append(lname.substring(0,2).toLowerCase());
-        result.append(new Random().nextInt(900)+100);
 
+        // Append the first two characters of the first name (converted to lowercase)
+        result.append(fname.substring(0, 2).toLowerCase());
+
+        // Append the first character of the last name (converted to lowercase)
+        result.append(lname.substring(0, 1).toLowerCase());
+
+        // Append a random three-digit number
+        result.append(new Random().nextInt(900) + 100);
+
+        // Convert the StringBuffer to a String and return the result
         return result.toString();
     }
 
@@ -270,8 +246,6 @@ public class EmployeeList extends VBox {
         // If an employee is selected, open a new window displaying their details
         new EmployeeInfo(selectedEmployee).start(new Stage());
     }
-
-
 
 
     /**
@@ -351,7 +325,7 @@ public class EmployeeList extends VBox {
         String employeeTitle = titleInput.showAndWait().orElse("");
 
         String username = generateUsername(firstName,lastName);
-        String password = "DPassword";
+        String password = "pass1234";
 
         String msg = "{" +
                 "\"id\":\"" + stringid + "\"," +
@@ -375,7 +349,7 @@ public class EmployeeList extends VBox {
         System.out.println("[ADD EMPLOYEE]: " + request.toString());
         try{
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-            System.out.println("[ADD EMPLOYEE]: " +response.toString());
+            System.out.println("[ADD EMPLOYEE]: " +response.body());
         }catch (Exception e){
             System.out.println(e);
         }
@@ -426,31 +400,16 @@ public class EmployeeList extends VBox {
         Label promptmsg = new Label("Select information to modify:");
 
         // Checkboxes for different fields
-        CheckBox usernameMod = new CheckBox("Username");
         CheckBox firstNameMod = new CheckBox("First Name");
         CheckBox lastNameMod = new CheckBox("Last Name");
         CheckBox cellNumberMod = new CheckBox("Cell Number");
         CheckBox eMailMod = new CheckBox("Email");
         CheckBox titleMod = new CheckBox("Job Title");
 
-
         // Button for confirming modifications
         Button doneButton = new Button("Done");
         doneButton.setOnAction(event -> {
             // Check which fields are selected for modification
-            if (usernameMod.isSelected()){
-                TextInputDialog usernameInput = new TextInputDialog(selectedEmployee.getUsername());
-                usernameInput.setTitle("Modify Username");
-                usernameInput.setHeaderText("Enter new Username");
-                String newUsername = usernameInput.showAndWait().orElse("");
-
-                if (isDuplicate(newUsername,"username")) {
-                    showAlert("Duplicate Error", "Employee with the username name already exist!");
-                }
-
-                modUsername.set(newUsername);
-            }
-
             if (firstNameMod.isSelected()) {
                 TextInputDialog firstNameInput = new TextInputDialog(selectedEmployee.getEmployeeFirstName());
                 firstNameInput.setTitle("Modify First Name");
@@ -525,7 +484,6 @@ public class EmployeeList extends VBox {
             }
 
             String msg = "{" +
-                    "\"_id\":\"" + selectedEmployee.get_id() + "\"," +
                     "\"username\":\"" + modUsername.get() + "\"," +
                     "\"email\":\"" + modEMail.get() + "\"," +
                     "\"cellNumber\":\"" + modCellNumber.get() + "\"," +
@@ -562,7 +520,7 @@ public class EmployeeList extends VBox {
         });
 
         // Add UI elements to the modification stage
-        modifyTile.getChildren().addAll(promptmsg, usernameMod,firstNameMod, lastNameMod, cellNumberMod, eMailMod, titleMod, doneButton);
+        modifyTile.getChildren().addAll(promptmsg,firstNameMod, lastNameMod, cellNumberMod, eMailMod, titleMod, doneButton);
 
         Scene modifyScene = new Scene(modifyTile, 200, 200);
         modifyStage.setTitle("Modify Options");
@@ -680,33 +638,50 @@ public class EmployeeList extends VBox {
         }
     }
 
+    /**
+     * Checks whether a given input for a specific attribute type (cell, email, name, or username)
+     * already exists in the list of Employee objects.
+     *
+     * @param input         The input to check for duplicates.
+     * @param attributeType The type of attribute to check (cell, email, name, or username).
+     * @return              True if a duplicate is found, false otherwise.
+     */
     private boolean isDuplicate(String input, String attributeType) {
+        // Convert the input to lowercase for case-insensitive comparison
         input = input.toLowerCase();
+
+        // Iterate through each employee in the list of Employee objects (data)
         for (Employee employee : data) {
+            // Check based on the attribute type
             switch (attributeType) {
                 case "cell":
+                    // If the input matches any employee's cell, return true (duplicate found)
                     if (employee.getCell().equals(input)) {
                         return true;
                     }
                     break;
                 case "email":
+                    // If the input matches any employee's email (case-insensitive), return true (duplicate found)
                     if (employee.getEMail().toLowerCase().equals(input)) {
                         return true;
                     }
                     break;
                 case "name":
+                    // If the input matches any employee's first and last name (case-insensitive), return true (duplicate found)
                     if (employee.getEmployeeFirstName().toLowerCase().equals(input.split(" ")[0]) &&
                             employee.getEmployeeLastName().toLowerCase().equals(input.split(" ")[1])) {
                         return true;
                     }
                     break;
                 case "username":
-                    if (employee.getUsername().toLowerCase().equals(input)){
+                    // If the input matches any employee's username (case-insensitive), return true (duplicate found)
+                    if (employee.getUsername().toLowerCase().equals(input)) {
                         return true;
                     }
                     break;
             }
         }
+        // If no match is found, return false (no duplicate)
         return false;
     }
 
