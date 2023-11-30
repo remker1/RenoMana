@@ -1,12 +1,14 @@
 package employeeMana;
 
-import javafx.beans.property.SimpleListProperty;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import timeMana.Project;
+import timeMana.Scheduler;
 
-import java.util.List;
 
 public class Employee {
 
@@ -15,21 +17,53 @@ public class Employee {
     private SimpleStringProperty lastName;
     private SimpleStringProperty cellNumber;
     private SimpleStringProperty eMail;
+    private SimpleStringProperty projectsNameString;
     private ObservableList<Project> projects;
     private SimpleStringProperty title;
+    private SimpleStringProperty username;
 
-    public Employee(SimpleStringProperty employeeID, SimpleStringProperty firstName,
-                    SimpleStringProperty lastName, ObservableList<Project> projects,
-                    SimpleStringProperty cellNumber,SimpleStringProperty eMail,SimpleStringProperty title){
-        this.employeeID = employeeID;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.cellNumber = cellNumber;
-        this.eMail = eMail;
-        this.projects = projects;
-        this.title = title;
+    private SimpleStringProperty _id;
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public Employee(@JsonProperty("_id") String _id,
+                    @JsonProperty("id") String employeeID,
+                    @JsonProperty("fname") String firstName,
+                    @JsonProperty("lname") String lastName,
+                    @JsonProperty("projects") String projectsNameString,
+                    @JsonProperty("cellNumber") String cellNumber,
+                    @JsonProperty("email") String eMail,
+                    @JsonProperty("title") String title,
+                    @JsonProperty("username") String username){
+
+        this.employeeID = new SimpleStringProperty(employeeID);
+        this.firstName = new SimpleStringProperty(firstName);
+        this.lastName = new SimpleStringProperty(lastName);
+        this.cellNumber = new SimpleStringProperty(cellNumber);
+        this.eMail = new SimpleStringProperty(eMail);
+        this.projectsNameString = new SimpleStringProperty(projectsNameString);
+        this.projects = FXCollections.observableArrayList();
+        this.title = new SimpleStringProperty(title);
+        this.username = new SimpleStringProperty(username);
+        this._id = new SimpleStringProperty(_id);
+
+        String[] lines = projectsNameString.split("\\r?\\n");
+
+        for (String line:lines){
+            Project assignedProject = Scheduler.searchProjectByName(line);
+            if (assignedProject != null){
+                projects.add(assignedProject);
+            }
+        }
+
     }
 
+    public String get_id() {
+        return _id.get();
+    }
+
+    public SimpleStringProperty _idProperty() {
+        return _id;
+    }
     public String getEmployeeFirstName() {
 
         return firstName.get();
@@ -61,6 +95,21 @@ public class Employee {
     public ObservableList<Project> getProjects() {
         return projects;
     }
+    public String getProjectsNameString(){
+        return projectsNameString.get();
+    }
+
+    public SimpleStringProperty projectsNameStringProperty(){
+        return projectsNameString;
+    }
+
+    public String projectsToString(){
+        String projectResult = "";
+        for (Project project : projects){
+            projectResult += project.getName() + " \n";
+        }
+        return projectResult;
+    }
 
     public void addProject2Employee(Project project){
         projects.add(project);
@@ -87,6 +136,11 @@ public class Employee {
         return title;
     }
 
+    public String getUsername() {return username.get();}
+
+    public SimpleStringProperty usernameProperty() {
+        return username;
+    }
 
 }
 
