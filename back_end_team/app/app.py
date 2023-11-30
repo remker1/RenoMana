@@ -502,7 +502,44 @@ def addEmployeeData():
         # Log the exception for debugging
         print(f'Error in register route: {e}')
         return jsonify({"status": "failure", "message": str(e)}), 500
+@app.route('/modEmployeeData', methods=['POST'])
+def modEmployeeData():
+    try:
+        data = request.get_json()
 
+        # Assuming data is a dictionary containing the fields you want to add
+        auth_mod_document = {
+            "username": data['username']
+        }
+
+        employee_mod_document = {
+                'fname': data['fname'],
+                'lname': data['lname'],
+                'username': data['username'],
+                'email': data['email'],
+                'cellNumber': data['cellNumber'],
+                'title': data['title']
+        }
+
+
+        print(employee_mod_document)
+
+        # Insert the document into the collection
+        result1 = db['auth'].update_one({'username': data['username']}, {"$set": auth_mod_document},upsert = True)
+        result2 = db['employees'].update_one({'_id': ObjectID(data['_id'])}, {"$set":employee_mod_document},upsert = True)
+
+        response = {
+            'status': 'success',
+            'message': 'Document modified successfully',
+            'modified_count1': result1.modified_count,
+            'modified_count2': result2.modified_count
+        }
+
+        return jsonify(response), 200
+    except Exception as e:
+        # Log the exception for debugging
+        print(f'Error in register route: {e}')
+        return jsonify({"status": "failure", "message": str(e)}), 500
 
 @app.route('/deleteEmployeeData', methods=['POST'])
 def deleteEmployeeData():

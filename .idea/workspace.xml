@@ -6,15 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="Add: &#10;Employees.java: for parsing JSON Data&#10;LibPack: a folder containing both JavaFX and FasterXML&#10;Modified: &#10;app.py: for server to work with database and front end for employeelist&#10;Employee.java: deleted unused info and added _id for database data sync&#10;EmployeeList.java: Modified deleteEmployeeInfo and loadEmployeeInfo to make sure of basic use of employee with syncing data with database&#10;Registration.java: Modified for info validation and Alerting, also worked for employeelist data sync&#10;Scheduler.java: Modified for local data sync&#10;&#10;TODO: finish implementing addEmployeeInfo and modifyEmployeeInfo as well as the commenting">
       <change afterPath="$PROJECT_DIR$/.idea/libraries/GSon.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/GSon/gson-2.10.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RenoMana/src/employeeMana/Employees.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/RenoPeoject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/RenoPeoject.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/Registration.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/Registration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/employeeMana/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/employeeMana/Employee.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeList.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back_end_team/app/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/app/app.py" afterDir="false" />
+    </list>
+    <list id="1816f9b7-0455-41bb-a736-c5f6603d3b8f" name="Changes by jewelmagcawas" comment="">
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -276,7 +273,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701238219847</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Add: &#10;Employees.java: for parsing JSON Data&#10;LibPack: a folder containing both JavaFX and FasterXML&#10;Modified: &#10;app.py: for server to work with database and front end for employeelist&#10;Employee.java: deleted unused info and added _id for database data sync&#10;EmployeeList.java: Modified deleteEmployeeInfo and loadEmployeeInfo to make sure of basic use of employee with syncing data with database&#10;Registration.java: Modified for info validation and Alerting, also worked for employeelist data sync&#10;Scheduler.java: Modified for local data sync&#10;&#10;TODO: finish implementing addEmployeeInfo and modifyEmployeeInfo as well as the commenting">
+      <option name="closed" value="true" />
+      <created>1701271560139</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1701271560139</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

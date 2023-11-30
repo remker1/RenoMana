@@ -25,6 +25,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.time.Duration;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * This class represents an Employee List UI component, which displays a list of employees
@@ -85,7 +86,7 @@ public class EmployeeList extends VBox {
         deleteItem.setOnAction(actionEvent -> deleteEmployee(COOKIES));
 
         Button modifyItem = new Button("Modify");
-        modifyItem.setOnAction(actionEvent -> modifyEmployeeInfo());
+        modifyItem.setOnAction(actionEvent -> modifyEmployeeInfo(COOKIES));
 
         Button employeeInfo = new Button("Personal Details");
         employeeInfo.setOnAction(actionEvent -> openEmployeeInfo());
@@ -359,7 +360,7 @@ public class EmployeeList extends VBox {
                 "\"email\":\"" + employeeEMail + "\"," +
                 "\"cellNumber\":\"" + employeeCell + "\"," +
                 "\"fname\":\"" + firstName + "\"," +
-                "\"lname\":\"" + lastName + "\"" +
+                "\"lname\":\"" + lastName + "\"," +
                 "\"title\":\"" + employeeTitle + "\"" +
                 "}";
 
@@ -397,9 +398,10 @@ public class EmployeeList extends VBox {
     /**
      * Allows the user to modify the information of a selected employee.
      */
-    private void modifyEmployeeInfo() {
+    private void modifyEmployeeInfo(String COOKIE) {
         // Get the selected employee from the table view
         Employee selectedEmployee = employeeList.getSelectionModel().getSelectedItem();
+
 
         // Check if an employee is selected
         if (selectedEmployee == null) {
@@ -407,6 +409,14 @@ public class EmployeeList extends VBox {
             showAlert("Error!", "No employee is selected! Please select an employee from the list to modify.");
             return;
         }
+
+        AtomicReference<String> modUsername = new AtomicReference<>(selectedEmployee.getUsername());
+        AtomicReference<String> modFirstName = new AtomicReference<>(selectedEmployee.getEmployeeFirstName());
+        AtomicReference<String> modLastName = new AtomicReference<>(selectedEmployee.getEmployeeLastName());
+        AtomicReference<String> modCellNumber = new AtomicReference<>(selectedEmployee.getCell());
+        AtomicReference<String> modEMail = new AtomicReference<>(selectedEmployee.getEMail());
+        AtomicReference<String> modTitle = new AtomicReference<>(selectedEmployee.getTitle());
+
 
         // Create a new stage for modification options
         Stage modifyStage = new Stage();
@@ -416,16 +426,30 @@ public class EmployeeList extends VBox {
         Label promptmsg = new Label("Select information to modify:");
 
         // Checkboxes for different fields
+        CheckBox usernameMod = new CheckBox("Username");
         CheckBox firstNameMod = new CheckBox("First Name");
         CheckBox lastNameMod = new CheckBox("Last Name");
         CheckBox cellNumberMod = new CheckBox("Cell Number");
         CheckBox eMailMod = new CheckBox("Email");
         CheckBox titleMod = new CheckBox("Job Title");
 
+
         // Button for confirming modifications
         Button doneButton = new Button("Done");
         doneButton.setOnAction(event -> {
             // Check which fields are selected for modification
+            if (usernameMod.isSelected()){
+                TextInputDialog usernameInput = new TextInputDialog(selectedEmployee.getUsername());
+                usernameInput.setTitle("Modify Username");
+                usernameInput.setHeaderText("Enter new Username");
+                String newUsername = usernameInput.showAndWait().orElse("");
+
+                if (isDuplicate(newUsername,"username")) {
+                    showAlert("Duplicate Error", "Employee with the username name already exist!");
+                }
+
+                modUsername.set(newUsername);
+            }
 
             if (firstNameMod.isSelected()) {
                 TextInputDialog firstNameInput = new TextInputDialog(selectedEmployee.getEmployeeFirstName());
@@ -436,8 +460,7 @@ public class EmployeeList extends VBox {
                 if (isDuplicate(newFirstName + " " + selectedEmployee.getEmployeeLastName(), "name")) {
                     showAlert("Duplicate Error", "Employee with the first and last name already exist!");
                 }
-
-                selectedEmployee.firstNameProperty().set(newFirstName);
+                modFirstName.set(newFirstName);
                 employeeFirstNameList.remove(selectedEmployee.getEmployeeFirstName());
                 employeeFirstNameList.add(newFirstName);
             }
@@ -452,8 +475,8 @@ public class EmployeeList extends VBox {
                     showAlert("Duplicate Error", "Employee with the first and last name already exist!");
                     return;
                 }
+                modLastName.set(newLastName);
 
-                selectedEmployee.lastNameProperty().set(newLastName);
             }
 
             if (cellNumberMod.isSelected()) {
@@ -470,7 +493,7 @@ public class EmployeeList extends VBox {
                         showAlert("Duplication Error", "Employee with the cell number already exist!");
                         return;
                     }
-                    selectedEmployee.cellProperty().set(formatCell(newEmployeeCell));
+                    modCellNumber.set(formatCell(newEmployeeCell));
                 } catch (RuntimeException e) {
                     showAlert("Error!", "Invalid Input! Please enter a valid 10 digit Canadian Cell Number");
                     return;
@@ -490,7 +513,7 @@ public class EmployeeList extends VBox {
                     showAlert("Duplication Error", "Employee with the email already exist!");
                     return;
                 }
-                selectedEmployee.eMailProperty().set(newEmployeeEmail);
+                modEMail.set(newEmployeeEmail);
             }
 
             if (titleMod.isSelected()) {
@@ -498,16 +521,48 @@ public class EmployeeList extends VBox {
                 titleInput.setTitle("Modify Title");
                 titleInput.setHeaderText("Enter new Title");
                 String newEmployeeTitle = titleInput.showAndWait().orElse("");
-                selectedEmployee.titleProperty().set(newEmployeeTitle);
+                modTitle.set(newEmployeeTitle);
             }
 
+            String msg = "{" +
+                    "\"_id\":\"" + selectedEmployee.get_id() + "\"," +
+                    "\"username\":\"" + modUsername.get() + "\"," +
+                    "\"email\":\"" + modEMail.get() + "\"," +
+                    "\"cellNumber\":\"" + modCellNumber.get() + "\"," +
+                    "\"fname\":\"" + modFirstName.get() + "\"," +
+                    "\"lname\":\"" + modLastName.get() + "\"," +
+                    "\"title\":\"" + modTitle.get() + "\"" +
+                    "}";
             // Refresh the table view and close the modification window
-            employeeList.refresh();
+            System.out.println("[MOD EMPLOYEE]: " + msg);
+
+            HttpClient httpClient = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("http://127.0.0.1:5001/modEmployeeData"))
+                    .timeout(Duration.ofMinutes(2))
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(msg, StandardCharsets.UTF_8))
+                    .build();
+
+            System.out.println("[MOD EMPLOYEE]: " + request.toString());
+            try {
+                HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+                System.out.println(response.body());
+            }catch (Exception e){
+                System.out.println(e);
+            }
+
+            try{
+                loadEmployeeList(getEmployeeData(COOKIE));
+            }catch (Exception e){
+                showAlert("Error!",e.toString());
+            }
+
             modifyStage.close();
         });
 
         // Add UI elements to the modification stage
-        modifyTile.getChildren().addAll(promptmsg, firstNameMod, lastNameMod, cellNumberMod, eMailMod, titleMod, doneButton);
+        modifyTile.getChildren().addAll(promptmsg, usernameMod,firstNameMod, lastNameMod, cellNumberMod, eMailMod, titleMod, doneButton);
 
         Scene modifyScene = new Scene(modifyTile, 200, 200);
         modifyStage.setTitle("Modify Options");
@@ -544,10 +599,10 @@ public class EmployeeList extends VBox {
                 .POST(HttpRequest.BodyPublishers.ofString(msg, StandardCharsets.UTF_8))
                 .build();
 
-        System.out.println("[EMPLOYEE]: " + request.toString());
+        System.out.println("[EMPLOYEE DELETE]: " + request.toString());
         try {
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-            loadEmployeeList(response.body());
+            System.out.println(response.body());
         }catch (Exception e){
             System.out.println(e);
         }
@@ -574,7 +629,7 @@ public class EmployeeList extends VBox {
                 .POST(HttpRequest.BodyPublishers.ofString(msg, StandardCharsets.UTF_8))
                 .build();
 
-        System.out.println("[EMPLOYEE]: " + request.toString());
+        System.out.println("[LOAD EMPLOYEE]: " + request.toString());
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
         return response.body();
@@ -642,6 +697,11 @@ public class EmployeeList extends VBox {
                 case "name":
                     if (employee.getEmployeeFirstName().toLowerCase().equals(input.split(" ")[0]) &&
                             employee.getEmployeeLastName().toLowerCase().equals(input.split(" ")[1])) {
+                        return true;
+                    }
+                    break;
+                case "username":
+                    if (employee.getUsername().toLowerCase().equals(input)){
                         return true;
                     }
                     break;
