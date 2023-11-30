@@ -1,6 +1,18 @@
-label {
-    font-size: 16px;
-    color: #ffa500;
+.logo {
+    width: 150px;
+    height: 150px;
+    float: left;
+    margin-left: 1%;
+}
+
+header {
+    background: #ffa500;
+}
+
+header::after {
+    content: '';
+    display: table;
+    clear: both;
 }
 
 p {
@@ -16,23 +28,6 @@ body {
     font-weight: 300;
 }
 
-header {
-    background: #ffa500;
-}
-
-header::after {
-    content: '';
-    display: table;
-    clear: both;
-}
-
-.logo {
-    width: 150px;
-    height: 150px;
-    float: left;
-    margin-left: 1%;
-}
-
 nav {
     float: right;
 }
@@ -45,12 +40,13 @@ nav ul {
 
 nav li {
     display: inline-block;
-    margin-right: 70px;
-    padding-top: 15%;
+    margin-right: 50px;
+    padding: 15px;
+    padding-top: 10%;
 }
 
 nav a {
-    color: #444;
+    color: #000;
     text-decoration: none;
     text-transform: uppercase;
     font-size: 14px;
@@ -63,21 +59,21 @@ nav a:hover {
 nav a::before {
     content: '';
     display: block;
-    height: 10px;
+    height: 4px;
     background-color: #444;
-    position: absolute;
     top: 0%;
     width: 0%;
-    margin-right: 70px;
 
     transition: all ease-in-out 250ms;
 }
 
 nav a:hover::before {
-    width: 10%;
+    width: 100%;
 }
 
 label {
+    font-size: 16px;
+    color: #ffa500;
     padding: 10px;
     margin: 10px 0; 
 }
@@ -185,3 +181,18 @@ select {
     padding: 10px;
     margin: 10px 0; 
 }
+
+.aboutUS {
+    background-color: #ffa500;
+    font-family: Georgia;
+    border: black;
+    border-radius: 10px;
+    border-style: solid;
+    padding: 10px;
+    width: 25%; /* Adjust the width as needed */
+    margin: auto; /* Center horizontally */
+    margin-top: 150px;
+    text-align: center; /* Center text horizontally */
+    height: 25vh; /* Adjust the height as needed */
+}
+

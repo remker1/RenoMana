@@ -7,7 +7,7 @@
     <body>
         <header>
             <div class="topnav">
-                <!-- <img src="./resources/3.png" alt="logo" class="logo"> -->
+                <img src="{{ url_for('static', filename='TheRenoGroup.png')}}" alt="Reno Group Logo" class="logo">
                 <nav>
                     <ul>
                         <li><a href="http://localhost:5001/">Home</a></li>
@@ -19,15 +19,12 @@
             </div>
         </header>
 
-        <h1>
-            The Reno Group
-        </h1>
-        <body>
-            About Us:
-        </body>
-        <hr>
-        <footer>
-            Company Info
-        </footer>
+        <div class="aboutUS">
+            <h3> About Us: </h3>
+            <p1>
+                All in one business management solution for small business. 
+                This solution will encompass inventory, client, and project management along with company analytic and project scheduling.
+            </p1>
+        </div>
     </body>
 </html>

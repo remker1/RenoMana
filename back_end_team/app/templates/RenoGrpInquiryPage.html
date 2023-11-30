@@ -7,7 +7,7 @@
     <body>
         <header>
             <div class="topnav">
-                <img src="./resources/3.png" alt="logo" class="logo">
+                <img src="{{ url_for('static', filename='TheRenoGroup.png')}}" alt="Reno Group Logo" class="logo">
                 <nav>
                     <ul>
                         <li><a href="http://localhost:5001/">Home</a></li>
@@ -20,6 +20,7 @@
         </header>
 
         <div class="formSection">
+            <p>An asterisk (*) indicates a required field</p>
             <form id="Inquiry_form" action="/submitinquiry" enctype="multipart/form-data" method="POST">
                 <label for="Name">Name *</label><br>
                 <input type="text" id="Name" name="Name" placeholder="Enter your name" required><br>
