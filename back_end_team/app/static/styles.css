@@ -188,11 +188,10 @@ select {
     border: black;
     border-radius: 10px;
     border-style: solid;
-    padding: 10px;
+    padding: 5vh;
     width: 25%; /* Adjust the width as needed */
     margin: auto; /* Center horizontally */
     margin-top: 150px;
     text-align: center; /* Center text horizontally */
-    height: 25vh; /* Adjust the height as needed */
 }
 
