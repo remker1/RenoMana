@@ -2,6 +2,8 @@ package ProjectRequestsMana;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class ProjectRequestsItem {
@@ -13,6 +15,7 @@ public class ProjectRequestsItem {
     private SimpleStringProperty endDate;
     private SimpleStringProperty projectDesc;
     private SimpleStringProperty projectInq;
+    private BooleanProperty accepted;
 
 
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
@@ -33,6 +36,7 @@ public class ProjectRequestsItem {
         this.endDate = new SimpleStringProperty(endDate);
         this.projectDesc = new SimpleStringProperty(projectDesc);
         this.projectInq = new SimpleStringProperty(projectInq);
+        this.accepted = new SimpleBooleanProperty(false);
     }
 
     public ProjectRequestsItem() {}
@@ -62,5 +66,17 @@ public class ProjectRequestsItem {
 
     public SimpleStringProperty Inquiry() {
         return projectInq;
+    }
+
+    public BooleanProperty acceptedProperty() {
+        return accepted;
+    }
+
+    public boolean isAccepted() {
+        return accepted.get();
+    }
+
+    public void setAccepted(boolean accepted) {
+        this.accepted.set(accepted);
     }
 }

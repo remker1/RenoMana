@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -45,7 +46,7 @@ public class ProjectRequests extends VBox {
 
         TableColumn<ProjectRequestsItem, String> Start_dateCol = new TableColumn<>("Start date");
         Start_dateCol.setCellValueFactory(cellData -> cellData.getValue().Start_date());
-        Start_dateCol.prefWidthProperty().bind(ProjectTable.widthProperty().multiply(0.10));
+        Start_dateCol.prefWidthProperty().bind(ProjectTable.widthProperty().multiply(0));
 
         TableColumn<ProjectRequestsItem, String> End_dateCol = new TableColumn<>("End date");
         End_dateCol.setCellValueFactory(cellData -> cellData.getValue().End_date());
@@ -53,8 +54,28 @@ public class ProjectRequests extends VBox {
 
         TableColumn<ProjectRequestsItem, String> DescriptionCol = new TableColumn<>("Description");
         DescriptionCol.setCellValueFactory(cellData -> cellData.getValue().Description());
-        DescriptionCol.prefWidthProperty().bind(ProjectTable.widthProperty().multiply(0.50));
+        DescriptionCol.prefWidthProperty().bind(ProjectTable.widthProperty().multiply(0.35));
 
+        TableColumn<ProjectRequestsItem, String> ActionCol = new TableColumn<>("Action");
+        ActionCol.setCellValueFactory(new PropertyValueFactory<>("action"));
+        ActionCol.setCellFactory(col -> {
+            TableCell<ProjectRequestsItem, String> cell = new TableCell<ProjectRequestsItem, String>() {
+                @Override
+                public void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty) {
+                        setGraphic(null);
+                    } else {
+                        ComboBox<String> comboBox = new ComboBox<>();
+                        comboBox.getItems().addAll("Accept", "Decline");
+                        comboBox.setOnAction(e -> handleAction(comboBox.getValue(), getTableView().getItems().get(getIndex())));
+                        setGraphic(comboBox);
+                    }
+                }
+            };
+            return cell;
+        });
+        ActionCol.prefWidthProperty().bind(ProjectTable.widthProperty().multiply(0.10));
 
         ProjectTable.getColumns().addAll(ProjectCol,
                 EmailCol,
@@ -62,7 +83,8 @@ public class ProjectRequests extends VBox {
                 CompanyCol,
                 Start_dateCol,
                 End_dateCol,
-                DescriptionCol
+                DescriptionCol,
+                ActionCol
         );
         ProjectTable.setItems(data);
 
@@ -88,6 +110,17 @@ public class ProjectRequests extends VBox {
 
         VBox.setVgrow(ProjectTable, Priority.ALWAYS);
         this.getChildren().addAll(ProjectTable, optButton);
+    }
+
+    private void handleAction(String action, ProjectRequestsItem project) {
+        if ("Accept".equals(action)) {
+            // Handle the accept action (e.g., highlight the project green)
+            project.setAccepted(true);
+        } else if ("Decline".equals(action)) {
+            // Handle the decline action (e.g., remove the project from the list)
+            data.remove(project);
+        }
+        ProjectTable.refresh();
     }
 
     public void loadProjects() throws IOException, InterruptedException {
