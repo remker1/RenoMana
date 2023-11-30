@@ -4,21 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="added copy to clipboard button to project request">
+    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="added expanding of details">
+      <change afterPath="$PROJECT_DIR$/RenoMana/src/timeMana/Projects.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/ProjectRequestsMana/ProjectRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/ProjectRequestsMana/ProjectRequests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/.idea/libraries/lib.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab5.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/MainPageTab6.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/RenoMana.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/MainPage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +164,7 @@
       <workItem from="1696451729390" duration="164000" />
       <workItem from="1696457143116" duration="1065000" />
       <workItem from="1700003285969" duration="5225000" />
-      <workItem from="1701333667379" duration="5091000" />
+      <workItem from="1701333667379" duration="7971000" />
     </task>
     <task id="LOCAL-00001" summary="Finished setting up the log in page in accordance to agreed upon outline">
       <option name="closed" value="true" />
@@ -321,7 +310,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701337663265</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="added expanding of details">
+      <option name="closed" value="true" />
+      <created>1701340478650</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1701340478650</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -355,7 +352,8 @@
     <MESSAGE value="MOD: &#10;bug fix and updates" />
     <MESSAGE value="Updated the README for dir to Google Doc." />
     <MESSAGE value="added copy to clipboard button to project request" />
-    <option name="LAST_COMMIT_MESSAGE" value="added copy to clipboard button to project request" />
+    <MESSAGE value="added expanding of details" />
+    <option name="LAST_COMMIT_MESSAGE" value="added expanding of details" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/cmpt370_g29$MainPage.ic" NAME="MainPage Coverage Results" MODIFIED="1698361182269" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

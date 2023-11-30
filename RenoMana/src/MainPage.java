@@ -25,6 +25,7 @@ import javafx.scene.paint.*;
 import javafx.scene.paint.Color;
 import reviewMana.Review;
 import timeMana.Project;
+import timeMana.Projects;
 import timeMana.Scheduler;
 import timeMana.Calendar;
 import employeeMana.EmployeeList;
@@ -58,7 +59,7 @@ public class MainPage extends BasicPage {
 
     private boolean isDarkMode = false;
 
-    private ObservableList<Project> allProjects = FXCollections.observableArrayList();
+    private Projects allProjectData = new Projects();
 
     private String userFname;
     private String userLname;
@@ -120,9 +121,9 @@ public class MainPage extends BasicPage {
         // Create buttons for each tab and add them to the sidebar
         createTabButton("Dashboard", new Dashboard(COOKIES, dashboardData), "Dashboard");
         createTabButton("Project Requests", new ProjectRequests(), "Project Requests");
-        createTabButton("Scheduler", new Scheduler(COOKIES), "Scheduler");
+        createTabButton("Scheduler", new Scheduler(COOKIES, allProjectData.getProjects()), "Scheduler");
         //loadProjects();
-        createTabButton("Calendar", new Calendar(allProjects), "Calendar");
+        createTabButton("Calendar", new Calendar(allProjectData.getProjects()), "Calendar");
         createTabButton("Inventory", new Inventory(), "Inventory");
         createTabButton("Employees", new EmployeeList(COOKIES), "Employees");
         createTabButton("Reviews", new Review(), "Reviews");
