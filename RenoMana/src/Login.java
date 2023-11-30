@@ -1,10 +1,13 @@
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
@@ -20,12 +23,17 @@ import java.time.Duration;
 public class Login extends BasicPage {
 
     private Label errorLabel = new Label();
+
+    private LinearGradient gradient = new LinearGradient(0, 0, 1, 1, true, CycleMethod.NO_CYCLE,
+            new Stop(0, Color.web("#4B1517")),
+            new Stop(1, Color.web("#C49102")));
     @Override
     public void start(Stage stage) {
 //        stage.getIcons().add(new Image(getClass().getResourceAsStream("./resources/icon.png")));
 
         // Hello label message
         Label helloLabel = new Label("The Reno Group Admin App");
+        helloLabel.setTextFill(Color.WHITE);
         helloLabel.setFont(new Font(36));
         HBox helloCentre = new HBox(); // HBox to centre the greeting label
         helloCentre.setAlignment(Pos.CENTER);
@@ -43,6 +51,7 @@ public class Login extends BasicPage {
 
         // Check box to keep user logged into device
         CheckBox keepLogIn = new CheckBox("Keep me logged in!");
+        keepLogIn.setTextFill(Color.WHITE);
 
         // Log in button
         Button logInButton = new Button("Log In");
@@ -97,6 +106,14 @@ public class Login extends BasicPage {
         root.setPadding(new Insets(20));
         root.getChildren().addAll(helloCentre, userLabel, userField, passLabel, passField, keepLogIn, logInCentre, newButton, errorLabel);
 
+        // Page background designing
+
+        root.setBackground(new Background(new BackgroundFill(gradient, CornerRadii.EMPTY, Insets.EMPTY)));
+        for (Node node: root.getChildren()) {
+            if (node instanceof Label) {
+                ((Label) node).setTextFill(Color.WHITE);
+            }
+        }
         Scene scene = new Scene(root, 500, 800);
         stage.setTitle("Log In");
         stage.setScene(scene);
