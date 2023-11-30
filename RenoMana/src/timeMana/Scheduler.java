@@ -48,7 +48,7 @@ public class Scheduler extends VBox {
         table.setEditable(true);
 
         // columns with appropriate headers
-        TableColumn<Project, String> projName = new TableColumn<>("Name");
+        TableColumn<Project, String> projName = new TableColumn<>("Project Name");
         projName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         projName.prefWidthProperty().bind(table.widthProperty().multiply(0.20));
 
@@ -103,6 +103,39 @@ public class Scheduler extends VBox {
 
         TableColumn<Project, String> projDetails = new TableColumn<>("Details");
         projDetails.setCellValueFactory(cellData -> cellData.getValue().detailsProperty());
+        projDetails.setCellFactory(column -> {
+            // custom cell using a TextArea
+            TableCell<Project, String> cell = new TableCell<>() {
+                private final TextArea textArea = new TextArea();
+
+                {
+                    textArea.setWrapText(true); // set wrap text for better readability
+                    textArea.setEditable(true); // set editable if you want users to edit the text
+                    textArea.setPrefRowCount(1); // adjust the row count based on your requirement
+
+                    // update the project details when editing is finished
+                    textArea.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
+                        if (!isNowFocused) {
+                            if (getTableRow() != null && getTableRow().getItem() != null) {
+                                ((Project) getTableRow().getItem()).setDetails(textArea.getText());
+                            }
+                        }
+                    });
+                }
+
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty || item == null) {
+                        setGraphic(null);
+                    } else {
+                        textArea.setText(item);
+                        setGraphic(textArea);
+                    }
+                }
+            };
+            return cell;
+        });
         projDetails.prefWidthProperty().bind(table.widthProperty().multiply(0.45));
 
         // currently only displays first member from the list of members

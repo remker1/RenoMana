@@ -6,6 +6,8 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -43,10 +45,6 @@ public class ProjectRequests extends VBox {
         TableColumn<ProjectRequestsItem, String> CompanyCol = new TableColumn<>("Company");
         CompanyCol.setCellValueFactory(cellData -> cellData.getValue().Company());
         CompanyCol.prefWidthProperty().bind(ProjectTable.widthProperty().multiply(0.10));
-
-        TableColumn<ProjectRequestsItem, String> Start_dateCol = new TableColumn<>("Start date");
-        Start_dateCol.setCellValueFactory(cellData -> cellData.getValue().Start_date());
-        Start_dateCol.prefWidthProperty().bind(ProjectTable.widthProperty().multiply(0));
 
         TableColumn<ProjectRequestsItem, String> End_dateCol = new TableColumn<>("End date");
         End_dateCol.setCellValueFactory(cellData -> cellData.getValue().End_date());
@@ -99,7 +97,6 @@ public class ProjectRequests extends VBox {
                 EmailCol,
                 ContactCol,
                 CompanyCol,
-                Start_dateCol,
                 End_dateCol,
                 DescriptionCol,
                 ActionCol
@@ -117,6 +114,8 @@ public class ProjectRequests extends VBox {
                 showAlert("Error!", "Something went wrong when loading reviews");
             }
         });
+        Button copyToClipboard = new Button("Copy to Clipboard");
+        copyToClipboard.setOnAction(actionEvent -> copyProjectDetails());
 //        Button addProject = new Button("Add Project");
 //        addProject.setOnAction(actionEvent -> addProjectForDebugging());
 
@@ -124,13 +123,38 @@ public class ProjectRequests extends VBox {
 
         deleteItem.setOnAction(actionEvent -> deleteProjectRequest());
 
-        HBox optButton = new HBox(10, deleteItem, refreshProjects);
-//        HBox optButton = new HBox(10, addProject, deleteItem, refreshProjects);
+        HBox optButton = new HBox(10, copyToClipboard, deleteItem, refreshProjects);
+//        HBox optButton = new HBox(10, addProject, copyToClipboard, deleteItem, refreshProjects);
         optButton.setPadding(new Insets(10));
 
         VBox.setVgrow(ProjectTable, Priority.ALWAYS);
         this.getChildren().addAll(ProjectTable, optButton);
     }
+
+    private void copyProjectDetails() {
+        ProjectRequestsItem selectedProject = ProjectTable.getSelectionModel().getSelectedItem();
+        if (selectedProject != null) {
+            String projectDetails = formatProjectDetails(selectedProject);
+            final Clipboard clipboard = Clipboard.getSystemClipboard();
+            final ClipboardContent content = new ClipboardContent();
+            content.putString(projectDetails);
+            clipboard.setContent(content);
+            showAlert("Success", "Project details copied to clipboard.");
+        } else {
+            showAlert("Error", "No project selected.");
+        }
+    }
+
+    private String formatProjectDetails(ProjectRequestsItem project) {
+        // Format the project details as a string
+        return "Client Name: " + project.Name().get() +
+                " Email: " + project.Email().get() +
+                " Contact: " + project.Contact().get() +
+                " Company: " + project.Company().get() +
+                " End Date: " + project.End_date().get() +
+                " Description: " + project.Description().get();
+    }
+
 
 //    private void addProjectForDebugging() {
 //        ProjectRequestsItem debugItem = new ProjectRequestsItem(
@@ -204,10 +228,12 @@ public class ProjectRequests extends VBox {
     }
 
     private void showAlert(String title, String content) {
-        Alert invalidNumAlert = new Alert(Alert.AlertType.ERROR);
-        invalidNumAlert.setTitle(title);
-        invalidNumAlert.setHeaderText(null);
-        invalidNumAlert.setContentText(content);
-        invalidNumAlert.showAndWait();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+
+        alert.showAndWait();
     }
+
 }
