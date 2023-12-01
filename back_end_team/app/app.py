@@ -308,7 +308,7 @@ def submit_request():
         if request.method == 'GET':
             # Retrieve data from MongoDB collection
             user_data = db['projects'].find({}, {'_id': 0, 'customerName': 1, 'customerEmail': 1, 'customerCell': 1,
-                                             'company': 1, 'startDate': 1, 'endDate': 1, 'projectDesc': 1})
+                                             'company': 1, 'endDate': 1, 'projectDesc': 1})
 
             # Convert cursor to list for JSON serialization
             user_data_list = list(user_data)
@@ -321,7 +321,7 @@ def submit_request():
             customerEmail = request.form.get("customerEmail")
             customerCell = request.form.get("customerCell")
             company = request.form.get("company")
-            startDate = request.form.get("startDate")
+            # startDate = request.form.get("startDate")
             endDate = request.form.get("endDate")
             projectDesc = request.form.get("projectDesc")
 
@@ -339,7 +339,7 @@ def submit_request():
                 'customerEmail': customerEmail,
                 'customerCell': customerCell,
                 'company': company,
-                'startDate': startDate,
+                # 'startDate': startDate,
                 'endDate': endDate,
                 'projectDesc': projectDesc,
                 'members': []
