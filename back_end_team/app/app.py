@@ -305,7 +305,7 @@ def submit_request():
         if request.method == 'GET':
             # Retrieve data from MongoDB collection
             user_data = db['projects'].find({}, {'_id': 0, 'customerName': 1, 'customerEmail': 1, 'customerCell': 1,
-                                             'company': 1, 'startDate': 1, 'endDate': 1, 'projectDesc': 1})
+                                             'company': 1, 'endDate': 1, 'projectDesc': 1})
 
             # Convert cursor to list for JSON serialization
             user_data_list = list(user_data)
