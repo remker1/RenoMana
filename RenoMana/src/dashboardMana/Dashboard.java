@@ -6,6 +6,8 @@ import javafx.animation.Timeline;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -18,6 +20,7 @@ import employeeMana.EmployeeList;
 import inventoryMana.InventoryItem;
 import inventoryMana.Inventory;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import timeMana.Project;
 import timeMana.Scheduler;
@@ -147,7 +150,10 @@ public class Dashboard extends HBox {
             }
         });
 
-        getChildren().addAll(leftBox,rightBox, refreshDashboard);
+        Button filterButton = new Button("Filter Options");
+        filterButton.setOnAction(e -> showFilterWindow());
+
+        getChildren().addAll(leftBox,rightBox, refreshDashboard, filterButton);
     }
 
     private PieChart displayPieChart (ObservableList<Employee> employeeList){
@@ -214,6 +220,27 @@ public class Dashboard extends HBox {
             System.out.println(target + " not found in the response");
             return null;
         }
+    }
+
+    private void showFilterWindow() {
+        Stage filterStage = new Stage();
+        filterStage.setTitle("Filter Options");
+
+        CheckBox inventoryCheckbox = new CheckBox("Show Inventory Table");
+        inventoryCheckbox.setSelected(true);
+        inventoryCheckbox.setOnAction(e -> dashboardInventoryTable.setVisible(inventoryCheckbox.isSelected()));
+
+        CheckBox projectCheckbox = new CheckBox("Show Project Table");
+        projectCheckbox.setSelected(true);
+        projectCheckbox.setOnAction(e -> projectTableView.setVisible(projectCheckbox.isSelected()));
+
+        VBox layout = new VBox(10);
+        layout.getChildren().addAll(inventoryCheckbox, projectCheckbox);
+        layout.setAlignment(Pos.CENTER);
+
+        Scene scene = new Scene(layout, 300, 200);
+        filterStage.setScene(scene);
+        filterStage.show();
     }
 
 }
