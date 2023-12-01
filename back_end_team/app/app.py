@@ -159,7 +159,7 @@ def login():
         input_user = data['username']
         input_pass = data['password']
 
-        cookie = ""
+        cookie = { "username" : "", "title": "" }
 
         user_exists = db['auth'].find_one({"username": input_user})
         user_exists_title = db['employees'].find_one({"username": input_user})
