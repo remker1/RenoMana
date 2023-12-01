@@ -777,7 +777,7 @@ def syncInventoryDelete():
         deleteID = data['deleteItemID']
         print(deleteID)
 
-        result = db['inventory'].delete_one({"itemID": "\"" + deleteID + "\""})
+        result = db['inventory'].delete_one({"itemID":  deleteID })
         print(result)
 
         if result:
