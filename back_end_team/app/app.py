@@ -5,7 +5,7 @@ from bson import json_util
 
 
 app = Flask(__name__)
-client = MongoClient(host='db', port=27017, username='root', password='pass')
+client = MongoClient(host='localhost', port=27017, username='root', password='pass')
 db = client.renoGp
 employeeID = 1
 
@@ -224,6 +224,51 @@ def getDashboardData():
         return jsonify(response), 500
 
 
+@app.route('/getDashboardDataTest', methods=['POST'])
+def getDashboardDataTest():
+    try:
+        data = request.get_json()
+        queryUser = data['cookie']
+
+        print(queryUser)
+
+        employees_cursor = db['employees'].find({"username": queryUser})
+        employees_result = [str_id(doc) for doc in employees_cursor]
+
+        projects_cursor = db['projects'].find({"members": queryUser})
+        projects_result = [str_id(doc) for doc in projects_cursor]
+        project_ids = [str(doc['projectID']) for doc in projects_result]
+
+        print(project_ids)
+
+        inventory_cursor = db['inventory'].find({"itemProject": {"$in": project_ids}})
+        inventory_result = [str_id(doc) for doc in inventory_cursor]
+
+        aggregated_result = {
+            "employees": employees_result,
+            "projects": projects_result,
+            "inventory": inventory_result
+        }
+
+        print(aggregated_result)
+
+        if aggregated_result:
+            return jsonify(aggregated_result), 200
+        else:
+            response = {"message": "Could not find the data"}
+            return jsonify(response), 404
+    except Exception as e:
+        print(e)
+        response = {"message": str(e)}
+        return jsonify(response), 500
+
+
+def str_id(doc):
+    """Convert MongoDB _id to string."""
+    if '_id' in doc:
+        doc['_id'] = str(doc['_id'])
+    return doc
+
 @app.route('/getProjectsData', methods=['POST'])
 def getProjectsData():
     try:
@@ -254,23 +299,10 @@ def getProjectsData():
 
 
 # Route for submitting requests
-@app.route('/submitRequest', methods=['GET', 'POST'])
+@app.route('/submitRequest', methods=['POST'])
 def submit_request():
     try:
-        if request.method == 'GET':
-            # Retrieve data from MongoDB collection
-            user_data = db['user'].find({}, {'_id': 0, 'customerName': 1, 'customerEmail': 1, 'customerCell': 1,
-                                             'company': 1, 'startDate': 1, 'endDate': 1, 'projectDesc': 1})
-
-            # Convert cursor to list for JSON serialization
-            user_data_list = list(user_data)
-
-            # Return data as JSON response
-            return jsonify({"data": user_data_list})
-
-        elif request.method == 'POST':
-            # Extract user inputs from the HTML form
-            # data_1000 = request.get_json()
+        if request.method == 'POST':
             customerName = request.form.get("customerName")
             customerEmail = request.form.get("customerEmail")
             customerCell = request.form.get("customerCell")
@@ -279,34 +311,42 @@ def submit_request():
             endDate = request.form.get("endDate")
             projectDesc = request.form.get("projectDesc")
 
+            counter = db['counters'].find_one_and_update(
+                {'_id': 'project_id'},
+                {'$inc': {'seq': 1}},
+                upsert=True,
+                return_document=pymongo.ReturnDocument.AFTER
+            )
+
+            project_id = counter['seq'] if counter else 0
             user_document = {
+                'projectID': project_id,
                 'customerName': customerName,
                 'customerEmail': customerEmail,
                 'customerCell': customerCell,
                 'company': company,
                 'startDate': startDate,
                 'endDate': endDate,
-                'projectDesc': projectDesc
+                'projectDesc': projectDesc,
+                'members': []
             }
 
-            # Insert the user data into the MongoDB collection
-            result100 = db['user'].insert_one(user_document)
+            db['projects'].insert_one(user_document)
 
-            response_1000 = {
+            response = {
                 'status': 'success',
-                'message': 'Data submitted successfully',
-                'inserted_id': str(result100.inserted_id)
+                'message': 'Project submitted successfully',
+                'projectID': project_id
             }
-            return jsonify(response_1000), 200
+            return jsonify(response), 200
 
     except Exception as e:
-        # Log the exception for debugging
         print(f'Error in submit_request route: {e}')
-        response_1000 = {
+        response = {
             'status': 'failure',
             'message': str(e)
         }
-        return jsonify(response_1000), 500
+        return jsonify(response), 500
 
 
 @app.route('/submitinquiry', methods=['GET', 'POST'])
@@ -628,6 +668,26 @@ def syncInventoryAdd():
 
     except Exception as e:
         print(e)
+
+
+@app.route('/getInventoryDataInitial', methods=['GET'])
+def getInventoryDataInitial():
+    try:
+        result_cursor = db['inventory'].find({}, {'_id': 0})
+        result = list(result_cursor)
+        response = {
+            "items": result
+        }
+        return jsonify(response), 200
+
+    except Exception as e:
+        # Log the exception for debugging
+        print(f'Error in getReviews route: {e}')
+        response = {
+            'status': 'failure',
+            'message': str(e)
+        }
+        return jsonify(response), 500
 
 
 if __name__ == '__main__':
