@@ -9,6 +9,8 @@ import javafx.collections.ObservableList;
 import timeMana.Project;
 import timeMana.Scheduler;
 
+import java.util.Arrays;
+
 
 public class Employee {
 
@@ -21,7 +23,6 @@ public class Employee {
     private ObservableList<Project> projects;
     private SimpleStringProperty title;
     private SimpleStringProperty username;
-
     private SimpleStringProperty _id;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -46,14 +47,6 @@ public class Employee {
         this.username = new SimpleStringProperty(username);
         this._id = new SimpleStringProperty(_id);
 
-        String[] lines = projectsNameString.split("\\r?\\n");
-
-        for (String line:lines){
-            Project assignedProject = Scheduler.searchProjectByName(line);
-            if (assignedProject != null){
-                projects.add(assignedProject);
-            }
-        }
 
     }
 
@@ -93,22 +86,30 @@ public class Employee {
     }
 
     public ObservableList<Project> getProjects() {
+
+        String[] lines = projectsNameString.get().split("\\.");
+        System.out.println(Arrays.toString(lines));
+        for (String line: lines){
+            Project assignedProject = Scheduler.searchProjectByName(line);
+            if (!projects.contains(assignedProject)){
+                projects.add(assignedProject);
+            }
+        }
         return projects;
     }
+
     public String getProjectsNameString(){
+        StringBuilder projectResult = new StringBuilder();
+        for(Project project:projects){
+            System.out.println(project.getName());
+            projectResult.append(project.getName()).append(".");
+        }
+        projectsNameString.set(projectResult.toString());
         return projectsNameString.get();
     }
 
     public SimpleStringProperty projectsNameStringProperty(){
         return projectsNameString;
-    }
-
-    public String projectsToString(){
-        String projectResult = "";
-        for (Project project : projects){
-            projectResult += project.getName() + " \n";
-        }
-        return projectResult;
     }
 
     public void addProject2Employee(Project project){

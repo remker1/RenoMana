@@ -3,6 +3,7 @@ package employeeMana;
 import COOKIES.COOKIES;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ManagerCheck.ManagerCheck;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -15,12 +16,16 @@ import javafx.scene.layout.VBox;
 import javafx.geometry.Insets;
 import javafx.stage.Stage;
 
+import javax.crypto.*;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
@@ -130,6 +135,11 @@ public class EmployeeList extends VBox {
         // Set vertical grow for the table and add it along with the buttons to the VBox
         VBox.setVgrow(employeeList, Priority.ALWAYS);
         this.getChildren().addAll(searchBox, employeeList, optButton);
+        try {
+            loadEmployeeList(getEmployeeData(COOKIES));
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 
     /**
@@ -155,7 +165,7 @@ public class EmployeeList extends VBox {
                 return idx;
             } else if (Objects.equals(employee.getEMail().toLowerCase(), toFind.toLowerCase())) {
                 return idx;
-            } else if (Objects.equals(employee.getCell(),formatCell(toFind))) {
+            } else if (Objects.equals(employee.getCell(),toFind)) {
                 return idx;
             }else if (Objects.equals(employee.getUsername().toLowerCase(),toFind.toLowerCase())){
                 return idx;
@@ -324,9 +334,10 @@ public class EmployeeList extends VBox {
         }
 
         // Prompt the user for employee title
-        TextInputDialog titleInput = new TextInputDialog();
-        titleInput.setTitle("Title Assignment");
-        titleInput.setHeaderText("Add title to this employee");
+        String[] titleList = {"Manager","Employee","Intern","Contractor"};
+        ChoiceDialog<String> titleInput = new ChoiceDialog<>("Title",titleList);
+        titleInput.setTitle("Choose a Member");
+        titleInput.setHeaderText("Choose a Project Member");
         String employeeTitle = titleInput.showAndWait().orElse("");
 
         String username = generateUsername(firstName,lastName);
@@ -340,6 +351,7 @@ public class EmployeeList extends VBox {
                 "\"cellNumber\":\"" + employeeCell + "\"," +
                 "\"fname\":\"" + firstName + "\"," +
                 "\"lname\":\"" + lastName + "\"," +
+                "\"projects\":\"" + "" + "\"," +
                 "\"title\":\"" + employeeTitle + "\"" +
                 "}";
 
@@ -389,12 +401,12 @@ public class EmployeeList extends VBox {
             return;
         }
 
-        AtomicReference<String> modUsername = new AtomicReference<>(selectedEmployee.getUsername());
-        AtomicReference<String> modFirstName = new AtomicReference<>(selectedEmployee.getEmployeeFirstName());
-        AtomicReference<String> modLastName = new AtomicReference<>(selectedEmployee.getEmployeeLastName());
-        AtomicReference<String> modCellNumber = new AtomicReference<>(selectedEmployee.getCell());
-        AtomicReference<String> modEMail = new AtomicReference<>(selectedEmployee.getEMail());
-        AtomicReference<String> modTitle = new AtomicReference<>(selectedEmployee.getTitle());
+        SimpleStringProperty modUsername = new SimpleStringProperty(selectedEmployee.getUsername());
+        SimpleStringProperty modFirstName = new SimpleStringProperty(selectedEmployee.getEmployeeFirstName());
+        SimpleStringProperty modLastName = new SimpleStringProperty(selectedEmployee.getEmployeeLastName());
+        SimpleStringProperty modCellNumber = new SimpleStringProperty(selectedEmployee.getCell());
+        SimpleStringProperty modEMail = new SimpleStringProperty(selectedEmployee.getEMail());
+        SimpleStringProperty modTitle = new SimpleStringProperty(selectedEmployee.getTitle());
 
 
         // Create a new stage for modification options
@@ -481,11 +493,13 @@ public class EmployeeList extends VBox {
             }
 
             if (titleMod.isSelected()) {
-                TextInputDialog titleInput = new TextInputDialog(selectedEmployee.getTitle());
-                titleInput.setTitle("Modify Title");
-                titleInput.setHeaderText("Enter new Title");
+                String[] titleList = {"Manager","Employee","Intern","Contractor"};
+                ChoiceDialog<String> titleInput = new ChoiceDialog<>("Title",titleList);
+                titleInput.setTitle("Choose a Member");
+                titleInput.setHeaderText("Choose a Project Member");
                 String newEmployeeTitle = titleInput.showAndWait().orElse("");
                 modTitle.set(newEmployeeTitle);
+
             }
 
             String msg = "{" +
@@ -494,6 +508,7 @@ public class EmployeeList extends VBox {
                     "\"cellNumber\":\"" + modCellNumber.get() + "\"," +
                     "\"fname\":\"" + modFirstName.get() + "\"," +
                     "\"lname\":\"" + modLastName.get() + "\"," +
+                    "\"projects\":\"" + selectedEmployee.getProjectsNameString() + "\"," +
                     "\"title\":\"" + modTitle.get() + "\"" +
                     "}";
             // Refresh the table view and close the modification window

@@ -127,16 +127,6 @@ public class Dashboard extends HBox {
         timeline.getKeyFrames().add(keyFrame);
         timeline.play();
 
-        // Adding each parts into their parent node until the root node.
-        welcomeBox.getChildren().addAll(welcomeMsg);
-        pieBox.getChildren().addAll(pieTitle);
-        //pieBox.getChildren().addAll(pieTitle,employeePie);
-        inventoryBox.getChildren().addAll(inventoryTitle,dashboardInventoryTable);
-
-        leftBox.getChildren().addAll(welcomeBox,pieBox,inventoryBox);
-        //rightBox.getChildren().addAll(projectTimeLineTitle,timeLineListView);
-        rightBox.getChildren().addAll(projectTimeLineTitle,projectTableView);
-
         Button refreshDashboard = new Button("Refresh");
         refreshDashboard.setOnAction(actionEvent -> {
             try {
@@ -147,9 +137,20 @@ public class Dashboard extends HBox {
         });
 
         Button filterButton = new Button("Filter Options");
+
         filterButton.setOnAction(e -> showFilterWindow());
 
-        getChildren().addAll(leftBox,rightBox, refreshDashboard, filterButton);
+        welcomeBox.getChildren().addAll(welcomeMsg,refreshDashboard,filterButton);
+
+        pieBox.getChildren().addAll(pieTitle);
+        //pieBox.getChildren().addAll(pieTitle,employeePie);
+        inventoryBox.getChildren().addAll(inventoryTitle,dashboardInventoryTable);
+
+        leftBox.getChildren().addAll(welcomeBox,pieBox,inventoryBox);
+        //rightBox.getChildren().addAll(projectTimeLineTitle,timeLineListView);
+        rightBox.getChildren().addAll(projectTimeLineTitle,projectTableView);
+
+        getChildren().addAll(leftBox,rightBox);
     }
 
     private PieChart displayPieChart (ObservableList<Employee> employeeList){
