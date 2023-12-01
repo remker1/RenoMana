@@ -3,9 +3,11 @@ import pymongo
 from pymongo import MongoClient
 from bson import json_util
 
+
 app = Flask(__name__)
 client = MongoClient(host='db', port=27017, username='root', password='pass')
 db = client.renoGp
+employeeID = 1
 
 
 # Displays the main Reno Group landing page
@@ -92,16 +94,25 @@ def initDB():
 
 @app.route('/register', methods=['POST'])
 def register():
+    global employeeID, title
+
+    if employeeID == 1:
+        title = "Manager"
+    elif employeeID > 1:
+        title = "Employee"
+
     print("Register qwerty")
     try:
         data = request.get_json()
         print("-------------------------")
+        print("id: " + str(employeeID))
         print("fname: " + data['fname'])
         print("lname: " + data['lname'])
         print("username: " + data['username'])
         print("password: " + data['password'])
         print("email: " + data['email'])
         print("cellNumber: " + data['cellNumber'])
+        print("title: "+ title)
 
         # Assuming data is a dictionary containing the fields you want to add
         auth_document = {
@@ -110,11 +121,13 @@ def register():
         }
 
         employee_document = {
+            'id' : employeeID,
             'fname': data['fname'],
             'lname': data['lname'],
             'username': data['username'],
             'email': data['email'],
             'cellNumber': data['cellNumber'],
+            'title': title,
             'projects': "",
         }
 
@@ -128,7 +141,7 @@ def register():
             'inserted_id1': str(result1.inserted_id),
             'inserted_id2': str(result2.inserted_id)
         }
-
+        employeeID += 1
         return jsonify(response), 200
     except Exception as e:
         # Log the exception for debugging
@@ -395,8 +408,8 @@ def getReviews():
         return jsonify(response), 500
 
 
-@app.route('/getEmployeeData', methods=['POST'])
-def getEmployeeData():
+@app.route('/getLoginEmployeeData', methods=['POST'])
+def getLoginEmployeeData():
     try:
         data = request.get_json()
         queryUser = data['cookie']
@@ -422,28 +435,131 @@ def getEmployeeData():
         }
         return jsonify(response), 500
 
+@app.route('/getEmployeesData', methods=['POST'])
+def getEmployeesData():
+    try:
+        data = request.get_json()
 
-# @app.route('/deleteEmployeeData', methods=['POST'])
-# def deleteEmployeeData():
-#     try:
-#         data = request.get_json()
-#         queryUser = data['cookie']
-#
-#         result = db['employees'].delete({"username":queryUser})
-#
-#         if result:
-#             return result, 200
-#         else:
-#             response = {
-#                 "message":"Could not find the user"
-#             }
-#             return jsonify(response), 500
-#     except Exception as e:
-#         print(e)
-#         response = {
-#             "message": e
-#         }
-#         return jsonify(response), 500
+        cursor = db['employees'].find({})
+        result = [doc for doc in cursor]
+
+        for doc in result:
+            if '_id' in doc:
+                doc['_id'] = int(str(doc['_id']),16)
+
+        response = {
+            "employees": result
+        }
+        if result:
+            return jsonify(response), 200
+        else:
+            response = {
+                "message": "Could not find the user"
+            }
+            return jsonify(response), 500
+
+    except Exception as e:
+        print(e)
+        response = {
+            "message": str(e)
+        }
+        return jsonify(response), 500
+
+@app.route('/addEmployeeData', methods=['POST'])
+def addEmployeeData():
+    try:
+        data = request.get_json()
+
+        # Assuming data is a dictionary containing the fields you want to add
+        auth_document = {
+            'username': data['username'],
+            'password': data['password']
+        }
+
+        employee_document = {
+            'id' : data['id'],
+            'fname': data['fname'],
+            'lname': data['lname'],
+            'username': data['username'],
+            'email': data['email'],
+            'cellNumber': data['cellNumber'],
+            'title': data['title'],
+            'projects': "",
+        }
+
+        # Insert the document into the collection
+        result1 = db['auth'].insert_one(auth_document)
+        result2 = db['employees'].insert_one(employee_document)
+
+        response = {
+            'status': 'success',
+            'message': 'Document added successfully',
+            'inserted_id1': str(result1.inserted_id),
+            'inserted_id2': str(result2.inserted_id)
+        }
+
+        return jsonify(response), 200
+    except Exception as e:
+        # Log the exception for debugging
+        print(f'Error in register route: {e}')
+        return jsonify({"status": "failure", "message": str(e)}), 500
+@app.route('/modEmployeeData', methods=['POST'])
+def modEmployeeData():
+    try:
+        data = request.get_json()
+
+        # Assuming data is a dictionary containing the fields you want to add
+
+        employee_mod_document = {
+                'fname': data['fname'],
+                'lname': data['lname'],
+                'email': data['email'],
+                'cellNumber': data['cellNumber'],
+                'title': data['title']
+        }
+
+
+        # Insert the document into the collection
+
+        result = db['employees'].update_one({'username': data['username']}, {"$set":employee_mod_document},upsert = True)
+
+        response = {
+            'status': 'success',
+            'message': 'Document modified successfully',
+            'modified_count': result.modified_count,
+        }
+
+        return jsonify(response), 200
+    except Exception as e:
+        # Log the exception for debugging
+        print(f'Error in register route: {e}')
+        return jsonify({"status": "failure", "message": str(e)}), 500
+
+@app.route('/deleteEmployeeData', methods=['POST'])
+def deleteEmployeeData():
+    try:
+        data = request.get_json()
+        queryUser = data['deleteUsername']
+
+        result1 = db['employees'].delete_one({"username":queryUser})
+        result2 = db['auth'].delete_one({"username":queryUser})
+
+        if result1 & result2:
+            response = {
+                "message": "Successfully deleted item"
+            }
+            return jsonify(response), 200
+        else:
+            response = {
+                "message":"Could not find the user"
+            }
+            return jsonify(response), 500
+    except Exception as e:
+        print(e)
+        response = {
+            "message": e
+        }
+        return jsonify(response), 500
 
 @app.route('/getProjects', methods=['POST'])
 def getProjects():

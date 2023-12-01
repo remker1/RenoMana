@@ -7,7 +7,7 @@
     <body>
         <header>
             <div class="topnav">
-                <img src="./resources/3.png" alt="logo" class="logo">
+                <img src="{{ url_for('static', filename='TheRenoGroup.png')}}" alt="Reno Group Logo" class="logo">
                 <nav>
                     <ul>
                         <li><a href="http://localhost:5001/">Home</a></li>
@@ -20,24 +20,34 @@
         </header>
 
         <div class="formSection">
-            <form id="projectInq" action="/submitinquiry" enctype="multipart/form-data" method="POST">
+            <p>An asterisk (*) indicates a required field</p>
+            <form id="Inquiry_form" action="/submitinquiry" enctype="multipart/form-data" method="POST">
+                <label for="Name">Name *</label><br>
+                <input type="text" id="Name" name="Name" placeholder="Enter your name" required><br>
+
+                <label for="Contact">How should we contact you? *</label><br>
+                <input type="Contact" id="Contact" name="Contact" placeholder="Please enter your email, or cell-number" required><br>
+
                 <label for="projectInq">Having problems with our service? Reach out!</label><br>
                 <textarea id="projectInq" name="projectInq" rows="10" cols="50" required></textarea><br>
 
                 <input type="submit" value="submit">
-            <form>
-        <div>
+            </form>
+        </div>
 
-        
+
         <script>
              function clearFormInputs() {
+                document.getElementById('Name').value = '';
+                document.getElementById('Contact').value = '';
                 document.getElementById('projectInq').value = '';
             }
 
             async function submitForm() {
                     try {
                     // Get form data
-                    const formData = new FormData(document.getElementById('projectInq'));
+                    const formData = new FormData(document.getElementById('Inquiry_form'));
+
 
                     // Make a POST request to the server
                     const response = await fetch('/submitinquiry', {
@@ -47,7 +57,7 @@
 
                     if (response.ok) {
                         // Display a success message to the user
-                        alert('Thank you for your submitting an inquiry!');
+                        alert("Thank you for your submitting an inquiry! We'll make sure to get back to you!");
 
                         // Clear form inputs
                         clearFormInputs();
@@ -61,13 +71,12 @@
                     alert('An unexpected error occurred. Please try again later.');
             }
          }
-        
-         document.getElementById('projectInq').addEventListener('submit', function (e) {
+
+         document.getElementById('Inquiry_form').addEventListener('submit', function (e) {
                 e.preventDefault(); // Prevent the default form submission
                 submitForm(); // Call the custom submitForm function
             });
-
         </script>
-    <body>
-<html>
+    </body>
+</html>
 

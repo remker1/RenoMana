@@ -1,16 +1,21 @@
+import employeeMana.Employee;
+import employeeMana.EmployeeList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import timeMana.Project;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -30,6 +35,9 @@ public class Registration extends BasicPage {
     final double scene_height = 500;
 
     private Label errorLabel = new Label();
+    private LinearGradient gradient = new LinearGradient(0, 0, 1, 1, true, CycleMethod.NO_CYCLE,
+            new Stop(0, Color.web("#4B1517")),
+            new Stop(1, Color.web("#C49102")));
 
     @Override
     public void start(Stage stage) {
@@ -37,7 +45,8 @@ public class Registration extends BasicPage {
 
         // Hello label message
         Label helloLabel = new Label("Registration");
-        helloLabel.setFont(new Font(36));
+        helloLabel.setTextFill(Color.WHITE);
+        helloLabel.setFont(new Font(Font.getFontNames().get(1), 36));
         HBox helloCentre = new HBox(); // HBox to centre the greeting label
         helloCentre.setAlignment(Pos.CENTER);
         helloCentre.getChildren().add(helloLabel);
@@ -46,6 +55,7 @@ public class Registration extends BasicPage {
         Label fnameLabel = new Label("First Name: ");
         TextField fnameField = new TextField();
         fnameField.setPromptText("Enter your First Name: ");
+
 
         // First Name label that prompts text field
         Label lnameLabel = new Label("Last Name: ");
@@ -84,31 +94,56 @@ public class Registration extends BasicPage {
         logInCentre.setAlignment(Pos.CENTER);
         logInCentre.getChildren().add(registerButton);
 
+
+
         // Set action for the register button
         registerButton.setOnAction(event -> {
-            try {
-                if (passwordValid(passField.getText(), verifyPassField.getText())) {
-                    register(fnameField.getText(), lnameField.getText(), userField.getText(), passField.getText(), emailField.getText(), cellField.getText());
-                    // Close the login stage
+            // Check if the entered username already exists
+            if (isDuplicate(userField.getText(),"username")){
+                showAlert("Duplication Error!","Employee with this username already exist");
+            }
+            // Check if the password is less than 8 characters
+            else if (passField.getText().length()<8){
+                showAlert("Invalidation Input Error!","Password should be at least 8 digits");
+            }
+            // Check if the entered password and confirmed password match
+            else if(!passField.getText().equals(verifyPassField.getText())){
+                showAlert("Invalidation Input Error!","Please confirm your password!");
+            }
+            // Check if the entered email is valid
+            else if(!emailField.getText().contains("@")||emailField.getText().length()<4||!emailField.getText().contains(".")){
+                showAlert("Invalidation Input Error!","Please make sure Email is valid!");
+            }
+            // Check if the entered email already exists
+            else if(isDuplicate(emailField.getText(),"email")){
+                showAlert("Duplication Error", "Employee with the email already exist!");
+            }
+            // Check if the entered cell number is valid (North America number with 10 digits)
+            else if(cellField.getText().length()!= 10){
+                showAlert("Invalidation Input Error!", "Please make sure Cell Number is valid North America number (10 digits)");
+            }
+            // Check if the entered cell number already exists
+            else if(isDuplicate(EmployeeList.formatCell(cellField.getText()),"cell")){
+                showAlert("Duplication Error", "Employee with the cell number already exist!");
+            }
+            // If all validations pass, proceed with registration
+            else {
+                try {
+                    register(fnameField.getText(), lnameField.getText(), userField.getText(), passField.getText(), emailField.getText(), EmployeeList.formatCell(cellField.getText()));
                     stage.close();
-                    // Launch the main page
+                    // Launch the registration page
                     try {
                         new Login().start(new Stage());
                     } catch (Exception e) {
-                        System.out.println("Something went wrong when going into main page.");
+                        showAlert("Error!",e.toString());
                     }
+                } catch (IOException e) {
+                    showAlert("Error!",e.toString());
+                } catch (InterruptedException e) {
+                    showAlert("Error!",e.toString());
                 }
-                else {
-                    if (!(passField.getText().length() >= 8))
-                        displayErrorMessage("Password must be 8 characters or longer!");
-                    else if (!passField.getText().equals(verifyPassField.getText()))
-                        displayErrorMessage("Passwords do not Match!");
-                }
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+            }
+
         });
 
         // Registration button for new users
@@ -130,6 +165,13 @@ public class Registration extends BasicPage {
         root.setPadding(new Insets(20));
         root.getChildren().addAll(helloCentre, fnameLabel, fnameField, lnameLabel, lnameField, userLabel, userField, passLabel, passField, verifyPassLabel, verifyPassField, emailLabel, emailField, cellLabel, cellField, logInCentre, newButton, errorLabel);
 
+        root.setBackground(new Background(new BackgroundFill(gradient, CornerRadii.EMPTY, Insets.EMPTY)));
+        for (Node node: root.getChildren()) {
+            if (node instanceof Label) {
+                ((Label) node).setTextFill(Color.WHITE);
+            }
+        }
+
         Scene scene = new Scene(root, 500, 800);
         stage.setTitle("Log In");
         stage.setScene(scene);
@@ -138,12 +180,8 @@ public class Registration extends BasicPage {
 
     }
 
-    private boolean passwordValid(String password, String verifyPassword) {
-        return (password.equals(verifyPassword) && password.length() >= 8);
-    }
-
-
     private static void register(String fname, String lname, String username, String password, String email, String cellNumber) throws IOException, InterruptedException {
+
         String msg = "{" +
                 "\"username\":\"" + username + "\"," +
                 "\"password\":\"" + password + "\"," +
@@ -171,6 +209,74 @@ public class Registration extends BasicPage {
         errorLabel.setTextFill(Color.RED);
     }
 
+    /**
+     * Displays an error alert with the specified title and content.
+     *
+     * @param title   The title of the error alert.
+     * @param content The content (message) of the error alert.
+     */
+    private void showAlert(String title, String content) {
+        // Create a new Alert with AlertType.ERROR
+        Alert invalidNumAlert = new Alert(Alert.AlertType.ERROR);
+
+        // Set the title of the alert
+        invalidNumAlert.setTitle(title);
+
+        // Set the header text (null means no header text)
+        invalidNumAlert.setHeaderText(null);
+
+        // Set the content text (main message) of the alert
+        invalidNumAlert.setContentText(content);
+
+        // Display the alert and wait for user interaction
+        invalidNumAlert.showAndWait();
+    }
+
+    /**
+     * Checks whether a given input for a specific attribute type (cell, email, or username)
+     * already exists in the EmployeeList.data.
+     *
+     * @param input         The input to check for duplicates.
+     * @param attributeType The type of attribute to check (cell, email, or username).
+     * @return              True if a duplicate is found, false otherwise.
+     */
+    private boolean isDuplicate(String input, String attributeType) {
+        // Convert the input to lowercase for case-insensitive comparison
+        input = input.toLowerCase();
+
+        // Check if the EmployeeList.data is null, return false if it is
+        if (EmployeeList.data == null) {
+            return false;
+        }
+
+        // Iterate through each employee in the EmployeeList.data
+        for (Employee employee : EmployeeList.data) {
+            // Check based on the attribute type
+            switch (attributeType) {
+                case "cell":
+                    // If the input matches any employee's cell, return true (duplicate found)
+                    if (employee.getCell().equals(input)) {
+                        return true;
+                    }
+                    break;
+                case "email":
+                    // If the input matches any employee's email (case-insensitive), return true (duplicate found)
+                    if (employee.getEMail().toLowerCase().equals(input)) {
+                        return true;
+                    }
+                    break;
+                case "username":
+                    // If the input matches any employee's username (case-insensitive), return true (duplicate found)
+                    if (employee.getUsername().toLowerCase().equals(input)) {
+                        return true;
+                    }
+                    break;
+            }
+        }
+
+        // If no match is found, return false (no duplicate)
+        return false;
+    }
 
     public static void main(String[] args) {
         launch(args);

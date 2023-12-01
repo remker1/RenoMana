@@ -18,8 +18,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Optional;
 
 public class Scheduler extends VBox {
 
@@ -34,13 +33,13 @@ public class Scheduler extends VBox {
     /***
      * Constructor for Scheduler UI
      */
-    public Scheduler(String COOKIES) {
+    public Scheduler(String COOKIES, ObservableList<Project> projects) {
         // Project Schedule label
         final Label label = new Label("Projects Schedule");
         label.setFont(new Font("Arial", 20));
 
         // initialize data
-        data = FXCollections.observableArrayList();
+        data = projects;
         projectsTimelineList = FXCollections.observableArrayList();
 
         // make table editable
@@ -49,7 +48,7 @@ public class Scheduler extends VBox {
         table.setEditable(true);
 
         // columns with appropriate headers
-        TableColumn<Project, String> projName = new TableColumn<>("Name");
+        TableColumn<Project, String> projName = new TableColumn<>("Project Name");
         projName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         projName.prefWidthProperty().bind(table.widthProperty().multiply(0.20));
 
@@ -104,6 +103,39 @@ public class Scheduler extends VBox {
 
         TableColumn<Project, String> projDetails = new TableColumn<>("Details");
         projDetails.setCellValueFactory(cellData -> cellData.getValue().detailsProperty());
+        projDetails.setCellFactory(column -> {
+            // custom cell using a TextArea
+            TableCell<Project, String> cell = new TableCell<>() {
+                private final TextArea textArea = new TextArea();
+
+                {
+                    textArea.setWrapText(true); // set wrap text for better readability
+                    textArea.setEditable(true); // set editable if you want users to edit the text
+                    textArea.setPrefRowCount(1); // adjust the row count based on your requirement
+
+                    // update the project details when editing is finished
+                    textArea.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
+                        if (!isNowFocused) {
+                            if (getTableRow() != null && getTableRow().getItem() != null) {
+                                ((Project) getTableRow().getItem()).setDetails(textArea.getText());
+                            }
+                        }
+                    });
+                }
+
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty || item == null) {
+                        setGraphic(null);
+                    } else {
+                        textArea.setText(item);
+                        setGraphic(textArea);
+                    }
+                }
+            };
+            return cell;
+        });
         projDetails.prefWidthProperty().bind(table.widthProperty().multiply(0.45));
 
         // currently only displays first member from the list of members
@@ -146,16 +178,27 @@ public class Scheduler extends VBox {
      * Method to add a project to the table list
      */
     private void addProject() {
-        // open a dialog box to prompt the user to enter the project name
-        TextInputDialog nameInput = new TextInputDialog();
-        nameInput.setTitle("Add New Project");
-        nameInput.setHeaderText("Enter Project Name");
-        String projectName = nameInput.showAndWait().orElse("");
+        // While user is not inputting a valid string, keep asking
+        // unless they click `Cancel` or `X` button
+        String projectName = "";
+        while (true) {
+            TextInputDialog nameInput = new TextInputDialog();
+            nameInput.setTitle("Add New Project");
+            nameInput.setHeaderText("Enter Project Name");
+            // Optional has access to methods that are helpfull for checking null and blank string
+            // char.
+            Optional<String> nameResult = nameInput.showAndWait();
+            if (nameResult.isPresent() && !nameResult.get().trim().isEmpty()) {
+                projectName = nameResult.get().trim();
+                break;
+            } else if (!nameResult.isPresent()) {
+                return; // When user clicked cancel or x, return
+            }
+        }
 
-        // check if a project with the entered name already exists
+        // Check for duplicate project name
         for (Project project : data) {
             if (project.getName().equals(projectName)) {
-                // show error alert and exit if project of the same name exists
                 Alert duplicateAlert = new Alert(Alert.AlertType.ERROR);
                 duplicateAlert.setTitle("Error!");
                 duplicateAlert.setHeaderText("Project already exists!");
@@ -165,15 +208,45 @@ public class Scheduler extends VBox {
             }
         }
 
-        // prompt the user to enter the project timeline
-        TextInputDialog timelineInput = new TextInputDialog();
-        timelineInput.setHeaderText("Enter Project Timeline");
-        String projectTimeline = timelineInput.showAndWait().orElse("");
+        // While user is not inputting a valid string, keep asking
+        // unless they click `Cancel` or `X` button
+        String projectTimeline = "";
+        while (true) {
+            TextInputDialog timelineInput = new TextInputDialog();
+            timelineInput.setHeaderText("Enter Project Timeline (format: yyyy-mm-dd)");
+            Optional<String> timelineResult = timelineInput.showAndWait();
+            if (timelineResult.isPresent()) {
+                String input = timelineResult.get().trim();
+                if (isValidDate(input)) {
+                    projectTimeline = input;
+                    break;
+                } else {
+                    Alert invalidFormatAlert = new Alert(Alert.AlertType.ERROR);
+                    invalidFormatAlert.setTitle("Invalid Format");
+                    invalidFormatAlert.setHeaderText("Invalid Timeline Format");
+                    invalidFormatAlert.setContentText("Please enter the date in the format yyyy-m-dd (e.g., 2022-11-06)" +
+                            "including the dashes.");
+                    invalidFormatAlert.showAndWait();
+                }
+            } else {
+                return; // User clicked cancel or closed the dialog
+            }
+        }
 
-        // prompt the user to enter project details
-        TextInputDialog detailsInput = new TextInputDialog();
-        detailsInput.setHeaderText("Enter Project Details");
-        String projectDetails = detailsInput.showAndWait().orElse("");
+        // While user is not inputting a valid string, keep asking
+        // unless they click `Cancel` or `X` button
+        String projectDetails = "";
+        while (true) {
+            TextInputDialog nameInput = new TextInputDialog();
+            nameInput.setHeaderText("Enter Project Details");
+            Optional<String> nameResult = nameInput.showAndWait();
+            if (nameResult.isPresent() && !nameResult.get().trim().isEmpty()) {
+                projectDetails = nameResult.get().trim();
+                break;
+            } else if (!nameResult.isPresent()) {
+                return; // When user clicked cancel or x, return
+            }
+        }
 
         // provide choices for members and prompt user to select one (for now)
         ObservableList<String> choices = EmployeeList.employeeFirstNameList;
@@ -192,7 +265,7 @@ public class Scheduler extends VBox {
 
         // add the project to data list
         data.add(newProject);
-        projectsTimelineList.add(projectTimeline);
+        projectsTimelineList.add(projectDetails);
         table.refresh();
 
         int chosenEmployeeIdx = EmployeeList.employeeSearch(selectedMember);
@@ -205,7 +278,16 @@ public class Scheduler extends VBox {
         } else{
             EmployeeList.data.get(chosenEmployeeIdx).addProject2Employee(data.getLast());
         }
+    }
 
+    /**
+     * Validate the date format of the input. Must be yyyy-mm-dd. Returns false if not valid,
+     * otherwise, true.
+     */
+    private boolean isValidDate(String input) {
+        // Checking validity using regular expression
+        String datePattern = "\\d{4}-\\d{2}-\\d{2}";
+        return input.matches(datePattern);
     }
 
     /***
@@ -225,36 +307,61 @@ public class Scheduler extends VBox {
             return;
         }
 
-        // prompt the user to enter a new name for the project
-        // defaulting to the current name of the selected project
-        TextInputDialog nameInput = new TextInputDialog(selectedProject.getName());
-        nameInput.setTitle("Modify Project");
-        nameInput.setHeaderText("Enter New Project Name");
-        String newProjectName = nameInput.showAndWait().orElse("");
+        // Loop for project name input
+        String newProjectName = "";
+        while (true) {
+            TextInputDialog nameInput = new TextInputDialog(selectedProject.getName());
+            nameInput.setTitle("Modify Project");
+            nameInput.setHeaderText("Enter New Project Name");
+            Optional<String> nameResult = nameInput.showAndWait();
+            if (nameResult.isPresent() && !nameResult.get().trim().isEmpty()) {
+                newProjectName = nameResult.get().trim();
+                break;
+            } else if (!nameResult.isPresent()) {
+                return; // User clicked cancel or closed the dialog
+            }
+        }
 
-        // get new timeline from user
-        TextInputDialog timelineInput = new TextInputDialog(selectedProject.getTimeline());
-        timelineInput.setHeaderText("Enter New Project Timeline");
-        String newProjectTimeline = timelineInput.showAndWait().orElse("");
+        // Loop for project timeline input
+        String newProjectTimeline = "";
+        while (true) {
+            TextInputDialog timelineInput = new TextInputDialog(selectedProject.getTimeline());
+            timelineInput.setHeaderText("Enter New Project Timeline (format: yyyy-mm-dd)");
+            Optional<String> timelineResult = timelineInput.showAndWait();
+            if (timelineResult.isPresent()) {
+                String input = timelineResult.get().trim();
+                if (isValidDate(input)) {
+                    newProjectTimeline = input;
+                    break;
+                } else {
+                    Alert invalidFormatAlert = new Alert(Alert.AlertType.ERROR);
+                    invalidFormatAlert.setTitle("Invalid Format");
+                    invalidFormatAlert.setHeaderText("Invalid Timeline Format");
+                    invalidFormatAlert.setContentText("Please enter the date in the format yyyy-mm-dd (e.g., 2022-11-06).");
+                    invalidFormatAlert.showAndWait();
+                }
+            } else {
+                return; // User clicked cancel or closed the dialog
+            }
+        }
 
-        // get new details from user
-        TextInputDialog detailsInput = new TextInputDialog(selectedProject.getDetails());
-        detailsInput.setHeaderText("Enter New Project Details");
-        String newProjectDetails = detailsInput.showAndWait().orElse("");
+        // Loop for project details input
+        String newProjectDetails = "";
+        while (true) {
+            TextInputDialog detailsInput = new TextInputDialog(selectedProject.getDetails());
+            detailsInput.setHeaderText("Enter New Project Details");
+            Optional<String> detailsResult = detailsInput.showAndWait();
+            if (detailsResult.isPresent() && !detailsResult.get().trim().isEmpty()) {
+                newProjectDetails = detailsResult.get().trim();
+                break;
+            } else if (!detailsResult.isPresent()) {
+                return; // User clicked cancel or closed the dialog
+            }
+        }
 
-        // provide choices for members and prompt the user to select one
-        // defaults to current member of selected project
-        ObservableList<String> choices = EmployeeList.employeeFirstNameList;
-        ChoiceDialog<String> memberDialog = new ChoiceDialog<>(selectedProject.getMembers().get(0), choices);
-        memberDialog.setTitle("Choose a Member");
-        memberDialog.setHeaderText("Choose a Project Member");
-        String selectedMember = memberDialog.showAndWait().orElse("");
-
-        // update the selected project's details with new values provided
         selectedProject.setName(newProjectName);
         selectedProject.setTimeline(newProjectTimeline);
         selectedProject.setDetails(newProjectDetails);
-        selectedProject.setMembers(FXCollections.observableArrayList(selectedMember));
 
         // TODO: Modification functionality for syncing modified project in case of changing members
 
@@ -309,6 +416,16 @@ public class Scheduler extends VBox {
             noSelectedAlert.setContentText("Please select a project from the table to delete.");
             noSelectedAlert.showAndWait();
         }
+    }
+
+    public static Project searchProjectByName(String projectName){
+
+        for (Project project:data){
+            if (project.getName().equals(projectName)){
+                return project;
+            }
+        }
+        return null;
     }
 
     private void showAlert(String title, String content) {

@@ -50,6 +50,7 @@ public class EmployeeInfo extends Application {
         Text employeeID = new Text("Employee ID: " + employee.getEmployeeID());
         Text employeeEmail = new Text("Email: " + employee.getEMail());
         Text employeeCell = new Text("Cell Number: " + employee.getCell());
+        Text employeeUsername = new Text("Username: " + employee.getUsername());
 
         Text projectMsg = new Text("Current Projects:");
         ObservableList<Project> projectList = employee.getProjects();
@@ -70,7 +71,7 @@ public class EmployeeInfo extends Application {
         }
 
         // Create VBox containers for organizing the text elements
-        VBox nameBox = new VBox(employeeTitle, employeeName, employeeID);
+        VBox nameBox = new VBox(employeeTitle, employeeName, employeeID,employeeUsername);
         VBox contactBox = new VBox(employeeEmail, employeeCell);
         VBox projectBox = new VBox(projectMsg, projectsString);
 
