@@ -1,5 +1,7 @@
 package timeMana;
 
+import COOKIES.COOKIES;
+import ManagerCheck.ManagerCheck;
 import employeeMana.Employee;
 import employeeMana.EmployeeList;
 import javafx.beans.property.SimpleListProperty;
@@ -33,7 +35,7 @@ public class Scheduler extends VBox {
     /***
      * Constructor for Scheduler UI
      */
-    public Scheduler(String COOKIES, ObservableList<Project> projects) {
+    public Scheduler(COOKIES COOKIES, ObservableList<Project> projects) {
         // Project Schedule label
         final Label label = new Label("Projects Schedule");
         label.setFont(new Font("Arial", 20));
@@ -166,7 +168,10 @@ public class Scheduler extends VBox {
         });
 
         // container for the buttons
-        HBox buttonBox = new HBox(10, addButton, modifyButton, deleteButton, refreshButton);
+        HBox buttonBox = new HBox(10, refreshButton);
+        if (ManagerCheck.isManager(COOKIES)){
+            buttonBox = new HBox(10, addButton, modifyButton, deleteButton, refreshButton);
+        }
         buttonBox.setPadding(new Insets(10, 0, 10, 0));
 
         // add the label, table, and buttons to the main container
@@ -368,10 +373,10 @@ public class Scheduler extends VBox {
         table.refresh();
     }
 
-    private String fetchProjects(String COOKIES) throws IOException, InterruptedException {
-        System.out.println(COOKIES);
+    private String fetchProjects(COOKIES COOKIES) throws IOException, InterruptedException {
+        System.out.println(COOKIES.getUsername());
         String msg = "{" +
-                "\"username\":\"" + COOKIES +
+                "\"username\":\"" + COOKIES.getUsername() +
                 "\"}";
 
         HttpClient httpClient = HttpClient.newHttpClient();

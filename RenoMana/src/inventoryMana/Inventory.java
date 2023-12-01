@@ -1,5 +1,6 @@
 package inventoryMana;
 
+import ManagerCheck.ManagerCheck;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -186,7 +187,6 @@ public class Inventory extends VBox {
 
         Button exportFile = new Button("Export");
         exportFile.setOnAction(actionEvent -> {exportInventoryFile();});
-
 
         HBox optButton = new HBox(10, addItem, deleteItem, modifyItem, importFile, exportFile);
         optButton.setPadding(new Insets(10, 0, 10, 0)); // top, right, bottom, left padding

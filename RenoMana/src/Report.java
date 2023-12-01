@@ -26,10 +26,10 @@
 //
 //public class Report extends VBox {
 //
-//    private String COOKIES;
-//    public Report(String COOKIES) {
+//    private String COOKIES.COOKIES;
+//    public Report(String COOKIES.COOKIES) {
 //
-//        this.COOKIES = COOKIES;
+//        this.COOKIES.COOKIES = COOKIES.COOKIES;
 //        // Set padding and spacing for the VBox layout
 //        this.setPadding(new Insets(15, 15, 15, 15));
 //        this.setSpacing(10);
@@ -59,8 +59,8 @@
 //        return null;
 //    }
 //
-//    private String fetchProjectData(String COOKIES) throws IOException, InterruptedException {
-//        String msg = "{\"cookie\":\"" + COOKIES + "\"}";
+//    private String fetchProjectData(String COOKIES.COOKIES) throws IOException, InterruptedException {
+//        String msg = "{\"cookie\":\"" + COOKIES.COOKIES + "\"}";
 //
 //        HttpClient httpClient = HttpClient.newHttpClient();
 //        HttpRequest request = HttpRequest.newBuilder()
@@ -81,9 +81,9 @@
 //
 //    private void sendReport() {
 //        try {
-//            List<String> emails = getEmailAddresses(COOKIES);
+//            List<String> emails = getEmailAddresses(COOKIES.COOKIES);
 //
-//            String projectData = fetchProjectData(COOKIES);
+//            String projectData = fetchProjectData(COOKIES.COOKIES);
 //            String report = createReport(projectData);
 //
 //            // For each email, send the report
@@ -96,9 +96,9 @@
 //    }
 //
 //
-//    private List<String> getEmailAddresses(String COOKIES) throws IOException, InterruptedException {
+//    private List<String> getEmailAddresses(String COOKIES.COOKIES) throws IOException, InterruptedException {
 //        List<String> emailList = new ArrayList<>();
-//        String employeeDataJson = getEmployeeData(COOKIES);
+//        String employeeDataJson = getEmployeeData(COOKIES.COOKIES);
 //
 //        // Parse Employee data to get email
 //        String[] employees = employeeDataJson.split("\\},\\{");
@@ -115,8 +115,8 @@
 //    }
 //
 //
-//    private String getEmployeeData(String COOKIES) throws IOException, InterruptedException {
-//        String msg = "{\"cookie\":\"" + COOKIES + "\"}";
+//    private String getEmployeeData(String COOKIES.COOKIES) throws IOException, InterruptedException {
+//        String msg = "{\"cookie\":\"" + COOKIES.COOKIES + "\"}";
 //
 //        HttpClient httpClient = HttpClient.newHttpClient();
 //        HttpRequest request = HttpRequest.newBuilder()
