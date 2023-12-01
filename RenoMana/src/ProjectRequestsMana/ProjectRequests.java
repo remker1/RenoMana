@@ -1,6 +1,7 @@
 package ProjectRequestsMana;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import employeeMana.Employee;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -17,11 +18,14 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+import java.time.Duration;
 
 public class ProjectRequests extends VBox {
 
     private TableView<ProjectRequestsItem> ProjectTable;
     private ObservableList<ProjectRequestsItem> data;
+    private int id;
 
     public ProjectRequests() throws IOException, InterruptedException {
         // Setting up the table
@@ -173,6 +177,8 @@ public class ProjectRequests extends VBox {
         ProjectTable.refresh();
     }
 
+
+
     public void loadProjects() throws IOException, InterruptedException {
         this.data.clear();
 
@@ -196,7 +202,13 @@ public class ProjectRequests extends VBox {
             ObjectMapper mapper = new ObjectMapper();
 
             ProjectRequestsItems projects = mapper.readValue(response.body(), ProjectRequestsItems.class);
-            this.data.addAll(projects.getprojects());
+
+            int idCounter = 1;
+            for (ProjectRequestsItem project : projects.getprojects()) {
+                project.setId(idCounter++);
+
+                this.data.add(project);
+            }
         } catch (Exception e){
             System.out.println(e);
         }
@@ -208,12 +220,31 @@ public class ProjectRequests extends VBox {
 
 
 
+//    private void deleteProjectRequest() {
+//        // When item is selected ...
+//        ProjectRequestsItem selectedproject = ProjectTable.getSelectionModel().getSelectedItem();
+//
+//        // Check if that item row is valid or does exists, if not, throw an alert
+//        if (selectedproject == null) {
+//            Alert noSelectedAlert = new Alert(Alert.AlertType.WARNING);
+//            noSelectedAlert.setTitle("Error!");
+//            noSelectedAlert.setHeaderText("No project is selected!");
+//            noSelectedAlert.setContentText("Please select a project from the table to delete.");
+//            noSelectedAlert.showAndWait();
+//            return;
+//        }
+//
+//        // Else, remove the item from the table
+//        data.remove(selectedproject);
+//        ProjectTable.refresh();
+//    }
+
     private void deleteProjectRequest() {
         // When item is selected ...
-        ProjectRequestsItem selectedproject = ProjectTable.getSelectionModel().getSelectedItem();
+        ProjectRequestsItem selected_project = ProjectTable.getSelectionModel().getSelectedItem();
 
-        // Check if that item row is valid or does exists, if not, throw an alert
-        if (selectedproject == null) {
+        // Check if that item row is valid or does exist, if not, throw an alert
+        if (selected_project == null) {
             Alert noSelectedAlert = new Alert(Alert.AlertType.WARNING);
             noSelectedAlert.setTitle("Error!");
             noSelectedAlert.setHeaderText("No project is selected!");
@@ -222,10 +253,44 @@ public class ProjectRequests extends VBox {
             return;
         }
 
-        // Else, remove the item from the table
-        data.remove(selectedproject);
-        ProjectTable.refresh();
+        // Get the projectInq or any unique identifier for the selected project
+        int selected_project1 = selected_project.getId();
+
+
+        // Set the URL for the delete endpoint on your server
+        String deleteUrl = "http://localhost:5001/deleteproject";
+
+        // Create an HttpClient
+        HttpClient httpClient = HttpClient.newHttpClient();
+
+        // Build the JSON payload
+        String jsonPayload = "{\"delete_project\":\"" + selected_project1 + "\"}";
+
+        // Build the request
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(deleteUrl))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(jsonPayload))
+                .build();
+
+        try {
+            // Send the POST request to delete the project
+            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+            // Check the response status and show an alert
+            if (response.statusCode() == 200) {
+                showAlert("Success", "Project deleted successfully.");
+            } else {
+                showAlert("Error", "Failed to delete the project.");
+            }
+
+            // Refresh the table if needed
+            loadProjects();
+        } catch (Exception e) {
+            showAlert("Error", "An error occurred while deleting the project: " + e.getMessage());
+        }
     }
+
 
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
