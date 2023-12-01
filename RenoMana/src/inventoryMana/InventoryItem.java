@@ -51,6 +51,9 @@ public class InventoryItem {
     @JsonProperty("itemMN")
     private String itemMN;
 
+    @JsonProperty("itemQuantity")
+    private int itemQuantity;
+
     /**
      *
      * @param itemID            unique id number for the item
@@ -61,17 +64,14 @@ public class InventoryItem {
      * @param itemModelNumber   item's model number
      */
     public InventoryItem(int itemID, String itemName, String itemDescription,
-                         String itemProject, String itemSerialNumber, String itemModelNumber) {
+                         String itemProject, String itemSerialNumber, String itemModelNumber, int itemQuantity) {
         this.itemID = itemID;
         this.itemName = itemName;
         this.itemDescription = itemDescription;
         this.itemProject = itemProject;
         this.itemSN = itemSerialNumber;
         this.itemMN = itemModelNumber;
-    }
-
-    public InventoryItem() {
-
+        this.itemQuantity = itemQuantity;
     }
 
     //============BASE GETTERS===============
@@ -123,6 +123,10 @@ public class InventoryItem {
      * @return The estimation of the tool.
      */
     public String getItemMN() { return itemMN; }
+
+    public int getItemQuantity() {
+        return itemQuantity;
+    }
 
     //=============PROPERTY GETTERS==============
 
@@ -197,6 +201,11 @@ public class InventoryItem {
     public void setItemSerialNumber(String sn) { this.itemSN = sn; }
 
     public void setItemModelNumber(String mn) { this.itemMN = mn; }
+
+    public int setItemQuantity(int itemQuantity) {
+        this.itemQuantity = itemQuantity;
+        return itemQuantity;
+    }
 
     public String toString() {
         ObjectMapper objectMapper = new ObjectMapper();

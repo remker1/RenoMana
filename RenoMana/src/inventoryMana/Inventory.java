@@ -1,9 +1,5 @@
 package inventoryMana;
 
-import ManagerCheck.ManagerCheck;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -58,29 +54,32 @@ public class Inventory extends VBox {
         // =================COLUMN NAMES================
         TableColumn<InventoryItem, Integer> itemID = new TableColumn<>("id");
         itemID.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getItemID()));
-        itemID.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.16)); // 30% width
+        itemID.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.1));
 
         TableColumn<InventoryItem, String> itemNameCol = getItemNameCol();
-        itemNameCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.16));
+        itemNameCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.18));
 
         TableColumn<InventoryItem, String> itemDescCol = getItemDescCol();
-        itemDescCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.16));
-
+        itemDescCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.18));
 
         TableColumn<InventoryItem, String> itemProjectCol = new TableColumn<>("Project");
         itemProjectCol.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getItemProject()));
-        itemProjectCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.16)); // 30% width
+        itemProjectCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.15));
 
         TableColumn<InventoryItem, String> itemSerialCol = new TableColumn<>("Serial Number");
         itemSerialCol.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getItemSN()));
-        itemSerialCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.16)); // 30% width
+        itemSerialCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.15));
 
         TableColumn<InventoryItem, String> itemModelCol = new TableColumn<>("Model Number");
         itemModelCol.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getItemMN()));
-        itemModelCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.16)); // 30% width
+        itemModelCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.15));
 
+        TableColumn<InventoryItem, Integer> itemQuantity = new TableColumn<>("Quantity");
+        itemQuantity.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getItemQuantity()));
+        itemQuantity.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.15));
 
-        inventoryTable.getColumns().addAll(itemID, itemNameCol, itemDescCol, itemProjectCol, itemSerialCol, itemModelCol);
+        inventoryTable.getColumns().addAll(itemID, itemNameCol, itemDescCol, itemProjectCol, itemSerialCol, itemModelCol,
+                itemQuantity);
         inventoryTable.setItems(data);
 
 
@@ -188,7 +187,22 @@ public class Inventory extends VBox {
         Button exportFile = new Button("Export");
         exportFile.setOnAction(actionEvent -> {exportInventoryFile();});
 
-        HBox optButton = new HBox(10, addItem, deleteItem, modifyItem, importFile, exportFile);
+        Button checkOut = new Button("Check Out");
+        checkOut.setOnAction(actionEvent -> {
+            InventoryItem selectedItem = inventoryTable.getSelectionModel().getSelectedItem();
+            if (selectedItem != null) {
+                if (selectedItem.getItemQuantity() > 0) {
+                    selectedItem.setItemQuantity(selectedItem.getItemQuantity() - 1);
+                    inventoryTable.refresh();
+                } else {
+                    System.out.println("Item cannot be checked out as the quantity is zero.");
+                }
+            } else {
+                System.out.println("No item selected.");
+            }
+        });
+
+        HBox optButton = new HBox(10, addItem, deleteItem, modifyItem, checkOut, importFile, exportFile);
         optButton.setPadding(new Insets(10, 0, 10, 0)); // top, right, bottom, left padding
         return optButton;
     }
@@ -208,7 +222,8 @@ public class Inventory extends VBox {
         if (file != null) {
             // Write the header and data in the file
             try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
-                bw.write("Item ID,Item Name,Item Description,Item Project,Item Serial Number,Item Model Number\n");
+                bw.write("Item ID,Item Name,Item Description,Item Project,Item Serial Number,Item Model Number, " +
+                        "Item Quantity\n");
 
                 // Looping through each item in the data and writing it to the file
                 for (InventoryItem item : data) {
@@ -277,11 +292,13 @@ public class Inventory extends VBox {
                         }
                         else
                             itemID = availableIds.first();
+
                         String itemName = values[1];
                         String itemDescription = values[2];
                         String itemProject = values[3];
                         String itemSN = values[4];
                         String itemMN = values[5];
+                        int itemQT = Integer.parseInt(values[6]);
 
                         InventoryItem newItem = new InventoryItem(
                                 itemID,
@@ -289,7 +306,8 @@ public class Inventory extends VBox {
                                 itemDescription,
                                 itemProject,
                                 itemSN,
-                                itemMN
+                                itemMN,
+                                itemQT
                         );
 
                         this.data.add(newItem);
@@ -340,6 +358,7 @@ public class Inventory extends VBox {
         CheckBox itemProjectMod = new CheckBox("Project");
         CheckBox itemSNMod = new CheckBox("Serial Number");
         CheckBox itemMNMod = new CheckBox("Model Number");
+        CheckBox itemQTMod = new CheckBox("Item Quantity");
 
         Button doneBtn = new Button("Done");
         doneBtn.setOnAction(event -> {
@@ -407,6 +426,32 @@ public class Inventory extends VBox {
                 result = mnInput.showAndWait();
                 result.ifPresent(selectedItem::setItemModelNumber);
             }
+
+            if (itemQTMod.isSelected()) {
+                TextInputDialog qtInput = new TextInputDialog(String.valueOf(selectedItem.getItemQuantity()));
+                qtInput.setTitle("Modify Quantity");
+                qtInput.setHeaderText("Enter New Quantity");
+                result = qtInput.showAndWait();
+
+                result.ifPresent(newQuantity -> {
+                    try {
+                        int quantity = Integer.parseInt(newQuantity);
+                        if (quantity < 0) {
+                            Alert invalidQT = new Alert(Alert.AlertType.ERROR);
+                            invalidQT.setTitle("Error!");
+                            invalidQT.setContentText("Invalid Quantity Input!");
+                            invalidQT.showAndWait();
+                        } else {
+                            selectedItem.setItemQuantity(quantity);
+                        }
+                    } catch (NumberFormatException e) {
+                        Alert invalidQT = new Alert(Alert.AlertType.ERROR);
+                        invalidQT.setTitle("Error!");
+                        invalidQT.setContentText("Invalid Quantity Input!");
+                        invalidQT.showAndWait();
+                    }
+                });
+            }
             try {
                 syncToDatabase(Collections.singletonList(selectedItem));
             } catch (IOException | InterruptedException e) {
@@ -417,7 +462,8 @@ public class Inventory extends VBox {
         });
 
         // Add UI elements to the modification stage
-        modifyTitle.getChildren().addAll(promptMessage, itemNameMod, itemDescriptionMod, itemProjectMod, itemSNMod, itemMNMod, doneBtn);
+        modifyTitle.getChildren().addAll(promptMessage, itemNameMod, itemDescriptionMod, itemProjectMod, itemSNMod,
+                itemMNMod, itemQTMod, doneBtn);
 
         Scene modifyScene = new Scene(modifyTitle, 200, 200);
         modifyStage.setResizable(false);
@@ -516,7 +562,8 @@ public class Inventory extends VBox {
         // Check for duplicate serial number
         for (InventoryItem item : data) {
             if (item.getItemSN().equals(serialNumber)) {
-                Optional<ButtonType> result = snDuplicateAlert("An item with the same serial number already exists.", "Do you want to continue, or use the Modify button instead?");
+                Optional<ButtonType> result = snDuplicateAlert("An item with the same serial number already exists.",
+                        "Do you want to continue, or use the Modify button instead?");
                 if (result.isPresent() && result.get() == ButtonType.OK) {
                     // If user chooses to continue, continue with adding the item.
                     break;
@@ -531,8 +578,21 @@ public class Inventory extends VBox {
         mnInput.setHeaderText("Enter Item's Model Number");
         String modelNumber = mnInput.showAndWait().orElse("");
 
+        TextInputDialog qtInput = new TextInputDialog("");
+        qtInput.setHeaderText("Enter Quantity of the item");
+        int quantity = Integer.parseInt(qtInput.showAndWait().orElse(""));
+
+        if ( quantity < 0 ) {
+            Alert invalidQuantity = new Alert(Alert.AlertType.WARNING);
+            invalidQuantity.setTitle("Error!");
+            invalidQuantity.setContentText("Quantity is less than zero!");
+            invalidQuantity.showAndWait();
+            return;
+        }
+
         // Create the InventoryItem
-        InventoryItem newItem = new InventoryItem(itemID, itemName, itemDescription, itemProject, serialNumber, modelNumber);
+        InventoryItem newItem = new InventoryItem(itemID, itemName, itemDescription, itemProject, serialNumber,
+                modelNumber, quantity);
 
         data.add(newItem);
         syncToDatabase(Collections.singletonList(newItem));
@@ -585,5 +645,4 @@ public class Inventory extends VBox {
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
     }
-
 }
