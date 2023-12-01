@@ -12,9 +12,9 @@ public class Project {
     private final SimpleStringProperty name;
     private final SimpleStringProperty timeline;
     private final SimpleStringProperty details;
-    private final SimpleListProperty<String> members;
+    private final SimpleStringProperty members;
 
-    public Project(SimpleStringProperty name, SimpleStringProperty timeline, SimpleStringProperty details, SimpleListProperty<String> members) {
+    public Project(SimpleStringProperty name, SimpleStringProperty timeline, SimpleStringProperty details, SimpleStringProperty members) {
         this.name = name;
         this.timeline = timeline;
         this.details = details;
@@ -57,17 +57,15 @@ public class Project {
         this.details.set(details);
     }
 
-    public ObservableList<String> getMembers() {
+    public String getMembers() {
         return members.get();
     }
 
-    public SimpleListProperty<String> membersProperty() {
+    public SimpleStringProperty membersProperty() {
         return members;
     }
 
-    public void setMembers(ObservableList<String> members) {
-        this.members.set(members);
-    }
+    public void setMembers(String members) {this.members.set(members);}
 
     public String getTimelineStatus() {
         try {

@@ -142,7 +142,7 @@ public class Scheduler extends VBox {
 
         // currently only displays first member from the list of members
         TableColumn<Project, String> projMembers = new TableColumn<>("Members");
-        projMembers.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().membersProperty().get(0)));
+        projMembers.setCellValueFactory(cellData -> cellData.getValue().membersProperty());
         projMembers.prefWidthProperty().bind(table.widthProperty().multiply(0.20));
 
         // add all defined columns to TableView
@@ -265,7 +265,7 @@ public class Scheduler extends VBox {
                 new SimpleStringProperty(projectName),
                 new SimpleStringProperty(projectTimeline),
                 new SimpleStringProperty(projectDetails),
-                new SimpleListProperty<>(FXCollections.observableArrayList(selectedMember))
+                new SimpleStringProperty(selectedMember)
         );
 
         // add the project to data list
@@ -364,11 +364,23 @@ public class Scheduler extends VBox {
             }
         }
 
+
+
+        ObservableList<String> choices = EmployeeList.employeeFirstNameList;
+        ChoiceDialog<String> memberDialog = new ChoiceDialog<>("Members", choices);
+        memberDialog.setTitle("Choose a Member");
+        memberDialog.setHeaderText("Choose a Project Member");
+        String oldMember = selectedProject.getMembers();
+        EmployeeList.data.get(EmployeeList.employeeSearch(oldMember)).getProjects().remove(selectedProject);
+        String newMember = memberDialog.showAndWait().orElse("");
+
+
+
         selectedProject.setName(newProjectName);
         selectedProject.setTimeline(newProjectTimeline);
         selectedProject.setDetails(newProjectDetails);
-
-        // TODO: Modification functionality for syncing modified project in case of changing members
+        selectedProject.setMembers(newMember);
+        EmployeeList.data.get(EmployeeList.employeeSearch(newMember)).getProjects().add(selectedProject);
 
         table.refresh();
     }

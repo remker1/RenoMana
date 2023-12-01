@@ -581,6 +581,7 @@ def getEmployeesData():
         }
         return jsonify(response), 500
 
+
 @app.route('/addEmployeeData', methods=['POST'])
 def addEmployeeData():
     try:
@@ -634,7 +635,8 @@ def modEmployeeData():
             'lname': data['lname'],
             'email': data['email'],
             'cellNumber': data['cellNumber'],
-            'title': data['title']
+            'title': data['title'],
+            'projects': data['projects']
         }
 
 
@@ -654,6 +656,7 @@ def modEmployeeData():
         # Log the exception for debugging
         print(f'Error in register route: {e}')
         return jsonify({"status": "failure", "message": str(e)}), 500
+
 
 @app.route('/deleteEmployeeData', methods=['POST'])
 def deleteEmployeeData():
@@ -681,6 +684,7 @@ def deleteEmployeeData():
         }
         return jsonify(response), 500
 
+
 @app.route('/getProjects', methods=['POST'])
 def getProjects():
     try:
@@ -689,6 +693,9 @@ def getProjects():
 
         result = db['projects'].find({"username": queryUser})
 
+        response = {
+            "projects": result
+        }
         if result:
             return result, 200
         else:
