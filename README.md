@@ -69,6 +69,5 @@ Before installing the RenoMana Application, ensure you have the following prereq
     - Do Step 2-4 again.
 
 - Java Version Problems: Check that you have the correct version of Java installed by running `java -version` in your command line.
-- Path mismatch in runApp.sh: Ensure that the --module-path in line 6 of runApp.sh correctly links to the lib folder of the JavaFx you downloaded in Step 2
 
 
