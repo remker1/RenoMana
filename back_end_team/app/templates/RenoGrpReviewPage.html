@@ -83,11 +83,11 @@
                         "rating": document.getElementById("rating_input").value
                     })
                 })
+                .then((e) => getReviews())
                 .then(document.getElementById("title_input").value = "")
                 .then(document.getElementById("description_input").value = "")
                 .then(document.getElementById("rating_input").value = "")
                 .then(alert("Thank you for your Review!"))
-                .then(getReviews())
                 .catch(error => console.error(error))
             };
         </script>
