@@ -4,8 +4,11 @@ The Reno Application helps small renovation company managers to keep track of th
 # Prerequisites
 Before installing the RenoMana Application, ensure you have the following prerequisites:
 
-- Java: Required to run the application. Make sure you have Java installed on your system. [Download Java](https://www.java.com/en/download/)
-- Docker Desktop: Used for running the application in a container. [Download Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- Java: Required to run the application. Make sure you have Java installed on your system. [Download Java.](https://www.java.com/en/download/)
+- Docker Desktop: Used for running the application in a container. [Download Docker Desktop.](https://www.docker.com/products/docker-desktop/)
+- JavaFx: Used for building the frontend of the application. [Download Version of JavaFx compatible for your OS.](https://gluonhq.com/products/javafx/)
+    - Download JavaFx based on the architecture of or OS (aarch64 or x64)
+- RenoManaApplication: Our application with libraries: [Download here.](https://drive.google.com/file/d/10D_yZra_IKPrNiMmQZPkOViODDlB43Q4/view?usp=sharing)
 
 # Installation Steps
 (For Installation Guide with Pictures/Visulation, click [this](https://docs.google.com/document/d/1w0FADX0_oJc1_JlC1kkNfNMcAL2cwQGmA8ypfJn4GJs/edit?usp=sharing.))
@@ -22,16 +25,23 @@ Before installing the RenoMana Application, ensure you have the following prereq
 
 
 **Step 2: Downloading Project Zip (jar and libraries)**
-- Download our project zip (with libraries) here: https://drive.google.com/file/d/1LtPtDJ28vrCRRlF3Brn5xJS5aohEqXG8/view?usp=sharing
-- Once downloaded, place it where you can easily find and access it. In this case, we recommend your Desktop/Homepage screen. 
+- Download correct architecture for JavaFx through this [link](https://gluonhq.com/products/javafx/) and keep in somewhere you will be able to find it.
+- Unzip the Javafx and click the folder until you see the folder named `java-sdk-21.0.1`
+- Copy that folder. 
+- Download our project zip (with libraries) here: 
+    - https://drive.google.com/file/d/10D_yZra_IKPrNiMmQZPkOViODDlB43Q4/view?usp=sharing
+- Once our project zip has been downloaded, place it where you can easily find and access it. In this case, we recommend your Desktop/Homepage screen. 
 - Unzip the project.
-- Navigate to the location where the unzipped file is stored but do not open it yet.
+- Navigate to the location where the unzipped project file is stored and open it. 
+- In the folder, `Command + C` so JavaFx folder that we copied earlier will be copied in this directory.
+- Minimize the project folder view so that we could click the actual `RenoManaApplication Folder` and highlight it. 
 
 Step 3: Running the Application
-- In the folder where your unzipped file is, select the `RenoManaApplication Folder` but do not open it yet. Make sure it is only highlighted. 
+- In the place where your unzipped file is, and with the `RenoManaApplication Folder` higlighted, do not open it yet. Make sure it is only highlighted. 
 - Type `command + I` which will open a smaller folder with `RenoManaApplication Folder` informations.
-    - Double click the content from the `General: -> Where` 
-    - Do `command + C`
+    - Double click the content from the `General: -> Where:` 
+    - Do `command + C.`
+    - This is for copying the application's directory path . 
 - Open your terminal
     - Mac (two ways):
         - Launchpad → Search Bar → Terminal
