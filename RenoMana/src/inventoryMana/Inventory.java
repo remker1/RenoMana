@@ -697,6 +697,9 @@ public class Inventory extends VBox {
             ObjectMapper mapper = new ObjectMapper();
             InventoryItems items = mapper.readValue(response.body(), InventoryItems.class);
             this.data.addAll(items.getItems());
+            for (InventoryItem item: items.getItems()) {
+                this.availableIds.remove(item.getItemID());
+            }
         } catch (Exception e){
             System.out.println(e);
         }
