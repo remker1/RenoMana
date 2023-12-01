@@ -657,6 +657,35 @@ def modEmployeeData():
         print(f'Error in register route: {e}')
         return jsonify({"status": "failure", "message": str(e)}), 500
 
+@app.route('/updateEmployeeProjects', methods=['POST'])
+def updateEmployeeProjects():
+    try:
+        data = request.get_json()
+
+        # Assuming data is a dictionary containing the fields you want to add
+
+        employee_mod_document = {
+            'projects': data['projects']
+        }
+
+
+        # Insert the document into the collection
+
+        result = db['employees'].update_one({'username': data['username']}, {"$set": employee_mod_document},
+                                            upsert=True)
+
+        response = {
+            'status': 'success',
+            'message': 'Document modified successfully',
+            'modified_count': result.modified_count,
+        }
+
+        return jsonify(response), 200
+    except Exception as e:
+        # Log the exception for debugging
+        print(f'Error in register route: {e}')
+        return jsonify({"status": "failure", "message": str(e)}), 500
+
 
 @app.route('/deleteEmployeeData', methods=['POST'])
 def deleteEmployeeData():
@@ -689,12 +718,12 @@ def deleteEmployeeData():
 def getProjects():
     try:
         data = request.get_json()
-        queryUser = data['cookie']
 
-        result = db['projects'].find({"username": queryUser})
+
+        result = list(db['time'].find({}))
 
         response = {
-            "projects": result
+            "time": result
         }
         if result:
             return result, 200
@@ -709,6 +738,36 @@ def getProjects():
             "message": e
         }
         return jsonify(response), 500
+
+@app.route('/addProjects', methods=['POST'])
+def addProjects():
+    try:
+        data = request.get_json()
+
+        project_add_document = {
+            'pName': data['pName'],
+            'pTime': data['pTime'],
+            'pDetail': data['pDetails'],
+            'pMember': data['pMember']
+            
+        }
+
+
+        # Insert the document into the collection
+
+        result = db['times'].insert_one(project_add_document)
+
+        response = {
+            'status': 'success',
+            'message': 'Document modified successfully',
+            'modified_count': str(result.inserted_id)
+        }
+
+        return jsonify(response), 200
+    except Exception as e:
+        # Log the exception for debugging
+        print(f'Error in register route: {e}')
+        return jsonify({"status": "failure", "message": str(e)}), 500
 
 
 @app.route('/syncInventoryDelete', methods=['POST'])

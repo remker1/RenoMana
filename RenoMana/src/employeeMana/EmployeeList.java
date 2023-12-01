@@ -94,6 +94,9 @@ public class EmployeeList extends VBox {
         Button employeeInfo = new Button("Personal Details");
         employeeInfo.setOnAction(actionEvent -> openEmployeeInfo());
 
+        Button syncEmployeeProjects =  new Button("Sync projects");
+        syncEmployeeProjects.setOnAction(actionEvent -> syncEmployeeProjects(COOKIES));
+
         TextField searchField = new TextField();
         searchField.setPromptText("Search Here...");
         Button searchButton = new Button("Search");
@@ -124,9 +127,9 @@ public class EmployeeList extends VBox {
 
         HBox optButton;
         if (ManagerCheck.isManager(COOKIES)){
-            optButton = new HBox(10, addItem, deleteItem, modifyItem, employeeInfo, refreshEmployeeTable);
+            optButton = new HBox(10, addItem, deleteItem, modifyItem, employeeInfo, syncEmployeeProjects,refreshEmployeeTable);
         } else {
-            optButton = new HBox(10, employeeInfo, refreshEmployeeTable);
+            optButton = new HBox(10, employeeInfo,syncEmployeeProjects, refreshEmployeeTable);
         }
 
         // Create a horizontal box to hold the buttons
@@ -614,6 +617,40 @@ public class EmployeeList extends VBox {
 
     }
 
+    public void syncEmployeeProjects(COOKIES COOKIE){
+        for (Employee employee: data) {
+            String msg = "{" +
+                    "\"username\":\"" + employee.getUsername() + "\"," +
+                    "\"projects\":\"" + employee.getProjectsNameString() + "\"" +
+                    "}";
+            // Refresh the table view and close the modification window
+            System.out.println("[EMPLOYEE PROJECTS UPDATE]: " + msg);
+
+            HttpClient httpClient = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("http://127.0.0.1:5001/updateEmployeeProjects"))
+                    .timeout(Duration.ofMinutes(2))
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(msg, StandardCharsets.UTF_8))
+                    .build();
+
+            System.out.println("[EMPLOYEE PROJECTS UPDATE]: " + request.toString());
+            try {
+                HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+                System.out.println(response.body());
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+
+        try{
+            loadEmployeeList(getEmployeeData(COOKIE));
+        }catch (Exception e){
+            showAlert("Error!",e.toString());
+        }
+
+    }
+
     private void loadEmployeeList(String responsBody){
         data.clear();
         employeeFirstNameList.clear();
@@ -631,31 +668,6 @@ public class EmployeeList extends VBox {
         }
 
         employeeList.refresh();
-    }
-
-    public static String parseJson(String string, String target) {
-        // Find the index of the cookie key
-        int startIndex = string.indexOf("\"" + target + "\"");
-
-        // Check if the key is found
-        if (startIndex != -1) {
-            // Move the index to the start of the value
-            startIndex = string.indexOf(":", startIndex) + 1;
-
-            // Find the end of the value (up to the next comma or the end of the JSON object)
-            int endIndex = string.indexOf(",", startIndex);
-            if (endIndex == -1) {
-                endIndex = string.indexOf("}", startIndex);
-            }
-
-            String value = string.substring(startIndex, endIndex).trim().replace("\"", "");
-
-            return value;
-
-        } else {
-            System.out.println(target + " not found in the response");
-            return null;
-        }
     }
 
     /**
@@ -704,5 +716,6 @@ public class EmployeeList extends VBox {
         // If no match is found, return false (no duplicate)
         return false;
     }
+
 
 }
