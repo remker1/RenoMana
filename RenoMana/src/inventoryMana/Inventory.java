@@ -2,6 +2,8 @@ package inventoryMana;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
@@ -34,53 +36,61 @@ public class Inventory extends VBox {
     public static TableView<InventoryItem> inventoryTable;
     public static ObservableList<InventoryItem> data;
 
-     public Inventory(){
-         // Setting up the table
-         inventoryTable = new TableView<>();
-         inventoryTable.prefWidthProperty().bind(this.widthProperty());
-         data = FXCollections.observableArrayList();
+    public Inventory(List<InventoryItem> initialData) throws IOException, InterruptedException {
+        // Setting up the table
+        inventoryTable = new TableView<>();
+        inventoryTable.prefWidthProperty().bind(this.widthProperty());
+        System.out.println("[INVENTORY] About to add data to inventory");
+        if (initialData != null && !initialData.isEmpty()) {
+            data = FXCollections.observableArrayList(initialData);
+        } else {
+            data = FXCollections.observableArrayList();
+        }
 
-         //determine which IDs are currently available
-         for (int i = 1; i <= 1000; i++) {
-             availableIds.add(i);
-         }
+        System.out.println("[INVENTORY] Data added to inventory");
 
-         // =================COLUMN NAMES================
-         TableColumn<InventoryItem, Integer> itemID = new TableColumn<>("id");
-         itemID.setCellValueFactory(cellData -> cellData.getValue().itemIDProperty().asObject());
-         itemID.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.16)); // 30% width
+        //determine which IDs are currently available
+        for (int i = 1; i <= 1000; i++) {
+            availableIds.add(i);
+        }
 
-         TableColumn<InventoryItem, String> itemNameCol = getItemNameCol();
-         itemNameCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.16));
+        // =================COLUMN NAMES================
+        TableColumn<InventoryItem, Integer> itemID = new TableColumn<>("id");
+        itemID.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getItemID()));
+        itemID.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.16)); // 30% width
 
-         TableColumn<InventoryItem, String> itemDescCol = getItemDescCol();
-         itemDescCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.16));
+        TableColumn<InventoryItem, String> itemNameCol = getItemNameCol();
+        itemNameCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.16));
 
-
-         TableColumn<InventoryItem, String> itemProjectCol = new TableColumn<>("Project");
-         itemProjectCol.setCellValueFactory(cellData -> cellData.getValue().itemProjectPropety());
-         itemProjectCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.16)); // 30% width
-
-         TableColumn<InventoryItem, String> itemSerialCol = new TableColumn<>("Serial Number");
-         itemSerialCol.setCellValueFactory(cellData -> cellData.getValue().itemSNProperty());
-         itemSerialCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.16)); // 30% width
-
-         TableColumn<InventoryItem, String> itemModelCol = new TableColumn<>("Model Number");
-         itemModelCol.setCellValueFactory(cellData -> cellData.getValue().itemMNProperty());
-         itemModelCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.16)); // 30% width
+        TableColumn<InventoryItem, String> itemDescCol = getItemDescCol();
+        itemDescCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.16));
 
 
-         inventoryTable.getColumns().addAll(itemID, itemNameCol, itemDescCol, itemProjectCol, itemSerialCol, itemModelCol);
-         inventoryTable.setItems(data);
+        TableColumn<InventoryItem, String> itemProjectCol = new TableColumn<>("Project");
+        itemProjectCol.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getItemProject()));
+        itemProjectCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.16)); // 30% width
+
+        TableColumn<InventoryItem, String> itemSerialCol = new TableColumn<>("Serial Number");
+        itemSerialCol.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getItemSN()));
+        itemSerialCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.16)); // 30% width
+
+        TableColumn<InventoryItem, String> itemModelCol = new TableColumn<>("Model Number");
+        itemModelCol.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getItemMN()));
+        itemModelCol.prefWidthProperty().bind(inventoryTable.widthProperty().multiply(0.16)); // 30% width
 
 
-         // Setting up the button options for things user can do in this tab
-         HBox optButton = getOptButton();
+        inventoryTable.getColumns().addAll(itemID, itemNameCol, itemDescCol, itemProjectCol, itemSerialCol, itemModelCol);
+        inventoryTable.setItems(data);
 
 
-         VBox.setVgrow(inventoryTable, Priority.ALWAYS);
-         this.getChildren().addAll(inventoryTable, optButton);
-     }
+        // Setting up the button options for things user can do in this tab
+        HBox optButton = getOptButton();
+
+
+        VBox.setVgrow(inventoryTable, Priority.ALWAYS);
+        this.getChildren().addAll(inventoryTable, optButton);
+    }
+
 
     /**
      * This method creates and returns a TableColumn for item descriptions in the inventory table.
@@ -91,7 +101,7 @@ public class Inventory extends VBox {
      */
     private static TableColumn<InventoryItem, String> getItemDescCol() {
         TableColumn<InventoryItem, String> itemDescCol = new TableColumn<>("Item Description");
-        itemDescCol.setCellValueFactory(cellData -> cellData.getValue().itemDescriptionPropety());
+        itemDescCol.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getItemDescription()));;
         itemDescCol.setCellFactory(column -> {
             return new TableCell<InventoryItem, String>() {
                 @Override
@@ -122,7 +132,7 @@ public class Inventory extends VBox {
      */
     private static TableColumn<InventoryItem, String> getItemNameCol() {
         TableColumn<InventoryItem, String> itemNameCol = new TableColumn<>("Item Name");
-        itemNameCol.setCellValueFactory(cellData -> cellData.getValue().itemNameProperty());
+        itemNameCol.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getItemName()));;
         itemNameCol.setCellFactory(column -> {
             return new TableCell<InventoryItem, String>() {
                 @Override
@@ -274,12 +284,12 @@ public class Inventory extends VBox {
                         String itemMN = values[5];
 
                         InventoryItem newItem = new InventoryItem(
-                                new SimpleIntegerProperty(itemID),
-                                new SimpleStringProperty(itemName),
-                                new SimpleStringProperty(itemDescription),
-                                new SimpleStringProperty(itemProject),
-                                new SimpleStringProperty(itemSN),
-                                new SimpleStringProperty(itemMN)
+                                itemID,
+                                itemName,
+                                itemDescription,
+                                itemProject,
+                                itemSN,
+                                itemMN
                         );
 
                         this.data.add(newItem);
@@ -443,7 +453,7 @@ public class Inventory extends VBox {
      * @throws InterruptedException If the thread is interrupted while waiting.
      */
     private void deleteInventoryItem() throws IOException, InterruptedException {
-         // When item is selected ...
+        // When item is selected ...
         InventoryItem selectedItem = inventoryTable.getSelectionModel().getSelectedItem();
 
         // Check if that item row is valid or does exist, if not, throw an alert
@@ -473,7 +483,7 @@ public class Inventory extends VBox {
         int itemID = availableIds.isEmpty() ? 1 : availableIds.first();
         availableIds.remove(itemID);
 
-         // Gather user input for tool, quantity, and estimation values
+        // Gather user input for tool, quantity, and estimation values
         String itemName = null;
         while (true) { // Keep asking item name until user click `Cancel` or a valid string.
             TextInputDialog newItemDialog = new TextInputDialog();
@@ -522,9 +532,7 @@ public class Inventory extends VBox {
         String modelNumber = mnInput.showAndWait().orElse("");
 
         // Create the InventoryItem
-        InventoryItem newItem = new InventoryItem(new SimpleIntegerProperty(itemID), new SimpleStringProperty(itemName),
-                new SimpleStringProperty(itemDescription), new SimpleStringProperty(itemProject), new SimpleStringProperty(serialNumber),
-                new SimpleStringProperty(modelNumber));
+        InventoryItem newItem = new InventoryItem(itemID, itemName, itemDescription, itemProject, serialNumber, modelNumber);
 
         data.add(newItem);
         syncToDatabase(Collections.singletonList(newItem));
