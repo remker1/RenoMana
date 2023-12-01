@@ -299,10 +299,21 @@ def getProjectsData():
 
 
 # Route for submitting requests
-@app.route('/submitRequest', methods=['POST'])
+@app.route('/submitRequest', methods=['POST', 'GET'])
 def submit_request():
     try:
-        if request.method == 'POST':
+        if request.method == 'GET':
+            # Retrieve data from MongoDB collection
+            user_data = db['projects'].find({}, {'_id': 0, 'customerName': 1, 'customerEmail': 1, 'customerCell': 1,
+                                             'company': 1, 'startDate': 1, 'endDate': 1, 'projectDesc': 1})
+
+            # Convert cursor to list for JSON serialization
+            user_data_list = list(user_data)
+
+            # Return data as JSON response
+            return jsonify({"data": user_data_list})
+
+        elif request.method == 'POST':
             customerName = request.form.get("customerName")
             customerEmail = request.form.get("customerEmail")
             customerCell = request.form.get("customerCell")
@@ -394,6 +405,29 @@ def submit_inquiry():
         }
         return jsonify(response_1000), 500
 
+@app.route('/deleteInquiry', methods=['POST'])
+def deleteInquiry():
+    try:
+        data = request.json
+
+        result = db['inq'].delete_one({"Name": data.get('Name'), "Contact": data.get('Contact'), "projectInq": data.get('projectInq')})
+
+        if result:
+            response = {
+                "message": "Successfully deleted Inquiry"
+            }
+            return jsonify(response), 200
+        else:
+            response = {
+                "message":"Could not find the Inquiry"
+            }
+            return jsonify(response), 500
+    except Exception as e:
+        print(e)
+        response = {
+            "message": e
+        }
+        return jsonify(response), 500
 
 # Route for adding reviews
 @app.route('/addReview', methods=['POST'])

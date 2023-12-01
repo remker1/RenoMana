@@ -13,6 +13,7 @@
  * @since 2023-08-01
  */
 
+import ManagerCheck.ManagerCheck;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dashboardMana.Dashboard;
 import inquiryMana.inquiry;
@@ -125,12 +126,16 @@ public class MainPage extends BasicPage {
 
         // Create buttons for each tab and add them to the sidebar
         createTabButton("Dashboard", new Dashboard(COOKIES, dashboardData), "Dashboard");
-        createTabButton("Project Requests", new ProjectRequests(), "Project Requests");
         createTabButton("Scheduler", new Scheduler(COOKIES, allProjectData.getProjects()), "Scheduler");
+        createTabButton("Employees", new EmployeeList(COOKIES), "Employees");
+        if (ManagerCheck.isManager()){
+            createTabButton("Project Requests", new ProjectRequests(), "Project Requests");
+        }
+
         //loadProjects();
         createTabButton("Calendar", new Calendar(allProjectData.getProjects()), "Calendar");
         createTabButton("Inventory", new Inventory(inventoryData), "Inventory");
-        createTabButton("Employees", new EmployeeList(COOKIES), "Employees");
+
         createTabButton("Reviews", new Review(), "Reviews");
         createTabButton("Inquiries", new inquiry(), "Inquiries");
 

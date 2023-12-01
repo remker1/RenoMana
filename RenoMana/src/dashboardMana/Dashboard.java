@@ -41,8 +41,8 @@ public class Dashboard extends HBox {
     private final TableView<Project> projectTableView;
     private final TableView<InventoryItem> dashboardInventoryTable;
 
-    private String userFname;
-    private String userLname;
+    private static String userFname;
+    private static String userLname;
 
 
     public Dashboard(String COOKIES, String dashboardData) throws IOException, InterruptedException {
@@ -243,4 +243,11 @@ public class Dashboard extends HBox {
         filterStage.show();
     }
 
+    public static String getUserFname() {
+        return userFname;
+    }
+
+    public static String getUserLname() {
+        return userLname;
+    }
 }

@@ -1,5 +1,6 @@
 package timeMana;
 
+import ManagerCheck.ManagerCheck;
 import employeeMana.Employee;
 import employeeMana.EmployeeList;
 import javafx.beans.property.SimpleListProperty;

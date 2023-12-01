@@ -1,6 +1,7 @@
 package employeeMana;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import ManagerCheck.ManagerCheck;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -13,16 +14,12 @@ import javafx.scene.layout.VBox;
 import javafx.geometry.Insets;
 import javafx.stage.Stage;
 
-import javax.crypto.*;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
@@ -113,18 +110,25 @@ public class EmployeeList extends VBox {
             }
         });
 
-        // Create a horizontal box to hold the buttons
-        HBox optButton = new HBox(10, addItem, deleteItem, modifyItem, employeeInfo, refreshEmployeeTable);
-        optButton.setPadding(new Insets(10, 0, 10, 0)); // top, right, bottom, left padding
-
-        // Set vertical grow for the table and add it along with the buttons to the VBox
-        VBox.setVgrow(employeeList, Priority.ALWAYS);
-        this.getChildren().addAll(searchBox, employeeList, optButton);
         try {
             loadEmployeeList(getEmployeeData(COOKIES));
         }catch (Exception e){
             System.out.println(e);
         }
+
+        HBox optButton;
+        if (ManagerCheck.isManager()){
+            optButton = new HBox(10, addItem, deleteItem, modifyItem, employeeInfo, refreshEmployeeTable);
+        } else {
+            optButton = new HBox(10, employeeInfo, refreshEmployeeTable);
+        }
+
+        // Create a horizontal box to hold the buttons
+        optButton.setPadding(new Insets(10, 0, 10, 0)); // top, right, bottom, left padding
+
+        // Set vertical grow for the table and add it along with the buttons to the VBox
+        VBox.setVgrow(employeeList, Priority.ALWAYS);
+        this.getChildren().addAll(searchBox, employeeList, optButton);
     }
 
     /**
