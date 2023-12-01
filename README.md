@@ -28,8 +28,8 @@ Before installing the RenoMana Application, ensure you have the following prereq
 - Navigate to the location where the unzipped file is stored but do not open it yet.
 
 Step 3: Running the Application
-- In the folder where your unzipped file is, select the `RenoManaApplication` but do not open it yet. Make sure it is only highlighted. 
-- Type `command + I` which will open a smaller folder with `RenoManaApplication` folder informations.
+- In the folder where your unzipped file is, select the `RenoManaApplication Folder` but do not open it yet. Make sure it is only highlighted. 
+- Type `command + I` which will open a smaller folder with `RenoManaApplication Folder` informations.
     - Double click the content from the `General: -> Where` 
     - Do `command + C`
 - Open your terminal
