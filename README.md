@@ -8,7 +8,7 @@ Before installing the RenoMana Application, ensure you have the following prereq
 - Docker Desktop: Used for running the application in a container. [Download Docker Desktop.](https://www.docker.com/products/docker-desktop/)
 - JavaFx: Used for building the frontend of the application. [Download Version of JavaFx compatible for your OS.](https://gluonhq.com/products/javafx/)
     - Download JavaFx based on the architecture of or OS (aarch64 or x64)
-- RenoManaApplication: Our application with libraries: [Download here.](https://drive.google.com/file/d/10D_yZra_IKPrNiMmQZPkOViODDlB43Q4/view?usp=sharing)
+- RenoManaApplication: Our application with libraries: [Download here.](https://drive.google.com/file/d/1g8g-I4NQdezrSpD7YW5-s-JBBy-Gsu9r/view?usp=sharing)
 
 # Installation Steps
 (For Installation Guide with Pictures/Visulation, click [this](https://docs.google.com/document/d/1w0FADX0_oJc1_JlC1kkNfNMcAL2cwQGmA8ypfJn4GJs/edit?usp=sharing.))
@@ -29,7 +29,7 @@ Before installing the RenoMana Application, ensure you have the following prereq
 - Unzip the Javafx and click the folder until you see the folder named `java-sdk-21.0.1`
 - Copy that folder. 
 - Download our project zip (with libraries) here: 
-    - https://drive.google.com/file/d/10D_yZra_IKPrNiMmQZPkOViODDlB43Q4/view?usp=sharing
+    - https://drive.google.com/file/d/1g8g-I4NQdezrSpD7YW5-s-JBBy-Gsu9r/view?usp=sharing
 - Once our project zip has been downloaded, place it where you can easily find and access it. In this case, we recommend your Desktop/Homepage screen. 
 - Unzip the project.
 - Navigate to the location where the unzipped project file is stored and open it. 
