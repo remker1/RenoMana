@@ -258,7 +258,7 @@ public class Inventory extends VBox {
                 // Looping through each item in the data and writing it to the file
                 for (InventoryItem item : data) {
                     bw.write(item.getItemID() + "," + item.getItemName() + "," + item.getItemDescription() + "," +
-                            item.getItemProject() + "," + item.getItemSN() + "," + item.getItemMN() + "\n");
+                            item.getItemProject() + "," + item.getItemSN() + "," + item.getItemMN() + "," + item.getItemQuantity() + "\n");
                 }
 
                 // Show a success alert after successfully writing the file
@@ -285,44 +285,32 @@ public class Inventory extends VBox {
      * the data from the file and adds it to the inventory.
      */
     private void importInventoryFile() {
-        // Create a new FileChooser object to let the user select a file
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open an Inventory File");
-
-        // Defining the types of files the user can select in the FileChooser
-        // Only CSV file is supported right now
-        FileChooser.ExtensionFilter csvFilter =
-                new FileChooser.ExtensionFilter("CSV Files", "*.csv");
-        fileChooser.getExtensionFilters().addAll(csvFilter);
-
-        // gathering the file selected by user to extract data from and add to our table
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
         File file = fileChooser.showOpenDialog(null);
         if (file != null) {
             try (BufferedReader br = new BufferedReader(new FileReader(file))) {
                 String line;
+                // Skipping the header line if necessary
+                br.readLine();
 
-                // Read each line of the file until there are no more lines left
-                boolean isFirstLine = true;
+                Set<Integer> usedIds = new HashSet<>();
+
                 while ((line = br.readLine()) != null) {
-                    if (isFirstLine) {
-                        isFirstLine = false;
-                        continue;
-                    }
-
                     String[] values = line.split(",");
-
-                    // Check if the line has at least 6 values (for ID, Name, Desc, Project, SN, and MN) and create an
-                    // InventoryItem Object from it to add in our table
-                    // If not, error alert will be displayed
-                    if (values.length >= 6) {
-                        int itemID;
-                        if (availableIds.contains(Integer.parseInt(values[0].trim()))) {
-                            itemID = Integer.parseInt(values[0].trim());
+                    if (values.length >= 7) {
+                        int itemID = Integer.parseInt(values[0].trim());
+                        // Check if the ID from the CSV is available
+                        if (availableIds.contains(itemID)) {
+                            availableIds.remove(itemID); // Remove the used ID from available IDs
+                        } else {
+                            // Find the next available ID if the one from CSV is not available
+                            itemID = availableIds.isEmpty() ? 1 : availableIds.first();
                             availableIds.remove(itemID);
                         }
-                        else
-                            itemID = availableIds.first();
 
+                        usedIds.add(itemID);
                         String itemName = values[1];
                         String itemDescription = values[2];
                         String itemProject = values[3];
@@ -340,11 +328,18 @@ public class Inventory extends VBox {
                                 itemQT
                         );
 
-                        this.data.add(newItem);
+                        data.add(newItem);
+                        try {
+                            syncToDatabase(Collections.singletonList(newItem));
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+
                     }
                 }
-
+                availableIds.removeAll(usedIds);
                 inventoryTable.refresh();
+                System.out.println(inventoryTable.getItems());
 
             } catch (IOException | NumberFormatException e) {
                 Alert errorAlert = new Alert(Alert.AlertType.ERROR);
@@ -355,7 +350,6 @@ public class Inventory extends VBox {
                 errorAlert.showAndWait();
             }
         }
-
     }
 
     /**
@@ -610,16 +604,24 @@ public class Inventory extends VBox {
         mnInput.setHeaderText("Enter Item's Model Number");
         String modelNumber = mnInput.showAndWait().orElse("");
 
-        TextInputDialog qtInput = new TextInputDialog("");
-        qtInput.setHeaderText("Enter Quantity of the item");
-        int quantity = Integer.parseInt(qtInput.showAndWait().orElse(""));
+        int quantity = 0;
+        try {
+            TextInputDialog qtInput = new TextInputDialog("");
+            qtInput.setHeaderText("Enter Quantity of the item");
+            quantity = Integer.parseInt(qtInput.showAndWait().orElse(""));
 
-        if ( quantity < 0 ) {
-            Alert invalidQuantity = new Alert(Alert.AlertType.WARNING);
-            invalidQuantity.setTitle("Error!");
-            invalidQuantity.setContentText("Quantity is less than zero!");
-            invalidQuantity.showAndWait();
-            return;
+            if ( quantity < 0 ) {
+                Alert invalidQuantity = new Alert(Alert.AlertType.WARNING);
+                invalidQuantity.setTitle("Error!");
+                invalidQuantity.setContentText("Quantity is less than zero!");
+                invalidQuantity.showAndWait();
+                return;
+            }
+        } catch (Exception e) {
+            Alert errorQuantity = new Alert(Alert.AlertType.WARNING);
+            errorQuantity.setTitle("Error!");
+            errorQuantity.setContentText("There was an error adding this item. Please try again!");
+            errorQuantity.showAndWait();
         }
 
         // Create the InventoryItem

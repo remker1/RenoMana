@@ -25,19 +25,16 @@ Before installing the RenoMana Application, ensure you have the following prereq
 
 
 **Step 2: Downloading JavaFx and Project Zip**
-- Download correct architecture for JavaFx through this [link](https://gluonhq.com/products/javafx/) and keep in somewhere you will be able to find it.
-- Unzip the Javafx and click the folder until you see the folder named `java-sdk-21.0.1`
-- Copy that folder. 
-- Download our project zip (with libraries) here: 
-    - https://drive.google.com/file/d/1g8g-I4NQdezrSpD7YW5-s-JBBy-Gsu9r/view?usp=sharing
+- Download our project zip (with libraries, and javaFX) here: 
+    - For MacOS x64: https://drive.google.com/file/d/1g8g-I4NQdezrSpD7YW5-s-JBBy-Gsu9r/view?usp=sharing
+    - For MacOS arrch64: 
+    - For Linux: 
 - Once our project zip has been downloaded, place it where you can easily find and access it. In this case, we recommend your Desktop/Homepage screen. 
 - Unzip the project.
-- Navigate to the location where the unzipped project file is stored and open it. 
-- In the folder, `Command + C` so JavaFx folder that we copied earlier will be copied in this directory.
-- Minimize the project folder view so that we could click the actual `RenoManaApplication Folder` and highlight it. 
+- Navigate to the location where the unzipped file is stored but do not open it yet.
 
-Step 3: Running the Application
-- In the place where your unzipped file is, and with the `RenoManaApplication Folder` higlighted, do not open it yet. Make sure it is only highlighted. 
+**Step 3: Running the Application**
+- In the folder where your unzipped file is, select the `RenoManaApplication` but do not open it yet.
 - Type `command + I` which will open a smaller folder with `RenoManaApplication Folder` informations.
     - Double click the content from the `General: -> Where:` 
     - Do `command + C.`
