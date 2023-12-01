@@ -13,9 +13,12 @@
  * @since 2023-08-01
  */
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import dashboardMana.Dashboard;
 import inquiryMana.inquiry;
 import inventoryMana.Inventory;
+import inventoryMana.InventoryItem;
+import inventoryMana.InventoryItems;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
@@ -44,6 +47,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.Optional;
 
 import ProjectRequestsMana.ProjectRequests;
@@ -70,6 +74,7 @@ public class MainPage extends BasicPage {
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
         String dashboardData = fetchDashboardData(COOKIES);
+        List<InventoryItem> inventoryData = fetchInventoryData();
 
         this.userFname = parseJson(dashboardData, "fname");
         this.userLname = parseJson(dashboardData, "lname");
@@ -124,7 +129,7 @@ public class MainPage extends BasicPage {
         createTabButton("Scheduler", new Scheduler(COOKIES, allProjectData.getProjects()), "Scheduler");
         //loadProjects();
         createTabButton("Calendar", new Calendar(allProjectData.getProjects()), "Calendar");
-        createTabButton("Inventory", new Inventory(), "Inventory");
+        createTabButton("Inventory", new Inventory(inventoryData), "Inventory");
         createTabButton("Employees", new EmployeeList(COOKIES), "Employees");
         createTabButton("Reviews", new Review(), "Reviews");
         createTabButton("Inquiries", new inquiry(), "Inquiries");
@@ -374,6 +379,27 @@ public class MainPage extends BasicPage {
         this.userFname = parseJson(responseBody, "fname");
         this.userLname = parseJson(responseBody, "lname");
         return responseBody;
+    }
+
+    private List<InventoryItem> fetchInventoryData() {
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://127.0.0.1:5001/getInventoryDataInitial"))
+                .GET()
+                .build();
+
+        try {
+            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+            System.out.println(response.body()); // For debugging
+
+            ObjectMapper mapper = new ObjectMapper();
+
+            InventoryItems inventoryItems = mapper.readValue(response.body(), InventoryItems.class);
+            return inventoryItems.getItems();
+        } catch (IOException | InterruptedException e) {
+            System.out.println(e);
+            return  null;
+        }
     }
 
 

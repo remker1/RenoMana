@@ -1,5 +1,6 @@
 package inventoryMana;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -18,31 +19,37 @@ public class InventoryItem {
     /**
      * Property fpr the id of the tool
      */
-    private SimpleIntegerProperty itemID;
+    @JsonProperty("itemID")
+    private int itemID;
 
     /**
      * Property for the name of the item
      */
-    private SimpleStringProperty itemName;
+    @JsonProperty("itemName")
+    private String itemName;
     /**
      * Property for the description of the item
      */
-    private SimpleStringProperty itemDescription;
+    @JsonProperty("itemDescription")
+    private String itemDescription;
 
     /**
      * Property for the project that the item belongs to
      */
-    private SimpleStringProperty itemProject;
+    @JsonProperty("itemProject")
+    private String itemProject;
 
     /**
      * Property fpr the SN of the tool
      */
-    private SimpleStringProperty itemSerialNumber;
+    @JsonProperty("itemSN")
+    private String itemSN;
 
     /**
      * Property fpr the Model Number of the tool
      */
-    private SimpleStringProperty itemModelNumber;
+    @JsonProperty("itemMN")
+    private String itemMN;
 
     /**
      *
@@ -53,14 +60,18 @@ public class InventoryItem {
      * @param itemSerialNumber  item's serial number
      * @param itemModelNumber   item's model number
      */
-    public InventoryItem(SimpleIntegerProperty itemID, SimpleStringProperty itemName, SimpleStringProperty itemDescription,
-                         SimpleStringProperty itemProject, SimpleStringProperty itemSerialNumber, SimpleStringProperty itemModelNumber) {
+    public InventoryItem(int itemID, String itemName, String itemDescription,
+                         String itemProject, String itemSerialNumber, String itemModelNumber) {
         this.itemID = itemID;
         this.itemName = itemName;
         this.itemDescription = itemDescription;
         this.itemProject = itemProject;
-        this.itemSerialNumber = itemSerialNumber;
-        this.itemModelNumber = itemModelNumber;
+        this.itemSN = itemSerialNumber;
+        this.itemMN = itemModelNumber;
+    }
+
+    public InventoryItem() {
+
     }
 
     //============BASE GETTERS===============
@@ -71,7 +82,7 @@ public class InventoryItem {
      * @return The id of the item.
      */
     public int getItemID() {
-        return itemID.get();
+        return itemID;
     }
 
     /**
@@ -80,56 +91,6 @@ public class InventoryItem {
      * @return The name of the item.
      */
     public String getItemName() {
-        return itemName.get();
-    }
-
-    /**
-     * This method gets the quantity of the tool.
-     *
-     * @return The quantity of the tool.
-     */
-    public String getItemDescription() {
-        return itemDescription.get();
-    }
-
-    /**
-     * This method gets the project the item belongs to.
-     *
-     * @return The estimation of the tool.
-     */
-    public String getItemProject() { return itemProject.get(); }
-
-    /**
-     * This method gets the project the item belongs to.
-     *
-     * @return The estimation of the tool.
-     */
-    public String getItemSN() { return itemSerialNumber.get(); }
-
-    /**
-     * This method gets the project the item belongs to.
-     *
-     * @return The estimation of the tool.
-     */
-    public String getItemMN() { return itemModelNumber.get(); }
-
-    //=============PROPERTY GETTERS==============
-
-    /**
-     * This method gets the id of the item.
-     *
-     * @return The id of the item.
-     */
-    public SimpleIntegerProperty itemIDProperty() {
-        return itemID;
-    }
-
-    /**
-     * This method gets the tool name property.
-     *
-     * @return The tool name property.
-     */
-    public SimpleStringProperty itemNameProperty() {
         return itemName;
     }
 
@@ -138,7 +99,7 @@ public class InventoryItem {
      *
      * @return The quantity of the tool.
      */
-    public SimpleStringProperty itemDescriptionPropety() {
+    public String getItemDescription() {
         return itemDescription;
     }
 
@@ -147,7 +108,57 @@ public class InventoryItem {
      *
      * @return The estimation of the tool.
      */
-    public SimpleStringProperty itemProjectPropety() {
+    public String getItemProject() { return itemProject; }
+
+    /**
+     * This method gets the project the item belongs to.
+     *
+     * @return The estimation of the tool.
+     */
+    public String getItemSN() { return itemSN; }
+
+    /**
+     * This method gets the project the item belongs to.
+     *
+     * @return The estimation of the tool.
+     */
+    public String getItemMN() { return itemMN; }
+
+    //=============PROPERTY GETTERS==============
+
+    /**
+     * This method gets the id of the item.
+     *
+     * @return The id of the item.
+     */
+    public int itemIDProperty() {
+        return itemID;
+    }
+
+    /**
+     * This method gets the tool name property.
+     *
+     * @return The tool name property.
+     */
+    public String itemNameProperty() {
+        return itemName;
+    }
+
+    /**
+     * This method gets the quantity of the tool.
+     *
+     * @return The quantity of the tool.
+     */
+    public String itemDescriptionPropety() {
+        return itemDescription;
+    }
+
+    /**
+     * This method gets the project the item belongs to.
+     *
+     * @return The estimation of the tool.
+     */
+    public String itemProjectPropety() {
         return itemProject;
     }
 
@@ -156,36 +167,36 @@ public class InventoryItem {
      *
      * @return The estimation of the tool.
      */
-    public SimpleStringProperty itemSNProperty() { return itemSerialNumber; }
+    public String itemSNProperty() { return itemSN; }
 
     /**
      * This method gets the project the item belongs to.
      *
      * @return The estimation of the tool.
      */
-    public SimpleStringProperty itemMNProperty() {
-        return itemModelNumber;
+    public String itemMNProperty() {
+        return itemMN;
     }
 
     //==============SETTERS=============
 
     public void setToolID(int id) {
-        this.itemID.set(id);
+        this.itemID = id;
     }
 
     public void setItemName(String name) {
-        this.itemName.set(name);
+        this.itemName = name;
     }
 
     public void setItemDescription(String desc) {
-        this.itemDescription.set(desc);
+        this.itemDescription = desc;
     }
 
-    public void setItemProject(String project) { this.itemProject.set(project); }
+    public void setItemProject(String project) { this.itemProject = project; }
 
-    public void setItemSerialNumber(String sn) { this.itemSerialNumber.set(sn); }
+    public void setItemSerialNumber(String sn) { this.itemSN = sn; }
 
-    public void setItemModelNumber(String mn) { this.itemModelNumber.set(mn); }
+    public void setItemModelNumber(String mn) { this.itemMN = mn; }
 
     public String toString() {
         ObjectMapper objectMapper = new ObjectMapper();

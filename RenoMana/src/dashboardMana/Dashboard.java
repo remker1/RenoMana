@@ -3,8 +3,11 @@ package dashboardMana;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -17,6 +20,7 @@ import employeeMana.EmployeeList;
 import inventoryMana.InventoryItem;
 import inventoryMana.Inventory;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import timeMana.Project;
 import timeMana.Scheduler;
@@ -83,15 +87,19 @@ public class Dashboard extends HBox {
         projectTableView.prefHeightProperty().bind(heightProperty());
 
         // Create columns of TableView for Inventory and add them into inventory table
-        TableColumn<InventoryItem, String> itemNameCol = new TableColumn<>("Tool Name");
-        itemNameCol.setCellValueFactory(cellData -> cellData.getValue().itemNameProperty());
-        itemNameCol.prefWidthProperty().bind(dashboardInventoryTable.widthProperty().multiply(0.5));
+        TableColumn<InventoryItem, String> itemNameCol = new TableColumn<>("Item Name");
+        itemNameCol.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getItemName() ));
+        itemNameCol.prefWidthProperty().bind(dashboardInventoryTable.widthProperty().multiply(0.333334));
 
-        TableColumn<InventoryItem, String> itemDescriptionCol = new TableColumn<>("Tool Description");
-        itemDescriptionCol.setCellValueFactory(cellData -> cellData.getValue().itemDescriptionPropety());
-        itemDescriptionCol.prefWidthProperty().bind(dashboardInventoryTable.widthProperty().multiply(0.5));
+        TableColumn<InventoryItem, String> itemDescriptionCol = new TableColumn<>("Item Description");
+        itemDescriptionCol.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getItemDescription()));
+        itemDescriptionCol.prefWidthProperty().bind(dashboardInventoryTable.widthProperty().multiply(0.333334));
 
-        dashboardInventoryTable.getColumns().addAll(itemNameCol,itemDescriptionCol);
+        TableColumn<InventoryItem, String> itemProjectCol = new TableColumn<>("Item Project");
+        itemProjectCol.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getItemProject()));
+        itemProjectCol.prefWidthProperty().bind(dashboardInventoryTable.widthProperty().multiply(0.333334));
+
+        dashboardInventoryTable.getColumns().addAll(itemNameCol,itemDescriptionCol, itemProjectCol);
 
         // First option projects as table
         // Create columns of TableView for Project and add them into project table
@@ -138,11 +146,14 @@ public class Dashboard extends HBox {
             try {
                 fetchDashboardData(COOKIES);
             } catch(Exception e){
-                showAlert("Error!", "Something went wrong when loading reviews");
+                showAlert("Error!", "Something went wrong when loading STUFF");
             }
         });
 
-        getChildren().addAll(leftBox,rightBox, refreshDashboard);
+        Button filterButton = new Button("Filter Options");
+        filterButton.setOnAction(e -> showFilterWindow());
+
+        getChildren().addAll(leftBox,rightBox, refreshDashboard, filterButton);
     }
 
     private PieChart displayPieChart (ObservableList<Employee> employeeList){
@@ -162,7 +173,7 @@ public class Dashboard extends HBox {
 
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://127.0.0.1:5001/getDashboardData"))
+                .uri(URI.create("http://127.0.0.1:5001/getDashboardDataTest"))
                 .timeout(java.time.Duration.ofMinutes(2))
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(msg, StandardCharsets.UTF_8))
@@ -174,7 +185,6 @@ public class Dashboard extends HBox {
 
         String responseBody = response.body();
         System.out.println("[DASHBOARD] " + responseBody);
-        System.out.println();
         return responseBody;
     }
 
@@ -210,6 +220,27 @@ public class Dashboard extends HBox {
             System.out.println(target + " not found in the response");
             return null;
         }
+    }
+
+    private void showFilterWindow() {
+        Stage filterStage = new Stage();
+        filterStage.setTitle("Filter Options");
+
+        CheckBox inventoryCheckbox = new CheckBox("Show Inventory Table");
+        inventoryCheckbox.setSelected(true);
+        inventoryCheckbox.setOnAction(e -> dashboardInventoryTable.setVisible(inventoryCheckbox.isSelected()));
+
+        CheckBox projectCheckbox = new CheckBox("Show Project Table");
+        projectCheckbox.setSelected(true);
+        projectCheckbox.setOnAction(e -> projectTableView.setVisible(projectCheckbox.isSelected()));
+
+        VBox layout = new VBox(10);
+        layout.getChildren().addAll(inventoryCheckbox, projectCheckbox);
+        layout.setAlignment(Pos.CENTER);
+
+        Scene scene = new Scene(layout, 300, 200);
+        filterStage.setScene(scene);
+        filterStage.show();
     }
 
 }
