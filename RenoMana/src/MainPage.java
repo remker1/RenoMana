@@ -130,7 +130,7 @@ public class MainPage extends BasicPage {
         createTabButton("Scheduler", new Scheduler(COOKIES, allProjectData.getProjects()), "Scheduler");
         createTabButton("Calendar", new Calendar(allProjectData.getProjects()), "Calendar");
         createTabButton("Employees", new EmployeeList(COOKIES), "Employees");
-        createTabButton("Inventory", new Inventory(inventoryData), "Inventory");
+        createTabButton("Inventory", new Inventory(inventoryData, COOKIES), "Inventory");
         createTabButton("Reviews", new Review(), "Reviews");
         createTabButton("Inquiries", new inquiry(COOKIES), "Inquiries");
 

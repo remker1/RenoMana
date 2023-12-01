@@ -1,5 +1,7 @@
 package inventoryMana;
 
+import COOKIES.COOKIES;
+import ManagerCheck.ManagerCheck;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,7 +35,7 @@ public class Inventory extends VBox {
     public static TableView<InventoryItem> inventoryTable;
     public static ObservableList<InventoryItem> data;
 
-    public Inventory(List<InventoryItem> initialData) throws IOException, InterruptedException {
+    public Inventory(List<InventoryItem> initialData, COOKIES COOKIES) throws IOException, InterruptedException {
         // Setting up the table
         inventoryTable = new TableView<>();
         inventoryTable.prefWidthProperty().bind(this.widthProperty());
@@ -84,7 +86,7 @@ public class Inventory extends VBox {
 
 
         // Setting up the button options for things user can do in this tab
-        HBox optButton = getOptButton();
+        HBox optButton = getOptButton(COOKIES);
 
 
         VBox.setVgrow(inventoryTable, Priority.ALWAYS);
@@ -159,7 +161,7 @@ public class Inventory extends VBox {
      *
      * @return HBox containing operation buttons.
      */
-    private HBox getOptButton() {
+    private HBox getOptButton(COOKIES COOKIES) {
         Button addItem = new Button("Add");
         addItem.setOnAction(actionEvent -> {
             try {
@@ -202,8 +204,15 @@ public class Inventory extends VBox {
             }
         });
 
-        HBox optButton = new HBox(10, addItem, deleteItem, modifyItem, checkOut, importFile, exportFile);
-        optButton.setPadding(new Insets(10, 0, 10, 0)); // top, right, bottom, left padding
+        HBox optButton;
+        if (ManagerCheck.isManager(COOKIES)){
+            optButton = new HBox(10, addItem, deleteItem, modifyItem, checkOut, importFile, exportFile);
+        } else {
+            optButton = new HBox(10, exportFile);
+        }
+
+        // Create a horizontal box to hold the buttons
+        optButton.setPadding(new Insets(10, 0, 10, 0));
         return optButton;
     }
 
