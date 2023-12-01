@@ -7,7 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="lib" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="jackson-annotations-2.16.0" level="project" />
     <orderEntry type="library" name="jackson-core-2.16.0" level="project" />
     <orderEntry type="library" name="jackson-databind-2.16.0" level="project" />

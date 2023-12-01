@@ -34,8 +34,8 @@
                 <label for="company">Company (optional)</label><br>
                 <input type="text" id="company" name="company" placeholder="Enter your company name"><br>
             
-                <label for="startDate">Predicted Project Start Date *</label><br>
-                <input type="date" id="startDate" name="startDate" required><br>
+<!--                <label for="startDate">Predicted Project Start Date *</label><br>-->
+<!--                <input type="date" id="startDate" name="startDate" required><br>-->
             
                 <label for="endDate">Predicted Project End Date *</label><br>
                 <input type="date" id="endDate" name="endDate" required><br>
@@ -55,7 +55,7 @@
                 document.getElementById('customerEmail').value = '';
                 document.getElementById('customerCell').value = '';
                 document.getElementById('company').value = '';
-                document.getElementById('startDate').value = '';
+<!--                document.getElementById('startDate').value = '';-->
                 document.getElementById('endDate').value = '';
                 document.getElementById('projectDesc').value = '';
             }
@@ -74,7 +74,7 @@
 
                 if (response.ok) {
                     // Display a success message to the user
-                    alert('Thank you for your request bro!');
+                    alert('Thank you for your request. Reno Group will try and get back to you quickly!');
 
                     // Clear form inputs
                     clearFormInputs();

@@ -5,7 +5,7 @@ from bson import json_util
 
 
 app = Flask(__name__)
-client = MongoClient(host='db', port=27017, username='root', password='pass')
+client = MongoClient(host='localhost', port=27017, username='root', password='pass')
 db = client.renoGp
 employeeID = 1
 
@@ -299,15 +299,29 @@ def getProjectsData():
 
 
 # Route for submitting requests
-@app.route('/submitRequest', methods=['POST'])
+
+
+
+@app.route('/submitRequest', methods=['POST', 'GET'])
 def submit_request():
     try:
-        if request.method == 'POST':
+        if request.method == 'GET':
+            # Retrieve data from MongoDB collection
+            user_data = db['projects'].find({}, {'_id': 0, 'customerName': 1, 'customerEmail': 1, 'customerCell': 1,
+                                             'company': 1, 'endDate': 1, 'projectDesc': 1})
+
+            # Convert cursor to list for JSON serialization
+            user_data_list = list(user_data)
+
+            # Return data as JSON response
+            return jsonify({"data": user_data_list})
+
+        elif request.method == 'POST':
             customerName = request.form.get("customerName")
             customerEmail = request.form.get("customerEmail")
             customerCell = request.form.get("customerCell")
             company = request.form.get("company")
-            startDate = request.form.get("startDate")
+            # startDate = request.form.get("startDate")
             endDate = request.form.get("endDate")
             projectDesc = request.form.get("projectDesc")
 
@@ -325,7 +339,7 @@ def submit_request():
                 'customerEmail': customerEmail,
                 'customerCell': customerCell,
                 'company': company,
-                'startDate': startDate,
+                # 'startDate': startDate,
                 'endDate': endDate,
                 'projectDesc': projectDesc,
                 'members': []
