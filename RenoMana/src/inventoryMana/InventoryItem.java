@@ -74,6 +74,8 @@ public class InventoryItem {
         this.itemQuantity = itemQuantity;
     }
 
+    public InventoryItem(){
+    }
     //============BASE GETTERS===============
 
     /**
