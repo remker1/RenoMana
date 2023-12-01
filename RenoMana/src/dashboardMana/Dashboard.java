@@ -46,9 +46,6 @@ public class Dashboard extends HBox {
         this.userFname = parseJson(dashboardData, "fname");
         this.userLname = parseJson(dashboardData, "lname");
 
-        // Second option Project timelines as List (inline commented)
-        // timeLineListView = new ListView<>();
-
         dashboardInventoryTable = new TableView<>();
         projectTableView = new TableView<>();
 
@@ -77,9 +74,6 @@ public class Dashboard extends HBox {
         leftBox.prefWidthProperty().bind(widthProperty().multiply(0.7));
         rightBox.prefWidthProperty().bind(widthProperty().multiply(0.3));
 
-        // Second option Project timelines as List (inline commented)
-        // timeLineListView.prefHeightProperty().bind(heightProperty());
-
         projectTableView.prefHeightProperty().bind(heightProperty());
 
         // Create columns of TableView for Inventory and add them into inventory table
@@ -97,8 +91,6 @@ public class Dashboard extends HBox {
 
         dashboardInventoryTable.getColumns().addAll(itemNameCol,itemDescriptionCol, itemProjectCol);
 
-        // First option projects as table
-        // Create columns of TableView for Project and add them into project table
         TableColumn<Project, String> projectNameCol = new TableColumn<>("Project Name");
         projectNameCol.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         projectNameCol.prefWidthProperty().bind(projectTableView.widthProperty().multiply(0.5));
@@ -115,9 +107,6 @@ public class Dashboard extends HBox {
         KeyFrame keyFrame = new KeyFrame(duration, event -> {
             dashboardInventoryTable.setItems(Inventory.data);
             dashboardInventoryTable.refresh();
-
-            // Second option Project timelines as List (inline commented)
-            // timeLineListView.setItems(Scheduler.projectsTimelineList);
 
             projectTableView.setItems(Scheduler.data);
             projectTableView.refresh();
@@ -140,30 +129,32 @@ public class Dashboard extends HBox {
 
         filterButton.setOnAction(e -> showFilterWindow());
 
+        pieBox.getChildren().addAll(displayPieChart());
+
         welcomeBox.getChildren().addAll(welcomeMsg,refreshDashboard,filterButton);
 
         pieBox.getChildren().addAll(pieTitle);
-        //pieBox.getChildren().addAll(pieTitle,employeePie);
         inventoryBox.getChildren().addAll(inventoryTitle,dashboardInventoryTable);
 
         leftBox.getChildren().addAll(welcomeBox,pieBox,inventoryBox);
-        //rightBox.getChildren().addAll(projectTimeLineTitle,timeLineListView);
         rightBox.getChildren().addAll(projectTimeLineTitle,projectTableView);
 
         getChildren().addAll(leftBox,rightBox);
     }
 
-    private PieChart displayPieChart (ObservableList<Employee> employeeList){
+    private PieChart displayPieChart(){
 
-        for (Employee employee:employeeList){
-            System.out.println(employee.getEmployeeFirstName());
-        }
+        PieChart.Data slice1 = new PieChart.Data("Category 1", 30);
+        PieChart.Data slice2 = new PieChart.Data("Category 2", 45);
+        PieChart.Data slice3 = new PieChart.Data("Category 3", 25);
 
-        return null;
+        PieChart pieChart = new PieChart();
+        pieChart.getData().addAll(slice1, slice2, slice3);
+
+        return pieChart;
     }
 
     private String fetchDashboardData(COOKIES COOKIES) throws IOException, InterruptedException {
-        System.out.println(COOKIES.getUsername());
         String msg = "{" +
                 "\"cookie\":\"" + COOKIES.getUsername() +
                 "\"}";
@@ -177,11 +168,9 @@ public class Dashboard extends HBox {
                 .build();
 
         System.out.println("[DASHBOARD] " + request.toString());
-        System.out.println(msg);
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
         String responseBody = response.body();
-        System.out.println("[DASHBOARD] " + responseBody);
         return responseBody;
     }
 
