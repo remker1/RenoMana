@@ -1,8 +1,5 @@
-# Project ZIP
-https://drive.google.com/file/d/1LtPtDJ28vrCRRlF3Brn5xJS5aohEqXG8/view?usp=sharing
-
 # Description
-The Reno Application helps renovation company managers to keep track of their projects, its due date and set a schedule for an accepted renovation request. They could also keep track of inventory items that are available in their office, and see a list of employees where they would be able to see who is assigned to what project, if any. On the customer side, customers are able to fill and send out a renovation request and leave reviews or feedback through the app about their experience(s).
+The Reno Application helps small renovation company managers to keep track of their projects, its due date and set a schedule for an accepted renovation request. They could also keep track of inventory items that are available in their office, and see a list of employees where they would be able to see who is assigned to what project, if any. On the customer side, customers are able to fill and send out a renovation request and leave reviews or feedback through the app about their experience(s).
 
 # Prerequisites
 Before installing the RenoMana Application, ensure you have the following prerequisites:
@@ -11,6 +8,7 @@ Before installing the RenoMana Application, ensure you have the following prereq
 - Docker Desktop: Used for running the application in a container. [Download Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
 # Installation Steps
+(For Installation Guide with Pictures/Visulation, click [this](https://docs.google.com/document/d/1w0FADX0_oJc1_JlC1kkNfNMcAL2cwQGmA8ypfJn4GJs/edit?usp=sharing.))
 
 **Step 1: Docker Desktop Installation**
 
@@ -49,13 +47,20 @@ Step 3: Running the Application
 - In your terminal where you did `bash runApp.sh,` type `control + c`
 - Type `bash exitApp.sh`
 
-
-
-
-
 # Video Demos
 **Installation SetUp**
 
 **Features Demo**
+
+# Troubleshooting 
+- Port Issues: Most common issue that can pop out is when port 5001 is already running when we are trying to run Docker. To troubleshoot:
+    - Navigate back to the RenoManaApplication Folder
+    - Click back_end_team
+    - Click docker-compose.yml with any text editor you have
+    - Change `ports: 5001:5001` left side 5001 to 5002 or 5003 or anything.
+    - Save changes.
+    - Do Step 2-4 again.
+
+- Java Version Problems: Check that you have the correct version of Java installed by running `java -version` in your command line.
 
 
