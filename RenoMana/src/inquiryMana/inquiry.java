@@ -1,5 +1,7 @@
 package inquiryMana;
 
+import COOKIES.COOKIES;
+import ManagerCheck.ManagerCheck;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -28,7 +30,7 @@ public class inquiry extends VBox {
     private TableView<inquiryitem> inquiryTable;
     private ObservableList<inquiryitem> data;
 
-    public inquiry() throws IOException, InterruptedException {
+    public inquiry(COOKIES COOKIES) throws IOException, InterruptedException {
         // Setting up the table
         inquiryTable = new TableView<>();
         inquiryTable.prefWidthProperty().bind(this.widthProperty());
@@ -68,7 +70,11 @@ public class inquiry extends VBox {
 
         deleteItem.setOnAction(actionEvent -> deleteProjectRequest());
 
-        HBox optButton = new HBox(10, deleteItem, refresh_inquiries);
+
+        HBox optButton = new HBox(10, refresh_inquiries);
+        if (ManagerCheck.isManager(COOKIES)){
+            optButton = new HBox(10, deleteItem, refresh_inquiries);
+        }
         optButton.setPadding(new Insets(10));
 
         VBox.setVgrow(inquiryTable, Priority.ALWAYS);
@@ -135,6 +141,27 @@ public class inquiry extends VBox {
 
         // Else, remove the item from the table
         data.remove(selected_inquiry);
+
+        String msg =  "{\"Name\": \"" + selected_inquiry.Name().get() + "\", \"Contact\": \"" + selected_inquiry.Contact().get()+ "\", \"projectInq\": \"" + selected_inquiry.Inquiry().get() + "\"}";
+
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://127.0.0.1:5001/deleteInquiry"))
+                .timeout(Duration.ofMinutes(2))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(msg, StandardCharsets.UTF_8))
+                .build();
+
+
+        // Send POST message to Flask server
+        try {
+            httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
         inquiryTable.refresh();
     }
 

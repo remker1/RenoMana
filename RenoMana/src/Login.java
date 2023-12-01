@@ -1,9 +1,11 @@
+import COOKIES.COOKIES;
+import COOKIES.GetCOOKIE;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
@@ -142,7 +144,13 @@ public class Login extends BasicPage {
         String responseBody = response.body();
         System.out.println(responseBody);
 
-        COOKIES = parseJson(responseBody, "cookie");
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            GetCOOKIE getCOOKIE = mapper.readValue(responseBody, GetCOOKIE.class);
+            COOKIES = getCOOKIE.getCookies();
+        } catch (Exception e){
+            System.out.println(e);
+        }
         return response.statusCode();
     }
 

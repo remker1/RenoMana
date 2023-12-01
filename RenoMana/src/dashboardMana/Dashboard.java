@@ -1,24 +1,20 @@
 package dashboardMana;
 
 
+import COOKIES.COOKIES;
+import employeeMana.Employee;
+import inventoryMana.Inventory;
+import inventoryMana.InventoryItem;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.chart.*;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
-import employeeMana.Employee;
-import employeeMana.EmployeeList;
-import inventoryMana.InventoryItem;
-import inventoryMana.Inventory;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -41,11 +37,11 @@ public class Dashboard extends HBox {
     private final TableView<Project> projectTableView;
     private final TableView<InventoryItem> dashboardInventoryTable;
 
-    private String userFname;
-    private String userLname;
+    private static String userFname;
+    private static String userLname;
 
 
-    public Dashboard(String COOKIES, String dashboardData) throws IOException, InterruptedException {
+    public Dashboard(COOKIES COOKIES, String dashboardData) throws IOException, InterruptedException {
 
         this.userFname = parseJson(dashboardData, "fname");
         this.userLname = parseJson(dashboardData, "lname");
@@ -165,10 +161,10 @@ public class Dashboard extends HBox {
         return null;
     }
 
-    private String fetchDashboardData(String COOKIES) throws IOException, InterruptedException {
-        System.out.println(COOKIES);
+    private String fetchDashboardData(COOKIES COOKIES) throws IOException, InterruptedException {
+        System.out.println(COOKIES.getUsername());
         String msg = "{" +
-                "\"cookie\":\"" + COOKIES +
+                "\"cookie\":\"" + COOKIES.getUsername() +
                 "\"}";
 
         HttpClient httpClient = HttpClient.newHttpClient();
@@ -243,4 +239,11 @@ public class Dashboard extends HBox {
         filterStage.show();
     }
 
+    public static String getUserFname() {
+        return userFname;
+    }
+
+    public static String getUserLname() {
+        return userLname;
+    }
 }

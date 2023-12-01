@@ -1,6 +1,8 @@
 package employeeMana;
 
+import COOKIES.COOKIES;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import ManagerCheck.ManagerCheck;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -13,16 +15,12 @@ import javafx.scene.layout.VBox;
 import javafx.geometry.Insets;
 import javafx.stage.Stage;
 
-import javax.crypto.*;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
@@ -41,7 +39,7 @@ public class EmployeeList extends VBox {
      * Constructor for the EmployeeList class.
      * Initializes the UI components and sets up the employee table with columns and buttons.
      */
-    public EmployeeList(String COOKIES) {
+    public EmployeeList(COOKIES COOKIES) {
         // Setting up the table
         employeeList = new TableView<>();
         employeeList.prefWidthProperty().bind(this.widthProperty());
@@ -113,18 +111,25 @@ public class EmployeeList extends VBox {
             }
         });
 
-        // Create a horizontal box to hold the buttons
-        HBox optButton = new HBox(10, addItem, deleteItem, modifyItem, employeeInfo, refreshEmployeeTable);
-        optButton.setPadding(new Insets(10, 0, 10, 0)); // top, right, bottom, left padding
-
-        // Set vertical grow for the table and add it along with the buttons to the VBox
-        VBox.setVgrow(employeeList, Priority.ALWAYS);
-        this.getChildren().addAll(searchBox, employeeList, optButton);
         try {
             loadEmployeeList(getEmployeeData(COOKIES));
         }catch (Exception e){
             System.out.println(e);
         }
+
+        HBox optButton;
+        if (ManagerCheck.isManager(COOKIES)){
+            optButton = new HBox(10, addItem, deleteItem, modifyItem, employeeInfo, refreshEmployeeTable);
+        } else {
+            optButton = new HBox(10, employeeInfo, refreshEmployeeTable);
+        }
+
+        // Create a horizontal box to hold the buttons
+        optButton.setPadding(new Insets(10, 0, 10, 0)); // top, right, bottom, left padding
+
+        // Set vertical grow for the table and add it along with the buttons to the VBox
+        VBox.setVgrow(employeeList, Priority.ALWAYS);
+        this.getChildren().addAll(searchBox, employeeList, optButton);
     }
 
     /**
@@ -251,7 +256,7 @@ public class EmployeeList extends VBox {
     /**
      * Prompts the user to enter new employee information and adds the employee to the employee list.
      */
-    private void addEmployeeInfo(String COOKIES) {
+    private void addEmployeeInfo(COOKIES COOKIES) {
         // Generate a unique employee ID for the new employee
         int employeeID = employeeList.getItems().size() + 1;
         String stringid = String.valueOf(employeeID);
@@ -372,7 +377,7 @@ public class EmployeeList extends VBox {
     /**
      * Allows the user to modify the information of a selected employee.
      */
-    private void modifyEmployeeInfo(String COOKIE) {
+    private void modifyEmployeeInfo(COOKIES COOKIE) {
         // Get the selected employee from the table view
         Employee selectedEmployee = employeeList.getSelectionModel().getSelectedItem();
 
@@ -531,7 +536,7 @@ public class EmployeeList extends VBox {
     /**
      * Deletes the selected employee from the employee list.
      */
-    private void deleteEmployee(String COOKIE) {
+    private void deleteEmployee(COOKIES COOKIE) {
         // Get the selected employee from the table view
         Employee selectedEmployee = employeeList.getSelectionModel().getSelectedItem();
 
@@ -575,9 +580,9 @@ public class EmployeeList extends VBox {
         // Refresh the table view to reflect the changes
     }
 
-    private String getEmployeeData(String COOKIES) throws IOException, InterruptedException {
+    private String getEmployeeData(COOKIES COOKIES) throws IOException, InterruptedException {
         String msg = "{" +
-                "\"cookie\":\"" + COOKIES + "\"" +
+                "\"cookie\":\"" + COOKIES.getUsername() + "\"" +
                 "}";
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()

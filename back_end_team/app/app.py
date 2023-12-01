@@ -3,6 +3,7 @@ import pymongo
 from pymongo import MongoClient
 from bson import json_util
 
+
 app = Flask(__name__)
 client = MongoClient(host='db', port=27017, username='root', password='pass')
 db = client.renoGp
@@ -161,10 +162,11 @@ def login():
         cookie = ""
 
         user_exists = db['auth'].find_one({"username": input_user})
+        user_exists_title = db['employees'].find_one({"username": input_user})
 
         if user_exists:
             if input_pass == user_exists["password"]:
-                cookie = user_exists["username"]
+                cookie = { "username": user_exists["username"], "title": user_exists_title["title"] }
                 response = {
                     'status': 'success',
                     'message': 'Login Successful',
@@ -407,6 +409,29 @@ def submit_inquiry():
         }
         return jsonify(response_1000), 500
 
+@app.route('/deleteInquiry', methods=['POST'])
+def deleteInquiry():
+    try:
+        data = request.json
+
+        result = db['inq'].delete_one({"Name": data.get('Name'), "Contact": data.get('Contact'), "projectInq": data.get('projectInq')})
+
+        if result:
+            response = {
+                "message": "Successfully deleted Inquiry"
+            }
+            return jsonify(response), 200
+        else:
+            response = {
+                "message":"Could not find the Inquiry"
+            }
+            return jsonify(response), 500
+    except Exception as e:
+        print(e)
+        response = {
+            "message": e
+        }
+        return jsonify(response), 500
 
 @app.route('/deleteproject', methods=['POST'])
 def delete_project():
@@ -556,7 +581,6 @@ def getEmployeesData():
         }
         return jsonify(response), 500
 
-
 @app.route('/addEmployeeData', methods=['POST'])
 def addEmployeeData():
     try:
@@ -597,6 +621,7 @@ def addEmployeeData():
         return jsonify({"status": "failure", "message": str(e)}), 500
 
 
+
 @app.route('/modEmployeeData', methods=['POST'])
 def modEmployeeData():
     try:
@@ -611,6 +636,7 @@ def modEmployeeData():
             'cellNumber': data['cellNumber'],
             'title': data['title']
         }
+
 
         # Insert the document into the collection
 
@@ -629,7 +655,6 @@ def modEmployeeData():
         print(f'Error in register route: {e}')
         return jsonify({"status": "failure", "message": str(e)}), 500
 
-
 @app.route('/deleteEmployeeData', methods=['POST'])
 def deleteEmployeeData():
     try:
@@ -639,7 +664,7 @@ def deleteEmployeeData():
         result1 = db['employees'].delete_one({"username": queryUser})
         result2 = db['auth'].delete_one({"username": queryUser})
 
-        if result1 & result2:
+        if result1.deleted_count != 0 & result2.deleted_count != 0:
             response = {
                 "message": "Successfully deleted item"
             }
@@ -655,7 +680,6 @@ def deleteEmployeeData():
             "message": e
         }
         return jsonify(response), 500
-
 
 @app.route('/getProjects', methods=['POST'])
 def getProjects():
