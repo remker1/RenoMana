@@ -24,7 +24,7 @@ Before installing the RenoMana Application, ensure you have the following prereq
 - Leave Docker Desktop running in the background.
 
 
-**Step 2: Downloading Project Zip (jar and libraries)**
+**Step 2: Downloading JavaFx and Project Zip**
 - Download correct architecture for JavaFx through this [link](https://gluonhq.com/products/javafx/) and keep in somewhere you will be able to find it.
 - Unzip the Javafx and click the folder until you see the folder named `java-sdk-21.0.1`
 - Copy that folder. 
