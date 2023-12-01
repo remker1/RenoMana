@@ -81,6 +81,7 @@ public class ProjectRequestsItem {
     private SimpleStringProperty projectDesc;
     private SimpleStringProperty projectInq;
     private BooleanProperty accepted;
+    private int id;
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
     public ProjectRequestsItem(@JsonProperty("customerName") String customerName,
                                @JsonProperty("customerEmail") String customerEmail,
@@ -89,7 +90,8 @@ public class ProjectRequestsItem {
                                @JsonProperty("startDate") String startDate,
                                @JsonProperty("endDate") String endDate,
                                @JsonProperty("projectDesc") String projectDesc,
-                               @JsonProperty("projectInq") String projectInq)
+                               @JsonProperty("projectInq") String projectInq,
+                               @JsonProperty("ID") int id)
     {
         this.customerName =new SimpleStringProperty(customerName);
         this.customerEmail = new SimpleStringProperty(customerEmail);
@@ -100,6 +102,7 @@ public class ProjectRequestsItem {
         this.projectDesc = new SimpleStringProperty(projectDesc);
         this.projectInq = new SimpleStringProperty(projectInq);
         this.accepted = new SimpleBooleanProperty(false);
+        this.id = id;
     }
     public ProjectRequestsItem() {}
     public SimpleStringProperty Name() { return customerName; }
@@ -134,4 +137,9 @@ public class ProjectRequestsItem {
     public void setAccepted(boolean accepted) {
         this.accepted.set(accepted);
     }
+
+    public int getId() {return id;}
+
+    public void setId(int id) {this.id = id; }
+
 }
