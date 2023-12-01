@@ -5,64 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="added expanding of details">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/legal/javafx.base/ADDITIONAL_LICENSE_INFO" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/legal/javafx.base/ASSEMBLY_EXCEPTION" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/legal/javafx.base/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/legal/javafx.controls/ADDITIONAL_LICENSE_INFO" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/legal/javafx.controls/ASSEMBLY_EXCEPTION" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/legal/javafx.controls/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/legal/javafx.fxml/ADDITIONAL_LICENSE_INFO" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/legal/javafx.fxml/ASSEMBLY_EXCEPTION" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/legal/javafx.fxml/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/legal/javafx.graphics/ADDITIONAL_LICENSE_INFO" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/legal/javafx.graphics/ASSEMBLY_EXCEPTION" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/legal/javafx.graphics/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/legal/javafx.graphics/jpeg_fx.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/legal/javafx.graphics/mesa3d.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/legal/javafx.media/ADDITIONAL_LICENSE_INFO" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/legal/javafx.media/ASSEMBLY_EXCEPTION" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/legal/javafx.media/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/legal/javafx.media/directshow.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/legal/javafx.media/glib.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/legal/javafx.media/gstreamer.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/legal/javafx.media/libffi.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/legal/javafx.swing/ADDITIONAL_LICENSE_INFO" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/legal/javafx.swing/ASSEMBLY_EXCEPTION" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/legal/javafx.swing/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/legal/javafx.web/ADDITIONAL_LICENSE_INFO" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/legal/javafx.web/ASSEMBLY_EXCEPTION" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/legal/javafx.web/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/legal/javafx.web/icu_web.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/legal/javafx.web/libxml2.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/legal/javafx.web/libxslt.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/legal/javafx.web/webkit.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/lib/javafx-swt.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/lib/javafx.base.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/lib/javafx.controls.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/lib/javafx.fxml.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/lib/javafx.graphics.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/lib/javafx.media.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/lib/javafx.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/lib/javafx.swing.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/lib/javafx.web.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/lib/libdecora_sse.dylib" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/lib/libfxplugins.dylib" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/lib/libglass.dylib" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/lib/libglib-lite.dylib" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/lib/libgstreamer-lite.dylib" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/lib/libjavafx_font.dylib" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/lib/libjavafx_iio.dylib" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/lib/libjfxmedia.dylib" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/lib/libjfxmedia_avf.dylib" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/lib/libprism_common.dylib" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/lib/libprism_es2.dylib" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/lib/libprism_sw.dylib" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LibPack/JavaFX/javafx-sdk-21.0.1/src.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/JavaFX.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/JavaFX.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/MainPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/inventoryMana/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/inventoryMana/Inventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/dashboardMana/Dashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/dashboardMana/Dashboard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -245,7 +189,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="Login" />
       <module name="RenoMana" />
-      <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Downloads/javafx-sdk-21/lib --add-modules javafx.controls,javafx.fxml --add-opens javafx.base/javafx.beans.property=ALL-UNNAMED" />
+      <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Downloads/javafx-sdk-21.0.1/lib --add-modules javafx.controls,javafx.fxml --add-opens javafx.base/javafx.beans.property=ALL-UNNAMED" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
