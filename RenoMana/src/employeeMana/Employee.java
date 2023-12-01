@@ -47,7 +47,6 @@ public class Employee {
         this.username = new SimpleStringProperty(username);
         this._id = new SimpleStringProperty(_id);
 
-
     }
 
     public String get_id() {
@@ -88,21 +87,34 @@ public class Employee {
     public ObservableList<Project> getProjects() {
 
         String[] lines = projectsNameString.get().split("\\.");
-        System.out.println(Arrays.toString(lines));
         for (String line: lines){
             Project assignedProject = Scheduler.searchProjectByName(line);
-            if (!projects.contains(assignedProject)){
+            if (assignedProject == null && searchEmployeeProject(line) != null){
+                projects.remove(assignedProject);
+            }else if(assignedProject != null && !projects.contains(assignedProject)){
                 projects.add(assignedProject);
             }
         }
         return projects;
     }
 
+    public Project searchEmployeeProject(String pName){
+        for (Project project:projects){
+            if (project != null && project.getName().equals(pName)){
+                return project;
+            }
+        }
+        return null;
+    }
+
     public String getProjectsNameString(){
         StringBuilder projectResult = new StringBuilder();
         for(Project project:projects){
-            System.out.println(project.getName());
-            projectResult.append(project.getName()).append(".");
+            if (project!= null){
+                System.out.println(project.getName());
+                projectResult.append(project.getName()).append(".");
+            }
+
         }
         projectsNameString.set(projectResult.toString());
         return projectsNameString.get();
