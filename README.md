@@ -4,6 +4,7 @@ The Reno Application helps small renovation company managers to keep track of th
 # Prerequisites
 Before installing the RenoMana Application, ensure you have the following prerequisites:
 
+- OS Compatability: Ubuntu 22.04.03 LTS, MacOS 13 Ventura, MacOS 14 Sonoma
 - Java: Required to run the application. Make sure you have the latest update of JDK 21 (as of writing, JDK 21.0.1) installed on your system. [Download JDK 21.0.1.](https://www.oracle.com/java/technologies/downloads/)
 - Docker Desktop: Used for running the application in a container. [Download Docker Desktop.](https://www.docker.com/products/docker-desktop/)
 - JavaFx: Used for building the frontend of the application. [Download Version of JavaFx compatible for your OS.](https://gluonhq.com/products/javafx/)
@@ -28,7 +29,7 @@ Before installing the RenoMana Application, ensure you have the following prereq
 - Download our project zip (with libraries, and javaFX) here: 
     - For MacOS x64: https://drive.google.com/file/d/1g8g-I4NQdezrSpD7YW5-s-JBBy-Gsu9r/view?usp=sharing
     - For MacOS arrch64: 
-    - For Linux: 
+    - For Ubuntu 22.04.03 LTS: https://drive.google.com/file/d/1BmR7fa7E0jxt2LgpW0HOvraM3pKeQVwj/view?usp=drive_link
 - Once our project zip has been downloaded, place it where you can easily find and access it. In this case, we recommend your Desktop/Homepage screen. 
 - Unzip the project.
 - Navigate to the location where the unzipped file is stored but do not open it yet.
