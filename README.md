@@ -4,7 +4,7 @@ The Reno Application helps small renovation company managers to keep track of th
 # Prerequisites
 Before installing the RenoMana Application, ensure you have the following prerequisites:
 
-- Java: Required to run the application. Make sure you have Java installed on your system. [Download Java.](https://www.java.com/en/download/)
+- Java: Required to run the application. Make sure you have the latest update of JDK 21 (as of writing, JDK 21.0.1) installed on your system. [Download JDK 21.0.1.](https://www.oracle.com/java/technologies/downloads/)
 - Docker Desktop: Used for running the application in a container. [Download Docker Desktop.](https://www.docker.com/products/docker-desktop/)
 - JavaFx: Used for building the frontend of the application. [Download Version of JavaFx compatible for your OS.](https://gluonhq.com/products/javafx/)
     - Download JavaFx based on the architecture of or OS (aarch64 or x64)
@@ -69,5 +69,6 @@ Before installing the RenoMana Application, ensure you have the following prereq
     - Do Step 2-4 again.
 
 - Java Version Problems: Check that you have the correct version of Java installed by running `java -version` in your command line.
+- Path mismatch in runApp.sh: Ensure that the --module-path in line 6 of runApp.sh correctly links to the lib folder of the JavaFx you downloaded in Step 2
 
 
