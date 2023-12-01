@@ -1,5 +1,6 @@
 package employeeMana;
 
+import COOKIES.COOKIES;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ManagerCheck.ManagerCheck;
 import javafx.collections.FXCollections;
@@ -38,7 +39,7 @@ public class EmployeeList extends VBox {
      * Constructor for the EmployeeList class.
      * Initializes the UI components and sets up the employee table with columns and buttons.
      */
-    public EmployeeList(String COOKIES) {
+    public EmployeeList(COOKIES COOKIES) {
         // Setting up the table
         employeeList = new TableView<>();
         employeeList.prefWidthProperty().bind(this.widthProperty());
@@ -117,7 +118,7 @@ public class EmployeeList extends VBox {
         }
 
         HBox optButton;
-        if (ManagerCheck.isManager()){
+        if (ManagerCheck.isManager(COOKIES)){
             optButton = new HBox(10, addItem, deleteItem, modifyItem, employeeInfo, refreshEmployeeTable);
         } else {
             optButton = new HBox(10, employeeInfo, refreshEmployeeTable);
@@ -255,7 +256,7 @@ public class EmployeeList extends VBox {
     /**
      * Prompts the user to enter new employee information and adds the employee to the employee list.
      */
-    private void addEmployeeInfo(String COOKIES) {
+    private void addEmployeeInfo(COOKIES COOKIES) {
         // Generate a unique employee ID for the new employee
         int employeeID = employeeList.getItems().size() + 1;
         String stringid = String.valueOf(employeeID);
@@ -376,7 +377,7 @@ public class EmployeeList extends VBox {
     /**
      * Allows the user to modify the information of a selected employee.
      */
-    private void modifyEmployeeInfo(String COOKIE) {
+    private void modifyEmployeeInfo(COOKIES COOKIE) {
         // Get the selected employee from the table view
         Employee selectedEmployee = employeeList.getSelectionModel().getSelectedItem();
 
@@ -535,7 +536,7 @@ public class EmployeeList extends VBox {
     /**
      * Deletes the selected employee from the employee list.
      */
-    private void deleteEmployee(String COOKIE) {
+    private void deleteEmployee(COOKIES COOKIE) {
         // Get the selected employee from the table view
         Employee selectedEmployee = employeeList.getSelectionModel().getSelectedItem();
 
@@ -579,9 +580,9 @@ public class EmployeeList extends VBox {
         // Refresh the table view to reflect the changes
     }
 
-    private String getEmployeeData(String COOKIES) throws IOException, InterruptedException {
+    private String getEmployeeData(COOKIES COOKIES) throws IOException, InterruptedException {
         String msg = "{" +
-                "\"cookie\":\"" + COOKIES + "\"" +
+                "\"cookie\":\"" + COOKIES.getUsername() + "\"" +
                 "}";
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()

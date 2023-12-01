@@ -3,12 +3,10 @@ import pymongo
 from pymongo import MongoClient
 from bson import json_util
 
-
 app = Flask(__name__)
 client = MongoClient(host='db', port=27017, username='root', password='pass')
 db = client.renoGp
 employeeID = 1
-
 
 # Displays the main Reno Group landing page
 @app.route('/', methods=['GET'])
@@ -18,7 +16,6 @@ def displayLanding():
     except:
         pass
 
-
 # Displays the RenoGrpRequestPage.html webpage and allows user to input data to mango_tb database table
 @app.route('/requestPage', methods=['GET'])
 def displayRequestPage():
@@ -26,7 +23,6 @@ def displayRequestPage():
         return render_template('RenoGrpRequestPage.html')
     except:
         pass
-
 
 # Displays the RenoGrpReviewPage.html webpage and allows users to add and view customer reviews
 @app.route('/reviews', methods=['GET'])
@@ -36,14 +32,12 @@ def displayReviews():
     except:
         pass
 
-
 @app.route('/inquiry', methods=['GET'])
 def displayInquiry():
     try:
         return render_template('RenoGrpInquiryPage.html')
     except:
         pass
-
 
 # Initialize some default employees into the database
 @app.route('/initDB', methods=["GET"])
@@ -90,7 +84,6 @@ def initDB():
             'message': str(e)
         }
         return jsonify(response), 500
-
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -148,7 +141,6 @@ def register():
         print(f'Error in register route: {e}')
         return jsonify({"status": "failure", "message": str(e)}), 500
 
-
 # Route for submitting login
 @app.route('/login', methods=['POST'])
 def login():
@@ -162,10 +154,11 @@ def login():
         cookie = ""
 
         user_exists = db['auth'].find_one({"username": input_user})
+        user_exists_title = db['employees'].find_one({"username": input_user})
 
         if user_exists:
             if input_pass == user_exists["password"]:
-                cookie = user_exists["username"]
+                cookie = { "username": user_exists["username"], "title": user_exists_title["title"] }
                 response = {
                     'status': 'success',
                     'message': 'Login Successful',
@@ -193,8 +186,7 @@ def login():
     except Exception as e:
         # Log the exception for debugging
         print(f'Error in register route: {e}')
-        return jsonify({"status": "failure", "message": str(e)}), 500
-
+        return jsonify({"status": "failure", "message": str(e) +"Testing "}), 500
 
 @app.route('/getDashboardData', methods=['POST'])
 def getDashboardData():
@@ -222,7 +214,6 @@ def getDashboardData():
             "message": str(e)
         }
         return jsonify(response), 500
-
 
 @app.route('/getDashboardDataTest', methods=['POST'])
 def getDashboardDataTest():
@@ -262,7 +253,6 @@ def getDashboardDataTest():
         response = {"message": str(e)}
         return jsonify(response), 500
 
-
 def str_id(doc):
     """Convert MongoDB _id to string."""
     if '_id' in doc:
@@ -296,7 +286,6 @@ def getProjectsData():
             'message': str(e)
         }
         return jsonify(response), 500
-
 
 # Route for submitting requests
 @app.route('/submitRequest', methods=['POST', 'GET'])
@@ -358,7 +347,6 @@ def submit_request():
             'message': str(e)
         }
         return jsonify(response), 500
-
 
 @app.route('/submitinquiry', methods=['GET', 'POST'])
 def submit_inquiry():
@@ -456,7 +444,6 @@ def addReview():
         }
         return jsonify(response), 500
 
-
 @app.route('/getReviews', methods=['POST'])
 def getReviews():
     try:
@@ -480,7 +467,6 @@ def getReviews():
             'message': str(e)
         }
         return jsonify(response), 500
-
 
 @app.route('/getLoginEmployeeData', methods=['POST'])
 def getLoginEmployeeData():
@@ -577,6 +563,7 @@ def addEmployeeData():
         # Log the exception for debugging
         print(f'Error in register route: {e}')
         return jsonify({"status": "failure", "message": str(e)}), 500
+
 @app.route('/modEmployeeData', methods=['POST'])
 def modEmployeeData():
     try:
@@ -618,7 +605,7 @@ def deleteEmployeeData():
         result1 = db['employees'].delete_one({"username":queryUser})
         result2 = db['auth'].delete_one({"username":queryUser})
 
-        if result1 & result2:
+        if result1.deleted_count != 0 & result2.deleted_count != 0:
             response = {
                 "message": "Successfully deleted item"
             }
@@ -657,7 +644,6 @@ def getProjects():
         }
         return jsonify(response), 500
 
-
 @app.route('/syncInventoryDelete', methods=['POST'])
 def syncInventoryDelete():
     try:
@@ -681,7 +667,6 @@ def syncInventoryDelete():
     except Exception as e:
         print(e)
 
-
 @app.route('/syncInventoryAdd', methods=['POST'])
 def syncInventoryAdd():
     try:
@@ -703,7 +688,6 @@ def syncInventoryAdd():
     except Exception as e:
         print(e)
 
-
 @app.route('/getInventoryDataInitial', methods=['GET'])
 def getInventoryDataInitial():
     try:
@@ -722,7 +706,6 @@ def getInventoryDataInitial():
             'message': str(e)
         }
         return jsonify(response), 500
-
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5001, debug=True)

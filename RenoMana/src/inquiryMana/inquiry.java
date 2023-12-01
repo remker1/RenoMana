@@ -1,5 +1,6 @@
 package inquiryMana;
 
+import COOKIES.COOKIES;
 import ManagerCheck.ManagerCheck;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.beans.property.SimpleStringProperty;
@@ -29,7 +30,7 @@ public class inquiry extends VBox {
     private TableView<inquiryitem> inquiryTable;
     private ObservableList<inquiryitem> data;
 
-    public inquiry() throws IOException, InterruptedException {
+    public inquiry(COOKIES COOKIES) throws IOException, InterruptedException {
         // Setting up the table
         inquiryTable = new TableView<>();
         inquiryTable.prefWidthProperty().bind(this.widthProperty());
@@ -71,7 +72,7 @@ public class inquiry extends VBox {
 
 
         HBox optButton = new HBox(10, refresh_inquiries);
-        if (ManagerCheck.isManager()){
+        if (ManagerCheck.isManager(COOKIES)){
             optButton = new HBox(10, deleteItem, refresh_inquiries);
         }
         optButton.setPadding(new Insets(10));

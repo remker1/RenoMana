@@ -13,6 +13,7 @@
  * @since 2023-08-01
  */
 
+import COOKIES.COOKIES;
 import ManagerCheck.ManagerCheck;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dashboardMana.Dashboard;
@@ -20,15 +21,12 @@ import inquiryMana.inquiry;
 import inventoryMana.Inventory;
 import inventoryMana.InventoryItem;
 import inventoryMana.InventoryItems;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.paint.*;
 import javafx.scene.paint.Color;
 import reviewMana.Review;
-import timeMana.Project;
 import timeMana.Projects;
 import timeMana.Scheduler;
 import timeMana.Calendar;
@@ -126,18 +124,15 @@ public class MainPage extends BasicPage {
 
         // Create buttons for each tab and add them to the sidebar
         createTabButton("Dashboard", new Dashboard(COOKIES, dashboardData), "Dashboard");
-        createTabButton("Scheduler", new Scheduler(COOKIES, allProjectData.getProjects()), "Scheduler");
-        createTabButton("Employees", new EmployeeList(COOKIES), "Employees");
-        if (ManagerCheck.isManager()){
+        if (ManagerCheck.isManager(COOKIES)){
             createTabButton("Project Requests", new ProjectRequests(), "Project Requests");
         }
-
-        //loadProjects();
+        createTabButton("Scheduler", new Scheduler(COOKIES, allProjectData.getProjects()), "Scheduler");
         createTabButton("Calendar", new Calendar(allProjectData.getProjects()), "Calendar");
+        createTabButton("Employees", new EmployeeList(COOKIES), "Employees");
         createTabButton("Inventory", new Inventory(inventoryData), "Inventory");
-
         createTabButton("Reviews", new Review(), "Reviews");
-        createTabButton("Inquiries", new inquiry(), "Inquiries");
+        createTabButton("Inquiries", new inquiry(COOKIES), "Inquiries");
 
         Button button = new Button("Log out");
         button.setPrefWidth(Double.MAX_VALUE);
@@ -361,10 +356,10 @@ public class MainPage extends BasicPage {
         return toggleSidebar;
     }
 
-    private String fetchDashboardData(String COOKIES) throws IOException, InterruptedException {
-        System.out.println(COOKIES);
+    private String fetchDashboardData(COOKIES COOKIES) throws IOException, InterruptedException {
+        System.out.println(COOKIES.getUsername());
         String msg = "{" +
-                "\"cookie\":\"" + COOKIES +
+                "\"cookie\":\"" + COOKIES.getUsername() +
                 "\"}";
 
         HttpClient httpClient = HttpClient.newHttpClient();

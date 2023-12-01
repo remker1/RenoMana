@@ -4,17 +4,72 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="added expanding of details">
-      <change afterPath="$PROJECT_DIR$/RenoMana/src/ManagerCheck/ManagerCheck.java" afterDir="false" />
+    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="- resolved merge conflicts">
+      <change afterPath="$PROJECT_DIR$/RenoMana/out/production/RenoMana/ProjectRequestsMana/ProjectRequests$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RenoMana/out/production/RenoMana/ProjectRequestsMana/ProjectRequests$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RenoMana/out/production/RenoMana/ProjectRequestsMana/ProjectRequests.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RenoMana/out/production/RenoMana/ProjectRequestsMana/ProjectRequestsItem.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RenoMana/out/production/RenoMana/ProjectRequestsMana/ProjectRequestsItems.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RenoMana/out/production/RenoMana/employeeMana/Employee.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RenoMana/out/production/RenoMana/employeeMana/EmployeeInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RenoMana/out/production/RenoMana/employeeMana/EmployeeList.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RenoMana/out/production/RenoMana/employeeMana/Employees.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RenoMana/out/production/RenoMana/inventoryMana/Inventory$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RenoMana/out/production/RenoMana/inventoryMana/Inventory$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RenoMana/out/production/RenoMana/inventoryMana/InventoryItems.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RenoMana/out/production/RenoMana/reviewMana/Review.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RenoMana/out/production/RenoMana/reviewMana/ReviewItem.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RenoMana/out/production/RenoMana/reviewMana/ReviewItems.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RenoMana/out/production/RenoMana/timeMana/Projects.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RenoMana/out/production/RenoMana/timeMana/Scheduler$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RenoMana/out/production/RenoMana/timeMana/Scheduler$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RenoMana/src/COOKIES/COOKIES.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RenoMana/src/COOKIES/GetCOOKIE.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back_end_team/app/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back_end_team/app/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back_end_team/app/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-12-01_12_11_a_m__[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back_end_team/app/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-12-01_12_11_a_m___Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back_end_team/app/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-12-01_12_22_a_m__[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back_end_team/app/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023-12-01_12_22_a_m___Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/local_2/BasicPage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/local_2/Login.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/local_2/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/local_2/MainPage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/local_2/Registration.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/local_2/dashboardMana/Dashboard.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/local_2/employeeMana/Employee.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/local_2/employeeMana/EmployeeInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/local_2/employeeMana/EmployeeList.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/local_2/inventoryMana/Inventory.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/local_2/inventoryMana/InventoryItem.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/local_2/reviewMana/Review.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/local_2/reviewMana/ReviewItem.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/local_2/reviewMana/ReviewItems.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/local_2/timeMana/Calendar.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/local_2/timeMana/Scheduler$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/local_2/timeMana/Scheduler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/.idea/libraries/jackson_annotations_2_16_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/.idea/libraries/jackson_annotations_2_16_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/.idea/libraries/jackson_core_2_16_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/.idea/libraries/jackson_core_2_16_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/.idea/libraries/jackson_databind_2_16_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/.idea/libraries/jackson_databind_2_16_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/.idea/libraries/lib.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/RenoMana.iml" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/RenoMana.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/out/production/RenoMana/ProjectMana/Project2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/out/production/RenoMana/ProjectMana/ProjectItem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/out/production/RenoMana/ProjectMana/ProjectItems.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/BasicPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/BasicPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/Login.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RenoMana/src/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/MainPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/ManagerCheck/ManagerCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/ManagerCheck/ManagerCheck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/Report.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RenoMana/src/dashboardMana/Dashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/dashboardMana/Dashboard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeList.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RenoMana/src/inquiryMana/inquiry.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/inquiryMana/inquiry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/inventoryMana/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/inventoryMana/Inventory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/app/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/app/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back_end_team/app/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/app/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RenoMana/reviewMana/ReviewItems.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RenoMana/reviewMana/ReviewItems.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/app/templates/RenoGrpRequestPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/app/templates/RenoGrpRequestPage.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +227,7 @@
       <workItem from="1696457143116" duration="1065000" />
       <workItem from="1700003285969" duration="5225000" />
       <workItem from="1701333667379" duration="7971000" />
-      <workItem from="1701409493183" duration="7646000" />
+      <workItem from="1701409493183" duration="14339000" />
     </task>
     <task id="LOCAL-00001" summary="Finished setting up the log in page in accordance to agreed upon outline">
       <option name="closed" value="true" />
@@ -326,7 +381,21 @@
       <option name="project" value="LOCAL" />
       <updated>1701340478650</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="&#10;- Added deleteInquiry function to flask server&#10;- Modified names variables in Dashboard to static&#10;- implemented ManagerCheck class&#10;- Modified buttons in Java application to only display for managers">
+      <created>1701417538116</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1701417538116</updated>
+    </task>
+    <task id="LOCAL-00021" summary="- resolved merge conflicts">
+      <created>1701417889398</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1701417889398</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -361,7 +430,9 @@
     <MESSAGE value="Updated the README for dir to Google Doc." />
     <MESSAGE value="added copy to clipboard button to project request" />
     <MESSAGE value="added expanding of details" />
-    <option name="LAST_COMMIT_MESSAGE" value="added expanding of details" />
+    <MESSAGE value="&#10;- Added deleteInquiry function to flask server&#10;- Modified names variables in Dashboard to static&#10;- implemented ManagerCheck class&#10;- Modified buttons in Java application to only display for managers" />
+    <MESSAGE value="- resolved merge conflicts" />
+    <option name="LAST_COMMIT_MESSAGE" value="- resolved merge conflicts" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/cmpt370_g29$MainPage.ic" NAME="MainPage Coverage Results" MODIFIED="1698361182269" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
