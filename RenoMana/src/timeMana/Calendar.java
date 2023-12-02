@@ -19,11 +19,8 @@ public class Calendar extends VBox {
     private final BorderPane root;
     LocalDate today = LocalDate.now();
 
-    private final ObservableList<Project> allProjects;
 
-    public Calendar(ObservableList<Project> allProjects) {
-
-        this.allProjects = allProjects;
+    public Calendar() {
 
         root = new BorderPane();
 
@@ -211,7 +208,7 @@ public class Calendar extends VBox {
 
 
     private void displayProjectsForDate(LocalDate date) {
-        List<Project> dueProjects = allProjects.stream()
+        List<Project> dueProjects = Scheduler.data.stream()
                 .filter(project -> !LocalDate.parse(project.getTimeline(), DateTimeFormatter.ofPattern("yyyy-MM-dd")).isBefore(date))
                 .collect(Collectors.toList());
 

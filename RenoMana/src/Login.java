@@ -142,14 +142,14 @@ public class Login extends BasicPage {
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
         String responseBody = response.body();
-        System.out.println(responseBody);
+
 
         try {
             ObjectMapper mapper = new ObjectMapper();
             GetCOOKIE getCOOKIE = mapper.readValue(responseBody, GetCOOKIE.class);
             COOKIES = getCOOKIE.getCookies();
         } catch (Exception e){
-            System.out.println(e);
+            showAlert("Error!","Login Faild.");
         }
         return response.statusCode();
     }
@@ -158,6 +158,29 @@ public class Login extends BasicPage {
     private void displayErrorMessage(String message) {
         errorLabel.setText(message);
         errorLabel.setTextFill(Color.RED);
+    }
+
+    /**
+     * Displays an error alert with the specified title and content.
+     *
+     * @param title   The title of the error alert.
+     * @param content The content (message) of the error alert.
+     */
+    private static void showAlert(String title, String content) {
+        // Create a new Alert with AlertType.ERROR
+        Alert invalidNumAlert = new Alert(Alert.AlertType.ERROR);
+
+        // Set the title of the alert
+        invalidNumAlert.setTitle(title);
+
+        // Set the header text (null means no header text)
+        invalidNumAlert.setHeaderText(null);
+
+        // Set the content text (main message) of the alert
+        invalidNumAlert.setContentText(content);
+
+        // Display the alert and wait for user interaction
+        invalidNumAlert.showAndWait();
     }
 
     public static void main(String[] args) {

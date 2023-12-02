@@ -27,10 +27,13 @@ Before installing the RenoMana Application, ensure you have the following prereq
 
 **Step 2: Downloading JavaFx and Project Zip**
 - Download our project zip (with libraries, and javaFX) here: 
-    - For MacOS x64: https://drive.google.com/file/d/1g8g-I4NQdezrSpD7YW5-s-JBBy-Gsu9r/view?usp=sharing
-    - For MacOS arrch64: 
+    - For MacOS x64: https://drive.google.com/file/d/1eQCEFcrpSk_lzUmzPArqwojlvxQ-e-H8/view?usp=sharing
+    - For MacOS arrch64: https://drive.google.com/file/d/1tCuNspNuHdbjQifhzy_ImR4JNaR0SJae/view?usp=sharing
     - For Ubuntu 22.04.03 LTS: https://drive.google.com/file/d/1BmR7fa7E0jxt2LgpW0HOvraM3pKeQVwj/view?usp=drive_link
+    - Windows: https://drive.google.com/file/d/1gzce0LhbyTnEfdvaVj_Am3rcwH97oAPu/view?usp=sharing
+
 - Once our project zip has been downloaded, place it where you can easily find and access it. In this case, we recommend your Desktop/Homepage screen. 
+- Rename the unzipped file by removing the characters just before `RenoManaApplication`
 - Unzip the project.
 - Navigate to the location where the unzipped file is stored but do not open it yet.
 
@@ -55,10 +58,8 @@ Before installing the RenoMana Application, ensure you have the following prereq
 - In your terminal where you did `bash runApp.sh,` type `control + c`
 - Type `bash exitApp.sh`
 
-# Video Demos
-**Installation SetUp**
+# ScreenShot Demos
 
-**Features Demo**
 
 # Troubleshooting 
 - Port Issues: Most common issue that can pop out is when port 5001 is already running when we are trying to run Docker. To troubleshoot:

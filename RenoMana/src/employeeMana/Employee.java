@@ -111,7 +111,6 @@ public class Employee {
         StringBuilder projectResult = new StringBuilder();
         for(Project project:projects){
             if (project!= null){
-                System.out.println(project.getName());
                 projectResult.append(project.getName()).append(".");
             }
 

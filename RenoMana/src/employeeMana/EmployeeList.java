@@ -369,7 +369,7 @@ public class EmployeeList extends VBox {
         System.out.println("[ADD EMPLOYEE]: " + request.toString());
         try{
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-            System.out.println("[ADD EMPLOYEE]: " +response.body());
+
         }catch (Exception e){
             System.out.println(e);
         }
@@ -558,7 +558,7 @@ public class EmployeeList extends VBox {
             System.out.println("[MOD EMPLOYEE]: " + request.toString());
             try {
                 HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-                System.out.println(response.body());
+
             }catch (Exception e){
                 System.out.println(e);
             }
@@ -613,7 +613,7 @@ public class EmployeeList extends VBox {
         System.out.println("[EMPLOYEE DELETE]: " + request.toString());
         try {
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-            System.out.println(response.body());
+
         }catch (Exception e){
             System.out.println(e);
         }
@@ -667,7 +667,7 @@ public class EmployeeList extends VBox {
             System.out.println("[EMPLOYEE PROJECTS UPDATE]: " + request.toString());
             try {
                 HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-                System.out.println(response.body());
+
             } catch (Exception e) {
                 System.out.println(e);
             }

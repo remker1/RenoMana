@@ -127,8 +127,8 @@ public class MainPage extends BasicPage {
         if (ManagerCheck.isManager(COOKIES)){
             createTabButton("Project Requests", new ProjectRequests(), "Project Requests");
         }
-        createTabButton("Scheduler", new Scheduler(COOKIES, allProjectData.getProjects()), "Scheduler");
-        createTabButton("Calendar", new Calendar(allProjectData.getProjects()), "Calendar");
+        createTabButton("Scheduler", new Scheduler(COOKIES), "Scheduler");
+        createTabButton("Calendar", new Calendar(), "Calendar");
         createTabButton("Employees", new EmployeeList(COOKIES), "Employees");
         createTabButton("Inventory", new Inventory(inventoryData, COOKIES), "Inventory");
         createTabButton("Reviews", new Review(), "Reviews");
@@ -357,7 +357,7 @@ public class MainPage extends BasicPage {
     }
 
     private String fetchDashboardData(COOKIES COOKIES) throws IOException, InterruptedException {
-        System.out.println(COOKIES.getUsername());
+
         String msg = "{" +
                 "\"cookie\":\"" + COOKIES.getUsername() +
                 "\"}";
@@ -371,11 +371,11 @@ public class MainPage extends BasicPage {
                 .build();
 
         System.out.println("[DASHBOARD] " + request.toString());
-        System.out.println(msg);
+
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
         String responseBody = response.body();
-        System.out.println("[DASHBOARD] " + responseBody);
+
         this.userFname = parseJson(responseBody, "fname");
         this.userLname = parseJson(responseBody, "lname");
         return responseBody;
@@ -390,7 +390,6 @@ public class MainPage extends BasicPage {
 
         try {
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-            System.out.println(response.body()); // For debugging
 
             ObjectMapper mapper = new ObjectMapper();
 
