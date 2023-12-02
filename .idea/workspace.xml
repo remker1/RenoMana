@@ -4,21 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="Bug Fixes and data syncing&#10;Added addProjects in time bd endpoint in app.py">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/JavaF.xml" afterDir="false" />
+    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="Linked Scheduler to database, now whole project is ready for deploy.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/RenoMana.iml" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/RenoMana.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/Login.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RenoMana/src/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/MainPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/timeMana/Calendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/timeMana/Calendar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/timeMana/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/timeMana/Project.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/timeMana/Projects.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/timeMana/Projects.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end_team/app/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/app/app.py" afterDir="false" />
-    </list>
-    <list id="5d65271f-0b8f-4faa-87c9-f7718a86d1c6" name="Changes by Ellio" comment="">
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/employeeMana/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/employeeMana/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeList.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/inventoryMana/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/inventoryMana/Inventory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java" afterDir="false" />
     </list>
+    <list id="5d65271f-0b8f-4faa-87c9-f7718a86d1c6" name="Changes by Ellio" comment="Changes by Ellio" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,36 +67,6 @@
     &quot;second&quot;: &quot;36043286-452f-4304-bfad-15318694ad84&quot;
   }
 }</component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java">
-      <ranges>
-        <range start1="4" end1="4" start2="4" end2="7" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
-        <range start1="22" end1="22" start2="25" end2="27" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
-        <range start1="26" end1="26" start2="31" end2="33" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
-        <range start1="37" end1="38" start2="44" end2="45" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
-        <range start1="41" end1="42" start2="48" end2="49" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
-        <range start1="43" end1="44" start2="50" end2="51" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
-        <range start1="151" end1="153" start2="158" end2="168" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
-        <range start1="155" end1="156" start2="170" end2="171" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
-        <range start1="158" end1="159" start2="173" end2="174" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
-        <range start1="178" end1="178" start2="193" end2="198" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
-        <range start1="181" end1="287" start2="201" end2="201" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
-        <range start1="312" end1="318" start2="226" end2="253" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
-        <range start1="320" end1="324" start2="255" end2="256" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
-        <range start1="333" end1="333" start2="265" end2="267" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
-        <range start1="334" end1="334" start2="268" end2="269" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
-        <range start1="349" end1="350" start2="284" end2="285" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
-        <range start1="363" end1="377" start2="298" end2="299" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
-        <range start1="421" end1="421" start2="343" end2="344" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
-        <range start1="422" end1="422" start2="345" end2="346" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
-        <range start1="425" end1="431" start2="349" end2="349" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
-        <range start1="432" end1="432" start2="350" end2="381" changelist="5d65271f-0b8f-4faa-87c9-f7718a86d1c6" />
-        <range start1="464" end1="465" start2="413" end2="414" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
-        <range start1="477" end1="477" start2="426" end2="453" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
-        <range start1="485" end1="485" start2="461" end2="501" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
-      </ranges>
-    </file>
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -300,7 +265,7 @@
       <workItem from="1701423999365" duration="231000" />
       <workItem from="1701424247244" duration="1619000" />
       <workItem from="1701425899437" duration="12152000" />
-      <workItem from="1701468638306" duration="12767000" />
+      <workItem from="1701468638306" duration="14018000" />
     </task>
     <task id="LOCAL-00001" summary="Finished setting up the log in page in accordance to agreed upon outline">
       <option name="closed" value="true" />
@@ -478,7 +443,23 @@
       <option name="project" value="LOCAL" />
       <updated>1701435272211</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Linked Scheduler to database, now whole project is ready for deploy.">
+      <option name="closed" value="true" />
+      <created>1701491734963</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1701491734963</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Linked Scheduler to database, now whole project is ready for deploy.">
+      <option name="closed" value="true" />
+      <created>1701491794688</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1701491794688</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -515,7 +496,9 @@
     <MESSAGE value="added expanding of details" />
     <MESSAGE value="Bug Fixes and data syncing" />
     <MESSAGE value="Bug Fixes and data syncing&#10;Added addProjects in time bd endpoint in app.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug Fixes and data syncing&#10;Added addProjects in time bd endpoint in app.py" />
+    <MESSAGE value="Changes by Ellio" />
+    <MESSAGE value="Linked Scheduler to database, now whole project is ready for deploy." />
+    <option name="LAST_COMMIT_MESSAGE" value="Linked Scheduler to database, now whole project is ready for deploy." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/cmpt370_g29$MainPage.ic" NAME="MainPage Coverage Results" MODIFIED="1698361182269" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

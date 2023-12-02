@@ -242,7 +242,7 @@ public class Scheduler extends VBox {
         System.out.println("[ADD TIME PROJECTS]: " + request.toString());
         try{
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-            System.out.println("[ADD TIME PROJECTS]: " +response.body());
+
         }catch (Exception e){
             System.out.println(e);
         }
@@ -369,7 +369,7 @@ public class Scheduler extends VBox {
         System.out.println("[MOD TIME PROJECTS]: " + request.toString());
         try {
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-            System.out.println(response.body());
+
         }catch (Exception e){
             System.out.println(e);
         }
@@ -402,8 +402,7 @@ public class Scheduler extends VBox {
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
         String responseBody = response.body();
-        System.out.println("[DASHBOARD] " + responseBody);
-        System.out.println();
+
         return responseBody;
     }
 
@@ -440,7 +439,7 @@ public class Scheduler extends VBox {
             System.out.println("[TIME PROJECT DELETE]: " + request.toString());
             try {
                 HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-                System.out.println(response.body());
+
             }catch (Exception e){
                 System.out.println(e);
             }
@@ -479,7 +478,7 @@ public class Scheduler extends VBox {
 
         try{
             ObjectMapper mapper = new ObjectMapper();
-            System.out.println(response.body());
+
             Projects projects = mapper.readValue(response.body(),Projects.class);
             for (Project project:projects.getProjects()){
                 if(project != null && !data.contains(project)){
