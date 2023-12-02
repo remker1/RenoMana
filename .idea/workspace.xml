@@ -4,9 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="added expanding of details">
+    <list default="true" id="96d927c4-40db-49b1-86f6-684a00b5cedf" name="Changes" comment="Bug Fixes and data syncing&#10;Added addProjects in time bd endpoint in app.py">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/JavaF.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RenoMana/src/dashboardMana/Dashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/dashboardMana/Dashboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/RenoMana.iml" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/RenoMana.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/MainPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/employeeMana/EmployeeInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/timeMana/Calendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/timeMana/Calendar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/timeMana/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/timeMana/Project.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/timeMana/Projects.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/timeMana/Projects.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end_team/app/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/back_end_team/app/app.py" afterDir="false" />
+    </list>
+    <list id="5d65271f-0b8f-4faa-87c9-f7718a86d1c6" name="Changes by Ellio" comment="">
+      <change beforePath="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +72,36 @@
     &quot;second&quot;: &quot;36043286-452f-4304-bfad-15318694ad84&quot;
   }
 }</component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/RenoMana/src/timeMana/Scheduler.java">
+      <ranges>
+        <range start1="4" end1="4" start2="4" end2="7" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
+        <range start1="22" end1="22" start2="25" end2="27" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
+        <range start1="26" end1="26" start2="31" end2="33" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
+        <range start1="37" end1="38" start2="44" end2="45" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
+        <range start1="41" end1="42" start2="48" end2="49" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
+        <range start1="43" end1="44" start2="50" end2="51" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
+        <range start1="151" end1="153" start2="158" end2="168" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
+        <range start1="155" end1="156" start2="170" end2="171" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
+        <range start1="158" end1="159" start2="173" end2="174" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
+        <range start1="178" end1="178" start2="193" end2="198" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
+        <range start1="181" end1="287" start2="201" end2="201" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
+        <range start1="312" end1="318" start2="226" end2="253" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
+        <range start1="320" end1="324" start2="255" end2="256" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
+        <range start1="333" end1="333" start2="265" end2="267" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
+        <range start1="334" end1="334" start2="268" end2="269" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
+        <range start1="349" end1="350" start2="284" end2="285" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
+        <range start1="363" end1="377" start2="298" end2="299" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
+        <range start1="421" end1="421" start2="343" end2="344" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
+        <range start1="422" end1="422" start2="345" end2="346" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
+        <range start1="425" end1="431" start2="349" end2="349" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
+        <range start1="432" end1="432" start2="350" end2="381" changelist="5d65271f-0b8f-4faa-87c9-f7718a86d1c6" />
+        <range start1="464" end1="465" start2="413" end2="414" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
+        <range start1="477" end1="477" start2="426" end2="453" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
+        <range start1="485" end1="485" start2="461" end2="501" changelist="96d927c4-40db-49b1-86f6-684a00b5cedf" />
+      </ranges>
+    </file>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -78,33 +119,53 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Leo-JavaGUI&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-21&quot;,
-    &quot;last_opened_file_path&quot;: &quot;L:/Usask/Fall23/CMPT370/RenoProject/RenoMana&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.14641148&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "Leo-JavaGUI",
+    "jdk.selected.JAVA_MODULE": "openjdk-21",
+    "last_opened_file_path": "L:/Usask/Fall23/CMPT370/RenoProject/LibPack/JavaFX/openjfx-20.0.2_windows-x64_bin-sdk/javafx-sdk-20.0.2/lib",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.14641148",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.Login">
+    <configuration name="Login" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="Login" />
+      <module name="RenoMana" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;L:\Usask\Fall23\CMPT370\RenoProject\LibPack\JavaFX\openjfx-20.0.2_windows-x64_bin-sdk\javafx-sdk-20.0.2\lib&quot;  --add-modules javafx.controls,javafx.fxml  --add-opens javafx.base/javafx.beans.property=ALL-UNNAMED" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainPage" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="MainPage" />
+      <module name="RenoMana" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;L:\Usask\Fall23\CMPT370\RenoProject\LibPack\JavaFX\openjfx-20.0.2_windows-x64_bin-sdk\javafx-sdk-20.0.2\lib&quot;  --add-modules javafx.controls,javafx.fxml  --add-opens javafx.base/javafx.beans.property=ALL-UNNAMED" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="DjangoTestsConfigurationType">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -124,6 +185,17 @@
       <option name="USE_OPTIONS" value="false" />
       <option name="OPTIONS" value="" />
       <method v="2" />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -184,37 +256,6 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <method v="2" />
     </configuration>
-    <configuration name="Login" type="Application" factoryName="Application">
-      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="Login" />
-      <module name="RenoMana" />
-      <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Downloads/javafx-sdk-21.0.1/lib --add-modules javafx.controls,javafx.fxml --add-opens javafx.base/javafx.beans.property=ALL-UNNAMED" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MainPage" type="Application" factoryName="Application">
-      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="MainPage" />
-      <module name="RenoMana" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;L:\Usask\Fall23\CMPT370\RenoProject\LibPack\JavaFX\openjfx-20.0.2_windows-x64_bin-sdk\javafx-sdk-20.0.2\lib&quot;  --add-modules javafx.controls,javafx.fxml  --add-opens javafx.base/javafx.beans.property=ALL-UNNAMED" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.MainPage" />
       <item itemvalue="Application.Login" />
@@ -258,7 +299,8 @@
       <workItem from="1701411316610" duration="11760000" />
       <workItem from="1701423999365" duration="231000" />
       <workItem from="1701424247244" duration="1619000" />
-      <workItem from="1701425899437" duration="2640000" />
+      <workItem from="1701425899437" duration="12152000" />
+      <workItem from="1701468638306" duration="12767000" />
     </task>
     <task id="LOCAL-00001" summary="Finished setting up the log in page in accordance to agreed upon outline">
       <option name="closed" value="true" />
@@ -412,7 +454,31 @@
       <option name="project" value="LOCAL" />
       <updated>1701340478650</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Bug Fixes and data syncing">
+      <option name="closed" value="true" />
+      <created>1701428948555</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1701428948555</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Bug Fixes and data syncing">
+      <option name="closed" value="true" />
+      <created>1701428968565</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1701428968565</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Bug Fixes and data syncing&#10;Added addProjects in time bd endpoint in app.py">
+      <option name="closed" value="true" />
+      <created>1701435272211</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1701435272211</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -447,7 +513,9 @@
     <MESSAGE value="Updated the README for dir to Google Doc." />
     <MESSAGE value="added copy to clipboard button to project request" />
     <MESSAGE value="added expanding of details" />
-    <option name="LAST_COMMIT_MESSAGE" value="added expanding of details" />
+    <MESSAGE value="Bug Fixes and data syncing" />
+    <MESSAGE value="Bug Fixes and data syncing&#10;Added addProjects in time bd endpoint in app.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug Fixes and data syncing&#10;Added addProjects in time bd endpoint in app.py" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/cmpt370_g29$MainPage.ic" NAME="MainPage Coverage Results" MODIFIED="1698361182269" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

@@ -2,6 +2,9 @@ package timeMana;
 
 import COOKIES.COOKIES;
 import ManagerCheck.ManagerCheck;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import employeeMana.Employee;
 import employeeMana.EmployeeList;
 import javafx.beans.property.SimpleListProperty;
@@ -20,10 +23,14 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.time.Duration;
+import java.util.Collections;
 import java.util.Optional;
 
 public class Scheduler extends VBox {
 
+
+    private static COOKIES COOKIES = null;
     // table to display projects
     private static TableView<Project> table = new TableView<>();
 
@@ -35,13 +42,13 @@ public class Scheduler extends VBox {
     /***
      * Constructor for Scheduler UI
      */
-    public Scheduler(COOKIES COOKIES, ObservableList<Project> projects) {
+    public Scheduler(COOKIES COOKIES) {
         // Project Schedule label
         final Label label = new Label("Projects Schedule");
         label.setFont(new Font("Arial", 20));
-
+        Scheduler.COOKIES = COOKIES;
         // initialize data
-        data = projects;
+        data = FXCollections.observableArrayList();
         projectsTimelineList = FXCollections.observableArrayList();
 
         // make table editable
@@ -149,14 +156,22 @@ public class Scheduler extends VBox {
         table.getColumns().addAll(projName, projTimeline, projDetails, projMembers);
 
         // add, modify, and delete buttons
-        Button addButton = new Button("Add");
-        addButton.setOnAction(actionEvent -> addProject());
+        Button addButton = new Button("Refresh Projects");
+        addButton.setOnAction(actionEvent -> {
+            try {
+                loadProjects(COOKIES);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
         Button modifyButton = new Button("Modify");
-        modifyButton.setOnAction(actionEvent -> modifyProject());
+        modifyButton.setOnAction(actionEvent -> modifyProject(COOKIES));
 
         Button deleteButton = new Button("Delete");
-        deleteButton.setOnAction(actionEvent -> deleteProject());
+        deleteButton.setOnAction(actionEvent -> deleteProject(COOKIES));
 
         Button refreshButton = new Button("Refresh");
         refreshButton.setOnAction(actionEvent -> {
@@ -176,113 +191,12 @@ public class Scheduler extends VBox {
 
         // add the label, table, and buttons to the main container
         this.getChildren().addAll(label, table, buttonBox);
+        try {
+            loadProjects(COOKIES);
+        }catch (Exception e){
+            showAlert("Error!","It looks like that there are nothing in the list yet");
+        }
         table.setItems(data); // bind the data list to the table
-    }
-
-    /***
-     * Method to add a project to the table list
-     */
-    private void addProject() {
-        // While user is not inputting a valid string, keep asking
-        // unless they click `Cancel` or `X` button
-        String projectName = "";
-        while (true) {
-            TextInputDialog nameInput = new TextInputDialog();
-            nameInput.setTitle("Add New Project");
-            nameInput.setHeaderText("Enter Project Name");
-            // Optional has access to methods that are helpfull for checking null and blank string
-            // char.
-            Optional<String> nameResult = nameInput.showAndWait();
-            if (nameResult.isPresent() && !nameResult.get().trim().isEmpty()) {
-                projectName = nameResult.get().trim();
-                break;
-            } else if (!nameResult.isPresent()) {
-                return; // When user clicked cancel or x, return
-            }
-        }
-
-        // Check for duplicate project name
-        for (Project project : data) {
-            if (project.getName().equals(projectName)) {
-                Alert duplicateAlert = new Alert(Alert.AlertType.ERROR);
-                duplicateAlert.setTitle("Error!");
-                duplicateAlert.setHeaderText("Project already exists!");
-                duplicateAlert.setContentText("Please choose a different project name.");
-                duplicateAlert.showAndWait();
-                return;
-            }
-        }
-
-        // While user is not inputting a valid string, keep asking
-        // unless they click `Cancel` or `X` button
-        String projectTimeline = "";
-        while (true) {
-            TextInputDialog timelineInput = new TextInputDialog();
-            timelineInput.setHeaderText("Enter Project Timeline (format: yyyy-mm-dd)");
-            Optional<String> timelineResult = timelineInput.showAndWait();
-            if (timelineResult.isPresent()) {
-                String input = timelineResult.get().trim();
-                if (isValidDate(input)) {
-                    projectTimeline = input;
-                    break;
-                } else {
-                    Alert invalidFormatAlert = new Alert(Alert.AlertType.ERROR);
-                    invalidFormatAlert.setTitle("Invalid Format");
-                    invalidFormatAlert.setHeaderText("Invalid Timeline Format");
-                    invalidFormatAlert.setContentText("Please enter the date in the format yyyy-m-dd (e.g., 2022-11-06)" +
-                            "including the dashes.");
-                    invalidFormatAlert.showAndWait();
-                }
-            } else {
-                return; // User clicked cancel or closed the dialog
-            }
-        }
-
-        // While user is not inputting a valid string, keep asking
-        // unless they click `Cancel` or `X` button
-        String projectDetails = "";
-        while (true) {
-            TextInputDialog nameInput = new TextInputDialog();
-            nameInput.setHeaderText("Enter Project Details");
-            Optional<String> nameResult = nameInput.showAndWait();
-            if (nameResult.isPresent() && !nameResult.get().trim().isEmpty()) {
-                projectDetails = nameResult.get().trim();
-                break;
-            } else if (!nameResult.isPresent()) {
-                return; // When user clicked cancel or x, return
-            }
-        }
-
-        // provide choices for members and prompt user to select one (for now)
-        ObservableList<String> choices = EmployeeList.employeeFirstNameList;
-        ChoiceDialog<String> memberDialog = new ChoiceDialog<>("Members", choices);
-        memberDialog.setTitle("Choose a Member");
-        memberDialog.setHeaderText("Choose a Project Member");
-        String selectedMember = memberDialog.showAndWait().orElse("");
-
-        // create a new project instance using the user-provided info
-        Project newProject = new Project(
-                new SimpleStringProperty(projectName),
-                new SimpleStringProperty(projectTimeline),
-                new SimpleStringProperty(projectDetails),
-                new SimpleStringProperty(selectedMember)
-        );
-
-        // add the project to data list
-        data.add(newProject);
-        projectsTimelineList.add(projectDetails);
-        table.refresh();
-
-        int chosenEmployeeIdx = EmployeeList.employeeSearch(selectedMember);
-        if (chosenEmployeeIdx == -1){
-            Alert notFoundError = new Alert(Alert.AlertType.ERROR);
-            notFoundError.setTitle("Error!");
-            notFoundError.setHeaderText("Employee Search");
-            notFoundError.setContentText("Employee Not Found! Please try again");
-            notFoundError.showAndWait();
-        } else{
-            EmployeeList.data.get(chosenEmployeeIdx).addProject2Employee(data.getLast());
-        }
     }
 
     /***
@@ -310,18 +224,36 @@ public class Scheduler extends VBox {
         String selectedMember = memberDialog.showAndWait().orElse("");
 
         // create a new project instance using the user-provided info
-        Project newProject = new Project(
-                new SimpleStringProperty(projectName),
-                new SimpleStringProperty(projectTimeline),
-                new SimpleStringProperty(projectDetails),
-                new SimpleStringProperty(selectedMember)
-        );
+        String msg = "{" +
+                "\"pName\":\"" + projectName + "\"," +
+                "\"pTime\":\"" + projectTimeline + "\"," +
+                "\"pDetails\":\"" + projectDetails + "\"," +
+                "\"pMember\":\"" + selectedMember + "\"" +
+                "}";
+
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://127.0.0.1:5001/addProjects"))
+                .timeout(Duration.ofMinutes(2))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(msg, StandardCharsets.UTF_8))
+                .build();
+
+        System.out.println("[ADD TIME PROJECTS]: " + request.toString());
+        try{
+            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+            System.out.println("[ADD TIME PROJECTS]: " +response.body());
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        try{
+            loadProjects(COOKIES);
+        }catch(Exception e){
+            System.out.println(e);
+        }
 
         // add the project to data list
-        data.add(newProject);
-        projectsTimelineList.add(projectDetails);
-        table.refresh();
-
+        projectsTimelineList.add(projectTimeline);
         int chosenEmployeeIdx = EmployeeList.employeeSearch(selectedMember);
         if (chosenEmployeeIdx == -1){
             Alert notFoundError = new Alert(Alert.AlertType.ERROR);
@@ -331,7 +263,10 @@ public class Scheduler extends VBox {
             notFoundError.showAndWait();
         } else{
             EmployeeList.data.get(chosenEmployeeIdx).addProject2Employee(data.getLast());
+
+
         }
+        table.refresh();
     }
 
     /**
@@ -347,7 +282,7 @@ public class Scheduler extends VBox {
     /***
      * Method to modify a selected project
      */
-    private void modifyProject() {
+    private void modifyProject(COOKIES COOKIES) {
         // get currently selected project from the table
         Project selectedProject = table.getSelectionModel().getSelectedItem();
 
@@ -361,20 +296,7 @@ public class Scheduler extends VBox {
             return;
         }
 
-        // Loop for project name input
-        String newProjectName = "";
-        while (true) {
-            TextInputDialog nameInput = new TextInputDialog(selectedProject.getName());
-            nameInput.setTitle("Modify Project");
-            nameInput.setHeaderText("Enter New Project Name");
-            Optional<String> nameResult = nameInput.showAndWait();
-            if (nameResult.isPresent() && !nameResult.get().trim().isEmpty()) {
-                newProjectName = nameResult.get().trim();
-                break;
-            } else if (!nameResult.isPresent()) {
-                return; // User clicked cancel or closed the dialog
-            }
-        }
+
 
         // Loop for project timeline input
         String newProjectTimeline = "";
@@ -419,16 +341,12 @@ public class Scheduler extends VBox {
         ChoiceDialog<String> memberDialog = new ChoiceDialog<>("Members", choices);
         memberDialog.setTitle("Choose a Member");
         memberDialog.setHeaderText("Choose a Project Member");
+
         String oldMember = selectedProject.getMembers();
+
         EmployeeList.data.get(EmployeeList.employeeSearch(oldMember)).getProjects().remove(selectedProject);
         String newMember = memberDialog.showAndWait().orElse("");
 
-
-
-        selectedProject.setName(newProjectName);
-        selectedProject.setTimeline(newProjectTimeline);
-        selectedProject.setDetails(newProjectDetails);
-        selectedProject.setMembers(newMember);
         EmployeeList.data.get(EmployeeList.employeeSearch(newMember)).getProjects().add(selectedProject);
 
         String msg = "{" +
@@ -493,7 +411,7 @@ public class Scheduler extends VBox {
     /***
      * Method to delete a selected project
      */
-    private void deleteProject() {
+    private void deleteProject(COOKIES COOKIES) {
 
         // get currently selected project from table
         Project selectedProject = table.getSelectionModel().getSelectedItem();
@@ -506,6 +424,33 @@ public class Scheduler extends VBox {
                     employee.removeProject2Employee(selectedProject);
                 }
             }
+            String msg = "{" +
+                    "\"deleteProjectName\":\"" + selectedProject.getName() + "\"" +
+                    "}";
+            System.out.println("[TIME PROJECT DELETE]: " + msg);
+
+            HttpClient httpClient = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("http://127.0.0.1:5001/deleteTimeProjects"))
+                    .timeout(Duration.ofMinutes(2))
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(msg, StandardCharsets.UTF_8))
+                    .build();
+
+            System.out.println("[TIME PROJECT DELETE]: " + request.toString());
+            try {
+                HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+                System.out.println(response.body());
+            }catch (Exception e){
+                System.out.println(e);
+            }
+
+            try{
+                loadProjects(COOKIES);
+            }catch (Exception e){
+                showAlert("Error!","It looks like that you deleted all the items from the table.");
+            }
+
         } else { // show alert if no project is selected
             Alert noSelectedAlert = new Alert(Alert.AlertType.WARNING);
             noSelectedAlert.setTitle("Error!");
@@ -513,6 +458,46 @@ public class Scheduler extends VBox {
             noSelectedAlert.setContentText("Please select a project from the table to delete.");
             noSelectedAlert.showAndWait();
         }
+    }
+
+    private static void loadProjects(COOKIES COOKIES) throws IOException, InterruptedException {
+        data.clear();
+        projectsTimelineList.clear();
+        String msg = "{" +
+                "\"cookie\":\"" + COOKIES.getUsername() + "\"" +
+                "}";
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://127.0.0.1:5001/getProjects"))
+                .timeout(Duration.ofMinutes(2))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(msg, StandardCharsets.UTF_8))
+                .build();
+
+        System.out.println("[LOAD TIME PROJECTS]: " + request.toString());
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+        try{
+            ObjectMapper mapper = new ObjectMapper();
+            System.out.println(response.body());
+            Projects projects = mapper.readValue(response.body(),Projects.class);
+            for (Project project:projects.getProjects()){
+                if(project != null && !data.contains(project)){
+                    data.add(project);
+                }
+            }
+
+        } catch (JsonMappingException e) {
+            throw new RuntimeException(e);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
+        for (Project project: data){
+            projectsTimelineList.add(project.getTimeline());
+        }
+
+        table.refresh();
     }
 
     public static Project searchProjectByName(String projectName){

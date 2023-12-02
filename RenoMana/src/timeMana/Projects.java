@@ -1,20 +1,27 @@
 package timeMana;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import employeeMana.Employee;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class Projects {
-    private ObservableList<Project> projects;
+import java.util.List;
 
-    public Projects() {
-        this.projects = FXCollections.observableArrayList();
+public class Projects {
+    private List<Project> projects;
+    @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
+    public Projects(@JsonProperty("times")List<Project> projects){
+            this.projects = projects;
+    }
+    public Projects(){
     }
 
-    public ObservableList<Project> getProjects() {
+    public List<Project> getProjects() {
         return projects;
     }
 
-    public void setProjects(ObservableList<Project> projects) {
-        this.projects = projects;
+    public String getProjectsToString(){
+        return projects.toString();
     }
 }
