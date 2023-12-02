@@ -431,6 +431,37 @@ public class Scheduler extends VBox {
         selectedProject.setMembers(newMember);
         EmployeeList.data.get(EmployeeList.employeeSearch(newMember)).getProjects().add(selectedProject);
 
+        String msg = "{" +
+                "\"pName\":\"" + selectedProject.getName() + "\"," +
+                "\"pTime\":\"" + newProjectTimeline + "\"," +
+                "\"pDetails\":\"" + newProjectDetails + "\"," +
+                "\"pMember:\"" + newMember + "\"," +
+                "}";
+
+        System.out.println(msg);
+
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://127.0.0.1:5001/modTimeProject"))
+                .timeout(Duration.ofMinutes(2))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(msg, StandardCharsets.UTF_8))
+                .build();
+
+        System.out.println("[MOD TIME PROJECTS]: " + request.toString());
+        try {
+            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+            System.out.println(response.body());
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
+        try{
+            loadProjects(COOKIES);
+        }catch (Exception e){
+            showAlert("Error!","project details is not modified");
+        }
+
         table.refresh();
     }
 
