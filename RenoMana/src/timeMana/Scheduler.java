@@ -25,7 +25,7 @@ import java.util.Optional;
 public class Scheduler extends VBox {
 
     // table to display projects
-    private final TableView<Project> table;
+    private static TableView<Project> table = new TableView<>();
 
     // list that holds the data for the table
     public static ObservableList<Project> data;
@@ -250,6 +250,55 @@ public class Scheduler extends VBox {
                 break;
             } else if (!nameResult.isPresent()) {
                 return; // When user clicked cancel or x, return
+            }
+        }
+
+        // provide choices for members and prompt user to select one (for now)
+        ObservableList<String> choices = EmployeeList.employeeFirstNameList;
+        ChoiceDialog<String> memberDialog = new ChoiceDialog<>("Members", choices);
+        memberDialog.setTitle("Choose a Member");
+        memberDialog.setHeaderText("Choose a Project Member");
+        String selectedMember = memberDialog.showAndWait().orElse("");
+
+        // create a new project instance using the user-provided info
+        Project newProject = new Project(
+                new SimpleStringProperty(projectName),
+                new SimpleStringProperty(projectTimeline),
+                new SimpleStringProperty(projectDetails),
+                new SimpleStringProperty(selectedMember)
+        );
+
+        // add the project to data list
+        data.add(newProject);
+        projectsTimelineList.add(projectDetails);
+        table.refresh();
+
+        int chosenEmployeeIdx = EmployeeList.employeeSearch(selectedMember);
+        if (chosenEmployeeIdx == -1){
+            Alert notFoundError = new Alert(Alert.AlertType.ERROR);
+            notFoundError.setTitle("Error!");
+            notFoundError.setHeaderText("Employee Search");
+            notFoundError.setContentText("Employee Not Found! Please try again");
+            notFoundError.showAndWait();
+        } else{
+            EmployeeList.data.get(chosenEmployeeIdx).addProject2Employee(data.getLast());
+        }
+    }
+
+    /***
+     * Method to add a project to the table list
+     */
+    public static void addProject(String projectName, String projectTimeline, String projectDetails) {
+
+        // Check for duplicate project name
+        for (Project project : data) {
+            if (project.getName().equals(projectName)) {
+                Alert duplicateAlert = new Alert(Alert.AlertType.ERROR);
+                duplicateAlert.setTitle("Error!");
+                duplicateAlert.setHeaderText("Project already exists!");
+                duplicateAlert.setContentText("Please choose a different project name.");
+                duplicateAlert.showAndWait();
+                return;
             }
         }
 

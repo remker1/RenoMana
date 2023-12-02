@@ -147,7 +147,6 @@ public class Review extends VBox {
             System.out.println(e);
         }
 
-
         // Refresh table
         reviewTable.refresh();
     }
