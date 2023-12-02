@@ -2,6 +2,7 @@ package ProjectRequestsMana;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import employeeMana.Employee;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -12,6 +13,7 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import timeMana.Scheduler;
 
 import java.io.IOException;
 import java.net.URI;
@@ -34,6 +36,11 @@ public class ProjectRequests extends VBox {
         data = FXCollections.observableArrayList();
 
         // Adding column names
+        // TODO remove
+        TableColumn<ProjectRequestsItem, Integer> idCol = new TableColumn<>("id");
+        idCol.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getId()));
+        idCol.prefWidthProperty().bind(ProjectTable.widthProperty().multiply(0.15));
+
         TableColumn<ProjectRequestsItem, String> ProjectCol = new TableColumn<>("Name");
         ProjectCol.setCellValueFactory(cellData -> cellData.getValue().Name());
         ProjectCol.prefWidthProperty().bind(ProjectTable.widthProperty().multiply(0.15));
@@ -97,7 +104,8 @@ public class ProjectRequests extends VBox {
             }
         });
 
-        ProjectTable.getColumns().addAll(ProjectCol,
+        ProjectTable.getColumns().addAll(
+                ProjectCol,
                 EmailCol,
                 ContactCol,
                 CompanyCol,
@@ -171,7 +179,9 @@ public class ProjectRequests extends VBox {
     private void handleAction(String action, ProjectRequestsItem project) {
         if ("Accept".equals(action)) {
             project.setAccepted(true);
+            Scheduler.addProject(project.Name().getValue(), project.End_date().getValue(), project.Description().getValue());
         } else if ("Decline".equals(action)) {
+            deleteProject(project.getId());
             data.remove(project);
         }
         ProjectTable.refresh();
@@ -182,16 +192,13 @@ public class ProjectRequests extends VBox {
     public void loadProjects() throws IOException, InterruptedException {
         this.data.clear();
 
-        String url = "http://localhost:5001/submitRequest";
-
-
         // Create an HttpClient
         HttpClient httpClient = HttpClient.newHttpClient();
 
 
         // Build the request
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url))
+                .uri(URI.create("http://localhost:5001/submitRequest"))
                 .GET()
                 .build();
 
@@ -200,15 +207,8 @@ public class ProjectRequests extends VBox {
         // Decode POST response and add reviews to table data
         try {
             ObjectMapper mapper = new ObjectMapper();
-
             ProjectRequestsItems projects = mapper.readValue(response.body(), ProjectRequestsItems.class);
-
-            int idCounter = 1;
-            for (ProjectRequestsItem project : projects.getprojects()) {
-                project.setId(idCounter++);
-
-                this.data.add(project);
-            }
+            this.data.addAll(projects.getprojects());
         } catch (Exception e){
             System.out.println(e);
         }
@@ -217,27 +217,6 @@ public class ProjectRequests extends VBox {
         ProjectTable.refresh();
 
     }
-
-
-
-//    private void deleteProjectRequest() {
-//        // When item is selected ...
-//        ProjectRequestsItem selectedproject = ProjectTable.getSelectionModel().getSelectedItem();
-//
-//        // Check if that item row is valid or does exists, if not, throw an alert
-//        if (selectedproject == null) {
-//            Alert noSelectedAlert = new Alert(Alert.AlertType.WARNING);
-//            noSelectedAlert.setTitle("Error!");
-//            noSelectedAlert.setHeaderText("No project is selected!");
-//            noSelectedAlert.setContentText("Please select a project from the table to delete.");
-//            noSelectedAlert.showAndWait();
-//            return;
-//        }
-//
-//        // Else, remove the item from the table
-//        data.remove(selectedproject);
-//        ProjectTable.refresh();
-//    }
 
     private void deleteProjectRequest() {
         // When item is selected ...
@@ -254,9 +233,14 @@ public class ProjectRequests extends VBox {
         }
 
         // Get the projectInq or any unique identifier for the selected project
-        int selected_project1 = selected_project.getId();
+        deleteProject(selected_project.getId());
+    }
 
+    private void deleteProectRequest(int id){
+        deleteProject(id);
+    }
 
+    private void deleteProject(int selected_project1){
         // Set the URL for the delete endpoint on your server
         String deleteUrl = "http://localhost:5001/deleteproject";
 
@@ -290,7 +274,6 @@ public class ProjectRequests extends VBox {
             showAlert("Error", "An error occurred while deleting the project: " + e.getMessage());
         }
     }
-
 
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
