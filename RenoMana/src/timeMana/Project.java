@@ -1,5 +1,7 @@
 package timeMana;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
@@ -13,12 +15,18 @@ public class Project {
     private final SimpleStringProperty timeline;
     private final SimpleStringProperty details;
     private final SimpleStringProperty members;
-
-    public Project(SimpleStringProperty name, SimpleStringProperty timeline, SimpleStringProperty details, SimpleStringProperty members) {
-        this.name = name;
-        this.timeline = timeline;
-        this.details = details;
-        this.members = members;
+    private final SimpleStringProperty _id;
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public Project(@JsonProperty("pName") String name,
+                   @JsonProperty("pTime") String timeline,
+                   @JsonProperty("pDetails") String details,
+                   @JsonProperty("pMember") String members,
+                   @JsonProperty("_id") String _id) {
+        this.name = new SimpleStringProperty(name);
+        this.timeline = new SimpleStringProperty(timeline);
+        this.details = new SimpleStringProperty(details);
+        this.members = new SimpleStringProperty(members);
+        this._id = new SimpleStringProperty(_id);
     }
 
     public String getName() {
@@ -66,6 +74,18 @@ public class Project {
     }
 
     public void setMembers(String members) {this.members.set(members);}
+
+    public String get_id() {
+        return _id.get();
+    }
+
+    public SimpleStringProperty _idProperty() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id.set(_id);
+    }
 
     public String getTimelineStatus() {
         try {

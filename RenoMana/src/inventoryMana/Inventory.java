@@ -41,14 +41,14 @@ public class Inventory extends VBox {
         // Setting up the table
         inventoryTable = new TableView<>();
         inventoryTable.prefWidthProperty().bind(this.widthProperty());
-        System.out.println("[INVENTORY] About to add data to inventory");
+
         if (initialData != null && !initialData.isEmpty()) {
             data = FXCollections.observableArrayList(initialData);
         } else {
             data = FXCollections.observableArrayList();
         }
 
-        System.out.println("[INVENTORY] Data added to inventory");
+
 
         //determine which IDs are currently available
         for (int i = 1; i <= 1000; i++) {
@@ -339,7 +339,7 @@ public class Inventory extends VBox {
                 }
                 availableIds.removeAll(usedIds);
                 inventoryTable.refresh();
-                System.out.println(inventoryTable.getItems());
+
 
             } catch (IOException | NumberFormatException e) {
                 Alert errorAlert = new Alert(Alert.AlertType.ERROR);

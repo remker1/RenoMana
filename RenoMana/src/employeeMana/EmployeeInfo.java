@@ -10,15 +10,6 @@ import javafx.stage.Stage;
 
 import timeMana.Project;
 
-import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.time.Duration;
-
-
 /**
  * EmployeeInfo class displays detailed information about a selected employee.
  */
@@ -54,6 +45,7 @@ public class EmployeeInfo extends Application {
 
         Text projectMsg = new Text("Current Projects:");
         ObservableList<Project> projectList = employee.getProjects();
+
         Text projectsString;
         if (projectList.isEmpty()){
             projectsString = new Text("No project assigned to this employee yet...");
