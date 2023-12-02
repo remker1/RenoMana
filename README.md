@@ -28,7 +28,7 @@ Before installing the RenoMana Application, ensure you have the following prereq
 **Step 2: Downloading JavaFx and Project Zip**
 - Download our project zip (with libraries, and javaFX) here: 
     - For MacOS x64: https://drive.google.com/file/d/1LP2140B3zVDVrr4wHTE-UXckQ1lIcn37/view?usp=sharing
-    - For MacOS arrch64: https://drive.google.com/file/d/1GfqjnKDS2MGElTD3VfJ4YiGmMSp5usOv/view?usp=drive_link
+    - For MacOS arrch64: https://drive.google.com/file/d/1B173Qa60pUc53QlKbN4tqSvs-OYSplLr/view?usp=drive_link
     - For Ubuntu 22.04.03 LTS: https://drive.google.com/file/d/1BmR7fa7E0jxt2LgpW0HOvraM3pKeQVwj/view?usp=drive_link
 
 - Once our project zip has been downloaded, place it where you can easily find and access it. In this case, we recommend your Desktop/Homepage screen. 
