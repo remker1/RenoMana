@@ -430,15 +430,39 @@ public class EmployeeList extends VBox {
         Button doneButton = new Button("Done");
         doneButton.setOnAction(event -> {
             // Check which fields are selected for modification
+            String newFirstName = null;
+            String newLastName = null;
+            if (firstNameMod.isSelected() && lastNameMod.isSelected()) {
+                TextInputDialog firstNameInput = new TextInputDialog(selectedEmployee.getEmployeeFirstName());
+                firstNameInput.setTitle("Modify First Name");
+                firstNameInput.setHeaderText("Enter new First Name");
+                newFirstName = firstNameInput.showAndWait().orElse("");
+
+                TextInputDialog lastNameInput = new TextInputDialog(selectedEmployee.getEmployeeLastName());
+                lastNameInput.setTitle("Modify Last Name");
+                lastNameInput.setHeaderText("Enter new Last Name");
+                newLastName = lastNameInput.showAndWait().orElse("");
+
+                for (Employee employee: data) {
+                    if (Objects.equals(employee.getEmployeeFirstName().toLowerCase(), newFirstName.toLowerCase()) &&
+                            Objects.equals(employee.getEmployeeLastName().toLowerCase(), newLastName.toLowerCase())) {
+                        showAlert("Duplicate Error", "Employee with the first and last name already exist!");
+                        return;
+                    }
+                }
+                modLastName.set(newLastName);
+                modFirstName.set(newFirstName);
+                employeeFirstNameList.remove(selectedEmployee.getEmployeeFirstName());
+                employeeFirstNameList.add(newFirstName);
+
+            }
+
             if (firstNameMod.isSelected()) {
                 TextInputDialog firstNameInput = new TextInputDialog(selectedEmployee.getEmployeeFirstName());
                 firstNameInput.setTitle("Modify First Name");
                 firstNameInput.setHeaderText("Enter new First Name");
-                String newFirstName = firstNameInput.showAndWait().orElse("");
+                newFirstName = firstNameInput.showAndWait().orElse("");
 
-                if (isDuplicate(newFirstName + " " + selectedEmployee.getEmployeeLastName(), "name")) {
-                    showAlert("Duplicate Error", "Employee with the first and last name already exist!");
-                }
                 modFirstName.set(newFirstName);
                 employeeFirstNameList.remove(selectedEmployee.getEmployeeFirstName());
                 employeeFirstNameList.add(newFirstName);
@@ -448,13 +472,19 @@ public class EmployeeList extends VBox {
                 TextInputDialog lastNameInput = new TextInputDialog(selectedEmployee.getEmployeeLastName());
                 lastNameInput.setTitle("Modify Last Name");
                 lastNameInput.setHeaderText("Enter new Last Name");
-                String newLastName = lastNameInput.showAndWait().orElse("");
+                newLastName = lastNameInput.showAndWait().orElse("");
 
-                if (isDuplicate(selectedEmployee.getEmployeeFirstName() + " " + newLastName, "name")) {
-                    showAlert("Duplicate Error", "Employee with the first and last name already exist!");
-                    return;
+                for (Employee employee: data) {
+                    if (Objects.equals(employee.getEmployeeFirstName().toLowerCase(), newFirstName.toLowerCase()) &&
+                            Objects.equals(employee.getEmployeeLastName().toLowerCase(), newLastName.toLowerCase())) {
+                        showAlert("Duplicate Error", "Employee with the first and last name already exist!");
+                        return;
+                    }
                 }
                 modLastName.set(newLastName);
+                modFirstName.set(newFirstName);
+                employeeFirstNameList.remove(selectedEmployee.getEmployeeFirstName());
+                employeeFirstNameList.add(newFirstName);
 
             }
 
