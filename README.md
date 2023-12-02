@@ -71,3 +71,4 @@ Before installing the RenoMana Application, ensure you have the following prereq
 
 - Java Version Problems: Check that you have the correct version of Java installed by running `java -version` in your command line.
 - Compatability issue with Ubuntu 22.04.3 LTS: If you have an x86_64 architecture system (you can confirm this by running 'uname -m'), you'll need to edit the docker-compose.yml using any text editor to resemble the following: https://drive.google.com/file/d/1UtsteF7zdtorL3J4dJyJ2nQRoTNWsiB6/view?usp=drive_link
+- docker compose: command not found: this is a docker bug that is present on various versions of docker compose. Please edit the runApp.sh file with any text editor and replace line 4 with 'docker-compose up -d --build'
