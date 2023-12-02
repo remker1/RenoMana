@@ -1,10 +1,11 @@
 # Description
-The Reno Application helps small renovation company managers to keep track of their projects, its due date and set a schedule for an accepted renovation request. They could also keep track of inventory items that are available in their office, and see a list of employees where they would be able to see who is assigned to what project, if any. On the customer side, customers are able to fill and send out a renovation request and leave reviews or feedback through the app about their experience(s).
+The Reno Application helps small renovation company managers to keep track of their projects, its due date and set a schedule for an accepted renovation request. They could also keep track of inventory items that are available in their office, and see a list of employees where they would be able to see who is assigned to what project, if any. On the customer side, customers are able to fill and send out a renovation request and leave reviews or feedback through the app about their experience(s). 
 
 # Prerequisites
 Before installing the RenoMana Application, ensure you have the following prerequisites:
 
-- Java: Required to run the application. Make sure you have Java installed on your system. [Download Java.](https://www.java.com/en/download/)
+- OS Compatability: Ubuntu 22.04.03 LTS (amd64 **NON-AVX**), MacOS 13 Ventura, MacOS 14 Sonoma
+- Java: Required to run the application. Make sure you have the latest update of JDK 21 (as of writing, JDK 21.0.1) installed on your system. [Download JDK 21.0.1.](https://www.oracle.com/java/technologies/downloads/)
 - Docker Desktop: Used for running the application in a container. [Download Docker Desktop.](https://www.docker.com/products/docker-desktop/)
 - JavaFx: Used for building the frontend of the application. [Download Version of JavaFx compatible for your OS.](https://gluonhq.com/products/javafx/)
     - Download JavaFx based on the architecture of or OS (aarch64 or x64)
@@ -25,19 +26,16 @@ Before installing the RenoMana Application, ensure you have the following prereq
 
 
 **Step 2: Downloading JavaFx and Project Zip**
-- Download correct architecture for JavaFx through this [link](https://gluonhq.com/products/javafx/) and keep in somewhere you will be able to find it.
-- Unzip the Javafx and click the folder until you see the folder named `java-sdk-21.0.1`
-- Copy that folder. 
-- Download our project zip (with libraries) here: 
-    - https://drive.google.com/file/d/1g8g-I4NQdezrSpD7YW5-s-JBBy-Gsu9r/view?usp=sharing
+- Download our project zip (with libraries, and javaFX) here: 
+    - For MacOS x64: https://drive.google.com/file/d/1g8g-I4NQdezrSpD7YW5-s-JBBy-Gsu9r/view?usp=sharing
+    - For MacOS arrch64: 
+    - For Ubuntu 22.04.03 LTS: https://drive.google.com/file/d/1BmR7fa7E0jxt2LgpW0HOvraM3pKeQVwj/view?usp=drive_link
 - Once our project zip has been downloaded, place it where you can easily find and access it. In this case, we recommend your Desktop/Homepage screen. 
 - Unzip the project.
-- Navigate to the location where the unzipped project file is stored and open it. 
-- In the folder, `Command + C` so JavaFx folder that we copied earlier will be copied in this directory.
-- Minimize the project folder view so that we could click the actual `RenoManaApplication Folder` and highlight it. 
+- Navigate to the location where the unzipped file is stored but do not open it yet.
 
-Step 3: Running the Application
-- In the place where your unzipped file is, and with the `RenoManaApplication Folder` higlighted, do not open it yet. Make sure it is only highlighted. 
+**Step 3: Running the Application**
+- In the folder where your unzipped file is, select the `RenoManaApplication` but do not open it yet.
 - Type `command + I` which will open a smaller folder with `RenoManaApplication Folder` informations.
     - Double click the content from the `General: -> Where:` 
     - Do `command + C.`
@@ -72,5 +70,5 @@ Step 3: Running the Application
     - Do Step 2-4 again.
 
 - Java Version Problems: Check that you have the correct version of Java installed by running `java -version` in your command line.
-
-
+- Compatability issue with Ubuntu 22.04.3 LTS: If you have an x86_64 architecture system (you can confirm this by running 'uname -m'), you'll need to edit the docker-compose.yml using any text editor to resemble the following: https://drive.google.com/file/d/1UtsteF7zdtorL3J4dJyJ2nQRoTNWsiB6/view?usp=drive_link
+- docker compose: command not found: this is a docker bug that is present on various versions of docker compose. Please edit the runApp.sh file with any text editor and replace line 4 with 'docker-compose up -d --build'

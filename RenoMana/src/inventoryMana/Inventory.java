@@ -2,6 +2,7 @@ package inventoryMana;
 
 import COOKIES.COOKIES;
 import ManagerCheck.ManagerCheck;
+import inquiryMana.inquiryitem;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,6 +27,7 @@ import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import reviewMana.ReviewItems;
 
 
 public class Inventory extends VBox {
@@ -91,6 +93,12 @@ public class Inventory extends VBox {
 
         VBox.setVgrow(inventoryTable, Priority.ALWAYS);
         this.getChildren().addAll(inventoryTable, optButton);
+
+        try {
+            syncToDatabase();
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
@@ -204,11 +212,24 @@ public class Inventory extends VBox {
             }
         });
 
+        Button refreshItems = new Button("Refresh");
+        refreshItems.setOnAction(actionEvent -> {
+            try {
+                syncToDatabase();
+            } catch(Exception e){
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setTitle("Error!");
+                errorAlert.setHeaderText("Loading Items Error");
+                errorAlert.setContentText("There was an error loading items from the database. Please try again.");
+                errorAlert.showAndWait();
+            }
+        });
+
         HBox optButton;
         if (ManagerCheck.isManager(COOKIES)){
-            optButton = new HBox(10, addItem, deleteItem, modifyItem, checkOut, importFile, exportFile);
+            optButton = new HBox(10, addItem, deleteItem, modifyItem, checkOut, importFile, exportFile, refreshItems);
         } else {
-            optButton = new HBox(10, exportFile);
+            optButton = new HBox(10, exportFile, refreshItems);
         }
 
         // Create a horizontal box to hold the buttons
@@ -456,6 +477,7 @@ public class Inventory extends VBox {
                 });
             }
             try {
+                syncToDatabase(selectedItem.getItemID());
                 syncToDatabase(Collections.singletonList(selectedItem));
             } catch (IOException | InterruptedException e) {
                 throw new RuntimeException(e);
@@ -518,6 +540,7 @@ public class Inventory extends VBox {
         // Else, remove the item from the table
         data.remove(selectedItem);
         availableIds.add(selectedItem.getItemID());
+
         syncToDatabase(selectedItem.getItemID());
         inventoryTable.refresh();
     }
@@ -618,7 +641,7 @@ public class Inventory extends VBox {
      */
     private void syncToDatabase(int id) throws IOException, InterruptedException {
         String msg = "{" +
-                "\"deleteItemID\":\"" + id + "\"" +
+                "\"deleteItemID\":" + id  +
                 "}";
         System.out.println("[INVENTORY DELETE]: " + msg);
 
@@ -655,5 +678,33 @@ public class Inventory extends VBox {
         System.out.println("[INVENTORY]: " + request.toString());
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
+    }
+
+    private void syncToDatabase() throws IOException, InterruptedException {
+        this.data.clear();
+
+        // Create an HttpClient
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://127.0.0.1:5001/getInventoryDataInitial"))
+                .GET()
+                .build();
+
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+        // Decode POST response and add reviews to table data
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            InventoryItems items = mapper.readValue(response.body(), InventoryItems.class);
+            this.data.addAll(items.getItems());
+            for (InventoryItem item: items.getItems()) {
+                this.availableIds.remove(item.getItemID());
+            }
+        } catch (Exception e){
+            System.out.println(e);
+        }
+
+        // Refresh table
+        inventoryTable.refresh();
     }
 }
